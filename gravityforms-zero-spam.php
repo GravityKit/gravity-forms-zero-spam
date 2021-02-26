@@ -41,7 +41,7 @@ class GF_Zero_Spam {
 
 	public function __construct() {
 		add_action( 'wp_print_footer_scripts', array( $this, 'add_key_field' ), 9999 );
-		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ) );
+		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ), 10, 3 );
 	}
 
 	/**
@@ -94,6 +94,16 @@ class GF_Zero_Spam {
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
+
+		// This was not submitted using a web form; created using API
+		if ( ! did_action( 'gform_pre_submission' ) ) {
+			return $is_spam;
+		}
+
+		// Created using REST API or GFAPI
+		if ( isset( $entry['user_agent'] ) && 'API' === $entry['user_agent'] ) {
+			return $is_spam;
+		}
 
 		if ( ! isset( $_POST['gf_zero_spam_key'] ) ) {
 			return true;
