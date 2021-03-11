@@ -70,16 +70,16 @@ class GF_Zero_Spam {
 		?>
         <script type='text/javascript'>
             document.addEventListener("DOMContentLoaded", function() {
-                var gforms = '.gform_wrapper form';
+	            var gforms = '.gform_wrapper form';
 
-                document.querySelector(gforms).addEventListener("submit", function(e) {
-                    var input = document.createElement("input");
-                    input.type = 'hidden';
-                    input.name = 'gf_zero_spam_key';
-                    input.value = '<?php echo esc_js( $this->get_key() ); ?>';
+	            document.querySelector( gforms ).addEventListener( "submit", function ( e ) {
+		            var input = document.createElement( "input" );
+		            input.type = 'hidden';
+		            input.name = 'gf_zero_spam_key';
+		            input.value = '<?php echo esc_js( $this->get_key() ); ?>';
 
-                    e.target.appendChild(input);
-                });
+		            e.target.appendChild( input );
+	            } );
             });
         </script>
 		<?php
