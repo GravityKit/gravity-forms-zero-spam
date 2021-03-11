@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
- * Description:       Enhance your Gravity Forms to include anti-spam measures originally based on the work of David Walsh's <a href="http://davidwalsh.name/wordpress-comment-spam">"Zero Spam"</a> technique.
- * Version:           1.0.5
+ * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
+ * Version:           1.0.6
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -41,7 +41,7 @@ class GF_Zero_Spam {
 
 	public function __construct() {
 		add_action( 'wp_print_footer_scripts', array( $this, 'add_key_field' ), 9999 );
-		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ) );
+		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ), 10, 3 );
 	}
 
 	/**
@@ -69,17 +69,18 @@ class GF_Zero_Spam {
 	public function add_key_field() {
 		?>
         <script type='text/javascript'>
-			jQuery( document ).ready( function ( $ ) {
-				var gforms = '.gform_wrapper form';
-				$( document ).on( 'submit', gforms, function () {
-					$( '<input>' ).attr( 'type', 'hidden' )
-						.attr( 'name', 'gf_zero_spam_key' )
-						.attr( 'value', '<?php echo esc_js( $this->get_key() ); ?>' )
-						.appendTo( gforms );
+            document.addEventListener("DOMContentLoaded", function() {
+	            var gforms = '.gform_wrapper form';
 
-					return true;
-				} );
-			} );
+	            document.querySelector( gforms ).addEventListener( "submit", function ( e ) {
+		            var input = document.createElement( "input" );
+		            input.type = 'hidden';
+		            input.name = 'gf_zero_spam_key';
+		            input.value = '<?php echo esc_js( $this->get_key() ); ?>';
+
+		            e.target.appendChild( input );
+	            } );
+            });
         </script>
 		<?php
 	}
@@ -94,6 +95,16 @@ class GF_Zero_Spam {
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
+
+	    // This was not submitted using a web form; created using API
+		if ( ! did_action( 'gform_pre_submission' ) ) {
+			return $is_spam;
+		}
+
+		// Created using REST API or GFAPI
+		if ( isset( $entry['user_agent'] ) && 'API' === $entry['user_agent'] ) {
+			return $is_spam;
+		}
 
 		if ( ! isset( $_POST['gf_zero_spam_key'] ) ) {
 			return true;

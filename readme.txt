@@ -30,6 +30,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 == Changelog ==
 
+= 1.0.6 on March 11, 2021 =
+
+* Improved: No longer requires jQuery
+* Fixed: Only checks for spam on submissions that were submitted by a form, not for entries created programatically
+
 = 1.0.5 on February 16, 2021 =
 
 The Gravity Forms Zero Spam plugin is now maintained by [GravityView](https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=changelog). We look forward to continuing to improve this simple, effective spam blocker for Gravity Forms. Thanks to GoWP for their great work!
