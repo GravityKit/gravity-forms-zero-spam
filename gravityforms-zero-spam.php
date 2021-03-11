@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
- * Description:       Enhance your Gravity Forms to include anti-spam measures originally based on the work of David Walsh's <a href="http://davidwalsh.name/wordpress-comment-spam">"Zero Spam"</a> technique.
- * Version:           1.0.5
+ * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
+ * Version:           1.0.6
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -95,7 +95,8 @@ class GF_Zero_Spam {
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
-		// This was not submitted using a web form; created using API
+
+	    // This was not submitted using a web form; created using API
 		if ( ! did_action( 'gform_pre_submission' ) ) {
 			return $is_spam;
 		}
