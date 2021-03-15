@@ -72,7 +72,13 @@ class GF_Zero_Spam {
             document.addEventListener("DOMContentLoaded", function() {
 	            var gforms = '.gform_wrapper form';
 
-	            document.querySelector( gforms ).addEventListener( "submit", function ( e ) {
+	            var el = document.querySelector( gforms );
+
+	            if ( ! el ) {
+	            	return;
+	            }
+
+	            el.addEventListener( "submit", function ( e ) {
 		            var input = document.createElement( "input" );
 		            input.type = 'hidden';
 		            input.name = 'gf_zero_spam_key';

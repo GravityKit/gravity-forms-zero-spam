@@ -2,7 +2,7 @@
 Contributors: gravityview, karpstrucking, supporthero
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, addons, add-ons
 Requires at least: 3.0.1
-Tested up to: 5.6.1
+Tested up to: 5.7
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -12,11 +12,11 @@ Enhance your Gravity Forms to include anti-spam measures originally based on the
 
 == Description ==
 
-This plugin adds a non-obtrusive anti-spam measure to all of your Gravity Forms. This measure is originally based on David Walsh's "Zero Spam" technique.
+This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure. There are no settings or configuration needed: all you need to do is activate the plugin!
 
-There are no settings or configuration needed: all you need to do is activate the plugin!
+Do you not want to use ReCAPTCHA because it's user-hostile? Use this instead! There are no stoplights or crosswalks here.
 
-Requires: Gravity Forms v1.5+
+Originally based on David Walsh's "Zero Spam" technique. Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
 
 == Frequently Asked Questions ==
 
@@ -29,6 +29,10 @@ Yes.
 No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
 
 == Changelog ==
+
+= 1.0.6.1 on March 15, 2021 =
+
+* Fixed: JavaScript "null is not an object (evaluating 'el.addEventListener')" error on pages without a form
 
 = 1.0.6 on March 11, 2021 =
 
