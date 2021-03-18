@@ -30,6 +30,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 == Changelog ==
 
+= 1.0.7 on March 18, 2021 =
+
+* Fixed: All entries marked as spam for AJAX-enabled forms. Sorry, folks! Won't happen again.
+* Went back to using jQuery to listen to form submissions.
+
 = 1.0.6.1 on March 15, 2021 =
 
 * Fixed: JavaScript "null is not an object (evaluating 'el.addEventListener')" error on pages without a form
