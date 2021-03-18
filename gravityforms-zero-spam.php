@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.0.6.1
+ * Version:           1.0.7
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -69,24 +69,18 @@ class GF_Zero_Spam {
 	public function add_key_field() {
 		?>
         <script type='text/javascript'>
-            document.addEventListener("DOMContentLoaded", function() {
-	            var gforms = '.gform_wrapper form';
-
-	            var el = document.querySelector( gforms );
-
-	            if ( ! el ) {
-	            	return;
-	            }
-
-	            el.addEventListener( "submit", function ( e ) {
-		            var input = document.createElement( "input" );
-		            input.type = 'hidden';
-		            input.name = 'gf_zero_spam_key';
-		            input.value = '<?php echo esc_js( $this->get_key() ); ?>';
-
-		            e.target.appendChild( input );
-	            } );
-            });
+	        if ( window.jQuery ) {
+		        jQuery( document ).ready( function ( $ ) {
+			        var gforms = '.gform_wrapper form';
+			        $( document ).on( 'submit', gforms, function () {
+				        $( '<input>' ).attr( 'type', 'hidden' )
+					        .attr( 'name', 'gf_zero_spam_key' )
+					        .attr( 'value', '<?php echo esc_js( $this->get_key() ); ?>' )
+					        .appendTo( gforms );
+				        return true;
+			        } );
+		        } );
+	        }
         </script>
 		<?php
 	}
