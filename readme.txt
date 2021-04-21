@@ -30,6 +30,12 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 == Changelog ==
 
+= 1.1 on April 2021 =
+
+* Improved: The JavaScript code that adds the spam-catching field is now output at the same time as Gravity Forms' inline JavaScript.
+    - The script is only loaded when forms are displayed
+    - jQuery is always available because Gravity Forms loads it as-needed
+
 = 1.0.7 on March 18, 2021 =
 
 * Fixed: All entries marked as spam for AJAX-enabled forms. Sorry, folks! Won't happen again.
