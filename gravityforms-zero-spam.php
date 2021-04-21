@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.0.7
+ * Version:           1.1
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -40,7 +40,7 @@ class GF_Zero_Spam {
 	}
 
 	public function __construct() {
-		add_action( 'wp_print_footer_scripts', array( $this, 'add_key_field' ), 9999 );
+		add_action( 'gform_register_init_scripts', array( $this, 'add_key_field' ), 9999 );
 		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ), 10, 3 );
 	}
 
@@ -62,27 +62,28 @@ class GF_Zero_Spam {
 	}
 
 	/**
-	 * Adds inject the hidden field and key into the form at submission
+	 * Injects the hidden field and key into the form at submission
+	 *
+	 * @uses GFFormDisplay::add_init_script() to inject the code into the `gform_post_render` jQuery hook.
+	 *
+	 * @param array $form The Form Object
 	 *
 	 * @return void
 	 */
-	public function add_key_field() {
-		?>
-        <script type='text/javascript'>
-	        if ( window.jQuery ) {
-		        jQuery( document ).ready( function ( $ ) {
-			        var gforms = '.gform_wrapper form';
-			        $( document ).on( 'submit', gforms, function () {
-				        $( '<input>' ).attr( 'type', 'hidden' )
-					        .attr( 'name', 'gf_zero_spam_key' )
-					        .attr( 'value', '<?php echo esc_js( $this->get_key() ); ?>' )
-					        .appendTo( gforms );
-				        return true;
-			        } );
-		        } );
-	        }
-        </script>
-		<?php
+	public function add_key_field( $form ) {
+
+		$spam_key = esc_js( $this->get_key() );
+
+		$script = <<<EOD
+jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( event ) {
+	jQuery( '<input>' ).attr( 'type', 'hidden' )
+		.attr( 'name', 'gf_zero_spam_key' )
+		.attr( 'value', '{$spam_key}' )
+		.appendTo( jQuery( this ) );
+} );
+EOD;
+
+		GFFormDisplay::add_init_script( $form['id'], 'placeholders', GFFormDisplay::ON_PAGE_RENDER, $script );
 	}
 
 	/**
