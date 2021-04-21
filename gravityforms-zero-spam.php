@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.0.7
+ * Version:           1.1
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+

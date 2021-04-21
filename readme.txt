@@ -2,7 +2,7 @@
 Contributors: gravityview, karpstrucking, supporthero
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, addons, add-ons
 Requires at least: 3.0.1
-Tested up to: 5.7
+Tested up to: 5.7.1
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -14,15 +14,36 @@ Enhance your Gravity Forms to include anti-spam measures originally based on the
 
 This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure. There are no settings or configuration needed: all you need to do is activate the plugin!
 
-Do you not want to use ReCAPTCHA because it's user-hostile? Use this instead! There are no stoplights or crosswalks here.
+**reCaptcha is user-hostile!** Use this instead! Users don't need to click stoplights, crosswalks, or bicycles when you use this plugin to stop spam.
 
-Originally based on David Walsh's "Zero Spam" technique. Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
+Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
+
+_Brought to you by [GravityView](https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=readme). We create essential Gravity Forms Add-Ons._
 
 == Frequently Asked Questions ==
 
-= Is this plugin PHP7 compatible? =
+= Is this plugin PHP 7 compatible? =
 
 Yes.
+
+= Does this plugin work in combination with other CAPTCHAs or spam blocker plugins? =
+
+Yep, you can use this plugin in combination with all other spam-blocking plugins:
+
+- Gravity Forms' Google reCaptcha feature
+- WPBruiser
+- Akismet
+- Gravity Forms' honeypot fields
+- GravityCaptcha
+- СleanTalk
+- WP Armor
+- fail2ban
+
+Zero Spam will not interfere with the operation of those plugins.
+
+= What version of Gravity Forms does this work with? =
+
+This works with all Gravity Forms releases after v2.3 (released June 2017). The plugin also blocks bots in the latest Gravity Forms 2.5!
 
 = Will this block spam comments or registrations on my site? =
 
