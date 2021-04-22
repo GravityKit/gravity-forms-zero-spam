@@ -51,7 +51,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 == Changelog ==
 
-= 1.1 on April 2021 =
+= 1.1.1 on April 22, 2021 =
+
+* Fixed: Script not being correctly loaded using Gravity Forms' inline JavaScript
+
+= 1.1 on April 21, 2021 =
 
 * Improved: The JavaScript code that adds the spam-catching field is now output at the same time as Gravity Forms' inline JavaScript.
     - The script is only loaded when forms are displayed
