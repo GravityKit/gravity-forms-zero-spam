@@ -111,7 +111,7 @@ EOD;
 			return true;
 		}
 
-		if ( $_POST['gf_zero_spam_key'] !== $this->get_key() ) {
+		if ( html_entity_decode( $_POST['gf_zero_spam_key'] ) !== $this->get_key() ) {
 			return true;
 		}
 
