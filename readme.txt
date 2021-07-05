@@ -2,7 +2,7 @@
 Contributors: gravityview, karpstrucking, supporthero
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, addons, add-ons
 Requires at least: 3.0.1
-Tested up to: 5.7.1
+Tested up to: 5.8
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -22,7 +22,7 @@ _Brought to you by [GravityView](https://gravityview.co?utm_source=plugin&utm_ca
 
 == Frequently Asked Questions ==
 
-= Is this plugin PHP 7 compatible? =
+= Is this plugin PHP 7 and PHP 8 compatible? =
 
 Yes.
 
@@ -49,7 +49,15 @@ This works with all Gravity Forms releases after v2.3 (released June 2017). The 
 
 No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
 
+= All entries are going to spam. What can I do? =
+
+First, **de-activate and re-activate the plugin**. Then let us know on the support tab!
+
 == Changelog ==
+
+= 1.1.2 on July 5, 2021 =
+
+* Fixed: Entries going to spam on websites that have plugins that override random password generation. Thanks, @thomascharbit!
 
 = 1.1.1 on April 22, 2021 =
 
