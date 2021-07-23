@@ -107,14 +107,26 @@ EOD;
 			return $is_spam;
 		}
 
-		if ( ! isset( $_POST['gf_zero_spam_key'] ) ) {
-			return true;
-		}
+		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( $_POST['gf_zero_spam_key'] ) !== $this->get_key() ) {
+			add_action( 'gform_entry_created', array( $this, 'add_entry_note' ) );
 
-		if ( html_entity_decode( $_POST['gf_zero_spam_key'] ) !== $this->get_key() ) {
 			return true;
 		}
 
 		return $is_spam;
 	}
+
+	/**
+	 * Adds a note to the entry once the spam status is set (GF 2.4.18+).
+	 *
+	 * @param array $entry The entry data.
+	 */
+	public function add_entry_note( $entry ) {
+		if ( rgar( $entry, 'status' ) !== 'spam' || ! method_exists( 'GFAPI', 'add_note' ) ) {
+			return;
+		}
+
+		GFAPI::add_note( $entry['id'], 0, 'Zero Spam', __( 'This entry has been marked as spam.', 'gf-zero-spam' ), 'gf-zero-spam', 'success' );
+	}
+
 }
