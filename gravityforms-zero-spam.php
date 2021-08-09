@@ -122,7 +122,12 @@ EOD;
 	 * @param array $entry The entry data.
 	 */
 	public function add_entry_note( $entry ) {
-		if ( rgar( $entry, 'status' ) !== 'spam' || ! method_exists( 'GFAPI', 'add_note' ) ) {
+
+		if ( 'spam' !== rgar( $entry, 'status' ) ) {
+			return;
+		}
+
+		if ( ! method_exists( 'GFAPI', 'add_note' ) ) {
 			return;
 		}
 
