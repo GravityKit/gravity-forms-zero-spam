@@ -55,6 +55,10 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 
 == Changelog ==
 
+= 1.1.3 on August 9, 2021 =
+
+* Enhancement: Adds an entry note when an entry is marked as spam. Thanks to Gravity Forms for the enhancement!
+
 = 1.1.2 on July 5, 2021 =
 
 * Fixed: Entries going to spam on websites that have plugins that override random password generation. Thanks, @thomascharbit!
