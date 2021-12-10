@@ -27,6 +27,9 @@ class GF_Zero_Spam {
 	 * Instantiate the plugin on Gravity Forms loading
 	 */
 	public static function gform_loaded() {
+
+		include_once plugin_dir_path( __FILE__ ) . 'gravityforms-zero-spam-form-settings.php';
+
 		new self;
 	}
 
@@ -96,6 +99,21 @@ EOD;
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
+
+		/**
+		 * Modify whether to process this entry submission for spam.
+		 *
+		 * @since 1.2
+		 *
+		 * @param bool $should_check_key_field Whether the Zero Spam plugin should check for the existence and validity of the key field. Default: true.
+		 * @param array $form The form currently being processed.
+		 * @param array $entry The entry currently being processed.
+		 */
+		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), true, $form, $entry );
+
+		if( false === $should_check_key_field ) {
+			return $is_spam;
+		}
 
 	    // This was not submitted using a web form; created using API
 		if ( ! did_action( 'gform_pre_submission' ) ) {
