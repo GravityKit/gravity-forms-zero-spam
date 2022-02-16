@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.2
+ * Version:           1.2.1
  * Author:            GravityView
  * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -100,6 +100,8 @@ EOD;
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
 
+		$should_check_key_field = ! GFCommon::is_preview();
+
 		/**
 		 * Modify whether to process this entry submission for spam.
 		 *
@@ -109,7 +111,7 @@ EOD;
 		 * @param array $form The form currently being processed.
 		 * @param array $entry The entry currently being processed.
 		 */
-		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), true, $form, $entry );
+		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), $should_check_key_field, $form, $entry );
 
 		if( false === $should_check_key_field ) {
 			return $is_spam;

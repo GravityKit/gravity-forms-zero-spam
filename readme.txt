@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 5.8.2
+Tested up to: 5.9
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -73,13 +73,11 @@ New form submissions will not be checked using Zero Spam.
 
 = I only want on sepecific forms. How do I disable Zero Spam by default? =
 
-To disable by default, add this code to your site ([here's how](https://docs.gravityview.co/article/210-where-to-put-code-samples):
+To disable by default, add this code to your site ([here's how](https://docs.gravityview.co/article/210-where-to-put-code-samples)):
 
-```
-add_filter( 'gf_zero_spam_check_key_field', '__return_false' );
-```
+`add_filter( 'gf_zero_spam_check_key_field', '__return_false' );`
 
-Once you have added that code:
+Once you have added that code to your site:
 
 1. Go to the form
 2. Click on Settings
@@ -99,7 +97,12 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 
 == Changelog ==
 
-= 1.2 on December 10, 2021 =
+= 1.2.1 on February 16, 2022 =
+
+* Improved: Don't check for spam on the Gravity Forms Preview page
+* Tested with WordPress 5.9
+
+= 1.2 & 1.2.0.1 on December 10, 2021 =
 
 * New! Added a per-form setting "Prevent spam using Gravity Forms Zero Spam" that enables or disables Gravity Forms Zero Spam from processing! [Check out the FAQ to learn how to use this setting](https://wordpress.org/plugins/gravity-forms-zero-spam/#faq-header). Note: this feature requires Gravity Forms 2.5 or newer.
 
