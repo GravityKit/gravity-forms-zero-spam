@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 5.9
+Tested up to: 6.0.1
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -29,7 +29,7 @@ If you only want the plugin for specific forms, that's possible! The plugin adds
 
 Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
 
-_Brought to you by [GravityView](https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=readme). We create essential Gravity Forms Add-Ons._
+_Brought to you by [GravityKit](https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=readme). We create essential Gravity Forms Add-Ons._
 
 == Frequently Asked Questions ==
 
@@ -96,6 +96,11 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 
 
 == Changelog ==
+
+= 1.2.2 on August 11, 2022 =
+
+* Improved: Prevent autocomplete on the hidden field. This may help prevent some reported false-positives.
+* Tested with WordPress 6.0.1
 
 = 1.2.1 on February 16, 2022 =
 
