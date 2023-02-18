@@ -81,6 +81,19 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		return $fields;
 	}
+
+	/**
+	 * Logging is not currently supported.
+	 *
+	 * @param array $plugins An array of plugins that support logging.
+	 *
+	 * @return array
+	 */
+	public function set_logging_supported( $plugins ) {
+
+		return $plugins;
+	}
+
 }
 
 new GF_Zero_Spam_AddOn();
