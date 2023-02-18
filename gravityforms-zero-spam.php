@@ -15,6 +15,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'GF_ZERO_SPAM_BASENAME', plugin_basename( __FILE__ ) );
+
 // clean up after ourselves
 register_deactivation_hook( __FILE__, array( 'GF_Zero_Spam', 'deactivate' ) );
 
@@ -120,8 +122,13 @@ EOD;
 			return $is_spam;
 		}
 
+		$supports_context = method_exists( 'GFFormDisplay', 'get_submission_context' );
+		if ( $supports_context && GFFormDisplay::get_submission_context() !== 'form-submit' ) {
+			return $is_spam;
+		}
+
 	    // This was not submitted using a web form; created using API
-		if ( ! did_action( 'gform_pre_submission' ) ) {
+		if ( ! $supports_context && ! did_action( 'gform_pre_submission' ) ) {
 			return $is_spam;
 		}
 
