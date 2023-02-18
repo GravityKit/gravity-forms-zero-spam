@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 6.0.1
+Tested up to: 6.2
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -39,6 +39,10 @@ Yes! When this plugin marks an entry as spam, it prevents processing of any conf
 
 Note: When an entry is marked as Spam, it also prevents use of the configured confirmation. Users submitted a entry marked as Spam will see the default Gravity Forms “Thanks for contacting us! We will get in touch with you shortly.” confirmation text instead.
 
+= I have Gravity Forms 2.7 installed. Do I need this plugin? =
+
+Gravity Forms 2.7 added functionality that has similar features to this plugin, but we're adding additional features soon—keep this plugin installed!
+
 = Does this plugin work in combination with other CAPTCHAs, honeypot fields, or spam blocker plugins? =
 
 Yep, you can use this plugin in combination with all other spam-blocking plugins:
@@ -56,7 +60,7 @@ Zero Spam will not interfere with the operation of those plugins. It also doesn'
 
 = What version of Gravity Forms does this work with? =
 
-This works with all Gravity Forms releases after v2.3 (released June 2017). The plugin also blocks bots in the latest Gravity Forms 2.5!
+This works with all Gravity Forms releases after v2.3 (released June 2017).
 
 = Will this block spam comments or registrations on my site? =
 
@@ -96,6 +100,15 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 
 
 == Changelog ==
+
+= 1.2.3 on February 18, 2023 =
+
+Gravity Forms 2.7 added improved spam blocking in 2.7, but we're adding additional features soon—keep this plugin installed! ❤️
+
+* Fixed: Gravity Forms 2.7 support. Thanks, Richard!
+* Fixed: PHP 8.0 warnings. Thanks, Richard!
+* Tweak: Changed the autocomplete on the hidden field to `new-password` instead of `off`. Thanks for the suggestion, Ross!
+* Tested with WordPress 6.2
 
 = 1.2.2 on August 11, 2022 =
 
