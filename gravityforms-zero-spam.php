@@ -79,7 +79,7 @@ class GF_Zero_Spam {
 
 		$spam_key = esc_js( $this->get_key() );
 
-		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'off' )\n\t\t" : '';
+		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
 
 		$script = <<<EOD
 jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( event ) {
