@@ -15,6 +15,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'GF_ZERO_SPAM_BASENAME', plugin_basename( __FILE__ ) );
+
 // clean up after ourselves
 register_deactivation_hook( __FILE__, array( 'GF_Zero_Spam', 'deactivate' ) );
 

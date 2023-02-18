@@ -12,6 +12,7 @@ GFForms::include_addon_framework();
 class GF_Zero_Spam_AddOn extends GFAddOn {
 
 	protected $_slug = 'gf-zero-spam';
+	protected $_path = GF_ZERO_SPAM_BASENAME;
 	protected $_full_path = __FILE__;
 	protected $_title = 'Gravity Forms Zero Spam';
 	protected $_short_title = 'Zero Spam';
