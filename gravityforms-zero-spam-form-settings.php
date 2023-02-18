@@ -11,6 +11,12 @@ GFForms::include_addon_framework();
  */
 class GF_Zero_Spam_AddOn extends GFAddOn {
 
+	protected $_slug = 'gf-zero-spam';
+	protected $_path = GF_ZERO_SPAM_BASENAME;
+	protected $_full_path = __FILE__;
+	protected $_title = 'Gravity Forms Zero Spam';
+	protected $_short_title = 'Zero Spam';
+
 	public function init() {
 		parent::init();
 
@@ -76,6 +82,19 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		return $fields;
 	}
+
+	/**
+	 * Logging is not currently supported.
+	 *
+	 * @param array $plugins An array of plugins that support logging.
+	 *
+	 * @return array
+	 */
+	public function set_logging_supported( $plugins ) {
+
+		return $plugins;
+	}
+
 }
 
 new GF_Zero_Spam_AddOn();

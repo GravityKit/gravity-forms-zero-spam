@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Gravity Forms Zero Spam
- * Plugin URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
+ * Plugin URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.2.2
- * Author:            GravityView
- * Author URI:        https://gravityview.co?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
+ * Version:           1.2.3
+ * Author:            GravityKit
+ * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -14,6 +14,8 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+define( 'GF_ZERO_SPAM_BASENAME', plugin_basename( __FILE__ ) );
 
 // clean up after ourselves
 register_deactivation_hook( __FILE__, array( 'GF_Zero_Spam', 'deactivate' ) );
@@ -77,7 +79,7 @@ class GF_Zero_Spam {
 
 		$spam_key = esc_js( $this->get_key() );
 
-		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'off' )\n\t\t" : '';
+		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
 
 		$script = <<<EOD
 jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( event ) {
@@ -120,8 +122,13 @@ EOD;
 			return $is_spam;
 		}
 
+		$supports_context = method_exists( 'GFFormDisplay', 'get_submission_context' );
+		if ( $supports_context && GFFormDisplay::get_submission_context() !== 'form-submit' ) {
+			return $is_spam;
+		}
+
 	    // This was not submitted using a web form; created using API
-		if ( ! did_action( 'gform_pre_submission' ) ) {
+		if ( ! $supports_context && ! did_action( 'gform_pre_submission' ) ) {
 			return $is_spam;
 		}
 
