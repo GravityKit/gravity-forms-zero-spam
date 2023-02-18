@@ -101,15 +101,18 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 
 == Changelog ==
 
-= 1.2.3 on February 18, 2023 =
+= 1.3 on February 18, 2023 =
 
-Gravity Forms 2.7 added improved spam blocking in 2.7, but we're adding additional features soon—keep this plugin installed! ❤️
+Gravity Forms 2.7 added improved spam blocking in 2.7. Keep this plugin installed—it won't hurt, and we're about to add some great new features soon! ❤️ Thanks to Richard Wawrzyniak for the code updates in this release.
 
-* Fixed: Gravity Forms 2.7 support. Thanks, Richard!
-* Fixed: PHP 8.0 warnings. Thanks, Richard!
-* Added: Support for API submissions (which don't have a form submit action). Thanks, Richard!
-* Tweak: Changed the autocomplete on the hidden field to `new-password` instead of `off`. Thanks for the suggestion, Ross!
+* Added: Support for API submissions (which don't have a form submit action)
+* Fixed: Gravity Forms 2.7 support
+* Fixed: PHP 8.0 warnings
 * Tested with WordPress 6.2
+
+= 1.2.3 on August 11, 2022 =
+
+* Tweak: Changed the autocomplete on the hidden field to `new-password` instead of `off`. Thanks for the suggestion, Ross!
 
 = 1.2.2 on August 11, 2022 =
 
