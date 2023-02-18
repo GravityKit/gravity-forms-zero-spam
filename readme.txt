@@ -107,6 +107,7 @@ Gravity Forms 2.7 added improved spam blocking in 2.7, but we're adding addition
 
 * Fixed: Gravity Forms 2.7 support. Thanks, Richard!
 * Fixed: PHP 8.0 warnings. Thanks, Richard!
+* Added: Support for API submissions (which don't have a form submit action). Thanks, Richard!
 * Tweak: Changed the autocomplete on the hidden field to `new-password` instead of `off`. Thanks for the suggestion, Ross!
 * Tested with WordPress 6.2
 
