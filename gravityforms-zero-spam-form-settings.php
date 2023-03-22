@@ -11,10 +11,10 @@ GFForms::include_addon_framework();
  */
 class GF_Zero_Spam_AddOn extends GFAddOn {
 
-	protected $_slug = 'gf-zero-spam';
-	protected $_path = GF_ZERO_SPAM_BASENAME;
-	protected $_full_path = __FILE__;
-	protected $_title = 'Gravity Forms Zero Spam';
+	protected $_slug        = 'gf-zero-spam';
+	protected $_path        = GF_ZERO_SPAM_BASENAME;
+	protected $_full_path   = __FILE__;
+	protected $_title       = 'Gravity Forms Zero Spam';
 	protected $_short_title = 'Zero Spam';
 
 	public function init() {
@@ -31,7 +31,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Use per-form settings to determine whether to check for spam.
 	 *
-	 * @param bool $check_key_field
+	 * @param bool  $check_key_field
 	 * @param array $form
 	 *
 	 * @return array|mixed
@@ -73,11 +73,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	function add_settings_field( $fields, $form = array() ) {
 
 		$fields['form_options']['fields'][] = array(
-              'name' => 'enableGFZeroSpam',
-              'type' => 'toggle',
-              'label' => esc_html__( 'Prevent spam using Gravity Forms Zero Spam', 'gf-zero-spam' ),
-              'tooltip' => gform_tooltip( 'enableGFZeroSpam', '', true ),
-              'default_value' => apply_filters( 'gf_zero_spam_check_key_field', true, $form ),
+			'name'          => 'enableGFZeroSpam',
+			'type'          => 'toggle',
+			'label'         => esc_html__( 'Prevent spam using Gravity Forms Zero Spam', 'gf-zero-spam' ),
+			'tooltip'       => gform_tooltip( 'enableGFZeroSpam', '', true ),
+			'default_value' => apply_filters( 'gf_zero_spam_check_key_field', true, $form ),
 		);
 
 		return $fields;
@@ -93,6 +93,89 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	public function set_logging_supported( $plugins ) {
 
 		return $plugins;
+	}
+
+
+	/**
+	 * Register addon global settings
+	 *
+	 * @return array
+	 */
+	public function plugin_settings_fields() {
+		return array(
+			array(
+				'title'  => esc_html__( 'Gravity Forms Zero Spam', 'gf-zero-spam' ),
+				'fields' => array(
+					array(
+						'label'       => esc_html__( 'Email Frequency', 'gf-zero-spam' ),
+						'description' => esc_html__( 'How frequently should spam report emails be sent.', 'gf-zero-spam' ),
+						'type'        => 'select',
+						'name'        => 'gf_zero_spam_email_frequency',
+						'choices'     => array(
+							array(
+								'label' => __( 'Daily', 'gf-zero-spam' ),
+								'value' => 'daily',
+							),
+							array(
+								'label' => __( 'Weekly', 'gf-zero-spam' ),
+								'value' => 'weekly',
+							),
+							array(
+								'label' => __( 'Monthly', 'gf-zero-spam' ),
+								'value' => 'monthly',
+							),
+							array(
+								'label' => __( 'Entry Limit', 'gf-zero-spam' ),
+								'value' => 'entry_limit',
+							),
+						),
+						'required'    => true,
+					),
+					array(
+						'label'               => esc_html__( 'Entry Limit', 'gf-zero-spam' ),
+						'description'         => esc_html__( 'A spam report email will be sent when the number of spam messages reaches this number.', 'gf-zero-spam' ),
+						'type'                => 'text',
+						'input_type'          => 'number',
+						'min'                 => 1,
+						'value'               => 1,
+						'name'                => 'gf_zero_spam_entry_limit',
+						'dependency'          => array(
+							'live'   => true,
+							'fields' => array(
+								array(
+									'field'  => 'gf_zero_spam_email_frequency',
+									'values' => array( 'entry_limit' ),
+								),
+							),
+						),
+						'validation_callback' => function( $field, $value ) {
+							if ( (int) $value < 1 ) {
+								$field->set_error( esc_html__( 'Entry limit has to be 1 or more.', 'gf-zero-spam' ) );
+							}
+						},
+					),
+
+					array(
+						'label'               => esc_html__( 'Spam Report Email', 'gf-zero-spam' ),
+						'description'         => esc_html__( 'Send spam report to this email address.', 'gf-zero-spam' ),
+						'type'                => 'text',
+						'input_type'          => 'email',
+						'value'               => get_bloginfo( 'admin_email' ),
+						'name'                => 'gf_zero_spam_report_email',
+						'required'            => true,
+						'validation_callback' => function( $field, $value ) {
+							if ( ! is_email( $value ) ) {
+								$field->set_error( esc_html__( 'Email is invalid.', 'gf-zero-spam' ) );
+							}
+						},
+
+					),
+
+				),
+			),
+
+		);
+
 	}
 
 }
