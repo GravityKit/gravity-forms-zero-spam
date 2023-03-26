@@ -288,7 +288,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	private function get_latest_spam_entries() {
 		global $wpdb;
-		$last_date = get_option( 'gv_zero_spam_report_last_date' );
+		$last_date = ( get_option( 'gv_zero_spam_report_last_date' ) ? get_option( 'gv_zero_spam_report_last_date' ) : date( 'Y-m-d', 0 ) );
+
 		return $wpdb->get_results( $wpdb->prepare( "SELECT id,form_id FROM {$wpdb->prefix}gf_entry WHERE status=%s AND date_created > %s ORDER BY form_id", 'spam', $last_date ), ARRAY_A );
 	}
 
@@ -314,19 +315,26 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			}
 		}
 
+		$last_date = ( get_option( 'gv_zero_spam_report_last_date' ) ? get_option( 'gv_zero_spam_report_last_date' ) : '' );
+
 		$output .= '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
 			$form = GFAPI::get_form( $form_id );
+			$args = array(
+				'id'     => $form_id,
+				'filter' => 'spam',
+			);
+
+			if ( $last_date ) {
+				$args['s']        = $last_date;
+				$args['field_id'] = 'date_created';
+				$args['orderby']  = '0';
+				$args['order']    = 'ASC';
+				$args['operator'] = '>';
+			}
+
 			$link = add_query_arg(
-				array(
-					'id'       => $form_id,
-					'filter'   => 'spam',
-					's'        => get_option( 'gv_zero_spam_report_last_date' ),
-					'field_id' => 'date_created',
-					'orderby'  => '0',
-					'order'    => 'ASC',
-					'operator' => '>',
-				),
+				$args,
 				admin_url( 'admin.php?page=gf_entries&view=entries' )
 			);
 
