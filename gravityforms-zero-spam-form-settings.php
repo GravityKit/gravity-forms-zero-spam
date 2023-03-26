@@ -26,6 +26,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		// Adding at 20 priority so anyone filtering the default priority (10) will define the default, but the
 		// per-form setting may still _override_ the default.
 		add_filter( 'gf_zero_spam_check_key_field', array( $this, 'filter_gf_zero_spam_check_key_field' ), 20, 2 );
+
+		add_filter( 'cron_schedules', array($this,'add_monthly_schedule') );
+		add_action('gf_zero_spam_send_report',array($this,'send_report'));
+		
 	}
 
 	/**
@@ -102,6 +106,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array
 	 */
 	public function plugin_settings_fields() {
+		$email_body = '
+			<h2>Spam report</h2>
+			You have received {{total_spam_count}} spam emails across the following forms:
+			{{spam_report_list}}
+			To turn off this message, visit {{settings_url}}.
+		';
 		return array(
 			array(
 				'title'  => esc_html__( 'Gravity Forms Zero Spam', 'gf-zero-spam' ),
@@ -112,6 +122,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						'type'        => 'select',
 						'name'        => 'gf_zero_spam_email_frequency',
 						'choices'     => array(
+							array(
+								'label' => __( 'Choose One', 'gf-zero-spam' ),
+								'value' => '',
+							),
 							array(
 								'label' => __( 'Daily', 'gf-zero-spam' ),
 								'value' => 'daily',
@@ -130,6 +144,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							),
 						),
 						'required'    => true,
+						'save_callback'  => function( $field, $value ){
+							return $this->add_cron_job($value);
+						}
 					),
 					array(
 						'label'               => esc_html__( 'Entry Limit', 'gf-zero-spam' ),
@@ -171,12 +188,185 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 					),
 
+					array(
+						'name'     => 'gf_zero_spam_subject',
+						'label'    => esc_html__( 'Subject', 'gf-zero-spam' ),
+						'type'     => 'text',
+						'value'=>'Your Gravity Forms spam report for {{site_name}}',
+						'required' => true,
+					),
+					array(
+						'name'       => 'gf_zero_spam_message',
+						'label'      => esc_html__( 'Message', 'gf-zero-spam' ),
+						'type'       => 'textarea',
+						'value'=> trim($email_body),
+						'use_editor' => true,
+						'required'   => true,
+					),
+
 				),
 			),
 
 		);
 
 	}
+
+	/**
+	 * Add monthly interval to schedules.
+	 *
+	 * @param array $schedules
+	 * @return array
+	 */
+	public function add_monthly_schedule( $schedules ) {
+
+		$schedules['monthly'] = array(
+			'interval' => 2635200,
+			'display' => __('Once a month','gf-zero-spam')
+		);
+	
+		return $schedules;
+	}
+
+	/**
+	 * Send spam report.
+	 *
+	 * @return boolean
+	 */
+	public function send_report(){
+		$email = $this->get_plugin_setting('gf_zero_spam_report_email');
+
+		if(!is_email($email)){
+			return;
+		}
+
+		$subject = $this->get_plugin_setting('gf_zero_spam_subject');
+		$message = $this->get_plugin_setting('gf_zero_spam_message');
+
+		if($subject == '' || $message == ''){
+			return;
+		}
+
+		$results = $this->get_latest_spam_entries();
+		if(empty($results)){
+			return $output;
+		}
+
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+		$success =  wp_mail($email,$this->replace_tags($subject),$this->replace_tags($message), $headers);
+		if($success){
+			update_option('gv_zero_spam_report_last_date',current_time('Y-m-d H:i:s'));
+		}
+
+		return false;
+	}
+
+	/**
+	 * Replace tags in email template.
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	private function replace_tags($value){
+		$replace = array(
+			'{{site_name}}'=>get_bloginfo('name'),
+			'{{total_spam_count}}'=>$this->get_spam_count(),
+			'{{spam_report_list}}'=>$this->get_report_list(),
+			'{{settings_url}}'=>admin_url('page=gf_settings&subview=gf-zero-spam'),
+		);
+
+		foreach($replace as $tag => $val){
+			$value = str_replace($tag,$val,$value);
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Get latest spam entries.
+	 *
+	 * @return array
+	 */
+	private function get_latest_spam_entries(){
+		global $wpdb;
+		$last_date = get_option('gv_zero_spam_report_last_date');
+		return $wpdb->get_results( $wpdb->prepare( "SELECT id,form_id FROM {$wpdb->prefix}gf_entry WHERE status=%s AND date_created > %s ORDER BY form_id",'spam',$last_date),ARRAY_A);
+	}
+
+	/**
+	 * Get report list.
+	 *
+	 * @return void
+	 */
+	private function get_report_list(){
+		$results = $this->get_latest_spam_entries();
+
+		$output = '';
+		if(empty($results)){
+			return $output;
+		}
+		
+		$counted_results = [];
+		foreach($results as $result){
+			if(isset($counted_results[$result['form_id']])){
+				$counted_results[$result['form_id']]++;
+			}else{
+				$counted_results[$result['form_id']] = 1;
+			}
+		}
+
+		$output.= '<ul>';
+		foreach($counted_results as $form_id => $count){
+			$form = GFAPI::get_form( $form_id );
+			$link = add_query_arg( array(
+				'id'=>$form_id,
+				'filter'=>'spam',
+				's' => get_option('gv_zero_spam_report_last_date'),
+				'field_id' => 'date_created',
+				'orderby' => '0',
+				'order' => 'ASC',
+				'operator' => '>',
+			), admin_url('admin.php?page=gf_entries&view=entries'));
+
+			$output.= '<li><a href="'.$link.'">'.esc_html($form['title']).' '.(int) $count.'</a></li>';
+		}
+
+		$output .= '</ul>';
+		return $output;
+	}
+
+	/**
+	 * Get spam count.
+	 *
+	 * @return boolean
+	 */
+	private function get_spam_count(){
+		$results = $this->get_latest_spam_entries();
+
+		return count($results);
+	}
+
+	/**
+	 * Add cron job for spam reporting.
+	 *
+	 * @param string $frequency
+	 * @return string
+	 */
+	public function add_cron_job($frequency){
+		if(empty($frequency)){
+			return $frequency;
+		}
+
+		wp_clear_scheduled_hook('gf_zero_spam_send_report');
+
+		if($frequency === 'entry_limit'){
+			return $frequency;
+		}
+		
+		wp_schedule_event( time(), $frequency, 'gf_zero_spam_send_report');
+
+		return $frequency;
+	}
+
 
 }
 
