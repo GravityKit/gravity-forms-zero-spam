@@ -29,6 +29,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		add_filter( 'cron_schedules', array( $this, 'add_monthly_schedule' ) );
 		add_action( 'gf_zero_spam_send_report', array( $this, 'send_report' ) );
+		add_action( 'gform_after_submission', array( $this, 'check_entry_limit' ), 10, 2 );
 
 	}
 
@@ -212,6 +213,35 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
+	 * Check if entry limit has been reached.
+	 *
+	 * @param array $entry
+	 * @param array $form
+	 * @return void
+	 */
+	public function check_entry_limit( $entry, $form ) {
+		if ( $entry['status'] !== 'spam' ) {
+			return;
+		}
+
+		if ( ! isset( $form['enableGFZeroSpam'] ) || (int) $form['enableGFZeroSpam'] === 0 ) {
+			return;
+		}
+
+		$freq  = $this->get_plugin_setting( 'gf_zero_spam_email_frequency' );
+		$limit = (int) $this->get_plugin_setting( 'gf_zero_spam_entry_limit' );
+		if ( $freq !== 'entry_limit' || $limit <= 0 ) {
+			return;
+		}
+
+		$results = $this->get_latest_spam_entries();
+		if ( count( $results ) >= $limit ) {
+			$this->send_report();
+		}
+
+	}
+
+	/**
 	 * Add monthly interval to schedules.
 	 *
 	 * @param array $schedules
@@ -271,7 +301,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			'{{site_name}}'        => get_bloginfo( 'name' ),
 			'{{total_spam_count}}' => $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
-			'{{settings_url}}'     => admin_url( 'page=gf_settings&subview=gf-zero-spam' ),
+			'{{settings_url}}'     => admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ),
 		);
 
 		foreach ( $replace as $tag => $val ) {
@@ -320,6 +350,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$output .= '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
 			$form = GFAPI::get_form( $form_id );
+
+			if ( ! isset( $form['enableGFZeroSpam'] ) || (int) $form['enableGFZeroSpam'] === 0 ) {
+				continue;
+			}
+
 			$args = array(
 				'id'     => $form_id,
 				'filter' => 'spam',
