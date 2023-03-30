@@ -301,7 +301,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			'{{site_name}}'        => get_bloginfo( 'name' ),
 			'{{total_spam_count}}' => $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
-			'{{settings_url}}'     => admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ),
+			'{{settings_url}}'     => esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ),
 		);
 
 		foreach ( $replace as $tag => $val ) {
