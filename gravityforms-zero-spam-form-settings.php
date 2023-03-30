@@ -272,7 +272,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$subject = $this->get_plugin_setting( 'gf_zero_spam_subject' );
 		$message = $this->get_plugin_setting( 'gf_zero_spam_message' );
 
-		if ( $subject == '' || $message == '' ) {
+		if ( $subject === '' || $message === '' ) {
 			return;
 		}
 
