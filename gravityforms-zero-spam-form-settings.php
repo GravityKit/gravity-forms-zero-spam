@@ -17,6 +17,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	protected $_title       = 'Gravity Forms Zero Spam';
 	protected $_short_title = 'Zero Spam';
 
+	const REPORT_LAST_SENT_DATE_OPTION = 'gv_zero_spam_report_last_date';
+
 	public function init() {
 		parent::init();
 
@@ -321,6 +323,19 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$last_date = ( get_option( 'gv_zero_spam_report_last_date' ) ? get_option( 'gv_zero_spam_report_last_date' ) : date( 'Y-m-d', 0 ) );
 
 		return $wpdb->get_results( $wpdb->prepare( "SELECT id,form_id FROM {$wpdb->prefix}gf_entry WHERE status=%s AND date_created > %s ORDER BY form_id", 'spam', $last_date ), ARRAY_A );
+
+	/**
+	 * Returns the date the last report was set.
+	 *
+	 * @param null|mixed $default
+	 *
+	 * @return false|string False, if last report date is not set. Otherwise, the date the last report was sent as a date string.
+	 */
+	private function get_last_report_date( $default = null ) {
+
+		$default = is_null( $default ) ? date( 'Y-m-d', 0 ) : $default;
+
+		return get_option( self::REPORT_LAST_SENT_DATE_OPTION, $default );
 	}
 
 	/**
@@ -345,7 +360,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			}
 		}
 
-		$last_date = ( get_option( 'gv_zero_spam_report_last_date' ) ? get_option( 'gv_zero_spam_report_last_date' ) : '' );
+		$last_date = $this->get_last_report_date( false );
 
 		$output .= '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
