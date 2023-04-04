@@ -414,7 +414,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				admin_url( 'admin.php?page=gf_entries&view=entries' )
 			);
 
-			$output .= '<li><a href="' . $link . '">' . esc_html( $form['title'] ) . ' ' . (int) $count . '</a></li>';
+			$output .= '<li><a href="' . esc_url( $link ) . '">' . esc_html( $form['title'] ) . ' ' . (int) $count . '</a></li>';
 		}
 
 		$output .= '</ul>';
