@@ -31,7 +31,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		add_filter( 'cron_schedules', array( $this, 'add_monthly_schedule' ) );
 		add_action( 'gf_zero_spam_send_report', array( $this, 'send_report' ) );
-		add_action( 'gform_after_submission', array( $this, 'check_entry_limit' ), 10, 2 );
+		add_action( 'gform_after_submission', array( $this, 'after_submission' ) );
+		add_action( 'gform_update_status', array( $this, 'update_status' ), 10, 2 );
 	}
 
 	/**
@@ -259,18 +260,51 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Check if entry limit has been reached.
+	 * Check if entry limit has been reached after status update.
+	 *
+	 * @since 1.4
+	 *
+	 * @param int $entry_id The entry ID.
+	 * @param string $property_value The new status.
+	 *
+	 * @return void
+	 */
+	public function update_status( $entry_id, $property_value ) {
+
+		if ( $property_value !== 'spam' ) {
+			return;
+		}
+
+		$this->check_entry_limit( $entry, $form );
+	}
+
+	/**
+	 * Check if entry limit has been reached after submission.
+	 *
+	 * @since 1.4
 	 *
 	 * @param array $entry
 	 * @param array $form
 	 * @return void
 	 */
-	public function check_entry_limit( $entry, $form ) {
+	public function after_submission( $entry ) {
+
 		if ( $entry['status'] !== 'spam' ) {
 			return;
 		}
 
-		if ( ! isset( $form['enableGFZeroSpam'] ) || (int) $form['enableGFZeroSpam'] === 0 ) {
+		$this->check_entry_limit();
+	}
+
+	/**
+	 * Check if entry limit has been reached.
+	 *
+	 * @return void
+	 */
+	public function check_entry_limit() {
+		$frequency  = $this->get_plugin_setting( 'gf_zero_spam_email_frequency' );
+
+		if ( $frequency !== 'entry_limit' ) {
 			return;
 		}
 
