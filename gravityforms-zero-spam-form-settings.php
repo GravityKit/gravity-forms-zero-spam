@@ -331,6 +331,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	public function send_report( $results = array() ) {
 
+		// When called from cron, $results will be empty.
+		if ( empty( $results ) ) {
+			$results = $this->get_latest_spam_entries();
+		}
+
 		if ( empty( $results ) ) {
 			return false;
 		}
