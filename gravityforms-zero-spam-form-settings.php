@@ -308,15 +308,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return;
 		}
 
-		$freq  = $this->get_plugin_setting( 'gf_zero_spam_email_frequency' );
 		$limit = (int) $this->get_plugin_setting( 'gf_zero_spam_entry_limit' );
-		if ( $freq !== 'entry_limit' || $limit <= 0 ) {
-			return;
-		}
 
 		$results = $this->get_latest_spam_entries();
-		if ( count( $results ) >= $limit ) {
-			$this->send_report();
+
+		if ( count( $results ) < $limit ) {
+			return;
 		}
 
 	}
@@ -328,6 +325,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array
 	 */
 	public function add_monthly_schedule( $schedules ) {
+
+		if ( isset( $schedules['monthly'] ) ) {
+			return $schedules;
+		}
 
 		$schedules['monthly'] = array(
 			'interval' => 2635200,
