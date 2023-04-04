@@ -331,8 +331,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		}
 
 		$schedules['monthly'] = array(
-			'interval' => 2635200,
-			'display'  => __( 'Once a month', 'gf-zero-spam' ),
+			'interval' => MONTH_IN_SECONDS,
+			'display'  => __( 'Once Monthly', 'gf-zero-spam' ),
 		);
 
 		return $schedules;
