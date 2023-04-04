@@ -445,9 +445,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		$output .= '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
-			$form = GFAPI::get_form( $form_id );
 
 			if ( ! isset( $form['enableGFZeroSpam'] ) || (int) $form['enableGFZeroSpam'] === 0 ) {
+			$form_info = GFFormsModel::get_form( $form_id );
+
+			// Don't include forms that are in the trash.
+			if ( ! $form_info ) {
 				continue;
 			}
 
@@ -469,7 +472,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				admin_url( 'admin.php?page=gf_entries&view=entries' )
 			);
 
-			$output .= '<li><a href="' . esc_url( $link ) . '">' . esc_html( $form['title'] ) . ' ' . (int) $count . '</a></li>';
+			$count = (int) $count;
+
+			$output .= strtr( '<li>{{form_link}}: {{count}} {{new_entries}}</li>', array(
+				'{{form_link}}'    => '<a href="' . esc_url( $link ) . '">' . esc_html( $form_info->title ) . '</a>',
+				'{{count}}'        => $count,
+				'{{new_entries}}' => _n( 'spam entry', 'spam entries', $count, 'gf-zero-spam' ),
+			) );
 		}
 
 		$output .= '</ul>';
