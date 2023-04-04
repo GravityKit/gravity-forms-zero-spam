@@ -189,7 +189,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							}
 							$field->set_error( esc_html__( 'The email entered is invalid.', 'gf-zero-spam' ) );
 						},
-
+						'dependency'          => array(
+							'live'   => true,
+							'fields' => array(
+								array(
+									'field'  => 'gf_zero_spam_email_frequency',
+								),
+							),
+						),
 					),
 
 					array(
@@ -198,6 +205,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						'type'     => 'text',
 						'value'    => 'Your Gravity Forms spam report for {{site_name}}',
 						'required' => true,
+						'dependency'          => array(
+							'live'   => true,
+							'fields' => array(
+								array(
+									'field'  => 'gf_zero_spam_email_frequency',
+								),
+							),
+						),
 					),
 					array(
 						'name'       => 'gf_zero_spam_message',
@@ -206,6 +221,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						'value'      => trim( $email_body ),
 						'use_editor' => true,
 						'required'   => true,
+						'dependency'          => array(
+							'live'   => true,
+							'fields' => array(
+								array(
+									'field'  => 'gf_zero_spam_email_frequency',
+								),
+							),
+						),
 					),
 
 				),
