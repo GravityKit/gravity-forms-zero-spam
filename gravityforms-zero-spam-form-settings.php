@@ -17,7 +17,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	protected $_title       = 'Gravity Forms Zero Spam';
 	protected $_short_title = 'Zero Spam';
 
-	const REPORT_LAST_SENT_DATE_OPTION = 'gv_zero_spam_report_last_date';
+	const REPORT_LAST_SENT_DATE_OPTION = 'gf_zero_spam_report_last_date';
 
 	public function init() {
 		parent::init();
