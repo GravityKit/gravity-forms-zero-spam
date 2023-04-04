@@ -363,8 +363,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return false;
 		}
 
-		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+		$headers = array( 'Content-type' => 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
 		$success = wp_mail( $email, $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
+
 		if ( $success ) {
 			update_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'mysql' ) );
 		}
