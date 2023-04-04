@@ -184,9 +184,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						'name'                => 'gf_zero_spam_report_email',
 						'required'            => true,
 						'validation_callback' => function( $field, $value ) {
-							if ( ! is_email( $value ) ) {
-								$field->set_error( esc_html__( 'Email is invalid.', 'gf-zero-spam' ) );
+							if ( is_email( $value ) ) {
+								return;
 							}
+							$field->set_error( esc_html__( 'The email entered is invalid.', 'gf-zero-spam' ) );
 						},
 
 					),
