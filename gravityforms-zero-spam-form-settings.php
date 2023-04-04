@@ -118,14 +118,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	public function plugin_settings_fields() {
 
-
-		$email_body = '<h2>' . esc_html_x( 'Spam report', 'The heading inside the email body.', 'gf-zero-spam') . '</h2>';
-
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
-		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam emails across the following forms:', 'gf-zero-spam' ) );
+		$email_body = '<h2>' . esc_html_x( 'Spam report', 'The heading inside the email body.', 'gf-zero-spam') . '</h2>';
+		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam entries from the following form(s):', 'gf-zero-spam' ) );
 		$email_body .= '{{spam_report_list}}';
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
-		$email_body .= wpautop( esc_html__( 'To turn off this message, visit {{settings_link}}.', 'gf-zero-spam' ) );
+		$email_body .= wpautop( '<em>' . esc_html__( 'To turn off this message, visit {{settings_link}}.', 'gf-zero-spam' ) . '</em>' );
 
 		$email_message_description = wpautop( esc_html__( 'The following variables may be used in the email message:', 'gf-zero-spam' ) );
 		$email_message_description .= '<ul class="ul-disc">';
@@ -141,7 +140,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				'fields' => array(
 					array(
 						'label'         => esc_html__( 'Email Frequency', 'gf-zero-spam' ),
-						'description'   => esc_html__( 'How frequently should spam report emails be sent.', 'gf-zero-spam' ),
+						'description'   => esc_html__( 'How frequently should spam report emails be sent?', 'gf-zero-spam' ),
 						'type'          => 'select',
 						'name'          => 'gf_zero_spam_email_frequency',
 						'choices'       => array(
@@ -196,7 +195,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 					),
 
 					array(
-						'label'               => esc_html__( 'Spam Report Email', 'gf-zero-spam' ),
+						'label'               => esc_html__( 'Email Address', 'gf-zero-spam' ),
 						'description'         => esc_html__( 'Send spam report to this email address.', 'gf-zero-spam' ),
 						'type'                => 'text',
 						'input_type'          => 'email',
@@ -221,7 +220,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 					array(
 						'name'     => 'gf_zero_spam_subject',
-						'label'    => esc_html__( 'Subject', 'gf-zero-spam' ),
+						'label'    => esc_html__( 'Email Subject', 'gf-zero-spam' ),
 						'type'     => 'text',
 						'value'    => 'Your Gravity Forms spam report for {{site_name}}',
 						'required' => true,
@@ -251,10 +250,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							),
 						),
 					),
-
 				),
 			),
-
 		);
 
 	}
@@ -285,6 +282,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @param array $entry
 	 * @param array $form
+	 *
 	 * @return void
 	 */
 	public function after_submission( $entry ) {
@@ -353,7 +351,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$email = $this->get_plugin_setting( 'gf_zero_spam_report_email' );
 
 		if ( ! is_email( $email ) ) {
-			return;
+			return false;
 		}
 
 		$subject = $this->get_plugin_setting( 'gf_zero_spam_subject' );
@@ -424,14 +422,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Get report list.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	private function get_report_list() {
+
 		$results = $this->get_latest_spam_entries();
 
-		$output = '';
 		if ( empty( $results ) ) {
-			return $output;
+			return '';
 		}
 
 		$counted_results = array();
@@ -445,7 +443,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		$last_date = $this->get_last_report_date( false );
 
-		$output .= '<ul>';
+		$output = '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
 
 			$form_info = GFFormsModel::get_form( $form_id );
@@ -460,6 +458,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				'filter' => 'spam',
 			);
 
+			// If last report date is set, the link will go to spam entries submitted after that date.
 			if ( $last_date ) {
 				$args['s']        = $last_date;
 				$args['field_id'] = 'date_created';
@@ -483,6 +482,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		}
 
 		$output .= '</ul>';
+
 		return $output;
 	}
 
@@ -522,4 +522,4 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 }
 
-new GF_Zero_Spam_AddOn();
+new GF_Zero_Spam_AddOn;
