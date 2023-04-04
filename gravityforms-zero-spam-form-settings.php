@@ -19,6 +19,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 	const REPORT_LAST_SENT_DATE_OPTION = 'gf_zero_spam_report_last_date';
 
+	const REPORT_CRON_HOOK_NAME = 'gf_zero_spam_send_report';
+
 	public function init() {
 		parent::init();
 
@@ -30,7 +32,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		add_filter( 'gf_zero_spam_check_key_field', array( $this, 'filter_gf_zero_spam_check_key_field' ), 20, 2 );
 
 		add_filter( 'cron_schedules', array( $this, 'add_monthly_schedule' ) );
-		add_action( 'gf_zero_spam_send_report', array( $this, 'send_report' ) );
+		add_action( self::REPORT_CRON_HOOK_NAME, array( $this, 'send_report' ) );
 		add_action( 'gform_after_submission', array( $this, 'after_submission' ) );
 		add_action( 'gform_update_status', array( $this, 'update_status' ), 10, 2 );
 	}
@@ -507,13 +509,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return $frequency;
 		}
 
-		wp_clear_scheduled_hook( 'gf_zero_spam_send_report' );
+		wp_clear_scheduled_hook( self::REPORT_CRON_HOOK_NAME );
 
 		if ( $frequency === 'entry_limit' ) {
 			return $frequency;
 		}
 
-		wp_schedule_event( time(), $frequency, 'gf_zero_spam_send_report' );
+		wp_schedule_event( time(), $frequency, self::REPORT_CRON_HOOK_NAME );
 
 		return $frequency;
 	}
