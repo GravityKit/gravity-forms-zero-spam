@@ -284,9 +284,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Check if entry limit has been reached.
 	 *
-	 * @return void
+	 * @return bool
 	 */
-	public function check_entry_limit() {
+	public function check_entry_limit( $send_report = true ) {
 		$frequency  = $this->get_plugin_setting( 'gf_zero_spam_email_frequency' );
 
 		if ( $frequency !== 'entry_limit' ) {
@@ -298,10 +298,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$results = $this->get_latest_spam_entries();
 
 		if ( count( $results ) < $limit ) {
-			return;
+			return false;
 		}
 
-		$this->send_report( $results );
+		if ( $send_report ) {
+			$this->send_report( $results );
+		}
+
+		return true;
 	}
 
 	/**
