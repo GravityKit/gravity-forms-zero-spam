@@ -117,14 +117,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	public function plugin_settings_fields() {
 
+
 		$email_body = '<h2>' . esc_html_x( 'Spam report', 'The heading inside the email body.', 'gf-zero-spam') . '</h2>';
 
-		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}. Also, keep the whitespace lines; they are used to format the email.
-		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam emails across the following forms:
-
-{{spam_report_list}}
-			
-To turn off this message, visit {{settings_url}}.', 'gf-zero-spam' ) );
+		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam emails across the following forms:', 'gf-zero-spam' ) );
+		$email_body .= '{{spam_report_list}}';
+		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+		$email_body .= wpautop( esc_html__( 'To turn off this message, visit {{settings_link}}.', 'gf-zero-spam' ) );
 
 		$email_message_description = wpautop( esc_html__( 'The following variables may be used in the email message:', 'gf-zero-spam' ) );
 		$email_message_description .= '<ul class="ul-disc">';
