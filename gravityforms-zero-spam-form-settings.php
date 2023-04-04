@@ -125,6 +125,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 {{spam_report_list}}
 			
 To turn off this message, visit {{settings_url}}.', 'gf-zero-spam' ) );
+
+		$email_message_description = wpautop( esc_html__( 'The following variables may be used in the email message:', 'gf-zero-spam' ) );
+		$email_message_description .= '<ul class="ul-disc">';
+		$email_message_description .= '<li style="list-style: disc;"><code>{{site_name}}</code> - ' . esc_html__( 'The total number of spam emails received.', 'gf-zero-spam' ) . '</li>';
+		$email_message_description .= '<li style="list-style: disc;"><code>{{total_spam_count}}</code> - ' . esc_html__( 'The total number of spam emails received.', 'gf-zero-spam' ) . '</li>';
+		$email_message_description .= '<li style="list-style: disc;"><code>{{spam_report_list}}</code> - ' . esc_html__( 'A list of spam reports.', 'gf-zero-spam' ) . '</li>';
+		$email_message_description .= '<li style="list-style: disc;"><code>{{settings_url}}</code> - ' . esc_html__( 'The URL to the plugin settings page.', 'gf-zero-spam' ) . '</li>';
+		$email_message_description .= '</ul>';
+
 		return array(
 			array(
 				'title'  => esc_html__( 'Gravity Forms Zero Spam', 'gf-zero-spam' ),
@@ -226,7 +235,8 @@ To turn off this message, visit {{settings_url}}.', 'gf-zero-spam' ) );
 					),
 					array(
 						'name'       => 'gf_zero_spam_message',
-						'label'      => esc_html__( 'Message', 'gf-zero-spam' ),
+						'label'      => esc_html__( 'Email Message', 'gf-zero-spam' ),
+						'description' => $email_message_description,
 						'type'       => 'textarea',
 						'value'      => trim( $email_body ),
 						'use_editor' => true,
