@@ -156,7 +156,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						),
 						'required'      => true,
 						'save_callback' => function( $field, $value ) {
-							return $this->add_cron_job( $value );
+							return $this->update_cron_job( $value );
 						},
 					),
 					array(
@@ -504,7 +504,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @param string $frequency
 	 * @return string
 	 */
-	public function add_cron_job( $frequency ) {
+	public function update_cron_job( $frequency ) {
+
 		if ( empty( $frequency ) ) {
 			return $frequency;
 		}
