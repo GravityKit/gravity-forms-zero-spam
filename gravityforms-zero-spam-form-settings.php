@@ -99,19 +99,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Logging is not currently supported.
-	 *
-	 * @param array $plugins An array of plugins that support logging.
-	 *
-	 * @return array
-	 */
-	public function set_logging_supported( $plugins ) {
-
-		return $plugins;
-	}
-
-
-	/**
 	 * Register addon global settings
 	 *
 	 * @return array
@@ -365,7 +352,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$success = wp_mail( $email, $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
 
 		if ( $success ) {
+			$this->log_debug( __METHOD__ . '(): Spam report email sent successfully.' );
 			update_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'mysql' ) );
+		} else {
+			$this->log_error( __METHOD__ . '(): Spam report email failed to send.' );
 		}
 
 		return false;
