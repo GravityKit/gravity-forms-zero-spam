@@ -316,6 +316,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return;
 		}
 
+		$this->send_report( $results );
 	}
 
 	/**
@@ -343,7 +344,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @return boolean
 	 */
-	public function send_report() {
+	public function send_report( $results = array() ) {
+
+		if ( empty( $results ) ) {
+			return false;
+		}
+
 		$email = $this->get_plugin_setting( 'gf_zero_spam_report_email' );
 
 		if ( ! is_email( $email ) ) {
@@ -354,12 +360,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$message = $this->get_plugin_setting( 'gf_zero_spam_message' );
 
 		if ( $subject === '' || $message === '' ) {
-			return;
-		}
-
-		$results = $this->get_latest_spam_entries();
-		if ( empty( $results ) ) {
-			return $output;
+			return false;
 		}
 
 		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
