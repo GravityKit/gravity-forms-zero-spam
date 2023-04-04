@@ -131,7 +131,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$email_message_description .= '<li style="list-style: disc;"><code>{{site_name}}</code> - ' . esc_html__( 'The total number of spam emails received.', 'gf-zero-spam' ) . '</li>';
 		$email_message_description .= '<li style="list-style: disc;"><code>{{total_spam_count}}</code> - ' . esc_html__( 'The total number of spam emails received.', 'gf-zero-spam' ) . '</li>';
 		$email_message_description .= '<li style="list-style: disc;"><code>{{spam_report_list}}</code> - ' . esc_html__( 'A list of spam reports.', 'gf-zero-spam' ) . '</li>';
-		$email_message_description .= '<li style="list-style: disc;"><code>{{settings_url}}</code> - ' . esc_html__( 'The URL to the plugin settings page.', 'gf-zero-spam' ) . '</li>';
+		$email_message_description .= '<li style="list-style: disc;"><code>{{settings_link}}</code> - ' . esc_html__( 'The URL to the plugin settings page.', 'gf-zero-spam' ) . '</li>';
 		$email_message_description .= '</ul>';
 
 		return array(
@@ -347,7 +347,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			'{{site_name}}'        => get_bloginfo( 'name' ),
 			'{{total_spam_count}}' => $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
-			'{{settings_url}}'     => esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ),
+			'{{settings_link}}'     => esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ),
 		);
 
 		foreach ( $replace as $tag => $val ) {
