@@ -402,7 +402,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private function get_latest_spam_entries() {
 		global $wpdb;
 
-		$sql = $wpdb->prepare( "SELECT id,form_id FROM {$wpdb->prefix}gf_entry WHERE status=%s AND date_created > %s ORDER BY form_id", 'spam', $this->get_last_report_date() );
+		$sql = $wpdb->prepare( "SELECT `id`, `form_id` FROM {$wpdb->prefix}gf_entry WHERE `status`=%s AND `date_created` > %s ORDER BY `form_id`", 'spam', $this->get_last_report_date() );
 
 		return $wpdb->get_results( $sql, ARRAY_A );
 	}
