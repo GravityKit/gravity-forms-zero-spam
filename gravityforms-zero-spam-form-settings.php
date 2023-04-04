@@ -448,7 +448,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$output .= '<ul>';
 		foreach ( $counted_results as $form_id => $count ) {
 
-			if ( ! isset( $form['enableGFZeroSpam'] ) || (int) $form['enableGFZeroSpam'] === 0 ) {
 			$form_info = GFFormsModel::get_form( $form_id );
 
 			// Don't include forms that are in the trash.
