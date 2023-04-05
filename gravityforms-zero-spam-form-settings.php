@@ -564,11 +564,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	public function update_cron_job( $frequency ) {
 
+		// Always remove the existing cron job.
+		wp_clear_scheduled_hook( self::REPORT_CRON_HOOK_NAME );
+
 		if ( empty( $frequency ) ) {
 			return $frequency;
 		}
-
-		wp_clear_scheduled_hook( self::REPORT_CRON_HOOK_NAME );
 
 		if ( $frequency === 'entry_limit' ) {
 			return $frequency;
