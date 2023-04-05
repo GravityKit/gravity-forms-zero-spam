@@ -248,6 +248,25 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							),
 						),
 					),
+					array(
+						'name' => 'gf_zero_spam_test_email',
+						'type' => 'hidden',
+						'value' => '',
+						'save_callback' => function ( $field, $value ) {
+							if ( empty( $value ) ) {
+								return;
+							}
+
+							$this->send_report( array(), true );
+						},
+					),
+					array(
+						'type' => 'button',
+						'label' => esc_html__( 'Send Test Email & Save Settings', 'gf-zero-spam' ),
+						'value' => esc_html__( 'Send Email & Save Settings', 'gf-zero-spam' ),
+						'class' => 'button',
+						'onclick' => 'jQuery( "#gf_zero_spam_test_email" ).val( "1" ); jQuery( "#gform-settings-save" ).click();',
+					),
 				),
 			),
 		);
@@ -344,14 +363,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @return boolean
 	 */
-	public function send_report( $results = array() ) {
+	public function send_report( $results = array(), $is_test = false ) {
 
 		// When called from cron, $results will be empty.
 		if ( empty( $results ) ) {
 			$results = $this->get_latest_spam_entries();
 		}
 
-		if ( empty( $results ) ) {
+		if ( empty( $results ) && ! $is_test ) {
 			return false;
 		}
 
@@ -368,8 +387,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return false;
 		}
 
+		$message = wpautop( $message );
+
 		$headers = array( 'Content-type' => 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
-		$success = wp_mail( $email, $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
+		$success = wp_mail( $this->replace_tags( $email ), $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
+
+		// Don't log or update last sent date when sending test email.
+		if ( $is_test ) {
+			return $success;
+		}
 
 		if ( $success ) {
 			$this->log_debug( __METHOD__ . '(): Spam report email sent successfully.' );
