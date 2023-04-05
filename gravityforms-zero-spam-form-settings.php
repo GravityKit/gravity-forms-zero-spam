@@ -113,8 +113,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			esc_html__( 'This feature works with any spam filter, including the Gravity Forms spam honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others.', 'gf-zero-spam' ),
 			strtr( esc_html__( 'Note: Depending on site traffic, time-based reports may not always be sent at the scheduled frequency. {{link}}See how to set up a "cron" to make this more reliable{{/link}}.', 'gf-zero-spam' ), array(
 				'{{heading}}' => 'Spam Report',
-				'{{link}}' => '<a href="https://deliciousbrains.com/wp-offload-ses/doc/cron-setup/" rel="nofollow noopener noreferrer" target="_blank"><span class="screen-reader-text">' . esc_html__( 'Link opens in a new tab', 'gf-zero-spam' ) . '</span>',
-				'{{/link}}' => '</a>',
+				'{{link}}'    => '<a href="https://deliciousbrains.com/wp-offload-ses/doc/cron-setup/" rel="nofollow noopener noreferrer" target="_blank"><span class="screen-reader-text">' . esc_html__( 'Link opens in a new tab', 'gf-zero-spam' ) . '</span>',
+				'{{/link}}'   => '</a>',
 			) )
 		);
 
@@ -137,9 +137,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		return array(
 			array(
-				'title'  => esc_html__( 'Gravity Forms Zero Spam: Spam Report', 'gf-zero-spam' ),
+				'title'       => esc_html__( 'Gravity Forms Zero Spam: Spam Report', 'gf-zero-spam' ),
 				'description' => $spam_report_description,
-				'fields' => array(
+				'fields'      => array(
 					array(
 						'label'         => esc_html__( 'Spam Report Frequency', 'gf-zero-spam' ),
 						// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
@@ -244,14 +244,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						),
 					),
 					array(
-						'name'       => 'gf_zero_spam_message',
-						'label'      => esc_html__( 'Email Message', 'gf-zero-spam' ),
+						'name'        => 'gf_zero_spam_message',
+						'label'       => esc_html__( 'Email Message', 'gf-zero-spam' ),
 						'description' => $available_variables_message,
-						'type'       => 'textarea',
-						'value'      => trim( $email_body ),
-						'use_editor' => true,
-						'required'   => true,
-						'dependency' => array(
+						'type'        => 'textarea',
+						'value'       => trim( $email_body ),
+						'use_editor'  => true,
+						'required'    => true,
+						'dependency'  => array(
 							'live'   => true,
 							'fields' => array(
 								array(
@@ -261,9 +261,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						),
 					),
 					array(
-						'name' => 'gf_zero_spam_test_email',
-						'type' => 'hidden',
-						'value' => '',
+						'name'          => 'gf_zero_spam_test_email',
+						'type'          => 'hidden',
+						'value'         => '',
 						'save_callback' => function ( $field, $value ) {
 							if ( empty( $value ) ) {
 								return;
@@ -273,10 +273,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						},
 					),
 					array(
-						'type' => 'button',
-						'label' => esc_html__( 'Send Test Email & Save Settings', 'gf-zero-spam' ),
-						'value' => esc_html__( 'Send Email & Save Settings', 'gf-zero-spam' ),
-						'class' => 'button',
+						'type'    => 'button',
+						'label'   => esc_html__( 'Send Test Email & Save Settings', 'gf-zero-spam' ),
+						'value'   => esc_html__( 'Send Email & Save Settings', 'gf-zero-spam' ),
+						'class'   => 'button',
 						'onclick' => 'jQuery( "#gf_zero_spam_test_email" ).val( "1" ); jQuery( "#gform-settings-save" ).click();',
 					),
 				),
@@ -433,7 +433,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			'{{admin_email}}'      => get_bloginfo( 'admin_email' ),
 			'{{total_spam_count}}' => $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
-			'{{settings_link}}'    => '<a href="'. esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ) . '">',
+			'{{settings_link}}'    => '<a href="' . esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ) . '">',
 			'{{/settings_link}}'   => '</a>',
 		);
 
