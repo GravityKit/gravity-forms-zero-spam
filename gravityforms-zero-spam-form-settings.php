@@ -162,11 +162,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 					),
 
 					array(
-						'type' => 'html',
-						'html' => $available_variables_message,
-					),
-
-					array(
 						'label'               => esc_html__( 'Spam Entry Limit', 'gf-zero-spam' ),
 						'description'         => esc_html__( 'A spam report email will be sent when the number of spam messages reaches this number.', 'gf-zero-spam' ),
 						'type'                => 'text',
@@ -233,6 +228,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 					array(
 						'name'       => 'gf_zero_spam_message',
 						'label'      => esc_html__( 'Email Message', 'gf-zero-spam' ),
+						'description' => $available_variables_message,
 						'type'       => 'textarea',
 						'value'      => trim( $email_body ),
 						'use_editor' => true,
