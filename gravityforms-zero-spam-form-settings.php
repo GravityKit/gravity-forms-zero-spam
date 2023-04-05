@@ -115,8 +115,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
 		$email_body .= wpautop( '<em>' . esc_html__( 'To turn off this message, visit {{settings_link}}.', 'gf-zero-spam' ) . '</em>' );
 
-		$available_variables_message = wpautop( esc_html__( 'The following variables may be used in the email message:', 'gf-zero-spam' ) );
-		$available_variables_message .= '<ul class="ul-disc">';
+		$available_variables_message = wpautop( esc_html__( 'The following variables may be used:', 'gf-zero-spam' ) );
+		$available_variables_message .= '<ul class="ul-disc" style="margin-bottom: 1em;">';
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{site_name}}</code> - ' . esc_html__( 'The name of this website', 'gf-zero-spam' ) . '</li>';
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{admin_email}}</code> - ' . esc_html__( 'The email of the site administrator', 'gf-zero-spam' ) . '</li>';
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{total_spam_count}}</code> - ' . esc_html__( 'The total number of spam emails received since the last report.', 'gf-zero-spam' ) . '</li>';
@@ -129,14 +129,24 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				'title'  => esc_html__( 'Gravity Forms Zero Spam', 'gf-zero-spam' ),
 				'fields' => array(
 					array(
-						'label'         => esc_html__( 'Email Frequency', 'gf-zero-spam' ),
-						'description'   => esc_html__( 'How frequently should spam report emails be sent?', 'gf-zero-spam' ),
+						'label'         => esc_html__( 'Spam Report Frequency', 'gf-zero-spam' ),
+						// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+						'description'   => wpautop( esc_html__( 'How frequently should spam report emails be sent?', 'gf-zero-spam' ) ),
 						'type'          => 'radio',
 						'name'          => 'gf_zero_spam_email_frequency',
+						'value'         => '',
 						'choices'       => array(
 							array(
-								'label' => __( 'Do Not Send', 'gf-zero-spam' ),
+								'label' => __( 'Disabled', 'gf-zero-spam' ),
 								'value' => '',
+							),
+							array(
+								'label' => __( 'Hourly', 'gf-zero-spam' ),
+								'value' => 'hourly',
+							),
+							array(
+								'label' => __( 'Twice Daily', 'gf-zero-spam' ),
+								'value' => 'twicedaily',
 							),
 							array(
 								'label' => __( 'Daily', 'gf-zero-spam' ),
@@ -151,7 +161,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 								'value' => 'monthly',
 							),
 							array(
-								'label' => __( 'By Number of Spam Entries', 'gf-zero-spam' ),
+								'label' => __( 'Threshold-Based', 'gf-zero-spam' ),
 								'value' => 'entry_limit',
 							),
 						),
@@ -162,8 +172,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 					),
 
 					array(
-						'label'               => esc_html__( 'Spam Entry Limit', 'gf-zero-spam' ),
-						'description'         => esc_html__( 'A spam report email will be sent when the number of spam messages reaches this number.', 'gf-zero-spam' ),
+						'label'               => esc_html__( 'Spam Entry Threshold', 'gf-zero-spam' ),
+						'description'         => esc_html__( 'A spam report email will be sent when the specified number of spam entries is reached.', 'gf-zero-spam' ),
 						'type'                => 'text',
 						'input_type'          => 'number',
 						'min'                 => 1,
