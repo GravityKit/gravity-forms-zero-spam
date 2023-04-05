@@ -273,6 +273,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						},
 					),
 					array(
+						'name'    => 'gf_zero_spam_test_email_button',
 						'type'    => 'button',
 						'label'   => esc_html__( 'Send Test Email & Save Settings', 'gf-zero-spam' ),
 						'value'   => esc_html__( 'Send Email & Save Settings', 'gf-zero-spam' ),
