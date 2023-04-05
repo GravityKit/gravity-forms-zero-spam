@@ -107,13 +107,24 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 */
 	public function plugin_settings_fields() {
 
+		$spam_report_description = sprintf( '<h3 style="margin-top: 0">%s</h3><p>%s</p><p><strong>%s</strong></p><p>%s</p><hr style="margin: 1em 0;">',
+			esc_html__( 'Know when entries are flagged as spam.', 'gf-zero-spam' ),
+			esc_html__( 'It can be hard to know when entries are being marked as spam. When enabled, this feature will send an automated spam report, giving you a summary of recent spam entries. If no spam entries have been submitted, no report will be sent.', 'gf-zero-spam' ),
+			esc_html__( 'This feature works with any spam filter, including the Gravity Forms spam honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others.', 'gf-zero-spam' ),
+			strtr( esc_html__( 'Note: Depending on site traffic, time-based reports may not always be sent at the scheduled frequency. {{link}}See how to set up a "cron" to make this more reliable{{/link}}.', 'gf-zero-spam' ), array(
+				'{{heading}}' => 'Spam Report',
+				'{{link}}' => '<a href="https://deliciousbrains.com/wp-offload-ses/doc/cron-setup/" rel="nofollow noopener noreferrer" target="_blank"><span class="screen-reader-text">' . esc_html__( 'Link opens in a new tab', 'gf-zero-spam' ) . '</span>',
+				'{{/link}}' => '</a>',
+			) )
+		);
+
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
 		$email_body = '<h2>' . esc_html_x( 'Gravity Forms Spam Report', 'The heading inside the email body.', 'gf-zero-spam' ) . '</h2>';
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
 		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam entries from the following form(s):', 'gf-zero-spam' ) );
 		$email_body .= '{{spam_report_list}}';
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
-		$email_body .= wpautop( '<em>' . esc_html__( 'To turn off this message, visit {{settings_link}}the Gravity Forms Zero Spam settings page{{/settings_link}}.', 'gf-zero-spam' ) . '</em>' );
+		$email_body .= wpautop( '<em>' . esc_html__( 'To modify or disable this email, visit {{settings_link}}the Gravity Forms Zero Spam settings page{{/settings_link}}.', 'gf-zero-spam' ) . '</em>' );
 
 		$available_variables_message = wpautop( esc_html__( 'The following variables may be used:', 'gf-zero-spam' ) );
 		$available_variables_message .= '<ul class="ul-disc" style="margin-bottom: 1em;">';
@@ -126,7 +137,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		return array(
 			array(
-				'title'  => esc_html__( 'Gravity Forms Zero Spam', 'gf-zero-spam' ),
+				'title'  => esc_html__( 'Gravity Forms Zero Spam: Spam Report', 'gf-zero-spam' ),
+				'description' => $spam_report_description,
 				'fields' => array(
 					array(
 						'label'         => esc_html__( 'Spam Report Frequency', 'gf-zero-spam' ),
