@@ -141,8 +141,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 								'value' => '',
 							),
 							array(
-								'label' => __( 'Hourly', 'gf-zero-spam' ),
-								'value' => 'hourly',
+								'label' => __( 'Threshold-Based', 'gf-zero-spam' ),
+								'value' => 'entry_limit',
 							),
 							array(
 								'label' => __( 'Twice Daily', 'gf-zero-spam' ),
@@ -159,10 +159,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							array(
 								'label' => __( 'Monthly', 'gf-zero-spam' ),
 								'value' => 'monthly',
-							),
-							array(
-								'label' => __( 'Threshold-Based', 'gf-zero-spam' ),
-								'value' => 'entry_limit',
 							),
 						),
 						'required'      => true,
