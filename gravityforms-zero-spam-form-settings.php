@@ -433,7 +433,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @return string
 	 */
-	private function replace_tags( $value ) {
+	private function replace_tags( $value = '' ) {
 		$replace = array(
 			'{{site_name}}'        => get_bloginfo( 'name' ),
 			'{{admin_email}}'      => get_bloginfo( 'admin_email' ),
@@ -444,7 +444,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		);
 
 		foreach ( $replace as $tag => $val ) {
-			$value = str_replace( $tag, $val, $value );
+			if ( is_null( $val ) ) {
+				continue;
+			}
+			$value = str_replace( $tag, (string) $val, $value );
 		}
 
 		return $value;
