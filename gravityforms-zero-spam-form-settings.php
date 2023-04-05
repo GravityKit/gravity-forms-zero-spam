@@ -113,7 +113,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$email_body .= wpautop( esc_html__( 'You have received {{total_spam_count}} spam entries from the following form(s):', 'gf-zero-spam' ) );
 		$email_body .= '{{spam_report_list}}';
 		// translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
-		$email_body .= wpautop( '<em>' . esc_html__( 'To turn off this message, visit {{settings_link}}.', 'gf-zero-spam' ) . '</em>' );
+		$email_body .= wpautop( '<em>' . esc_html__( 'To turn off this message, visit {{settings_link}}the Gravity Forms Zero Spam settings page{{/settings_link}}.', 'gf-zero-spam' ) . '</em>' );
 
 		$available_variables_message = wpautop( esc_html__( 'The following variables may be used:', 'gf-zero-spam' ) );
 		$available_variables_message .= '<ul class="ul-disc" style="margin-bottom: 1em;">';
@@ -121,7 +121,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{admin_email}}</code> - ' . esc_html__( 'The email of the site administrator', 'gf-zero-spam' ) . '</li>';
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{total_spam_count}}</code> - ' . esc_html__( 'The total number of spam emails received since the last report.', 'gf-zero-spam' ) . '</li>';
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{spam_report_list}}</code> - ' . esc_html__( 'A list of forms and the number of spam entries since the last report.', 'gf-zero-spam' ) . '</li>';
-		$available_variables_message .= '<li style="list-style: disc;"><code>{{settings_link}}</code> - ' . esc_html__( 'The URL to the plugin settings page.', 'gf-zero-spam' ) . '</li>';
+		$available_variables_message .= '<li style="list-style: disc;"><code>{{settings_link}}</code> and <code>{{/settings_link}}</code> - ' . esc_html__( 'A link to the plugin settings page. Text inside the variables will be the link text. Make sure to include both the opening and closing variables.', 'gf-zero-spam' ) . '</li>';
 		$available_variables_message .= '</ul>';
 
 		return array(
@@ -398,7 +398,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			'{{admin_email}}'      => get_bloginfo( 'admin_email' ),
 			'{{total_spam_count}}' => $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
-			'{{settings_link}}'    => esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ),
+			'{{settings_link}}'    => '<a href="'. esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ) . '">',
+			'{{/settings_link}}'   => '</a>',
 		);
 
 		foreach ( $replace as $tag => $val ) {
