@@ -388,6 +388,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		}
 
 		$email = $this->get_plugin_setting( 'gf_zero_spam_report_email' );
+
+		if ( empty( $email ) ) {
+			return false;
+		}
+
 		$email = $this->replace_tags( $email );
 
 		if ( ! is_email( $email ) ) {
