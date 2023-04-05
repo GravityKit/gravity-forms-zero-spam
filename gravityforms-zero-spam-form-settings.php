@@ -31,7 +31,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		// per-form setting may still _override_ the default.
 		add_filter( 'gf_zero_spam_check_key_field', array( $this, 'filter_gf_zero_spam_check_key_field' ), 20, 2 );
 
-		add_filter( 'cron_schedules', array( $this, 'add_monthly_schedule' ) );
+		add_filter( 'cron_schedules', array( $this, 'add_cron_schedules' ) );
 		add_action( self::REPORT_CRON_HOOK_NAME, array( $this, 'send_report' ) );
 		add_action( 'gform_after_submission', array( $this, 'after_submission' ) );
 		add_action( 'gform_update_status', array( $this, 'update_status' ), 10, 2 );
@@ -317,13 +317,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Add monthly interval to schedules.
+	 * Add monthly intervals to existing cron schedules.
 	 *
 	 * @param array $schedules
 	 *
 	 * @return array
 	 */
-	public function add_monthly_schedule( $schedules ) {
+	public function add_cron_schedules( $schedules ) {
 
 		if ( isset( $schedules['monthly'] ) ) {
 			return $schedules;
