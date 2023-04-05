@@ -173,7 +173,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 								'value' => 'monthly',
 							),
 						),
-						'required'      => true,
+						'required'      => false,
 						'save_callback' => function ( $field, $value ) {
 							return $this->update_cron_job( $value );
 						},
