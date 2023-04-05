@@ -375,6 +375,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		}
 
 		$email = $this->get_plugin_setting( 'gf_zero_spam_report_email' );
+		$email = $this->replace_tags( $email );
 
 		if ( ! is_email( $email ) ) {
 			return false;
@@ -390,7 +391,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$message = wpautop( $message );
 
 		$headers = array( 'Content-type' => 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
-		$success = wp_mail( $this->replace_tags( $email ), $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
+		$success = wp_mail( $email, $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
 
 		// Don't log or update last sent date when sending test email.
 		if ( $is_test ) {
