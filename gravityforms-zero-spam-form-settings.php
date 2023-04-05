@@ -418,7 +418,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		if ( $success ) {
 			$this->log_debug( __METHOD__ . '(): Spam report email sent successfully.' );
-			update_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'mysql' ) );
+			update_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'timestamp' ) );
 		} else {
 			$this->log_error( __METHOD__ . '(): Spam report email failed to send.' );
 		}
@@ -458,7 +458,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private function get_latest_spam_entries() {
 		global $wpdb;
 
-		$sql = $wpdb->prepare( "SELECT `id`, `form_id` FROM {$wpdb->prefix}gf_entry WHERE `status`=%s AND `date_created` > %s ORDER BY `form_id`", 'spam', $this->get_last_report_date() );
+		$sql = $wpdb->prepare( "SELECT `id`, `form_id` FROM {$wpdb->prefix}gf_entry WHERE `status`=%s AND `date_created` >= %s ORDER BY `form_id`", 'spam', $this->get_last_report_date( 'Y-m-d H:i:s' ) );
 
 		return $wpdb->get_results( $sql, ARRAY_A );
 	}
@@ -466,15 +466,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns the date the last report was set.
 	 *
-	 * @param null|mixed $default
+	 * @param string $date_format Date format to return.
 	 *
-	 * @return false|string False, if last report date is not set. Otherwise, the date the last report was sent as a date string.
+	 * @return string Date in format passed by $date_format.
 	 */
-	private function get_last_report_date( $default = null ) {
+	private function get_last_report_date( $date_format = 'Y-m-d' ) {
 
-		$default = is_null( $default ) ? date( 'Y-m-d', 0 ) : $default;
+		$last_report_timestamp = get_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'timestamp' ) );
 
-		return get_option( self::REPORT_LAST_SENT_DATE_OPTION, $default );
+		return date( $date_format, $last_report_timestamp );
 	}
 
 	/**
@@ -499,7 +499,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			}
 		}
 
-		$last_date = $this->get_last_report_date( false );
+		$last_date = $this->get_last_report_date( 'Y-m-d' );
 
 		$results_output = array();
 		foreach ( $counted_results as $form_id => $count ) {
