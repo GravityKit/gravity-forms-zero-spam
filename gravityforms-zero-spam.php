@@ -81,6 +81,17 @@ class GF_Zero_Spam {
 	 */
 	public function add_key_field( $form ) {
 
+		/**
+		 * Allows the zero spam key field to be disabled by returning false.
+		 * @since 1.4
+		 * @param bool $add_key_field Whether to add the key field to the form. Default true.
+		 */
+		$add_key_field = apply_filters( 'gf_zero_spam_add_key_field', true );
+
+		if ( ! $add_key_field ) {
+			return;
+		}
+
 		$spam_key = esc_js( $this->get_key() );
 
 		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';

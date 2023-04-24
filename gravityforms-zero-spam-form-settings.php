@@ -31,6 +31,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		// per-form setting may still _override_ the default.
 		add_filter( 'gf_zero_spam_check_key_field', array( $this, 'filter_gf_zero_spam_check_key_field' ), 20, 2 );
 
+		add_filter( 'gf_zero_spam_add_key_field', array( $this, 'filter_gf_zero_spam_add_key_field' ), 20 );
+
 		add_filter( 'cron_schedules', array( $this, 'add_cron_schedules' ) );
 		add_action( self::REPORT_CRON_HOOK_NAME, array( $this, 'send_report' ) );
 		add_action( 'gform_after_submission', array( $this, 'after_submission' ) );
@@ -46,7 +48,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Use per-form settings to determine whether to check for spam.
+	 * Use global and per-form settings to determine whether to check for spam.
 	 *
 	 * @param bool $check_key_field
 	 * @param array $form
@@ -60,7 +62,32 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return false;
 		}
 
-		return $check_key_field;
+		$enabled = $this->get_plugin_setting( 'gf_zero_spam_blocking' );
+
+		if ( is_null( $enabled ) ) {
+			return $check_key_field;
+		}
+
+		return ! empty( $enabled );
+	}
+
+	/**
+	 * Use global setting to modify whether to add the spam key field to the form.
+	 *
+	 * @param bool $add_key_field Whether to add the spam key field to the form.
+	 *
+	 * @return bool Whether to add the spam key field to the form.
+	 */
+	public function filter_gf_zero_spam_add_key_field( $add_key_field = true ) {
+
+		$enabled = $this->get_plugin_setting( 'gf_zero_spam_blocking' );
+
+		// Not yet set.
+		if ( is_null( $enabled ) ) {
+			return $add_key_field;
+		}
+
+		return ! empty( $enabled );
 	}
 
 	/**
@@ -137,7 +164,30 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		return array(
 			array(
-				'title'       => esc_html__( 'Gravity Forms Zero Spam: Spam Report', 'gf-zero-spam' ),
+				'title'       => esc_html__( 'Spam Blocking', 'gf-zero-spam' ),
+				'description' => esc_html__( 'Enable to fight spam using a simple, effective method that is more effective than the built-in anti-spam honeypot.', 'gf-zero-spam' ) . ' ' . esc_html__( 'It is possible to enable or disable spam blocking on a per-form basis inside each form\'s settings.', 'gf-zero-spam' ),
+				'fields'      => array(
+					array(
+						'label'         => esc_html__( 'Enable Zero Spam by Default', 'gf-zero-spam' ),
+						'type'          => 'radio',
+						'name'          => 'gf_zero_spam_blocking',
+						'default_value' => '1',
+						'choices'       => array(
+							array(
+								'label' => __( 'Enabled: Add Zero Spam to Gravity Forms forms', 'gf-zero-spam' ),
+								'value' => '1',
+							),
+							array(
+								'label' => __( 'Disabled: Use Gravity Forms\' built-in spam prevention', 'gf-zero-spam' ),
+								'value' => '0',
+							),
+						),
+						'required'      => false,
+					),
+				),
+			),
+			array(
+				'title'       => esc_html__( 'Spam Report Email', 'gf-zero-spam' ),
 				'description' => $spam_report_description,
 				'fields'      => array(
 					array(
