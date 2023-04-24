@@ -75,7 +75,7 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 New form submissions will not be checked using Zero Spam.
 
-= I only want on sepecific forms. How do I disable Zero Spam by default? =
+= I only want on specific forms. How do I disable Zero Spam by default? =
 
 To disable by default, add this code to your site ([here's how](https://docs.gravitykit.com/article/210-where-to-put-code-samples)):
 
