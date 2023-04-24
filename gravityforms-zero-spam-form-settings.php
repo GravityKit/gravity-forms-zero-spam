@@ -437,7 +437,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return false;
 		}
 
-		$email = $this->get_plugin_setting( 'gf_zero_spam_report_email' );
+		if ( $is_test ) {
+			$settings = $this->get_posted_settings();
+		} else {
+			$settings = $this->get_plugin_settings();
+		}
+
+		$email = rgar( $settings, 'gf_zero_spam_report_email' );
 
 		if ( empty( $email ) ) {
 			return false;
@@ -449,17 +455,19 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			return false;
 		}
 
-		$subject = $this->get_plugin_setting( 'gf_zero_spam_subject' );
-		$message = $this->get_plugin_setting( 'gf_zero_spam_message' );
+		$subject = rgar( $settings, 'gf_zero_spam_subject' );
+		$message = rgar( $settings, 'gf_zero_spam_message' );
 
 		if ( $subject === '' || $message === '' ) {
 			return false;
 		}
 
+		$subject = $this->replace_tags( $subject );
+		$message = $this->replace_tags( $message );
 		$message = wpautop( $message );
 
 		$headers = array( 'Content-type' => 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
-		$success = wp_mail( $email, $this->replace_tags( $subject ), $this->replace_tags( $message ), $headers );
+		$success = wp_mail( $email, $subject, $message, $headers );
 
 		// Don't log or update last sent date when sending test email.
 		if ( $is_test ) {
