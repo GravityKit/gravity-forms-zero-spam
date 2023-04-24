@@ -487,20 +487,13 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$replace = array(
 			'{{site_name}}'        => get_bloginfo( 'name' ),
 			'{{admin_email}}'      => get_bloginfo( 'admin_email' ),
-			'{{total_spam_count}}' => $this->get_spam_count(),
+			'{{total_spam_count}}' => (string) $this->get_spam_count(),
 			'{{spam_report_list}}' => $this->get_report_list(),
 			'{{settings_link}}'    => '<a href="' . esc_url( admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam' ) ) . '">',
 			'{{/settings_link}}'   => '</a>',
 		);
 
-		foreach ( $replace as $tag => $val ) {
-			if ( is_null( $val ) ) {
-				continue;
-			}
-			$value = str_replace( $tag, (string) $val, $value );
-		}
-
-		return $value;
+		return strtr( $value, $replace );
 	}
 
 	/**
