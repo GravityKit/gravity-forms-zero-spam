@@ -42,6 +42,10 @@ class GF_Zero_Spam {
 	 */
 	public static function deactivate() {
 		delete_option( 'gf_zero_spam_key' );
+
+		if ( class_exists( 'GF_Zero_Spam_AddOn' ) ) {
+			wp_clear_scheduled_hook( GF_Zero_Spam_AddOn::REPORT_CRON_HOOK_NAME );
+		}
 	}
 
 	public function __construct() {
@@ -76,6 +80,17 @@ class GF_Zero_Spam {
 	 * @return void
 	 */
 	public function add_key_field( $form ) {
+
+		/**
+		 * Allows the zero spam key field to be disabled by returning false.
+		 * @since 1.4
+		 * @param bool $add_key_field Whether to add the key field to the form. Default true.
+		 */
+		$add_key_field = apply_filters( 'gf_zero_spam_add_key_field', true );
+
+		if ( ! $add_key_field ) {
+			return;
+		}
 
 		$spam_key = esc_js( $this->get_key() );
 

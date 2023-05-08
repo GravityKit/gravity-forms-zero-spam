@@ -13,7 +13,12 @@ Enhance your Gravity Forms to include anti-spam measures originally based on the
 
 == Description ==
 
-This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure. There are no settings or configuration needed: all you need to do is activate the plugin!
+This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure and can email a spam report summary.
+
+
+## Spam blocking
+
+To get started, all you need to do is activate the plugin!
 
 ### Is the Gravity Forms honeypot field not working for you? 🍯 🐝
 
@@ -26,6 +31,14 @@ Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're g
 ### Enable or disable per-form
 
 If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
+
+## Spam report emails
+
+Spam summary report emails are disabled by default. Once enabled, a spam summary that includes the number of entries per-form will be sent via email.
+
+Choose whether you want to be notified after the number of entries reaches a threshold (e.g. 10 spam entries) or after a certain number of days (e.g. every week). If there are no spam entries, no report will be sent.
+
+-------
 
 Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
 
@@ -75,13 +88,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 New form submissions will not be checked using Zero Spam.
 
-= I only want on sepecific forms. How do I disable Zero Spam by default? =
+= I only want on specific forms. How do I disable Zero Spam by default? =
 
-To disable by default, add this code to your site ([here's how](https://docs.gravitykit.com/article/210-where-to-put-code-samples)):
+To disable by default, from your Dashboard, go to Forms, then Settings, then the Zero Spam tab. Under the "Enable Zero Spam by Default" setting, choose "Disabled", then save the form.
 
-`add_filter( 'gf_zero_spam_check_key_field', '__return_false' );`
-
-Once you have added that code to your site:
+Once you have saved the setting, to enable for specific forms:
 
 1. Go to the form
 2. Click on Settings
@@ -98,8 +109,19 @@ Yes.
 
 First, **de-activate and re-activate the plugin**. Then let us know on the support tab!
 
+= Spam summary report emails =
+
+You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= 1.4 on April 24, 2023 =
+
+* Added: **Spam summary email reports** are now available! Receive a helpful email summarizing spam messages received. To enable, from your Dashboard, go to Forms, then Settings, then Zero Spam to enable and configure this feature.
+    - Choose when to send the report (threshold-based or frequency-based)
+    - Customize the report message
+    - Works with any spam messages, not just those blocked by Zero Spam
+* Added: A setting to globally enable or disable Zero Spam by default (default: Enabled)
 
 = 1.3 on February 18, 2023 =
 
