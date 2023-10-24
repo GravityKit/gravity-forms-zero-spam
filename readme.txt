@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 6.2
+Tested up to: 6.3.1
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
