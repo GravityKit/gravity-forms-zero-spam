@@ -51,6 +51,28 @@ class GF_Zero_Spam {
 	public function __construct() {
 		add_action( 'gform_register_init_scripts', array( $this, 'add_key_field' ), 9999 );
 		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ), 10, 3 );
+		add_filter( 'gform_incomplete_submission_pre_save', array( $this, 'add_zero_spam_key_to_entry' ), 10, 3 );
+	}
+
+	/**
+	 * Adds the zero spam key to the Gravity Forms entry during form submission.
+	 *
+	 * @param string $submission_json The JSON representation of the form submission.
+	 * @param string $resume_token    The resume token for the submission.
+	 * @param array  $form            The Gravity Forms form object.
+	 *
+	 * @return string The modified JSON representation of the form submission.
+	 */
+	public function add_zero_spam_key_to_entry( $submission_json, $resume_token, $form ) {
+		$submission = json_decode( $submission_json, true );
+
+		if ( ! isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
+			$spam_key = rgpost( 'gf_zero_spam_key' );
+
+			$submission['partial_entry']['gf_zero_spam_key'] = $spam_key;
+		}
+
+		return json_encode( $submission );
 	}
 
 	/**
@@ -97,7 +119,7 @@ class GF_Zero_Spam {
 		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
 
 		$script = <<<EOD
-jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( event ) {
+jQuery( "#gform_{$form['id']}" ).on( 'submit', function( event ) {
 	jQuery( '<input>' )
 		.attr( 'type', 'hidden' )
 		.attr( 'name', 'gf_zero_spam_key' )
