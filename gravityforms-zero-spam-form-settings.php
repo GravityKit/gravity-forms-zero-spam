@@ -91,9 +91,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Include custom tooltip text for the Zero Spam setting in the Form Settings page
+	 * Include custom tooltip text for the Zero Spam setting in the Form Settings page.
 	 *
-	 * @param array $tooltips Key/Value pair of tooltip/tooltip text
+	 * @param array $tooltips Key/Value pair of tooltip/tooltip text.
 	 *
 	 * @return array
 	 */
@@ -105,12 +105,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Adds the Zero Spam field to the "Form Options" settings group in GF 2.5+
+	 * Adds the Zero Spam field to the "Form Options" settings group in GF 2.5+.
 	 *
 	 * @see https://docs.gravityforms.com/gform_form_settings_fields/
 	 *
 	 * @param array $fields Form Settings fields.
-	 * @param array $form The current form
+	 * @param array $form   The current form.
 	 *
 	 * @return array
 	 */
@@ -128,7 +128,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Register addon global settings
+	 * Register addon global settings.
 	 *
 	 * @return array
 	 */
@@ -341,7 +341,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @since 1.4
 	 *
-	 * @param int $entry_id The entry ID.
+	 * @param int    $entry_id       The entry ID.
 	 * @param string $property_value The new status.
 	 *
 	 * @return void
@@ -360,8 +360,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 *
 	 * @since 1.4
 	 *
-	 * @param array $entry
-	 * @param array $form
+	 * @param array $entry The entry object.
+	 * @param array $form  The form object.
 	 *
 	 * @return void
 	 */
@@ -612,7 +612,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Add cron job for spam reporting.
 	 *
-	 * @param string $frequency
+	 * @param string $frequency The frequency of the cron job.
 	 *
 	 * @return string
 	 */
