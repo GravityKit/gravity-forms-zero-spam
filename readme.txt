@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 6.3.1
+Tested up to: 6.4.1
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -114,6 +114,10 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= 1.4.1 on November 10, 2023 =
+
+* Fixed: Conflict with the Gravity Forms Stripe Add-On
 
 = 1.4 on April 24, 2023 =
 
