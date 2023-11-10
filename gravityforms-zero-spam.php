@@ -49,7 +49,7 @@ class GF_Zero_Spam {
 	}
 
 	public function __construct() {
-		add_action( 'gform_register_init_scripts', array( $this, 'add_key_field' ), 9999 );
+		add_action( 'gform_register_init_scripts', array( $this, 'add_key_field' ), 1 );
 		add_filter( 'gform_entry_is_spam', array( $this, 'check_key_field' ), 10, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', array( $this, 'add_zero_spam_key_to_entry' ), 10, 3 );
 	}
@@ -66,10 +66,14 @@ class GF_Zero_Spam {
 	public function add_zero_spam_key_to_entry( $submission_json, $resume_token, $form ) {
 		$submission = json_decode( $submission_json, true );
 
-		if ( ! isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
-			$spam_key = rgpost( 'gf_zero_spam_key' );
+		// If it's not a valid JSON, just return the original submission.
+		if ( ! is_array( $submission ) ) {
+			return $submission_json;
+		}
 
-			$submission['partial_entry']['gf_zero_spam_key'] = $spam_key;
+		// If the zero spam key is already set, just return the original submission.
+		if ( isset( $submission['partial_entry'] ) && ! isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
+			$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );;
 		}
 
 		return json_encode( $submission );
