@@ -133,10 +133,12 @@ class GF_Zero_Spam {
 
 		$spam_key = esc_js( $this->get_key() );
 
+		$form_id = (int) $form['id'];
+
 		$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
 
 		$script = <<<EOD
-jQuery( "#gform_{$form['id']}" ).on( 'submit', function( event ) {
+jQuery( "#gform_{$form_id}" ).on( 'submit', function( event ) {
 	jQuery( '<input>' )
 		.attr( 'type', 'hidden' )
 		.attr( 'name', 'gf_zero_spam_key' )
