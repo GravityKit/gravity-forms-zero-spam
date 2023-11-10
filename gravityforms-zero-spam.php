@@ -54,7 +54,10 @@ class GF_Zero_Spam {
 	}
 
 	/**
-	 * Adds the zero spam key to the Gravity Forms entry during form submission.
+	 * Adds the Zero Spam key to the Gravity Forms entry during form submission.
+	 *
+	 * @see GFFormsModel::filter_draft_submission_pre_save() The source of the hook.
+	 * @since 1.4.1
 	 *
 	 * @param string $submission_json The JSON representation of the form submission.
 	 * @param string $resume_token    The resume token for the submission.
@@ -65,15 +68,28 @@ class GF_Zero_Spam {
 	public function add_zero_spam_key_to_entry( $submission_json, $resume_token, $form ) {
 		$submission = json_decode( $submission_json, true );
 
-		// If it's not a valid JSON, partial entry is not set or the zero spam key is already set, return the original submission.
-		if ( ! is_array( $submission ) || ! isset( $submission['partial_entry'] ) || isset( $submission['partial_entry']['gf_zero_spam_key'] )) {
+		// Not valid JSON.
+		if ( ! is_array( $submission ) ) {
 			return $submission_json;
 		}
 
-		// Add the zero spam key to the partial entry if it's available in the POST data.
+		/**
+		 * Something isn't right...bail. This should be set.
+		 * @see GFFormsModel::save_draft_submission()
+		 */
+		if ( ! isset( $submission['partial_entry'] ) ) {
+			return $submission_json;
+		}
+
+		// The Zero Spam key is already set; we don't need to do anything.
+		if ( isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
+			return $submission_json;
+		}
+
+		// Add the Zero Spam key to the partial entry if it's available in the POST data.
 		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );;
 
-		return json_encode( $submission );
+		return wp_json_encode( $submission );
 	}
 
 	/**
