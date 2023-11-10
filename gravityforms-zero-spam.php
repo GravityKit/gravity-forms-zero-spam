@@ -65,15 +65,13 @@ class GF_Zero_Spam {
 	public function add_zero_spam_key_to_entry( $submission_json, $resume_token, $form ) {
 		$submission = json_decode( $submission_json, true );
 
-		// If it's not a valid JSON, just return the original submission.
-		if ( ! is_array( $submission ) ) {
+		// If it's not a valid JSON, partial entry is not set or the zero spam key is already set, return the original submission.
+		if ( ! is_array( $submission ) || ! isset( $submission['partial_entry'] ) || isset( $submission['partial_entry']['gf_zero_spam_key'] )) {
 			return $submission_json;
 		}
 
-		// If the zero spam key is already set, just return the original submission.
-		if ( isset( $submission['partial_entry'] ) && ! isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
-			$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );;
-		}
+		// Add the zero spam key to the partial entry if it's available in the POST data.
+		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );;
 
 		return json_encode( $submission );
 	}
