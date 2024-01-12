@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 6.4.1
+Tested up to: 6.4
 Stable tag: trunk
 Requires PHP: 5.2.6
 License: GPLv2 or later
@@ -28,7 +28,7 @@ Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're g
 
 **reCaptcha is user-hostile!** Use this instead! Users don't need to click stoplights, crosswalks, or bicycles when you use this plugin to stop spam.
 
-### Enable or disable per-form
+### Enable or disable per form
 
 If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
 
