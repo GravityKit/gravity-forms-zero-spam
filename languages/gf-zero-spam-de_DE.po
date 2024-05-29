@@ -1,0 +1,286 @@
+# Copyright (C) 2024 GravityKit
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Gravity Forms Zero Spam 1.4.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gravity-forms-"
+"zero-spam\n"
+"POT-Creation-Date: 2024-05-29T13:43:11+00:00\n"
+"PO-Revision-Date: 2024-05-29 16:21+0200\n"
+"Last-Translator: Ventura Digitalagentur GmbH & Co. KG <hallo@ventura-digital."
+"de>\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: gravity-forms-zero-spam\n"
+
+#. Plugin Name of the plugin
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#. Plugin URI of the plugin
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-"
+"spam&utm_content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-"
+"spam&utm_content=pluginuri"
+
+#. Description of the plugin
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Erweitert Gravity Forms um wirksame Anti-Spam-Maßnahmen – ohne CAPTCHA."
+
+#. Author of the plugin
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#. Author URI of the plugin
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-"
+"spam&utm_content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-"
+"spam&utm_content=authoruri"
+
+#: gravityforms-zero-spam-form-settings.php:102
+#: gravityforms-zero-spam-form-settings.php:168
+msgid ""
+"Enable to fight spam using a simple, effective method that is more effective "
+"than the built-in anti-spam honeypot."
+msgstr ""
+"Ermöglicht die Bekämpfung von Spam mit einer einfachen, wirksamen Methode, "
+"die effektiver ist als der integrierte Anti-Spam-Honeypot."
+
+#: gravityforms-zero-spam-form-settings.php:122
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Verhindere Spam mit Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam-form-settings.php:138
+msgid "Know when entries are flagged as spam."
+msgstr "Sei informiert, wenn Einträge als Spam gekennzeichnet werden."
+
+#: gravityforms-zero-spam-form-settings.php:139
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Es kann schwierig sein, zu erkennen, wenn Einträge als Spam markiert werden. "
+"Wenn diese Funktion aktiviert ist, wird ein automatischer Spam-Bericht "
+"gesendet, der dir eine Zusammenfassung der letzten Spam-Einträge gibt. Wenn "
+"keine Spam-Einträge übermittelt wurden, wird kein Bericht gesendet."
+
+#: gravityforms-zero-spam-form-settings.php:140
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Diese Funktion funktioniert mit jedem Spam-Filter, einschließlich des "
+"Gravity Forms Spam-Honeypots, Gravity Forms Zero Spam, reCAPTCHA oder "
+"anderen."
+
+#: gravityforms-zero-spam-form-settings.php:141
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Hinweis: Abhängig von der Auslastung der Website werden die zeitbasierten "
+"Berichte möglicherweise nicht immer in der geplanten Häufigkeit gesendet. "
+"{{link}}Erfahre, wie man einen „cron“ einrichtet, um dies zuverlässiger zu "
+"machen{{/link}}."
+
+#: gravityforms-zero-spam-form-settings.php:143
+msgid "Link opens in a new tab"
+msgstr "Link wird in einem neuen Tab geöffnet"
+
+#. translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+#: gravityforms-zero-spam-form-settings.php:149
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms Spam-Bericht"
+
+#. translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+#: gravityforms-zero-spam-form-settings.php:151
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr ""
+"Du hast {{total_spam_count}} Spam-Einträge von den folgenden Formularen "
+"erhalten:"
+
+#. translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+#: gravityforms-zero-spam-form-settings.php:154
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Um diese E-Mail zu ändern oder zu deaktivieren, besuche {{settings_link}}die "
+"Gravity Forms Zero Spam-Einstellungen{{/settings_link}}."
+
+#: gravityforms-zero-spam-form-settings.php:156
+msgid "The following variables may be used:"
+msgstr "Folgende Variablen können verwendet werden:"
+
+#: gravityforms-zero-spam-form-settings.php:158
+msgid "The name of this website"
+msgstr "Der Name dieser Website"
+
+#: gravityforms-zero-spam-form-settings.php:159
+msgid "The email of the site administrator"
+msgstr "Die E-Mail-Adresse des Website-Administrators"
+
+#: gravityforms-zero-spam-form-settings.php:160
+msgid "The total number of spam emails received since the last report."
+msgstr "Die Gesamtzahl der seit dem letzten Bericht empfangenen Spam-E-Mails."
+
+#: gravityforms-zero-spam-form-settings.php:161
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr ""
+"Eine Liste der Formulare und der Anzahl der Spam-Einträge seit dem letzten "
+"Bericht."
+
+#: gravityforms-zero-spam-form-settings.php:162
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Ein Link zur Seite mit den Plugin-Einstellungen. Der Text innerhalb der "
+"Variablen wird der Linktext sein. Achte darauf, dass sowohl die öffnende als "
+"auch die schließende Variable enthalten sind."
+
+#: gravityforms-zero-spam-form-settings.php:167
+msgid "Spam Blocking"
+msgstr "Spam-Blockierung"
+
+#: gravityforms-zero-spam-form-settings.php:168
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis inside "
+"each form's settings."
+msgstr ""
+"Es ist möglich, die Spam-Blockierung in den Einstellungen jedes Formulars zu "
+"aktivieren oder zu deaktivieren."
+
+#: gravityforms-zero-spam-form-settings.php:171
+msgid "Enable Zero Spam by Default"
+msgstr "Zero Spam standardmäßig aktivieren"
+
+#: gravityforms-zero-spam-form-settings.php:177
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Aktiviert: Zero Spam zu Gravity Forms-Formularen hinzufügen"
+
+#: gravityforms-zero-spam-form-settings.php:181
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Deaktiviert: Den integrierten Spamschutz von Gravity Forms verwenden"
+
+#: gravityforms-zero-spam-form-settings.php:190
+msgid "Spam Report Email"
+msgstr "Spam-Bericht E-Mail"
+
+#: gravityforms-zero-spam-form-settings.php:194
+msgid "Spam Report Frequency"
+msgstr "Häufigkeit der Spam-Berichte"
+
+#. translators: Do not translate the placeholders inside the curly brackets, like this {{placeholders}}.
+#: gravityforms-zero-spam-form-settings.php:196
+msgid "How frequently should spam report emails be sent?"
+msgstr "Wie häufig sollen Spam-Berichts-E-Mails verschickt werden?"
+
+#: gravityforms-zero-spam-form-settings.php:202
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: gravityforms-zero-spam-form-settings.php:206
+msgid "Threshold-Based"
+msgstr "Schwellenwert-basiert"
+
+#: gravityforms-zero-spam-form-settings.php:210
+msgid "Twice Daily"
+msgstr "Zweimal täglich"
+
+#: gravityforms-zero-spam-form-settings.php:214
+msgid "Daily"
+msgstr "Täglich"
+
+#: gravityforms-zero-spam-form-settings.php:218
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: gravityforms-zero-spam-form-settings.php:222
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: gravityforms-zero-spam-form-settings.php:233
+msgid "Spam Entry Threshold"
+msgstr "Schwellenwert für Spam-Einträge"
+
+#: gravityforms-zero-spam-form-settings.php:234
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Wenn die angegebene Anzahl von Spam-Einträgen erreicht ist, wird eine E-Mail "
+"mit einem Spam-Bericht verschickt."
+
+#: gravityforms-zero-spam-form-settings.php:252
+msgid "Entry limit has to be 1 or more."
+msgstr "Anzahl der Einträge muss 1 oder mehr sein."
+
+#: gravityforms-zero-spam-form-settings.php:258
+msgid "Email Address"
+msgstr "E-Mail-Adresse"
+
+#: gravityforms-zero-spam-form-settings.php:259
+msgid "Send spam report to this email address."
+msgstr "Spam-Bericht an diese E-Mail-Adresse senden."
+
+#: gravityforms-zero-spam-form-settings.php:269
+msgid "The email entered is invalid."
+msgstr "Die eingegebene E-Mail-Adresse ist ungültig."
+
+#: gravityforms-zero-spam-form-settings.php:283
+msgid "Email Subject"
+msgstr "E-Mail-Betreff"
+
+#: gravityforms-zero-spam-form-settings.php:285
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Dein Gravity Forms-Spambericht für {{site_name}}"
+
+#: gravityforms-zero-spam-form-settings.php:298
+msgid "Email Message"
+msgstr "E-Mail-Nachricht"
+
+#: gravityforms-zero-spam-form-settings.php:328
+msgid "Send Test Email & Save Settings"
+msgstr "Test-E-Mail senden & Einstellungen speichern"
+
+#: gravityforms-zero-spam-form-settings.php:329
+msgid "Send Email & Save Settings"
+msgstr "E-Mail senden & Einstellungen speichern"
+
+#: gravityforms-zero-spam-form-settings.php:418
+msgid "Once Monthly"
+msgstr "Einmal monatlich"
+
+#: gravityforms-zero-spam-form-settings.php:592
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "Spam-Eintrag"
+msgstr[1] "Spam-Einträge"
+
+#: gravityforms-zero-spam.php:223
+msgid "This entry has been marked as spam."
+msgstr "Dieser Eintrag wurde als Spam markiert."
