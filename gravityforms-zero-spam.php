@@ -8,6 +8,7 @@
  * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Requires Plugins:  gravityforms
  */
 
 // my mother always said to use things as they're intended or not at all.
