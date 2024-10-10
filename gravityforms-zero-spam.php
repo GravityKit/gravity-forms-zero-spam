@@ -3,11 +3,12 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.4.1
+ * Version:           1.4.2
  * Author:            GravityKit
  * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       gf-zero-spam
  */
 
 // my mother always said to use things as they're intended or not at all.
