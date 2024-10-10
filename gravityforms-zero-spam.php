@@ -3,12 +3,12 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.4.2
+ * Version:           1.4.3
  * Author:            GravityKit
  * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       gf-zero-spam
+ * Text Domain:       gravity-forms-zero-spam
  */
 
 // my mother always said to use things as they're intended or not at all.
@@ -219,6 +219,6 @@ EOD;
 			return;
 		}
 
-		GFAPI::add_note( $entry['id'], 0, 'Zero Spam', __( 'This entry has been marked as spam.', 'gf-zero-spam' ), 'gf-zero-spam', 'success' );
+		GFAPI::add_note( $entry['id'], 0, 'Zero Spam', __( 'This entry has been marked as spam.', 'gravity-forms-zero-spam' ), 'gf-zero-spam', 'success' );
 	}
 }
