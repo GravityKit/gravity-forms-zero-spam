@@ -2,8 +2,8 @@
 Contributors: gravityview
 Tags: gravityforms, gravity forms, anti-spam, antispam, spam, spam-blocker, spambot, spammer, add-ons, honeypot
 Requires at least: 3.0.1
-Tested up to: 6.4
-Stable tag: trunk
+Tested up to: 6.6.2
+Stable tag: 1.4.2
 Requires PHP: 5.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,8 +15,7 @@ Enhance your Gravity Forms to include anti-spam measures originally based on the
 
 This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure and can email a spam report summary.
 
-
-## Spam blocking
+## Spam blocking for Gravity Forms
 
 To get started, all you need to do is activate the plugin!
 
@@ -24,11 +23,11 @@ To get started, all you need to do is activate the plugin!
 
 Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're getting spammed, try this plugin.
 
-### Use instead of reCaptcha
+### Use this plugin instead of reCaptcha
 
 **reCaptcha is user-hostile!** Use this instead! Users don't need to click stoplights, crosswalks, or bicycles when you use this plugin to stop spam.
 
-### Enable or disable per form
+### Enable or disable filtering per form
 
 If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
 
@@ -114,6 +113,11 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= 1.4.2 on October 10, 2024 =
+
+* Improved: Sanitized form ID in JavaScript
+* Fixed: Missing text domain for translation
 
 = 1.4.1 on November 10, 2023 =
 
