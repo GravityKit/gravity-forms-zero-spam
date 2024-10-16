@@ -162,6 +162,11 @@ EOD;
 	 */
 	public function check_key_field( $is_spam = false, $form = array(), $entry = array() ) {
 
+		// If the user can edit entries, they're not a spammer. It may be spam, but it's their prerogative.
+		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
+			return false;
+		}
+
 		$should_check_key_field = ! GFCommon::is_preview();
 
 		/**
