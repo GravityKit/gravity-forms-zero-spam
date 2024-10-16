@@ -88,7 +88,7 @@ class GF_Zero_Spam {
 		}
 
 		// Add the Zero Spam key to the partial entry if it's available in the POST data.
-		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );;
+		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );
 
 		return wp_json_encode( $submission );
 	}
