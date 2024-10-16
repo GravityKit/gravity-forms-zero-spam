@@ -117,6 +117,7 @@ You can enable a spam summary report email. This email will be sent to the email
 = 1.4.3 on October 10, 2024 =
 
 * Tweak: Changed the text domain for strings to `gravity-forms-zero-spam` to match the plugin slug
+* Fixed: Use GMT time for spam summary email reports to make sure the report is sent at the correct time
 
 = 1.4.2 on October 10, 2024 =
 
