@@ -199,7 +199,7 @@ EOD;
 			return $is_spam;
 		}
 
-		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( $_POST['gf_zero_spam_key'] ) !== $this->get_key() ) {
+		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( sanitize_text_field( wp_unslash( $_POST['gf_zero_spam_key'] ) ) ) !== $this->get_key() ) {
 			add_action( 'gform_entry_created', array( $this, 'add_entry_note' ) );
 
 			return true;
