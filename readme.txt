@@ -114,7 +114,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= 1.4.6 on January 7, 2024 =
+= 1.4.6 on January 7, 2025 =
 
 * Fixed: Fatal error on PHP 7.2 and older
 
