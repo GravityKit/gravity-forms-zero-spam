@@ -148,7 +148,7 @@ class GF_Zero_Spam {
 				
 				    return data;
 				});
-				EOD;
+EOD;
 		} else {
 			$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
 
@@ -160,7 +160,7 @@ class GF_Zero_Spam {
 						.attr( 'value', '{$spam_key}' )
 						$autocomplete.appendTo( jQuery( this ) );
 				} );
-				EOD;
+EOD;
 		}
 
 		GFFormDisplay::add_init_script( $form_id, 'gf-zero-spam', GFFormDisplay::ON_PAGE_RENDER, $script );

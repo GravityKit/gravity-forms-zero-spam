@@ -114,6 +114,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= 1.4.6 on January 7, 2024 =
+
+* Fixed: Fatal error on PHP 7.2 and older
+
 = 1.4.5 on November 28, 2024 =
 
 * Fixed: PHP deprecation warning when using Gravity Forms 2.8 or newer
