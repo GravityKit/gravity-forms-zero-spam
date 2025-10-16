@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.4.6
+ * Version:           1.5
  * Author:            GravityKit
  * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * License:           GPL-2.0+
@@ -11,17 +11,18 @@
  * Text Domain:       gravity-forms-zero-spam
  */
 
-// my mother always said to use things as they're intended or not at all.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
 define( 'GF_ZERO_SPAM_BASENAME', plugin_basename( __FILE__ ) );
+define( 'GF_ZERO_SPAM_DIR', plugin_dir_path( __FILE__ ) );
 
-// clean up after ourselves.
+// Load the cron handler class.
+require_once GF_ZERO_SPAM_DIR . 'class-gf-zero-spam-cron.php';
+
 register_deactivation_hook( __FILE__, array( 'GF_Zero_Spam', 'deactivate' ) );
 
-// Fire it up.
 add_action( 'gform_loaded', array( 'GF_Zero_Spam', 'gform_loaded' ) );
 
 class GF_Zero_Spam {
@@ -36,15 +37,17 @@ class GF_Zero_Spam {
 	}
 
 	/**
-	 * Cleans up plugin options when deactivating.
+	 * Cleans up cron jobs when deactivating.
+	 *
+	 * Note: Full cleanup including options removal is handled in uninstall.php
 	 *
 	 * @return void
 	 */
 	public static function deactivate() {
-		delete_option( 'gf_zero_spam_key' );
-
-		if ( class_exists( 'GF_Zero_Spam_AddOn' ) ) {
-			wp_clear_scheduled_hook( GF_Zero_Spam_AddOn::REPORT_CRON_HOOK_NAME );
+		// Only clear cron jobs on deactivation.
+		// Full cleanup happens in uninstall.php
+		if ( class_exists( 'GF_Zero_Spam_Cron' ) ) {
+			GF_Zero_Spam_Cron::cleanup();
 		}
 	}
 
@@ -145,7 +148,7 @@ class GF_Zero_Spam {
 				    input.value = '{$spam_key}';
 				    input.setAttribute('autocomplete', 'new-password');
 				    data.form.appendChild(input);
-				
+
 				    return data;
 				});
 EOD;

@@ -17,12 +17,44 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	protected $_title = 'Gravity Forms Zero Spam';
 	protected $_short_title = 'Zero Spam';
 
-	const REPORT_LAST_SENT_DATE_OPTION = 'gf_zero_spam_report_last_date';
+	/**
+	 * @var GF_Zero_Spam_AddOn|null
+	 * @since 1.4.5
+	 */
+	private static $_instance = null;
 
-	const REPORT_CRON_HOOK_NAME = 'gf_zero_spam_send_report';
+	/**
+	 * The cron handler instance.
+	 *
+	 * @since 1.4.7
+	 * @var GF_Zero_Spam_Cron
+	 */
+	private $cron;
+
+	/**
+	 * Get the singleton instance of this addon.
+	 *
+	 * @since 1.4.5
+	 *
+	 * @return GF_Zero_Spam_AddOn|null
+	 */
+	public static function get_instance() {
+		if ( self::$_instance === null ) {
+			self::$_instance = new self();
+			// Ensure cron is initialized for static calls.
+			if ( ! self::$_instance->cron ) {
+				self::$_instance->cron = GF_Zero_Spam_Cron::get_instance();
+			}
+		}
+
+		return self::$_instance;
+	}
 
 	public function init() {
 		parent::init();
+
+		// Initialize the cron handler.
+		$this->cron = GF_Zero_Spam_Cron::get_instance();
 
 		add_filter( 'gform_form_settings_fields', array( $this, 'add_settings_field' ), 10, 2 );
 		add_filter( 'gform_tooltips', array( $this, 'add_tooltip' ) );
@@ -33,8 +65,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		add_filter( 'gf_zero_spam_add_key_field', array( $this, 'filter_gf_zero_spam_add_key_field' ), 20 );
 
-		add_filter( 'cron_schedules', array( $this, 'add_cron_schedules' ) );
-		add_action( self::REPORT_CRON_HOOK_NAME, array( $this, 'send_report' ) );
 		add_action( 'gform_after_submission', array( $this, 'after_submission' ) );
 		add_action( 'gform_update_status', array( $this, 'update_status' ), 10, 2 );
 	}
@@ -347,7 +377,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return void
 	 */
 	public function update_status( $entry_id, $property_value ) {
-
 		if ( $property_value !== 'spam' ) {
 			return;
 		}
@@ -366,7 +395,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return void
 	 */
 	public function after_submission( $entry ) {
-
 		if ( $entry['status'] !== 'spam' ) {
 			return;
 		}
@@ -382,13 +410,14 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	public function check_entry_limit( $send_report = true ) {
 		$frequency = $this->get_plugin_setting( 'gf_zero_spam_email_frequency' );
 
-		if ( $frequency !== 'entry_limit' ) {
+		if ( 'entry_limit' !== $frequency ) {
 			return false;
 		}
 
 		$results = $this->get_latest_spam_entries();
 		$limit   = $this->get_plugin_setting( 'gf_zero_spam_entry_limit' );
 
+		// If there is a limit, respect it.
 		if ( $limit && count( $results ) < (int) $limit ) {
 			return false;
 		}
@@ -400,58 +429,50 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		return true;
 	}
 
-	/**
-	 * Add monthly intervals to existing cron schedules.
-	 *
-	 * @param array $schedules
-	 *
-	 * @return array
-	 */
-	public function add_cron_schedules( $schedules ) {
-
-		if ( isset( $schedules['monthly'] ) ) {
-			return $schedules;
-		}
-
-		$schedules['monthly'] = array(
-			'interval' => MONTH_IN_SECONDS,
-			'display'  => __( 'Once Monthly', 'gravity-forms-zero-spam' ),
-		);
-
-		return $schedules;
-	}
 
 	/**
 	 * Send spam report.
 	 *
-	 * @return boolean
+	 * @since 1.4
+	 *
+	 * @param array $results Optional. Array of spam entries to report.
+	 * @param bool  $is_test Optional. Whether this is a test email.
+	 *
+	 * @return boolean True if email was sent successfully, false otherwise.
 	 */
 	public function send_report( $results = array(), $is_test = false ) {
 
-		// When called from cron, $results will be empty.
-		if ( empty( $results ) ) {
-			$results = $this->get_latest_spam_entries();
+		$log_prefix = __METHOD__ . '(): ';
+
+		if ( $is_test ) {
+			$log_prefix .= '[TEST] ';
 		}
 
+		$this->log_debug( $log_prefix . 'Starting spam report generation.' );
+
+		// Get spam entries if not provided.
+		if ( empty( $results ) ) {
+			$results = $this->get_latest_spam_entries();
+			$this->log_debug( $log_prefix . 'Found ' . count( $results ) . ' spam entries since last report.' );
+		}
+
+		// Skip email if no spam entries and not a test.
 		if ( empty( $results ) && ! $is_test ) {
+			$this->log_debug( $log_prefix . 'No spam entries found and not a test. Skipping email.' );
 			return false;
 		}
 
-		if ( $is_test ) {
-			$settings = $this->get_posted_settings();
-		} else {
-			$settings = $this->get_plugin_settings();
-		}
+		$settings = $is_test ? $this->get_posted_settings() : $this->get_plugin_settings();
 
 		$email = rgar( $settings, 'gf_zero_spam_report_email' );
-
 		if ( empty( $email ) ) {
+			$this->log_error( $log_prefix . 'No email address configured.' );
 			return false;
 		}
 
 		$email = $this->replace_tags( $email );
-
 		if ( ! is_email( $email ) ) {
+			$this->log_error( $log_prefix . 'Invalid email address: ' . $email );
 			return false;
 		}
 
@@ -459,6 +480,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$message = rgar( $settings, 'gf_zero_spam_message' );
 
 		if ( $subject === '' || $message === '' ) {
+			$this->log_error( $log_prefix . 'Empty subject or message.' );
 			return false;
 		}
 
@@ -466,22 +488,26 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$message = $this->replace_tags( $message );
 		$message = wpautop( $message );
 
-		$headers = array( 'Content-type' => 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
+		$headers = array( 'Content-type: text/html; charset=' . esc_attr( get_option( 'blog_charset' ) ) );
+
+		$this->log_debug( $log_prefix . 'Attempting to send email to: ' . $email );
 		$success = wp_mail( $email, $subject, $message, $headers );
 
-		// Don't log or update last sent date when sending test email.
-		if ( $is_test ) {
-			return $success;
+		// Update the last sent timestamp regardless of email success
+		// This prevents repeatedly trying to send the same spam entries
+		if ( ! $is_test && ! empty( $results ) ) {
+			$this->cron->update_last_sent();
+			$this->log_debug( $log_prefix . 'Updated last sent timestamp to prevent duplicate reports.' );
 		}
 
-		if ( $success ) {
-			$this->log_debug( __METHOD__ . '(): Spam report email sent successfully.' );
-			update_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'timestamp', 1 ) );
-		} else {
-			$this->log_error( __METHOD__ . '(): Spam report email failed to send.' );
+		if ( ! $success ) {
+			$this->log_error( $log_prefix . 'Email failed to send to ' . $email . ' - but timestamp was updated to prevent loops.' );
+			return false;
 		}
 
-		return false;
+		$this->log_debug( $log_prefix . 'Email sent successfully to ' . $email );
+
+		return true;
 	}
 
 	/**
@@ -512,23 +538,16 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private function get_latest_spam_entries() {
 		global $wpdb;
 
-		$sql = $wpdb->prepare( "SELECT `id`, `form_id` FROM {$wpdb->prefix}gf_entry WHERE `status`=%s AND `date_created` >= %s ORDER BY `form_id`", 'spam', $this->get_last_report_date( 'Y-m-d H:i:s' ) );
-
-		return $wpdb->get_results( $sql, ARRAY_A );
-	}
-
-	/**
-	 * Returns the date the last report was set.
-	 *
-	 * @param string $date_format Date format to return.
-	 *
-	 * @return string Date in format passed by $date_format.
-	 */
-	private function get_last_report_date( $date_format = 'Y-m-d' ) {
-
-		$last_report_timestamp = get_option( self::REPORT_LAST_SENT_DATE_OPTION, current_time( 'timestamp', 1 ) );
-
-		return gmdate( $date_format, $last_report_timestamp );
+		$last_date = $this->cron->get_last_sent_date( 'Y-m-d H:i:s' );
+		$this->log_debug( __METHOD__ . '(): Looking for spam entries since: ' . $last_date );
+		
+		$sql = $wpdb->prepare( "SELECT `id`, `form_id` FROM {$wpdb->prefix}gf_entry WHERE `status`=%s AND `date_created` >= %s ORDER BY `form_id`", 'spam', $last_date );
+		$this->log_debug( __METHOD__ . '(): SQL Query: ' . $sql );
+		
+		$results = $wpdb->get_results( $sql, ARRAY_A );
+		$this->log_debug( __METHOD__ . '(): Found ' . count( $results ) . ' spam entries.' );
+		
+		return $results;
 	}
 
 	/**
@@ -553,7 +572,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			}
 		}
 
-		$last_date = $this->get_last_report_date( 'Y-m-d' );
+		$last_date = $this->cron->get_last_sent_date( 'Y-m-d' );
 
 		$results_output = array();
 		foreach ( $counted_results as $form_id => $count ) {
@@ -610,30 +629,23 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Add cron job for spam reporting.
+	 * Update cron job for spam reporting.
+	 *
+	 * @since 1.2
+	 * @since 1.4.7 Delegates to the cron handler class.
 	 *
 	 * @param string $frequency The frequency of the cron job.
 	 *
 	 * @return string
 	 */
 	public function update_cron_job( $frequency ) {
-
-		// Always remove the existing cron job.
-		wp_clear_scheduled_hook( self::REPORT_CRON_HOOK_NAME );
-
-		if ( empty( $frequency ) ) {
-			return $frequency;
-		}
-
-		if ( $frequency === 'entry_limit' ) {
-			return $frequency;
-		}
-
-		wp_schedule_event( time(), $frequency, self::REPORT_CRON_HOOK_NAME );
+		// Delegate to the cron handler.
+		$this->cron->schedule( $frequency );
 
 		return $frequency;
 	}
 
 }
 
-new GF_Zero_Spam_AddOn;
+// Use singleton pattern to ensure only one instance
+GF_Zero_Spam_AddOn::get_instance();
