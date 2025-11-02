@@ -182,6 +182,10 @@ EOD;
 			return false;
 		}
 
+		if ( $is_spam ) {
+			return $is_spam;
+		}
+
 		$should_check_key_field = ! GFCommon::is_preview();
 
 		/**
@@ -195,7 +199,7 @@ EOD;
 		 */
 		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), $should_check_key_field, $form, $entry );
 
-		if( false === $should_check_key_field ) {
+		if ( false === $should_check_key_field ) {
 			return $is_spam;
 		}
 
@@ -214,10 +218,23 @@ EOD;
 			return $is_spam;
 		}
 
-		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( sanitize_text_field( wp_unslash( $_POST['gf_zero_spam_key'] ) ) ) !== $this->get_key() ) {
-			add_action( 'gform_entry_created', array( $this, 'add_entry_note' ) );
+		$submitted_key = rgpost( 'gf_zero_spam_key' );
+		if ( rgblank( $submitted_key ) ) {
+			$is_spam = true;
+			$reason  = __( 'The submission did not include the key.', 'gravity-forms-zero-spam' );
+		} elseif ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $this->get_key() ) {
+			$is_spam = true;
+			$reason  = __( 'The submitted key is invalid.', 'gravity-forms-zero-spam' );
+		}
 
-			return true;
+		if ( ! $is_spam ) {
+			return $is_spam;
+		}
+
+		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) { // GF 2.7+
+			GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
+		} else {
+			add_action( 'gform_entry_created', array( $this, 'add_entry_note' ) );
 		}
 
 		return $is_spam;
