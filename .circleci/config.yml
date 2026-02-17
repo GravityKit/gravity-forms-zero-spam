@@ -1,0 +1,54 @@
+version: 2.1
+
+anchors:
+  context: &context
+    context: shared
+
+  default_job_config: &default_job_config
+    working_directory: /home/circleci/plugin
+    machine:
+      image: default
+
+jobs:
+  build_package_release:
+    <<: *default_job_config
+    steps:
+      - checkout
+      - run:
+          name: Getting GravityKit test/build tools
+          command: |
+            git clone git@github.com:GravityKit/Tooling.git /home/circleci/tooling
+      - run:
+          name: Packaging
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "main" ]; then
+              /home/circleci/tooling/build-tools/build_tools.sh package_build -o "gravityforms-zero-spam gravityforms-zero-spam.php --include-hash"
+            else
+              /home/circleci/tooling/build-tools/build_tools.sh package_build -o "gravityforms-zero-spam gravityforms-zero-spam.php $([[ $(git log -n 1 | grep "\[skip release\]") ]] && echo --include-hash)"
+            fi
+            mkdir .release
+            cp gravityforms-zero-spam-*.zip .release
+      - run:
+          name: Creating a GitHub release
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              git config user.email "support@gravitykit.com"
+              git config user.name "GravityKit - CI"
+              /home/circleci/tooling/build-tools/build_tools.sh create_release -o "gravityforms-zero-spam.php $(ls gravityforms-zero-spam-*.zip)"
+            fi
+      - run:
+          name: Notifying GravityKit Release Manager
+          command: |
+            if ! [[ $(git log -n 1 | grep "\[skip notify\]") ]]; then
+              /home/circleci/tooling/build-tools/build_tools.sh announce_build -o "gravityforms-zero-spam.php $(ls gravityforms-zero-spam-*.zip) --with-circle"
+            fi
+      - store_artifacts:
+          path: .release
+          destination: release
+
+workflows:
+  version: 2
+  test_and_package:
+    jobs:
+      - build_package_release:
+          <<: *context
