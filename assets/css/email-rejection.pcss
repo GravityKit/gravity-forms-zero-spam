@@ -203,6 +203,31 @@ $field-bg: #fafafa;
 		background: $badge-log-bg;
 		color: $badge-log-color;
 	}
+
+	&.action-inactive {
+		opacity: 0.5;
+		cursor: help;
+	}
+}
+
+/* ---- Block-unsupported notice ---- */
+
+.gf-zero-spam-block-notice {
+	background: #fff8e1;
+	border-left: 4px solid #ffb300;
+	padding: 0.5rem 0.75rem;
+	margin-bottom: 0.75rem;
+	font-size: $field-font-size;
+	color: $color-text-dark;
+}
+
+.gf-zero-spam-block-info {
+	background: $badge-log-bg;
+	border-left: 4px solid $color-primary;
+	padding: 0.5rem 0.75rem;
+	margin-bottom: 0.75rem;
+	font-size: $field-font-size;
+	color: $color-text-dark;
 }
 
 /* ---- Row action links (Edit | Remove) ---- */

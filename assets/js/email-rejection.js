@@ -180,7 +180,7 @@
 	function RuleTable( cfg ) {
 		const container = cfg.container;
 		const t = cfg.translations || {};
-		const blockSupported = cfg.blockSupported !== false;
+		const blockSupported = cfg.blockSupported;
 		const onChange = cfg.onChange || (() => {});
 
 		let rules = ( cfg.rules || [] ).slice();
@@ -294,6 +294,20 @@
 		function render() {
 			let html = '';
 
+			if ( ! blockSupported ) {
+				if ( rules.some( ( r ) => r.action === 'block' ) ) {
+					// Warn that existing block rules are inactive.
+					html += '<div class="gf-zero-spam-block-notice" role="alert">' +
+						escHtml( t.blockNotice || 'Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update.' ) +
+						'</div>';
+				} else {
+					// Inform that blocking is available with a newer GF version.
+					html += '<div class="gf-zero-spam-block-info">' +
+						escHtml( t.blockAvailable || 'Upgrading to Gravity Forms 2.9.15 or higher enables the ability to configure rules that block matching form submissions.' ) +
+						'</div>';
+				}
+			}
+
 			if ( rules.length > 0 ) {
 				// tabindex="-1" prevents the scrollable wrapper from being a tab stop.
 				html += '<div class="gf-zero-spam-rule-table-wrapper" tabindex="-1">' +
@@ -358,9 +372,13 @@
 					'<button type="button" class="button" data-action="cancel">' + escHtml( t.cancel || 'Cancel' ) + '</button>' +
 					'</td>';
 			} else {
+				const blockInactive = rule.action === 'block' && ! blockSupported;
+				const badgeClass = 'gf-zero-spam-action-badge action-' + escHtml( rule.action ) + ( blockInactive ? ' action-inactive' : '' );
+				const badgeTitle = blockInactive ? ' title="' + escHtml( t.blockRequiresGF || 'Requires Gravity Forms 2.9.15+' ) + '"' : '';
+
 				html += '<td class="column-type"><span class="gf-zero-spam-type-label">' + escHtml( rule.type ) + '</span></td>' +
 					'<td class="column-value"><code class="gf-zero-spam-value">' + escHtml( rule.value ) + '</code></td>' +
-					'<td class="column-action"><span class="gf-zero-spam-action-badge action-' + escHtml( rule.action ) + '">' + escHtml( rule.action ) + '</span></td>' +
+					'<td class="column-action"><span class="' + badgeClass + '"' + badgeTitle + '>' + escHtml( rule.action ) + '</span></td>' +
 					'<td class="column-actions"><span class="gf-zero-spam-row-actions">' +
 					'<button type="button" class="gf-zero-spam-link-btn" data-action="edit" aria-label="' + escHtml( ( t.edit || 'Edit' ) + ': ' + rule.value ) + '">' + escHtml( t.edit || 'Edit' ) + '</button>' +
 					'<span class="gf-zero-spam-sep" aria-hidden="true">|</span>' +
@@ -725,7 +743,7 @@
 		}
 
 		const t = config.translations || {};
-		const blockSupported = config.blockSupported !== false;
+		const blockSupported = !! config.blockSupported;
 
 		// Wrapper div.
 		const wrapper = document.createElement( 'div' );
@@ -783,7 +801,7 @@
 		}
 
 		const t = config.translations || {};
-		const blockSupported = config.blockSupported !== false;
+		const blockSupported = config.blockSupported;
 		const settingsUrl = config.settingsUrl || '';
 		const settings = config.fieldSettings || { enabled: false, mode: 'inherit_add', rules: [], message: '' };
 		const onUpdate = config.onUpdate || (() => {});
@@ -949,7 +967,7 @@
 				context: 'field',
 				fieldSettings: settings,
 				translations: fieldConfig.translations || {},
-				blockSupported: fieldConfig.blockSupported !== false,
+				blockSupported: fieldConfig.blockSupported,
 				settingsUrl: fieldConfig.settingsUrl || '',
 				onUpdate: ( updatedSettings ) => {
 					// Write back to the field object so GF saves it.
