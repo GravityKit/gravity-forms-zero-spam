@@ -12,7 +12,7 @@
  *
  * @since TBD
  */
-( function () {
+( () => {
 	'use strict';
 
 	/* ---- Utilities ---- */
@@ -100,7 +100,7 @@
 		if ( type === 'regex' ) {
 			try {
 				new RegExp( value );
-			} catch ( ex ) {
+			} catch ( _ex ) {
 				return t.invalidRegex || 'Invalid regular expression.';
 			}
 		}
@@ -126,9 +126,7 @@
 			{ value: 'regex', label: t.regex || 'Regex' },
 		];
 
-		const opts = types.map( function ( o ) {
-			return '<option value="' + o.value + '"' + ( o.value === selected ? ' selected' : '' ) + '>' + escHtml( o.label ) + '</option>';
-		} ).join( '' );
+		const opts = types.map( ( o ) => '<option value="' + o.value + '"' + ( o.value === selected ? ' selected' : '' ) + '>' + escHtml( o.label ) + '</option>' ).join( '' );
 
 		const labelAttr = ariaLabel ? ' aria-label="' + escHtml( ariaLabel ) + '"' : '';
 
@@ -156,11 +154,9 @@
 			actions.unshift( { value: 'block', label: t.block || 'Block' } );
 		}
 
-		const opts = actions.map( function ( o ) {
-			return '<option value="' + o.value + '"' +
+		const opts = actions.map( ( o ) => '<option value="' + o.value + '"' +
 				( o.value === selected ? ' selected' : '' ) +
-				'>' + escHtml( o.label ) + '</option>';
-		} ).join( '' );
+				'>' + escHtml( o.label ) + '</option>' ).join( '' );
 
 		const labelAttr = ariaLabel ? ' aria-label="' + escHtml( ariaLabel ) + '"' : '';
 
@@ -185,7 +181,7 @@
 		const container = cfg.container;
 		const t = cfg.translations || {};
 		const blockSupported = cfg.blockSupported !== false;
-		const onChange = cfg.onChange || function () {};
+		const onChange = cfg.onChange || (() => {});
 
 		let rules = ( cfg.rules || [] ).slice();
 		let editingId = null;
@@ -201,9 +197,9 @@
 
 		function removeRule( id ) {
 			// Find next rule to focus after removal.
-			const idx = rules.findIndex( function ( r ) { return r.id === id; } );
+			const idx = rules.findIndex( ( r ) => r.id === id );
 
-			rules = rules.filter( function ( r ) { return r.id !== id; } );
+			rules = rules.filter( ( r ) => r.id !== id );
 			render();
 			onChange( rules );
 
@@ -225,9 +221,7 @@
 		}
 
 		function updateRule( id, changes ) {
-			rules = rules.map( function ( r ) {
-				return r.id === id ? Object.assign( {}, r, changes ) : r;
-			} );
+			rules = rules.map( ( r ) => r.id === id ? Object.assign( {}, r, changes ) : r );
 
 			editingId = null;
 			render();
@@ -257,9 +251,7 @@
 		}
 
 		function toggleRule( id ) {
-			rules = rules.map( function ( r ) {
-				return r.id === id ? Object.assign( {}, r, { enabled: ! r.enabled } ) : r;
-			} );
+			rules = rules.map( ( r ) => r.id === id ? Object.assign( {}, r, { enabled: ! r.enabled } ) : r );
 
 			// Preserve scroll position across the re-render.
 			const wrapper = container.querySelector( '.gf-zero-spam-rule-table-wrapper' );
@@ -385,7 +377,7 @@
 
 		/* ---- Event delegation ---- */
 
-		container.addEventListener( 'click', function ( e ) {
+		container.addEventListener( 'click', ( e ) => {
 			const btn = e.target.closest( '[data-action]' );
 
 			if ( ! btn ) {
@@ -434,7 +426,7 @@
 			}
 		} );
 
-		container.addEventListener( 'change', function ( e ) {
+		container.addEventListener( 'change', ( e ) => {
 			// Update placeholder when the add-row type select changes.
 			const addTypeSelect = e.target.closest( '.gf-zero-spam-add-row .gf-zero-spam-type-select' );
 
@@ -448,7 +440,7 @@
 		} );
 
 		// Enable/disable Add button as user types.
-		container.addEventListener( 'input', function ( e ) {
+		container.addEventListener( 'input', ( e ) => {
 			if ( e.target.matches( '[data-role="new-value"]' ) ) {
 				const addBtn = container.querySelector( '[data-action="add"]' );
 
@@ -459,7 +451,7 @@
 		} );
 
 		// Enter key in add-row value input triggers add.
-		container.addEventListener( 'keydown', function ( e ) {
+		container.addEventListener( 'keydown', ( e ) => {
 			if ( e.key === 'Enter' && e.target.matches( '[data-role="new-value"]' ) ) {
 				e.preventDefault();
 				handleAdd();
@@ -561,7 +553,7 @@
 		}
 
 		function handleRemove( ruleId ) {
-			const rule = rules.find( function ( r ) { return r.id === ruleId; } );
+			const rule = rules.find( ( r ) => r.id === ruleId );
 			const label = rule ? rule.value : '';
 			const msg = ( t.confirmRemove || 'Remove this rule?' ) + ( label ? ' (' + label + ')' : '' );
 
@@ -631,7 +623,7 @@
 		const importBtn = wrap.querySelector( '[data-action="import"]' );
 		const feedbackEl = wrap.querySelector( '[data-role="import-feedback"]' );
 
-		toggleBtn.addEventListener( 'click', function () {
+		toggleBtn.addEventListener( 'click', () => {
 			const isOpen = ! panel.classList.contains( 'gf-zero-spam-hidden' );
 
 			panel.classList.toggle( 'gf-zero-spam-hidden', isOpen );
@@ -640,15 +632,15 @@
 			toggleBtn.blur();
 		} );
 
-		textarea.addEventListener( 'input', function () {
+		textarea.addEventListener( 'input', () => {
 			importBtn.disabled = textarea.value.trim().length === 0;
 		} );
 
-		importBtn.addEventListener( 'click', function () {
+		importBtn.addEventListener( 'click', () => {
 			const lines = textarea.value
 				.split( '\n' )
-				.map( function ( l ) { return l.trim(); } )
-				.filter( function ( l ) { return l.length > 0; } );
+				.map( ( l ) => l.trim() )
+				.filter( ( l ) => l.length > 0 );
 
 			if ( lines.length === 0 ) {
 				return;
@@ -708,7 +700,7 @@
 
 			clearTimeout( feedbackTimer );
 
-			feedbackTimer = setTimeout( function () {
+			feedbackTimer = setTimeout( () => {
 				feedbackEl.textContent = '';
 				feedbackEl.classList.add( 'gf-zero-spam-hidden' );
 				feedbackEl.classList.remove( 'is-error' );
@@ -760,7 +752,7 @@
 			rules: config.rules || [],
 			translations: t,
 			blockSupported: blockSupported,
-			onChange: function ( rules ) {
+			onChange: ( rules ) => {
 				hiddenInput.value = JSON.stringify( rules );
 			},
 		} );
@@ -794,7 +786,7 @@
 		const blockSupported = config.blockSupported !== false;
 		const settingsUrl = config.settingsUrl || '';
 		const settings = config.fieldSettings || { enabled: false, mode: 'inherit_add', rules: [], message: '' };
-		const onUpdate = config.onUpdate || function () {};
+		const onUpdate = config.onUpdate || (() => {});
 
 		// Track current state.
 		let currentEnabled = settings.enabled || false;
@@ -833,7 +825,7 @@
 		function renderFieldUI() {
 			// Build raw HTML for the tooltip, then escape the whole thing for the aria-label attribute.
 			// The browser decodes entities when reading the attribute, so jQuery UI Tooltip gets valid HTML.
-			let tooltipHtml = settingsUrl
+			const tooltipHtml = settingsUrl
 				? escHtml( t.fieldSettingsDescriptionBefore || 'Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the ' ) +
 					'<a href="' + settingsUrl + '" target="_blank">' +
 					escHtml( t.fieldSettingsDescriptionLink || 'global rejection rules' ) + '</a>' +
@@ -889,7 +881,7 @@
 					rules: settings.rules || [],
 					translations: t,
 					blockSupported: blockSupported,
-					onChange: function ( rules ) {
+					onChange: ( rules ) => {
 						settings.rules = rules;
 						notify( rules );
 					},
@@ -900,7 +892,7 @@
 		}
 
 		// Event delegation on wrapper.
-		wrapper.addEventListener( 'change', function ( e ) {
+		wrapper.addEventListener( 'change', ( e ) => {
 			if ( e.target.matches( '[data-role="field-enabled"]' ) ) {
 				currentEnabled = e.target.checked;
 				renderFieldUI();
@@ -914,7 +906,7 @@
 			}
 		} );
 
-		wrapper.addEventListener( 'input', function ( e ) {
+		wrapper.addEventListener( 'input', ( e ) => {
 			if ( e.target.matches( '[data-role="field-message"]' ) ) {
 				currentMessage = e.target.value;
 				notify();
@@ -945,7 +937,7 @@
 		window.fieldSettings.email += ', .email_rejection_setting';
 
 		// GF's gform_load_field_settings is a jQuery event, so jQuery is required.
-		jQuery( document ).on( 'gform_load_field_settings', function ( event, field ) {
+		jQuery( document ).on( 'gform_load_field_settings', ( _event, field ) => {
 			if ( field.type !== 'email' ) {
 				return;
 			}
@@ -959,7 +951,7 @@
 				translations: fieldConfig.translations || {},
 				blockSupported: fieldConfig.blockSupported !== false,
 				settingsUrl: fieldConfig.settingsUrl || '',
-				onUpdate: function ( updatedSettings ) {
+				onUpdate: ( updatedSettings ) => {
 					// Write back to the field object so GF saves it.
 					SetFieldProperty( 'emailRejection', updatedSettings );
 				},

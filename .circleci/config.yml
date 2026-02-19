@@ -10,6 +10,17 @@ anchors:
       image: default
 
 jobs:
+  lint:
+    <<: *default_job_config
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Lint
+          command: npm run lint
+
   build_package_release:
     <<: *default_job_config
     steps:
@@ -50,5 +61,8 @@ workflows:
   version: 2
   test_and_package:
     jobs:
+      - lint
       - build_package_release:
           <<: *context
+          requires:
+            - lint
