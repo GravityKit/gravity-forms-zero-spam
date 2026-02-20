@@ -354,8 +354,9 @@
 		function renderRow( rule ) {
 			const isEditing = editingId === rule.id;
 			const isDisabled = rule.enabled === false;
-			const disabledClass = isDisabled ? ' disabled' : '';
-			const disabledAttr = isDisabled ? ' aria-disabled="true"' : '';
+			const showDisabledStyle = isDisabled && ! isEditing;
+			const disabledClass = showDisabledStyle ? ' disabled' : '';
+			const disabledAttr = showDisabledStyle ? ' aria-disabled="true"' : '';
 			const toggleLabel = isDisabled ? ( t.enable || 'Enable' ) : ( t.disable || 'Disable' );
 
 			let html = '<tr class="gf-zero-spam-rule-row' + disabledClass + '"' + disabledAttr + ' data-rule-id="' + escHtml( rule.id ) + '">';
