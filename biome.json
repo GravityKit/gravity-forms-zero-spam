@@ -24,7 +24,7 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-	"style": {
+			"style": {
 				"useBlockStatements": "error",
 				"useTemplate": "off"
 			},
