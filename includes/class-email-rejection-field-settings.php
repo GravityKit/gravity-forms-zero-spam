@@ -8,14 +8,14 @@ if ( ! defined( 'WPINC' ) ) {
  * Registers per-field email rejection settings in the GF form editor
  * and enqueues the FieldRuleBuilder UI.
  *
- * @since TBD
+ * @since 1.5.0
  */
 class GF_Zero_Spam_Email_Rejection_Field_Settings {
 
 	/**
 	 * Initializes hooks.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 	/**
 	 * Renders the email rejection settings HTML in the field editor.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param int $position The settings group position.
 	 * @param int $form_id  The form ID.
@@ -50,7 +50,7 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 	/**
 	 * Enqueues assets on the form editor page.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -92,7 +92,7 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 	/**
 	 * Checks if we're on the form editor page.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return bool
 	 */

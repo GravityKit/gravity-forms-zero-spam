@@ -10,14 +10,14 @@ if ( ! defined( 'WPINC' ) ) {
  * Evaluates email addresses against rejection rules (domain, email, wildcard, regex)
  * and applies the configured action (block, flag, log).
  *
- * @since TBD
+ * @since 1.5.0
  */
 class GF_Zero_Spam_Email_Rejection {
 
 	/**
 	 * Allowed rule types.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var string[]
 	 */
@@ -26,7 +26,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Allowed rule actions.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var string[]
 	 */
@@ -35,7 +35,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Cached global rules for the current request.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var array|null
 	 */
@@ -44,7 +44,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Whether the block action is supported (requires GF 2.9.15+).
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var bool|null
 	 */
@@ -53,7 +53,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Entries flagged for spam by flag-action rules during validation.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var array Keyed by form_id.
 	 */
@@ -62,7 +62,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Rule matches to log after submission.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var array Keyed by form_id.
 	 */
@@ -71,7 +71,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Cached per-field rules for the current request.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var array Keyed by "{form_id}_{field_id}".
 	 */
@@ -80,7 +80,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Initializes hooks.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -106,7 +106,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Checks if the block action is supported (GF 2.9.15+).
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return bool
 	 */
@@ -125,7 +125,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 * (e.g., PHP-FPM with keep-alive, unit tests) where static properties
 	 * survive across requests.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -140,7 +140,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Gets the global rejection rules.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return array
 	 */
@@ -164,7 +164,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Gets the merged ruleset for a specific email field.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param GF_Field_Email|GF_Field $field The email field.
 	 * @param array                   $form  The form object.
@@ -194,7 +194,7 @@ class GF_Zero_Spam_Email_Rejection {
 		/**
 		 * Modifies the email rejection rules before evaluation.
 		 *
-		 * @since TBD
+		 * @since 1.5.0
 		 *
 		 * @param array                   $rules The merged rules array.
 		 * @param GF_Field_Email|GF_Field $field The email field.
@@ -212,7 +212,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * Returns the first matching rule, or null if no match.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $email The email address to check.
 	 * @param array  $rules The rules to evaluate.
@@ -259,7 +259,7 @@ class GF_Zero_Spam_Email_Rejection {
 				/**
 				 * Fires when an email matches a rejection rule.
 				 *
-				 * @since TBD
+				 * @since 1.5.0
 				 *
 				 * @param array  $rule  The matched rule.
 				 * @param string $email The email that matched.
@@ -276,7 +276,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Matches email by domain (exact match on domain part).
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $email The email to check.
 	 * @param string $value The domain to match against.
@@ -296,7 +296,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Matches email by exact address (case-insensitive).
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $email The email to check.
 	 * @param string $value The email to match against.
@@ -312,7 +312,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * Supports: *.example.com, *@example.com, prefix*@example.com
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $email   The email to check.
 	 * @param string $pattern The wildcard pattern.
@@ -333,7 +333,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Wraps a user-supplied regex pattern with delimiters and flags.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $pattern The regex pattern (without delimiters).
 	 *
@@ -346,7 +346,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Matches email against a regex pattern.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $email   The email to check.
 	 * @param string $pattern The regex pattern (without delimiters).
@@ -369,7 +369,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Validates a regex pattern is syntactically correct.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param string $pattern The regex pattern to validate.
 	 *
@@ -382,7 +382,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Filters GF's rejectable values for email fields (Block action).
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @see https://docs.gravityforms.com/gform_email_field_rejectable_values/
 	 *
@@ -419,7 +419,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 * field validation to substitute our per-field or global custom message when
 	 * the rejection was triggered by one of our block rules.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array    $result The validation result array with 'is_valid' and 'message'.
 	 * @param mixed    $value  The submitted field value.
@@ -463,7 +463,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Evaluates flag and log rules during form validation.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $validation_result The validation result array.
 	 *
@@ -520,7 +520,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Marks entry as spam if flag rule matched.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param bool  $is_spam Whether the entry is spam.
 	 * @param array $form    The form object.
@@ -539,7 +539,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Adds entry note for log-action matches.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $entry The entry object.
 	 * @param array $form  The form object.
@@ -588,7 +588,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * Checks per-field message first, falls back to global default.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param GF_Field_Email|GF_Field $field The email field.
 	 *
@@ -615,7 +615,7 @@ class GF_Zero_Spam_Email_Rejection {
 	/**
 	 * Returns the default translated validation message.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return string
 	 */

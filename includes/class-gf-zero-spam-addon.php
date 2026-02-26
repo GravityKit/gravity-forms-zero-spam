@@ -58,7 +58,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Email rejection settings instance.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var GF_Zero_Spam_Email_Rejection_Settings|null
 	 */
@@ -67,7 +67,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Gets the singleton instance.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return GF_Zero_Spam_AddOn
 	 */
@@ -443,7 +443,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Overrides parent to inject rules JSON from hidden input.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $settings The settings to save.
 	 *

@@ -8,14 +8,14 @@ if ( ! defined( 'WPINC' ) ) {
  * Registers the Email Rejection Rules settings section in the Zero Spam global settings page
  * and enqueues the Rule Builder UI.
  *
- * @since TBD
+ * @since 1.5.0
  */
 class GF_Zero_Spam_Email_Rejection_Settings {
 
 	/**
 	 * The GF Zero Spam AddOn instance.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @var GF_Zero_Spam_AddOn
 	 */
@@ -24,7 +24,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Constructor.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param GF_Zero_Spam_AddOn $addon The AddOn instance.
 	 */
@@ -35,7 +35,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Initializes hooks.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -48,7 +48,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 *
 	 * The hidden input name follows GF convention: _gform_setting_{field_name}.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return array|null Parsed rules array, or null if not present/invalid.
 	 */
@@ -98,7 +98,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * when a non-null default is provided, which would flip disabled rules
 	 * back to enabled.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $rule Raw rule data.
 	 *
@@ -127,7 +127,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * Uses the plugin version constant when available, falls back to
 	 * the JS file's modification time.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return string
 	 */
@@ -148,7 +148,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * automatically save. This filter reads the serialized JSON from $_POST
 	 * and injects it into the settings array.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $settings The settings being saved.
 	 *
@@ -167,7 +167,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Adds the Email Rejection Rules section to plugin settings.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @param array $settings Existing settings sections.
 	 *
@@ -227,7 +227,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Enqueues assets on the Zero Spam settings page.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return void
 	 */
@@ -274,7 +274,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Checks if we're on the Zero Spam settings page.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return bool
 	 */
@@ -291,7 +291,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * admin_enqueue_scripts fires before that. On POST, the cached settings
 	 * are stale, so we read the freshly-submitted rules from $_POST instead.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return array
 	 */
@@ -312,7 +312,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Gets translation strings for the UI.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @return array
 	 */

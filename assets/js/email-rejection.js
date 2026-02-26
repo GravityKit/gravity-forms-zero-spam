@@ -10,7 +10,7 @@
  * into markup, preventing XSS. This code only runs on authenticated
  * wp-admin pages.
  *
- * @since TBD
+ * @since 1.5.0
  */
 ( () => {
 	'use strict';

@@ -92,7 +92,7 @@ class GF_Zero_Spam {
 	 * Prevents bots from creating draft entries via Save and Continue by validating the
 	 * spam key before the draft is saved. Uses the same abort pattern as the GF honeypot.
 	 *
-	 * @since TBD
+	 * @since 1.5.0
 	 *
 	 * @see https://docs.gravityforms.com/gform_abort_submission_with_confirmation/
 	 *
