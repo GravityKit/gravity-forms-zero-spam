@@ -11,6 +11,11 @@ README.md
 /assets
 /svn
 /gravity-forms-zero-spam
+node_modules/
+package.json
+package-lock.json
+postcss.config.mjs
+biome.json
 
 *.zip
 *.tar.gz

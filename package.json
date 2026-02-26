@@ -1,0 +1,21 @@
+{
+  "name": "gravity-forms-zero-spam",
+  "private": true,
+  "scripts": {
+    "build:css": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map",
+    "build:js": "terser assets/js/email-rejection.js -o dist/js/gf-zero-spam.js --compress --mangle",
+    "build": "npm run build:css && npm run build:js",
+    "watch": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map --watch",
+    "lint": "biome lint assets/",
+    "lint:fix": "biome lint --fix assets/"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.3",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "postcss-nesting": "^13.0.1",
+    "postcss-simple-vars": "^7.0.1",
+    "terser": "^5.37.0"
+  }
+}

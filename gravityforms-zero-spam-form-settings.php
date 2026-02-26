@@ -6,6 +6,11 @@ if ( ! class_exists( 'GFForms' ) || ! is_callable( array( 'GFForms', 'include_ad
 
 GFForms::include_addon_framework();
 
+// Email rejection feature.
+include_once plugin_dir_path( __FILE__ ) . 'includes/class-email-rejection.php';
+include_once plugin_dir_path( __FILE__ ) . 'includes/class-email-rejection-settings.php';
+include_once plugin_dir_path( __FILE__ ) . 'includes/class-email-rejection-field-settings.php';
+
 /**
  * @since 1.2
  */
@@ -21,7 +26,45 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 	const REPORT_CRON_HOOK_NAME = 'gf_zero_spam_send_report';
 
+	/**
+	 * Email rejection settings instance.
+	 *
+	 * @since TBD
+	 *
+	 * @var GF_Zero_Spam_Email_Rejection_Settings|null
+	 */
+	private $email_rejection_settings;
+
+	/**
+	 * Get the singleton instance.
+	 *
+	 * @since TBD
+	 *
+	 * @return GF_Zero_Spam_AddOn
+	 */
+	public static function get_instance() {
+		static $instance = null;
+
+		if ( $instance === null ) {
+			$instance = new self();
+		}
+
+		return $instance;
+	}
+
 	public function init() {
+		// Initialize email rejection feature before parent::init() because
+		// parent::init() calls plugin_settings_init() which reads plugin_settings_fields(),
+		// and that method needs $this->email_rejection_settings to be set.
+		$email_rejection = new GF_Zero_Spam_Email_Rejection();
+		$email_rejection->init();
+
+		$this->email_rejection_settings = new GF_Zero_Spam_Email_Rejection_Settings( $this );
+		$this->email_rejection_settings->init();
+
+		$email_rejection_field_settings = new GF_Zero_Spam_Email_Rejection_Field_Settings();
+		$email_rejection_field_settings->init();
+
 		parent::init();
 
 		add_filter( 'gform_form_settings_fields', array( $this, 'add_settings_field' ), 10, 2 );
@@ -162,7 +205,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$available_variables_message .= '<li style="list-style: disc;"><code>{{settings_link}}</code> and <code>{{/settings_link}}</code> - ' . esc_html__( 'A link to the plugin settings page. Text inside the variables will be the link text. Make sure to include both the opening and closing variables.', 'gravity-forms-zero-spam' ) . '</li>';
 		$available_variables_message .= '</ul>';
 
-		return array(
+		$sections = array(
 			array(
 				'title'       => esc_html__( 'Spam Blocking', 'gravity-forms-zero-spam' ),
 				'description' => esc_html__( 'Enable to fight spam using a simple, effective method that is more effective than the built-in anti-spam honeypot.', 'gravity-forms-zero-spam' ) . ' ' . esc_html__( 'It is possible to enable or disable spam blocking on a per-form basis inside each form\'s settings.', 'gravity-forms-zero-spam' ),
@@ -334,6 +377,29 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			),
 		);
 
+		// Append Email Rejection Rules section.
+		if ( $this->email_rejection_settings ) {
+			$sections = $this->email_rejection_settings->add_settings_section( $sections );
+		}
+
+		return $sections;
+	}
+
+	/**
+	 * Override parent to inject rules JSON from hidden input.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $settings The settings to save.
+	 *
+	 * @return void
+	 */
+	public function update_plugin_settings( $settings ) {
+		if ( $this->email_rejection_settings ) {
+			$settings = $this->email_rejection_settings->save_rules_from_post( $settings );
+		}
+
+		parent::update_plugin_settings( $settings );
 	}
 
 	/**
@@ -636,4 +702,4 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 }
 
-new GF_Zero_Spam_AddOn;
+GF_Zero_Spam_AddOn::get_instance();

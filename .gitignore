@@ -5,3 +5,5 @@ Thumbs.db
 .idea
 /svn
 /gravity-forms-zero-spam
+node_modules/
+dist/
