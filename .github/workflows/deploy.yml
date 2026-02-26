@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Build assets
+        run: |
+          npm ci
+          npm run build
       - name: WordPress Plugin Deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
@@ -17,4 +21,4 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: gravity-forms-zero-spam
-          ASSETS_DIR: assets
+          ASSETS_DIR: .wordpress-org
