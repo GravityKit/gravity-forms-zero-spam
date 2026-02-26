@@ -216,6 +216,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			$fields['form_options']['fields'][] = $field;
 		}
 
+		if ( isset( $fields['spam'] ) ) { // Spam section added in GF 2.9.21.
+			$fields['spam']['fields'][] = $field;
+		} else {
+			$fields['form_options']['fields'][] = $field;
+		}
+
 		return $fields;
 	}
 
