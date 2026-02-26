@@ -111,7 +111,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 * @return bool
 	 */
 	public static function is_block_supported() {
-		if ( self::$block_supported === null ) {
+		if ( null === self::$block_supported ) {
 			self::$block_supported = class_exists( 'GFForms' ) && version_compare( GFForms::$version, '2.9.15', '>=' );
 		}
 
@@ -145,7 +145,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 * @return array
 	 */
 	public static function get_global_rules() {
-		if ( self::$cached_rules !== null ) {
+		if ( null !== self::$cached_rules ) {
 			return self::$cached_rules;
 		}
 
@@ -166,8 +166,8 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * @since TBD
 	 *
-	 * @param GF_Field_Email $field The email field.
-	 * @param array          $form  The form object.
+	 * @param GF_Field_Email|GF_Field $field The email field.
+	 * @param array                   $form  The form object.
 	 *
 	 * @return array Merged array of rules.
 	 */
@@ -196,9 +196,9 @@ class GF_Zero_Spam_Email_Rejection {
 		 *
 		 * @since TBD
 		 *
-		 * @param array          $rules The merged rules array.
-		 * @param GF_Field_Email $field The email field.
-		 * @param array          $form  The form object.
+		 * @param array                   $rules The merged rules array.
+		 * @param GF_Field_Email|GF_Field $field The email field.
+		 * @param array                   $form  The form object.
 		 */
 		$rules = apply_filters( 'gf_zero_spam_email_rules', $rules, $field, $form );
 
@@ -357,11 +357,11 @@ class GF_Zero_Spam_Email_Rejection {
 		$regex = self::wrap_regex( $pattern );
 
 		$old_limit = ini_get( 'pcre.backtrack_limit' );
-		ini_set( 'pcre.backtrack_limit', 10000 );
+		ini_set( 'pcre.backtrack_limit', '10000' ); // phpcs:ignore WordPress.PHP.IniSet.Risky -- Temporarily limits backtracking to prevent ReDoS.
 
 		$result = @preg_match( $regex, $email );
 
-		ini_set( 'pcre.backtrack_limit', $old_limit );
+		ini_set( 'pcre.backtrack_limit', (string) $old_limit ); // phpcs:ignore WordPress.PHP.IniSet.Risky -- Restores original backtrack limit.
 
 		return (bool) $result;
 	}
@@ -394,13 +394,16 @@ class GF_Zero_Spam_Email_Rejection {
 	 */
 	public function filter_rejectable_values( $rejectable_values, $email, $field ) {
 		// GF passes an array for email fields with confirmation enabled.
-		$email = is_array( $email ) ? rgar( $email, 0 ) : $email;
+		$email = is_array( $email ) ? $email[0] : $email;
 		$form  = GFAPI::get_form( $field->formId );
 		$rules = self::get_rules_for_field( $field, $form );
 
-		$block_rules = array_filter( $rules, function ( $rule ) {
-			return rgar( $rule, 'action' ) === 'block';
-		} );
+		$block_rules = array_filter(
+            $rules,
+            function ( $rule ) {
+				return rgar( $rule, 'action' ) === 'block';
+			}
+        );
 
 		if ( ! empty( $block_rules ) && self::evaluate( $email, $block_rules ) ) {
 			$rejectable_values[] = $email;
@@ -426,20 +429,23 @@ class GF_Zero_Spam_Email_Rejection {
 	 * @return array
 	 */
 	public function replace_block_validation_message( $result, $value, $form, $field ) {
-		if ( $field->type !== 'email' || $result['is_valid'] ) {
+		if ( 'email' !== $field->type || $result['is_valid'] ) {
 			return $result;
 		}
 
-		$email = is_array( $value ) ? rgar( $value, 0 ) : $value;
+		$email = is_array( $value ) ? $value[0] : $value;
 
 		if ( empty( $email ) ) {
 			return $result;
 		}
 
 		$rules       = self::get_rules_for_field( $field, $form );
-		$block_rules = array_filter( $rules, function ( $rule ) {
-			return rgar( $rule, 'action' ) === 'block';
-		} );
+		$block_rules = array_filter(
+            $rules,
+            function ( $rule ) {
+				return rgar( $rule, 'action' ) === 'block';
+			}
+        );
 
 		if ( empty( $block_rules ) ) {
 			return $result;
@@ -467,7 +473,7 @@ class GF_Zero_Spam_Email_Rejection {
 		$form = $validation_result['form'];
 
 		foreach ( $form['fields'] as $field ) {
-			if ( $field->type !== 'email' ) {
+			if ( 'email' !== $field->type ) {
 				continue;
 			}
 
@@ -480,9 +486,12 @@ class GF_Zero_Spam_Email_Rejection {
 			$rules = self::get_rules_for_field( $field, $form );
 
 			// Only evaluate flag and log rules here (block handled by GF filter).
-			$flag_log_rules = array_filter( $rules, function( $rule ) {
-				return in_array( rgar( $rule, 'action' ), [ 'flag', 'log' ], true );
-			} );
+			$flag_log_rules = array_filter(
+                $rules,
+                function ( $rule ) {
+					return in_array( rgar( $rule, 'action' ), [ 'flag', 'log' ], true );
+				}
+            );
 
 			$matched = self::evaluate( $email, $flag_log_rules );
 
@@ -491,9 +500,9 @@ class GF_Zero_Spam_Email_Rejection {
 			}
 
 			$match_info = [
-				'rule'    => $matched,
-				'email'   => $email,
-				'field'   => $field->id,
+				'rule'  => $matched,
+				'email' => $email,
+				'field' => $field->id,
 			];
 
 			if ( rgar( $matched, 'action' ) === 'flag' ) {
@@ -581,7 +590,7 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * @since TBD
 	 *
-	 * @param GF_Field_Email $field The email field.
+	 * @param GF_Field_Email|GF_Field $field The email field.
 	 *
 	 * @return string
 	 */
@@ -593,8 +602,8 @@ class GF_Zero_Spam_Email_Rejection {
 			return $field_message;
 		}
 
-		$addon           = GF_Zero_Spam_AddOn::get_instance();
-		$global_message  = $addon->get_plugin_setting( 'gf_zero_spam_email_rejection_message' );
+		$addon          = GF_Zero_Spam_AddOn::get_instance();
+		$global_message = $addon->get_plugin_setting( 'gf_zero_spam_email_rejection_message' );
 
 		if ( ! empty( $global_message ) ) {
 			return $global_message;

@@ -14,7 +14,7 @@ class GF_Zero_Spam {
 	public static function gform_loaded() {
 		include_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-addon.php';
 
-		new self;
+		new self();
 	}
 
 	/**
@@ -30,6 +30,11 @@ class GF_Zero_Spam {
 		}
 	}
 
+	/**
+	 * Constructor. Registers Gravity Forms hooks.
+	 *
+	 * @since 1.0
+	 */
 	public function __construct() {
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
 		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
@@ -58,6 +63,7 @@ class GF_Zero_Spam {
 
 		/**
 		 * Something isn't right...bail. This should be set.
+         *
 		 * @see GFFormsModel::save_draft_submission()
 		 */
 		if ( ! isset( $submission['partial_entry'] ) ) {
@@ -177,7 +183,7 @@ EOD;
 		 */
 		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), $should_check_key_field, $form, $entry );
 
-		if( false === $should_check_key_field ) {
+		if ( false === $should_check_key_field ) {
 			return $is_spam;
 		}
 
@@ -196,6 +202,7 @@ EOD;
 			return $is_spam;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by Gravity Forms before this filter fires.
 		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( sanitize_text_field( wp_unslash( $_POST['gf_zero_spam_key'] ) ) ) !== $this->get_key() ) {
 			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
 

@@ -69,17 +69,20 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 
 		// Deduplicate by type + value (case-insensitive), keeping the first occurrence.
 		$seen  = [];
-		$rules = array_filter( $rules, static function ( $rule ) use ( &$seen ) {
-			$key = $rule['type'] . ':' . strtolower( $rule['value'] );
+		$rules = array_filter(
+            $rules,
+            static function ( $rule ) use ( &$seen ) {
+				$key = $rule['type'] . ':' . strtolower( $rule['value'] );
 
-			if ( isset( $seen[ $key ] ) ) {
-				return false;
+				if ( isset( $seen[ $key ] ) ) {
+					return false;
+				}
+
+				$seen[ $key ] = true;
+
+				return true;
 			}
-
-			$seen[ $key ] = true;
-
-			return true;
-		} );
+        );
 
 		return array_values( $rules );
 	}
@@ -133,7 +136,9 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			return GF_ZERO_SPAM_VERSION;
 		}
 
-		return (string) ( @filemtime( dirname( __DIR__ ) . '/dist/js/gf-zero-spam.js' ) ?: '1.0.0' );
+		$mtime = @filemtime( dirname( __DIR__ ) . '/dist/js/gf-zero-spam.js' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Graceful fallback when file is missing.
+
+		return $mtime ? (string) $mtime : '1.0.0';
 	}
 
 	/**
@@ -152,7 +157,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	public function save_rules_from_post( $settings ) {
 		$rules = self::parse_rules_from_post();
 
-		if ( $rules !== null ) {
+		if ( null !== $rules ) {
 			$settings['gf_zero_spam_email_rules'] = $rules;
 		}
 
@@ -184,10 +189,10 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 					'default_value' => false,
 				],
 				[
-					'name'    => 'gf_zero_spam_email_rules',
-					'label'   => esc_html__( 'Rules', 'gravity-forms-zero-spam' ),
-					'type'    => 'html',
-					'html'    => '<div id="gf-zero-spam-rule-builder"></div>',
+					'name'       => 'gf_zero_spam_email_rules',
+					'label'      => esc_html__( 'Rules', 'gravity-forms-zero-spam' ),
+					'type'       => 'html',
+					'html'       => '<div id="gf-zero-spam-rule-builder"></div>',
 					'dependency' => [
 						'live'   => true,
 						'fields' => [
@@ -231,14 +236,15 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			return;
 		}
 
-		$plugin_dir = plugin_dir_url( dirname( __FILE__ ) );
+		$plugin_dir = plugin_dir_url( __DIR__ );
 		$version    = self::get_asset_version();
 
 		wp_enqueue_script(
 			'gf-zero-spam',
 			$plugin_dir . 'dist/js/gf-zero-spam.js',
 			[],
-			$version
+			$version,
+			true
 		);
 
 		wp_enqueue_style(
@@ -250,15 +256,19 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 
 		$rules = $this->get_rules_for_localize();
 
-		wp_localize_script( 'gf-zero-spam', 'gfZeroSpamEmailRules_global', [
-			'targetSelector'   => '#gf-zero-spam-rule-builder',
-			'context'          => 'global',
-			'rules'            => $rules,
-			'inputElementName' => '_gform_setting_gf_zero_spam_email_rules',
-			'gfVersion'        => GFForms::$version,
-			'blockSupported'   => GF_Zero_Spam_Email_Rejection::is_block_supported(),
-			'translations'     => self::get_translations(),
-		] );
+		wp_localize_script(
+            'gf-zero-spam',
+            'gfZeroSpamEmailRules_global',
+            [
+				'targetSelector'   => '#gf-zero-spam-rule-builder',
+				'context'          => 'global',
+				'rules'            => $rules,
+				'inputElementName' => '_gform_setting_gf_zero_spam_email_rules',
+				'gfVersion'        => GFForms::$version,
+				'blockSupported'   => GF_Zero_Spam_Email_Rejection::is_block_supported(),
+				'translations'     => self::get_translations(),
+			]
+        );
 	}
 
 	/**
@@ -289,7 +299,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 			$rules = self::parse_rules_from_post();
 
-			if ( $rules !== null ) {
+			if ( null !== $rules ) {
 				return $rules;
 			}
 		}
@@ -308,51 +318,53 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 */
 	public static function get_translations() {
 		return [
-			'addRule'             => __( 'Add Rule', 'gravity-forms-zero-spam' ),
-			'removeRule'          => __( 'Remove', 'gravity-forms-zero-spam' ),
-			'edit'                => __( 'Edit', 'gravity-forms-zero-spam' ),
-			'enable'              => __( 'Enable', 'gravity-forms-zero-spam' ),
-			'disable'             => __( 'Disable', 'gravity-forms-zero-spam' ),
-			'save'                => __( 'Save', 'gravity-forms-zero-spam' ),
-			'cancel'              => __( 'Cancel', 'gravity-forms-zero-spam' ),
-			'domain'              => __( 'Domain', 'gravity-forms-zero-spam' ),
-			'email'               => __( 'Email', 'gravity-forms-zero-spam' ),
-			'wildcard'            => __( 'Wildcard', 'gravity-forms-zero-spam' ),
-			'regex'               => __( 'Regex', 'gravity-forms-zero-spam' ),
-			'block'               => __( 'Block', 'gravity-forms-zero-spam' ),
-			'flag'                => __( 'Flag as Spam', 'gravity-forms-zero-spam' ),
-			'log'                 => __( 'Log Only', 'gravity-forms-zero-spam' ),
-			'type'                => __( 'Type', 'gravity-forms-zero-spam' ),
-			'value'               => __( 'Value', 'gravity-forms-zero-spam' ),
-			'action'              => __( 'Action', 'gravity-forms-zero-spam' ),
-			'noRules'             => __( 'No rules defined yet.', 'gravity-forms-zero-spam' ),
-			'importRules'         => __( 'Import Rules', 'gravity-forms-zero-spam' ),
-			'importDescription'   => __( 'Paste values, one per line or comma-separated. Auto-detected as Domain or Email type.', 'gravity-forms-zero-spam' ),
-			'import'              => __( 'Import', 'gravity-forms-zero-spam' ),
-			'confirmRemove'       => __( 'Remove this rule?', 'gravity-forms-zero-spam' ),
-			'invalidRegex'        => __( 'Invalid regular expression.', 'gravity-forms-zero-spam' ),
-			'invalidEmail'        => __( 'Please enter a valid email address.', 'gravity-forms-zero-spam' ),
-			'invalidDomain'       => __( 'Please enter a valid domain.', 'gravity-forms-zero-spam' ),
-			'importNone'          => __( 'No valid rules found to import.', 'gravity-forms-zero-spam' ),
-			'importOne'           => __( '1 rule imported.', 'gravity-forms-zero-spam' ),
-			'importMany'          => __( '%d rules imported.', 'gravity-forms-zero-spam' ),
-			'importSkippedOne'    => __( 'Skipped 1 invalid value.', 'gravity-forms-zero-spam' ),
-			'importSkippedMany'   => __( 'Skipped %d invalid values.', 'gravity-forms-zero-spam' ),
-			'blockNotice'         => __( 'Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update.', 'gravity-forms-zero-spam' ),
-			'blockAvailable'      => __( 'Upgrading to Gravity Forms 2.9.15 or higher enables the ability to configure rules that block matching form submissions.', 'gravity-forms-zero-spam' ),
-			'blockRequiresGF'     => __( 'Requires Gravity Forms 2.9.15+', 'gravity-forms-zero-spam' ),
-			'valuePlaceholder'    => __( 'e.g., spamdomain.com', 'gravity-forms-zero-spam' ),
-			'enableForField'      => __( 'Enable rejection rules', 'gravity-forms-zero-spam' ),
-			'fieldSettingsDescription' => __( 'Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the global rejection rules.', 'gravity-forms-zero-spam' ),
+			'addRule'                        => __( 'Add Rule', 'gravity-forms-zero-spam' ),
+			'removeRule'                     => __( 'Remove', 'gravity-forms-zero-spam' ),
+			'edit'                           => __( 'Edit', 'gravity-forms-zero-spam' ),
+			'enable'                         => __( 'Enable', 'gravity-forms-zero-spam' ),
+			'disable'                        => __( 'Disable', 'gravity-forms-zero-spam' ),
+			'save'                           => __( 'Save', 'gravity-forms-zero-spam' ),
+			'cancel'                         => __( 'Cancel', 'gravity-forms-zero-spam' ),
+			'domain'                         => __( 'Domain', 'gravity-forms-zero-spam' ),
+			'email'                          => __( 'Email', 'gravity-forms-zero-spam' ),
+			'wildcard'                       => __( 'Wildcard', 'gravity-forms-zero-spam' ),
+			'regex'                          => __( 'Regex', 'gravity-forms-zero-spam' ),
+			'block'                          => __( 'Block', 'gravity-forms-zero-spam' ),
+			'flag'                           => __( 'Flag as Spam', 'gravity-forms-zero-spam' ),
+			'log'                            => __( 'Log Only', 'gravity-forms-zero-spam' ),
+			'type'                           => __( 'Type', 'gravity-forms-zero-spam' ),
+			'value'                          => __( 'Value', 'gravity-forms-zero-spam' ),
+			'action'                         => __( 'Action', 'gravity-forms-zero-spam' ),
+			'noRules'                        => __( 'No rules defined yet.', 'gravity-forms-zero-spam' ),
+			'importRules'                    => __( 'Import Rules', 'gravity-forms-zero-spam' ),
+			'importDescription'              => __( 'Paste values, one per line or comma-separated. Auto-detected as Domain or Email type.', 'gravity-forms-zero-spam' ),
+			'import'                         => __( 'Import', 'gravity-forms-zero-spam' ),
+			'confirmRemove'                  => __( 'Remove this rule?', 'gravity-forms-zero-spam' ),
+			'invalidRegex'                   => __( 'Invalid regular expression.', 'gravity-forms-zero-spam' ),
+			'invalidEmail'                   => __( 'Please enter a valid email address.', 'gravity-forms-zero-spam' ),
+			'invalidDomain'                  => __( 'Please enter a valid domain.', 'gravity-forms-zero-spam' ),
+			'importNone'                     => __( 'No valid rules found to import.', 'gravity-forms-zero-spam' ),
+			'importOne'                      => __( '1 rule imported.', 'gravity-forms-zero-spam' ),
+			// translators: %d is the number of rules imported.
+			'importMany'                     => __( '%d rules imported.', 'gravity-forms-zero-spam' ),
+			'importSkippedOne'               => __( 'Skipped 1 invalid value.', 'gravity-forms-zero-spam' ),
+			// translators: %d is the number of invalid values skipped.
+			'importSkippedMany'              => __( 'Skipped %d invalid values.', 'gravity-forms-zero-spam' ),
+			'blockNotice'                    => __( 'Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update.', 'gravity-forms-zero-spam' ),
+			'blockAvailable'                 => __( 'Upgrading to Gravity Forms 2.9.15 or higher enables the ability to configure rules that block matching form submissions.', 'gravity-forms-zero-spam' ),
+			'blockRequiresGF'                => __( 'Requires Gravity Forms 2.9.15+', 'gravity-forms-zero-spam' ),
+			'valuePlaceholder'               => __( 'e.g., spamdomain.com', 'gravity-forms-zero-spam' ),
+			'enableForField'                 => __( 'Enable rejection rules', 'gravity-forms-zero-spam' ),
+			'fieldSettingsDescription'       => __( 'Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the global rejection rules.', 'gravity-forms-zero-spam' ),
 			'fieldSettingsDescriptionBefore' => __( 'Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the ', 'gravity-forms-zero-spam' ),
-			'fieldSettingsDescriptionLink' => __( 'global rejection rules', 'gravity-forms-zero-spam' ),
-			'fieldSettingsDescriptionAfter' => __( '.', 'gravity-forms-zero-spam' ),
-			'ruleMode'            => __( 'Rule Mode', 'gravity-forms-zero-spam' ),
-			'inheritAdd'          => __( 'Inherit global rules + add field-specific rules', 'gravity-forms-zero-spam' ),
-			'replace'             => __( 'Use only field-specific rules (ignore global)', 'gravity-forms-zero-spam' ),
-			'fieldRules'          => __( 'Field-Specific Rules', 'gravity-forms-zero-spam' ),
-			'validationMessage'   => __( 'Validation Message (optional)', 'gravity-forms-zero-spam' ),
-			'leaveBlank'          => __( 'Leave blank to use the global default message.', 'gravity-forms-zero-spam' ),
+			'fieldSettingsDescriptionLink'   => __( 'global rejection rules', 'gravity-forms-zero-spam' ),
+			'fieldSettingsDescriptionAfter'  => __( '.', 'gravity-forms-zero-spam' ),
+			'ruleMode'                       => __( 'Rule Mode', 'gravity-forms-zero-spam' ),
+			'inheritAdd'                     => __( 'Inherit global rules + add field-specific rules', 'gravity-forms-zero-spam' ),
+			'replace'                        => __( 'Use only field-specific rules (ignore global)', 'gravity-forms-zero-spam' ),
+			'fieldRules'                     => __( 'Field-Specific Rules', 'gravity-forms-zero-spam' ),
+			'validationMessage'              => __( 'Validation Message (optional)', 'gravity-forms-zero-spam' ),
+			'leaveBlank'                     => __( 'Leave blank to use the global default message.', 'gravity-forms-zero-spam' ),
 		];
 	}
 }

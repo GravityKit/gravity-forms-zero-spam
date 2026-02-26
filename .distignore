@@ -1,22 +1,29 @@
 .gitattributes
 .gitignore
 .distignore
+.editorconfig
 README.md
 
 /.circleci
 /.claude
 /.github
 /.git
+/.husky
 /.idea
 /.wordpress-org
 /assets
 /svn
 /gravity-forms-zero-spam
 node_modules/
+vendor/
 package.json
 package-lock.json
+composer.json
+composer.lock
 postcss.config.mjs
 biome.json
+phpcs.xml.dist
+phpstan.dist.neon
 
 *.zip
 *.tar.gz

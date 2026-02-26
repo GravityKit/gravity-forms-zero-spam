@@ -7,15 +7,27 @@
     "build": "npm run build:css && npm run build:js",
     "watch": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map --watch",
     "lint": "biome lint assets/",
-    "lint:fix": "biome lint --fix assets/"
+    "lint:fix": "biome lint --fix assets/",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.3",
     "cssnano": "^7.0.6",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
     "postcss-nesting": "^13.0.1",
     "postcss-simple-vars": "^7.0.1",
     "terser": "^5.37.0"
+  },
+  "lint-staged": {
+    "*.php": [
+      "composer code:sniff",
+      "composer code:analyze"
+    ],
+    "assets/**/*.{js,pcss}": [
+      "biome lint"
+    ]
   }
 }

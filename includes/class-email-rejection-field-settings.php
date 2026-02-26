@@ -36,7 +36,7 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 	 */
 	public function render_field_settings( $position, $form_id ) {
 		// Position 50 = after Admin Label.
-		if ( $position !== 50 ) {
+		if ( 50 !== $position ) {
 			return;
 		}
 
@@ -59,14 +59,15 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 			return;
 		}
 
-		$plugin_dir = plugin_dir_url( dirname( __FILE__ ) );
+		$plugin_dir = plugin_dir_url( __DIR__ );
 		$version    = GF_Zero_Spam_Email_Rejection_Settings::get_asset_version();
 
 		wp_enqueue_script(
 			'gf-zero-spam',
 			$plugin_dir . 'dist/js/gf-zero-spam.js',
 			[ 'jquery' ],
-			$version
+			$version,
+			true
 		);
 
 		wp_enqueue_style(
@@ -76,12 +77,16 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 			$version
 		);
 
-		wp_localize_script( 'gf-zero-spam', 'gfZeroSpamEmailRules_field', [
-			'targetSelector' => '#gf-zero-spam-field-rule-builder',
-			'blockSupported' => GF_Zero_Spam_Email_Rejection::is_block_supported(),
-			'settingsUrl'    => admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam#gform-settings-section-email-rejection-rules' ),
-			'translations'   => GF_Zero_Spam_Email_Rejection_Settings::get_translations(),
-		] );
+		wp_localize_script(
+            'gf-zero-spam',
+            'gfZeroSpamEmailRules_field',
+            [
+				'targetSelector' => '#gf-zero-spam-field-rule-builder',
+				'blockSupported' => GF_Zero_Spam_Email_Rejection::is_block_supported(),
+				'settingsUrl'    => admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam#gform-settings-section-email-rejection-rules' ),
+				'translations'   => GF_Zero_Spam_Email_Rejection_Settings::get_translations(),
+			]
+        );
 	}
 
 	/**

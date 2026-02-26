@@ -15,11 +15,27 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Getting GravityKit test/build tools
+          command: |
+            git clone git@github.com:GravityKit/Tooling.git /home/circleci/tooling
+      - run:
+          name: Install npm dependencies
           command: npm ci
       - run:
-          name: Lint
+          name: Lint JS/CSS
           command: npm run lint
+      - run:
+          name: Install Composer dependencies
+          command: |
+            /home/circleci/tooling/build-tools/build_tools.sh composer -o install
+      - run:
+          name: Analyze code
+          command: |
+            /home/circleci/tooling/build-tools/build_tools.sh composer -o code:analyze
+      - run:
+          name: Run code sniffer
+          command: |
+            /home/circleci/tooling/build-tools/build_tools.sh composer -o code:sniff
 
   build_package_release:
     <<: *default_job_config
