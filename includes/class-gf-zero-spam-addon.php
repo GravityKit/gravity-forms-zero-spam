@@ -17,26 +17,36 @@ require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-field-settings.p
 class GF_Zero_Spam_AddOn extends GFAddOn {
 
 	/**
+	 * @since 1.3
+	 *
 	 * @var string
 	 */
 	protected $_slug = 'gf-zero-spam';
 
 	/**
+	 * @since 1.3
+	 *
 	 * @var string
 	 */
 	protected $_path = GF_ZERO_SPAM_BASENAME;
 
 	/**
+	 * @since 1.3
+	 *
 	 * @var string
 	 */
 	protected $_full_path = GF_ZERO_SPAM_FILE;
 
 	/**
+	 * @since 1.3
+	 *
 	 * @var string
 	 */
 	protected $_title = 'Gravity Forms Zero Spam';
 
 	/**
+	 * @since 1.3
+	 *
 	 * @var string
 	 */
 	protected $_short_title = 'Zero Spam';
@@ -55,7 +65,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private $email_rejection_settings;
 
 	/**
-	 * Get the singleton instance.
+	 * Gets the singleton instance.
 	 *
 	 * @since TBD
 	 *
@@ -117,7 +127,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Use global and per-form settings to determine whether to check for spam.
+	 * Uses global and per-form settings to determine whether to check for spam.
+	 *
+	 * @since 1.2
 	 *
 	 * @param bool  $check_key_field Whether to check the key field.
 	 * @param array $form            The form object.
@@ -140,7 +152,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Use global setting to modify whether to add the spam key field to the form.
+	 * Uses global setting to modify whether to add the spam key field to the form.
+	 *
+	 * @since 1.4
 	 *
 	 * @param bool $add_key_field Whether to add the spam key field to the form.
 	 *
@@ -158,7 +172,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Include custom tooltip text for the Zero Spam setting in the Form Settings page.
+	 * Includes custom tooltip text for the Zero Spam setting in the Form Settings page.
+	 *
+	 * @since 1.2
 	 *
 	 * @param array $tooltips Key/Value pair of tooltip/tooltip text.
 	 *
@@ -174,6 +190,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * Adds the Zero Spam field to form settings.
 	 *
 	 * Uses the "Spam" section (GF 2.9.21+) when available, falls back to "Form Options".
+	 *
+	 * @since 1.2
 	 *
 	 * @see https://docs.gravityforms.com/gform_form_settings_fields/
 	 *
@@ -202,7 +220,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Register addon global settings.
+	 * Registers addon global settings.
+	 *
+	 * @since 1.4
 	 *
 	 * @return array
 	 */
@@ -421,7 +441,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Override parent to inject rules JSON from hidden input.
+	 * Overrides parent to inject rules JSON from hidden input.
 	 *
 	 * @since TBD
 	 *
@@ -438,7 +458,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Check if entry limit has been reached after status update.
+	 * Checks if entry limit has been reached after status update.
 	 *
 	 * @since 1.4
 	 *
@@ -456,7 +476,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Check if entry limit has been reached after submission.
+	 * Checks if entry limit has been reached after submission.
 	 *
 	 * @since 1.4
 	 *
@@ -473,7 +493,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Check if entry limit has been reached.
+	 * Checks if entry limit has been reached.
+	 *
+	 * @since 1.4
 	 *
 	 * @param bool $send_report Whether to send the report if the limit is reached.
 	 *
@@ -501,7 +523,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Add monthly intervals to existing cron schedules.
+	 * Adds monthly intervals to existing cron schedules.
+	 *
+	 * @since 1.4
 	 *
 	 * @param array $schedules Existing cron schedules.
 	 *
@@ -521,7 +545,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Send spam report.
+	 * Sends spam report.
+	 *
+	 * @since 1.4
 	 *
 	 * @param array $results Spam entry results.
 	 * @param bool  $is_test Whether this is a test email.
@@ -586,7 +612,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Replace tags in email template.
+	 * Replaces tags in email template.
+	 *
+	 * @since 1.4
 	 *
 	 * @param string $value The template string with tags.
 	 *
@@ -606,7 +634,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Get latest spam entries.
+	 * Gets latest spam entries.
+	 *
+	 * @since 1.4
 	 *
 	 * @return array
 	 */
@@ -623,6 +653,8 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns the date the last report was set.
 	 *
+	 * @since 1.4
+	 *
 	 * @param string $date_format Date format to return.
 	 *
 	 * @return string Date in format passed by $date_format.
@@ -634,7 +666,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Get report list.
+	 * Gets report list.
+	 *
+	 * @since 1.4
 	 *
 	 * @return string HTML list of spam entries.
 	 */
@@ -704,7 +738,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Get spam count.
+	 * Gets spam count.
+	 *
+	 * @since 1.4
 	 *
 	 * @return int $count The number of spam entries since the last report was sent.
 	 */
@@ -715,7 +751,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Add cron job for spam reporting.
+	 * Adds cron job for spam reporting.
+	 *
+	 * @since 1.4
 	 *
 	 * @param string $frequency The frequency of the cron job.
 	 *

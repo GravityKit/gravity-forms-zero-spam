@@ -7,7 +7,9 @@ if ( ! defined( 'WPINC' ) ) {
 class GF_Zero_Spam {
 
 	/**
-	 * Instantiate the plugin on Gravity Forms loading.
+	 * Instantiates the plugin on Gravity Forms loading.
+	 *
+	 * @since 1.0.5
 	 *
 	 * @return void
 	 */
@@ -19,6 +21,8 @@ class GF_Zero_Spam {
 
 	/**
 	 * Cleans up plugin options when deactivating.
+	 *
+	 * @since 1.0
 	 *
 	 * @return void
 	 */
@@ -140,6 +144,8 @@ class GF_Zero_Spam {
 	/**
 	 * Retrieves the zero spam key (generating if needed).
 	 *
+	 * @since 1.0
+	 *
 	 * @return false|mixed|void
 	 */
 	public function get_key() {
@@ -155,6 +161,8 @@ class GF_Zero_Spam {
 
 	/**
 	 * Injects the hidden field and key into the form at submission.
+	 *
+	 * @since 1.0
 	 *
 	 * @uses GFFormDisplay::add_init_script() to inject the code into the `gform_post_render` jQuery hook.
 	 *
@@ -213,6 +221,8 @@ EOD;
 	/**
 	 * Checks for our zero spam key during validation.
 	 *
+	 * @since 1.0
+	 *
 	 * @param bool  $is_spam Indicates if the submission has been flagged as spam.
 	 * @param array $form    The form currently being processed.
 	 * @param array $entry   The entry currently being processed.
@@ -233,7 +243,7 @@ EOD;
 		$should_check_key_field = ! GFCommon::is_preview();
 
 		/**
-		 * Modify whether to process this entry submission for spam.
+		 * Modifies whether to process this entry submission for spam.
 		 *
 		 * @since 1.2
 		 *
