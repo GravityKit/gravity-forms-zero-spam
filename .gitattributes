@@ -2,10 +2,15 @@
 .gitignore export-ignore
 .distignore export-ignore
 README.md export-ignore
+biome.json export-ignore
+package.json export-ignore
+package-lock.json export-ignore
+postcss.config.mjs export-ignore
 
 /.circleci export-ignore
 /.claude export-ignore
 /.github export-ignore
 /.idea export-ignore
+/.wordpress-org export-ignore
 /assets export-ignore
 /svn export-ignore
