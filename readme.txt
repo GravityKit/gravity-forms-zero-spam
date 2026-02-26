@@ -122,8 +122,8 @@ You can enable a spam summary report email. This email will be sent to the email
   - Set field-specific overrides in the Form Editor
 * Added: Spam entries now show the reason they were flagged (e.g., missing or invalid key)
 * Added: Zero Spam toggle now appears in the "Spam" form settings section on Gravity Forms 2.9.21+
-* Added: Spam protection for Save and Continue - aborts draft creation when the zero spam key is missing or invalid, preventing bots from saving spam drafts
-* Improved: Skip redundant spam checks when the entry is already flagged by another filter
+* Added: Spam protection for Save and Continue, preventing bots from creating spam drafts
+* Improved: Redundant spam checks are skipped when the entry is already flagged by another filter
 * API: Added `gf_zero_spam_email_rules` filter to modify email rejection rules before evaluation
 * API: Added `gf_zero_spam_email_rule_match` action that fires when an email matches a rejection rule
 
