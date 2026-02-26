@@ -39,6 +39,7 @@ class GF_Zero_Spam {
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
 		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', [ $this, 'add_zero_spam_key_to_entry' ], 10, 3 );
+		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 20, 2 );
 	}
 
 	/**
@@ -79,6 +80,61 @@ class GF_Zero_Spam {
 		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );
 
 		return wp_json_encode( $submission );
+	}
+
+	/**
+	 * Aborts a Save and Continue submission if the zero spam key is missing or invalid.
+	 *
+	 * Prevents bots from creating draft entries via Save and Continue by validating the
+	 * spam key before the draft is saved. Uses the same abort pattern as the GF honeypot.
+	 *
+	 * @since TBD
+	 *
+	 * @see https://docs.gravityforms.com/gform_abort_submission_with_confirmation/
+	 *
+	 * @param bool  $do_abort Whether to abort the submission. Default false.
+	 * @param array $form     The form currently being processed.
+	 *
+	 * @return bool True to abort the submission; false to allow it.
+	 */
+	public function maybe_abort_submission( $do_abort, $form ) {
+		// Another filter already decided to abort.
+		if ( $do_abort ) {
+			return true;
+		}
+
+		// Not a Save and Continue action.
+		if ( ! rgpost( 'gform_save' ) ) {
+			return false;
+		}
+
+		$key = get_option( 'gf_zero_spam_key' );
+
+		// No key stored yet; plugin not fully initialized.
+		if ( ! $key ) {
+			return false;
+		}
+
+		$should_check_key_field = ! GFCommon::is_preview();
+
+		/** This filter is documented in includes/class-gf-zero-spam.php. */
+		$should_check_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), $should_check_key_field, $form, [] );
+
+		if ( false === $should_check_key_field ) {
+			return false;
+		}
+
+		$submitted_key = rgpost( 'gf_zero_spam_key' );
+
+		if ( rgblank( $submitted_key ) ) {
+			return true;
+		}
+
+		if ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $key ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
