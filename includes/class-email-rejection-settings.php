@@ -65,7 +65,23 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			return null;
 		}
 
-		return array_map( [ __CLASS__, 'sanitize_rule' ], $rules );
+		$rules = array_map( [ __CLASS__, 'sanitize_rule' ], $rules );
+
+		// Deduplicate by type + value (case-insensitive), keeping the first occurrence.
+		$seen  = [];
+		$rules = array_filter( $rules, static function ( $rule ) use ( &$seen ) {
+			$key = $rule['type'] . ':' . strtolower( $rule['value'] );
+
+			if ( isset( $seen[ $key ] ) ) {
+				return false;
+			}
+
+			$seen[ $key ] = true;
+
+			return true;
+		} );
+
+		return array_values( $rules );
 	}
 
 	/**
@@ -90,8 +106,8 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 		$action = rgar( $rule, 'action', 'flag' );
 		$value  = sanitize_text_field( rgar( $rule, 'value', '' ) );
 
-		// Strip leading/trailing commas and semicolons from values.
-		$value = trim( $value, ',; ' );
+		// Strip leading/trailing commas, semicolons, and dots from values.
+		$value = trim( $value, ',;. ' );
 
 		return [
 			'id'      => sanitize_text_field( rgar( $rule, 'id', '' ) ),

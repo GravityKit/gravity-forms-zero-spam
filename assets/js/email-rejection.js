@@ -522,7 +522,7 @@
 			const errEl = foot.querySelector( '[data-role="add-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;]+|[,;]+$/g, '' );
+			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
 			const action = actionEl.value;
 
 			if ( ! value ) {
@@ -538,6 +538,15 @@
 			}
 
 			errEl.classList.add( 'gf-zero-spam-hidden' );
+
+			const lowerValue = value.toLowerCase();
+			const isDuplicate = rules.some( ( r ) => r.type === type && r.value.toLowerCase() === lowerValue );
+
+			if ( isDuplicate ) {
+				errEl.textContent = t.duplicateRule || 'A rule with this type and value already exists.';
+				errEl.classList.remove( 'gf-zero-spam-hidden' );
+				return;
+			}
 
 			const rule = {
 				id: uid(),
@@ -557,13 +566,23 @@
 			const errEl = row.querySelector( '[data-role="edit-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;]+|[,;]+$/g, '' );
+			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
 			const action = actionEl.value;
 
 			const error = validateValue( type, value, t );
 
 			if ( error ) {
 				errEl.textContent = error;
+				errEl.classList.remove( 'gf-zero-spam-hidden' );
+				return;
+			}
+
+			// Duplicate check: exclude the rule being edited.
+			const lowerValue = value.toLowerCase();
+			const isDuplicate = rules.some( ( r ) => r.id !== ruleId && r.type === type && r.value.toLowerCase() === lowerValue );
+
+			if ( isDuplicate ) {
+				errEl.textContent = t.duplicateRule || 'A rule with this type and value already exists.';
 				errEl.classList.remove( 'gf-zero-spam-hidden' );
 				return;
 			}
@@ -668,9 +687,13 @@
 			const action = wrap.querySelector( '.gf-zero-spam-action-select' ).value;
 			const newRules = [];
 			let skipped = 0;
+			let duplicates = 0;
+
+			// Build a set of existing type+value pairs for dedup.
+			const existing = new Set( table.getRules().map( ( r ) => r.type + ':' + r.value.toLowerCase() ) );
 
 			for ( let i = 0; i < lines.length; i++ ) {
-				const line = lines[ i ].replace( /^[,;]+|[,;]+$/g, '' );
+				const line = lines[ i ].replace( /^[,;.]+|[,;.]+$/g, '' );
 				const type = detectType( line );
 				const value = line.toLowerCase();
 
@@ -678,6 +701,15 @@
 					skipped++;
 					continue;
 				}
+
+				const key = type + ':' + value;
+
+				if ( existing.has( key ) ) {
+					duplicates++;
+					continue;
+				}
+
+				existing.add( key );
 
 				const rule = {
 					id: uid(),
@@ -711,6 +743,12 @@
 				msg += ' ' + ( t.importSkippedOne || 'Skipped 1 invalid value.' );
 			} else if ( skipped > 1 ) {
 				msg += ' ' + ( t.importSkippedMany || 'Skipped %d invalid values.' ).replace( '%d', skipped );
+			}
+
+			if ( duplicates === 1 ) {
+				msg += ' ' + ( t.importDuplicateOne || 'Skipped 1 duplicate.' );
+			} else if ( duplicates > 1 ) {
+				msg += ' ' + ( t.importDuplicateMany || 'Skipped %d duplicates.' ).replace( '%d', duplicates );
 			}
 
 			feedbackEl.textContent = msg;
