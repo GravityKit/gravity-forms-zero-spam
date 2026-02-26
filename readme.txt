@@ -4,7 +4,7 @@ Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
 Tested up to: 6.9.1
 Stable tag: 1.4.6
-Requires PHP: 5.2.6
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=donate
@@ -99,10 +99,6 @@ Once you have saved the setting, to enable for specific forms:
 4. Save the settings
 
 Now that form will use Zero Spam.
-
-= Is this plugin PHP 7 and PHP 8 compatible? =
-
-Yes.
 
 = All entries are going to spam. What can I do? =
 
