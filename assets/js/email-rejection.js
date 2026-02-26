@@ -113,8 +113,9 @@
 	/**
 	 * Build a <select> for rule type.
 	 *
-	 * @param {string} selected Currently selected type.
-	 * @param {Object} t        Translations object.
+	 * @param {string} selected  Currently selected type.
+	 * @param {Object} t         Translations object.
+	 * @param {string} ariaLabel Accessible label for the select element.
 	 *
 	 * @return {string} HTML string.
 	 */
@@ -141,6 +142,7 @@
 	 * @param {string}  selected       Currently selected action.
 	 * @param {Object}  t              Translations object.
 	 * @param {boolean} blockSupported Whether the "block" action is available.
+	 * @param {string}  ariaLabel      Accessible label for the select element.
 	 *
 	 * @return {string} HTML string.
 	 */
@@ -989,7 +991,11 @@
 		}
 
 		// Show setting only for email fields.
-		window.fieldSettings.email += ', .email_rejection_setting';
+		if ( typeof window.fieldSettings.email === 'string' ) {
+			window.fieldSettings.email += ', .email_rejection_setting';
+		} else {
+			window.fieldSettings.email = '.email_rejection_setting';
+		}
 
 		// GF's gform_load_field_settings is a jQuery event, so jQuery is required.
 		jQuery( document ).on( 'gform_load_field_settings', ( _event, field ) => {
