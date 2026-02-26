@@ -29,9 +29,7 @@ class GF_Zero_Spam {
 	public static function deactivate() {
 		delete_option( 'gf_zero_spam_key' );
 
-		if ( class_exists( 'GF_Zero_Spam_AddOn' ) ) {
-			wp_clear_scheduled_hook( GF_Zero_Spam_AddOn::REPORT_CRON_HOOK_NAME );
-		}
+		wp_clear_scheduled_hook( 'gf_zero_spam_send_report' );
 	}
 
 	/**
