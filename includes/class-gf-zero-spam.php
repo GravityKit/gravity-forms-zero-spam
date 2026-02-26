@@ -164,10 +164,14 @@ EOD;
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = [], $entry = [] ) {
-
 		// If the user can edit entries, they're not a spammer. It may be spam, but it's their prerogative.
 		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
 			return false;
+		}
+
+		// Another filter (e.g. honeypot) already flagged this as spam.
+		if ( $is_spam ) {
+			return $is_spam;
 		}
 
 		$should_check_key_field = ! GFCommon::is_preview();
@@ -202,11 +206,25 @@ EOD;
 			return $is_spam;
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by Gravity Forms before this filter fires.
-		if ( ! isset( $_POST['gf_zero_spam_key'] ) || html_entity_decode( sanitize_text_field( wp_unslash( $_POST['gf_zero_spam_key'] ) ) ) !== $this->get_key() ) {
-			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
+		$submitted_key = rgpost( 'gf_zero_spam_key' );
 
-			return true;
+		if ( rgblank( $submitted_key ) ) {
+			$is_spam = true;
+			$reason  = __( 'The submission did not include the key.', 'gravity-forms-zero-spam' );
+		} elseif ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $this->get_key() ) {
+			$is_spam = true;
+			$reason  = __( 'The submitted key is invalid.', 'gravity-forms-zero-spam' );
+		}
+
+		if ( ! $is_spam ) {
+			return $is_spam;
+		}
+
+		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
+			// GF 2.7+ — sets the spam filter with a reason shown in the entry detail.
+			GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
+		} else {
+			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
 		}
 
 		return $is_spam;

@@ -171,7 +171,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
-	 * Adds the Zero Spam field to the "Form Options" settings group in GF 2.5+.
+	 * Adds the Zero Spam field to form settings.
+	 *
+	 * Uses the "Spam" section (GF 2.9.21+) when available, falls back to "Form Options".
 	 *
 	 * @see https://docs.gravityforms.com/gform_form_settings_fields/
 	 *
@@ -181,13 +183,20 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array
 	 */
 	public function add_settings_field( $fields, $form = [] ) {
-		$fields['form_options']['fields'][] = [
+		$field = [
 			'name'          => 'enableGFZeroSpam',
 			'type'          => 'toggle',
 			'label'         => esc_html__( 'Prevent spam using Gravity Forms Zero Spam', 'gravity-forms-zero-spam' ),
 			'tooltip'       => gform_tooltip( 'enableGFZeroSpam', '', true ),
 			'default_value' => apply_filters( 'gf_zero_spam_check_key_field', true, $form ),
 		];
+
+		if ( isset( $fields['spam'] ) ) {
+			// Spam section added in GF 2.9.21.
+			$fields['spam']['fields'][] = $field;
+		} else {
+			$fields['form_options']['fields'][] = $field;
+		}
 
 		return $fields;
 	}
