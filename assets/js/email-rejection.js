@@ -50,6 +50,10 @@
 	 * @return {string} 'email', 'wildcard', or 'domain'.
 	 */
 	function detectType( value ) {
+		if ( value.startsWith( '@' ) && ! value.includes( ' ' ) ) {
+			return 'domain';
+		}
+
 		if ( value.includes( '@' ) ) {
 			return 'email';
 		}
@@ -695,7 +699,12 @@
 			for ( let i = 0; i < lines.length; i++ ) {
 				const line = lines[ i ].replace( /^[,;.]+|[,;.]+$/g, '' );
 				const type = detectType( line );
-				const value = line.toLowerCase();
+				let value = line.toLowerCase();
+
+				// Strip leading @ from domain patterns (e.g., @example.com → example.com).
+				if ( type === 'domain' && value.startsWith( '@' ) ) {
+					value = value.slice( 1 );
+				}
 
 				if ( validateValue( type, value, t ) ) {
 					skipped++;
