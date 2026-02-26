@@ -522,7 +522,7 @@
 			const errEl = foot.querySelector( '[data-role="add-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim();
+			const value = valueEl.value.trim().replace( /^[,;]+|[,;]+$/g, '' );
 			const action = actionEl.value;
 
 			if ( ! value ) {
@@ -557,7 +557,7 @@
 			const errEl = row.querySelector( '[data-role="edit-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim();
+			const value = valueEl.value.trim().replace( /^[,;]+|[,;]+$/g, '' );
 			const action = actionEl.value;
 
 			const error = validateValue( type, value, t );
@@ -657,7 +657,7 @@
 
 		importBtn.addEventListener( 'click', () => {
 			const lines = textarea.value
-				.split( '\n' )
+				.split( /[\n,]+/ )
 				.map( ( l ) => l.trim() )
 				.filter( ( l ) => l.length > 0 );
 
@@ -670,7 +670,7 @@
 			let skipped = 0;
 
 			for ( let i = 0; i < lines.length; i++ ) {
-				const line = lines[ i ];
+				const line = lines[ i ].replace( /^[,;]+|[,;]+$/g, '' );
 				const type = detectType( line );
 				const value = line.toLowerCase();
 

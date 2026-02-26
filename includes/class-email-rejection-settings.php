@@ -55,11 +55,11 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	public static function parse_rules_from_post() {
 		$rules_json = rgpost( '_gform_setting_gf_zero_spam_email_rules' );
 
-		if ( ! $rules_json ) {
+		if ( ! is_string( $rules_json ) || '' === $rules_json ) {
 			return null;
 		}
 
-		$rules = json_decode( stripslashes( $rules_json ), true );
+		$rules = json_decode( $rules_json, true );
 
 		if ( ! is_array( $rules ) ) {
 			return null;
@@ -74,6 +74,11 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * Validates type and action against allowed values, sanitizes the value
 	 * string, and normalizes the enabled flag.
 	 *
+	 * Note: Uses isset() instead of rgar() for the enabled flag because
+	 * GF's rgar() treats falsy values (including boolean false) as empty
+	 * when a non-null default is provided, which would flip disabled rules
+	 * back to enabled.
+	 *
 	 * @since TBD
 	 *
 	 * @param array $rule Raw rule data.
@@ -83,13 +88,17 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	private static function sanitize_rule( $rule ) {
 		$type   = rgar( $rule, 'type', 'domain' );
 		$action = rgar( $rule, 'action', 'flag' );
+		$value  = sanitize_text_field( rgar( $rule, 'value', '' ) );
+
+		// Strip leading/trailing commas and semicolons from values.
+		$value = trim( $value, ',; ' );
 
 		return [
 			'id'      => sanitize_text_field( rgar( $rule, 'id', '' ) ),
 			'type'    => in_array( $type, GF_Zero_Spam_Email_Rejection::ALLOWED_TYPES, true ) ? $type : 'domain',
-			'value'   => sanitize_text_field( rgar( $rule, 'value', '' ) ),
+			'value'   => $value,
 			'action'  => in_array( $action, GF_Zero_Spam_Email_Rejection::ALLOWED_ACTIONS, true ) ? $action : 'flag',
-			'enabled' => (bool) rgar( $rule, 'enabled', true ),
+			'enabled' => isset( $rule['enabled'] ) ? (bool) $rule['enabled'] : true,
 		];
 	}
 
@@ -302,7 +311,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			'action'              => __( 'Action', 'gravity-forms-zero-spam' ),
 			'noRules'             => __( 'No rules defined yet.', 'gravity-forms-zero-spam' ),
 			'importRules'         => __( 'Import Rules', 'gravity-forms-zero-spam' ),
-			'importDescription'   => __( 'Paste values, one per line. Auto-detected as Domain or Email type.', 'gravity-forms-zero-spam' ),
+			'importDescription'   => __( 'Paste values, one per line or comma-separated. Auto-detected as Domain or Email type.', 'gravity-forms-zero-spam' ),
 			'import'              => __( 'Import', 'gravity-forms-zero-spam' ),
 			'confirmRemove'       => __( 'Remove this rule?', 'gravity-forms-zero-spam' ),
 			'invalidRegex'        => __( 'Invalid regular expression.', 'gravity-forms-zero-spam' ),
