@@ -147,6 +147,11 @@ $field-bg: #fafafa;
 	gap: 0.5rem;
 	margin-top: 0.75rem;
 
+	/* No top margin when there's no table above (empty state). */
+	&:first-child {
+		margin-top: 0;
+	}
+
 	& .button:disabled {
 		opacity: 0.5;
 		cursor: default;
@@ -278,14 +283,6 @@ $field-bg: #fafafa;
 	& .column-action {
 		opacity: 0.5;
 	}
-}
-
-/* ---- Empty state ---- */
-
-.gf-zero-spam-no-rules {
-	color: $color-text-muted;
-	font-style: italic;
-	margin: 0.5rem 0;
 }
 
 /* ---- Validation error ---- */

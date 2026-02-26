@@ -324,8 +324,6 @@
 				}
 
 				html += '</tbody></table></div>';
-			} else {
-				html += '<p class="gf-zero-spam-no-rules">' + escHtml( t.noRules || 'No rules defined yet.' ) + '</p>';
 			}
 
 			// Add-row outside the scrollable wrapper so it stays visible.
