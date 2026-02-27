@@ -1,0 +1,24 @@
+{
+  "name": "gravitykit/gravity-forms-zero-spam",
+  "description": "Enhance Gravity Forms to include effective anti-spam measures.",
+  "version": "1.5.0",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "phpstan/phpstan": "^1.10",
+    "szepeviktor/phpstan-wordpress": "^1.3",
+    "php-stubs/gravity-forms-stubs": "^2.7.18"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "code:sniff": "vendor/bin/phpcs",
+    "code:analyze": "vendor/bin/phpstan analyse"
+  }
+}

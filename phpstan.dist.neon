@@ -1,0 +1,23 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - .
+    phpVersion: 70400
+    excludePaths:
+        - vendor/
+        - node_modules/
+        - dist/
+        - svn/
+        - gravity-forms-zero-spam/
+    bootstrapFiles:
+        - %currentWorkingDirectory%/vendor/php-stubs/gravity-forms-stubs/gravity-forms-stubs.php
+    ignoreErrors:
+        - '#(Used )?[Cc]onstant GF_ZERO_SPAM_\w+ not found#'
+        - '#Parameter \#6 \$sub_type of static method GFAPI::add_note\(\) expects null, string given#'
+        - '#Function gf_apply_filters invoked with \d+ parameters, 2 required#'
+        - '#Action callback returns bool but should not return anything#'
+        - '#Cannot access property \$title on object\|true#'
+    treatPhpDocTypesAsCertain: false

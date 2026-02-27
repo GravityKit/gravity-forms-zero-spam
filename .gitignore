@@ -1,0 +1,11 @@
+.DS_Store
+.history/
+Thumbs.db
+*.zip
+*.tar.gz
+.idea
+/svn
+/gravity-forms-zero-spam
+node_modules/
+vendor/
+dist/
