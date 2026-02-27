@@ -113,6 +113,7 @@ You can enable a spam summary report email. This email will be sent to the email
 = develop =
 
 * Fixed: "Prevent spam using Gravity Forms Zero Spam" toggle appeared twice in form settings
+* Improved: Removed dependency on jQuery
 
 = 1.5.0 on February 26, 2026 =
 
