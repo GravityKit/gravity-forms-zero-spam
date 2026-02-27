@@ -999,7 +999,7 @@
 	 * ================================================================ */
 
 	function initFieldEditor() {
-		if ( typeof window.fieldSettings === 'undefined' || typeof jQuery === 'undefined' ) {
+		if ( typeof window.fieldSettings === 'undefined' || typeof window.gform === 'undefined' ) {
 			return;
 		}
 
@@ -1016,8 +1016,10 @@
 			window.fieldSettings.email = '.email_rejection_setting';
 		}
 
-		// GF's gform_load_field_settings is a jQuery event, so jQuery is required.
-		jQuery( document ).on( 'gform_load_field_settings', ( _event, field ) => {
+		// Use GF's vanilla JS hook fired right after the jQuery gform_load_field_settings event.
+		gform.addAction( 'gform_post_load_field_settings', ( args ) => {
+			const field = args[ 0 ];
+
 			if ( field.type !== 'email' ) {
 				return;
 			}
@@ -1063,7 +1065,7 @@
 			}
 		}
 
-		// GF form editor: bind field settings via jQuery event.
+		// GF form editor: bind field settings via gform.addAction().
 		initFieldEditor();
 	}
 

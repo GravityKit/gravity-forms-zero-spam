@@ -426,7 +426,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 						'label'   => esc_html__( 'Send Test Email & Save Settings', 'gravity-forms-zero-spam' ),
 						'value'   => esc_html__( 'Send Email & Save Settings', 'gravity-forms-zero-spam' ),
 						'class'   => 'button',
-						'onclick' => 'jQuery( "#gf_zero_spam_test_email" ).val( "1" ); jQuery( "#gform-settings-save" ).click();',
+						'onclick' => 'document.getElementById("gf_zero_spam_test_email").value = "1"; document.getElementById("gform-settings-save").click();',
 					],
 				],
 			],
