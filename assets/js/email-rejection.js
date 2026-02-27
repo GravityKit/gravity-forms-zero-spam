@@ -471,6 +471,16 @@
 					addBtn.disabled = e.target.value.trim().length === 0;
 				}
 			}
+
+			// Enable/disable Save button when editing a rule.
+			if ( e.target.matches( '[data-role="edit-value"]' ) ) {
+				const row = e.target.closest( 'tr[data-rule-id]' );
+				const saveBtn = row && row.querySelector( '[data-action="save"]' );
+
+				if ( saveBtn ) {
+					saveBtn.disabled = e.target.value.trim().length === 0;
+				}
+			}
 		} );
 
 		// Enter key in add-row value input triggers add.
