@@ -110,6 +110,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= develop =
+
+* Fixed: "Prevent spam using Gravity Forms Zero Spam" toggle appeared twice in form settings
+
 = 1.5.0 on February 26, 2026 =
 
 **This release requires PHP 7.4 or newer.**
