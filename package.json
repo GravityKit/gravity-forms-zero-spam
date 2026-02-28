@@ -1,6 +1,6 @@
 {
   "name": "gravity-forms-zero-spam",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "build:css": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map",

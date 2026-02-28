@@ -162,7 +162,7 @@ class GF_Zero_Spam {
 	 *
 	 * @since 1.0
 	 *
-	 * @uses GFFormDisplay::add_init_script() to inject the code into the `gform_post_render` jQuery hook.
+	 * @uses GFFormDisplay::add_init_script() to inject the code into the `gform_post_render` hook.
 	 *
 	 * @param array $form The Form Object.
 	 *
@@ -200,16 +200,19 @@ class GF_Zero_Spam {
 				});
 EOD;
 		} else {
-			$autocomplete = RGFormsModel::is_html5_enabled() ? ".attr( 'autocomplete', 'new-password' )\n\t\t" : '';
+			$autocomplete = RGFormsModel::is_html5_enabled() ? "\n\t\t\t\t\t    input.setAttribute('autocomplete', 'new-password');" : '';
 
 			$script = <<<EOD
-				jQuery( "#gform_{$form_id}" ).on( 'submit', function( event ) {
-					jQuery( '<input>' )
-						.attr( 'type', 'hidden' )
-						.attr( 'name', 'gf_zero_spam_key' )
-						.attr( 'value', '{$spam_key}' )
-						$autocomplete.appendTo( jQuery( this ) );
-				} );
+				var form = document.getElementById('gform_{$form_id}');
+				if (form) {
+				    form.addEventListener('submit', function() {
+				        var input = document.createElement('input');
+				        input.type = 'hidden';
+				        input.name = 'gf_zero_spam_key';
+				        input.value = '{$spam_key}';{$autocomplete}
+				        this.appendChild(input);
+				    });
+				}
 EOD;
 		}
 
