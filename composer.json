@@ -1,7 +1,7 @@
 {
   "name": "gravitykit/gravity-forms-zero-spam",
   "description": "Enhance Gravity Forms to include effective anti-spam measures.",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "require-dev": {
