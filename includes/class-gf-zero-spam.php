@@ -16,6 +16,9 @@ class GF_Zero_Spam {
 	public static function gform_loaded() {
 		include_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-addon.php';
 
+		require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-token.php';
+		require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-token-endpoint.php';
+
 		new self();
 	}
 
@@ -28,6 +31,9 @@ class GF_Zero_Spam {
 	 */
 	public static function deactivate() {
 		delete_option( 'gf_zero_spam_key' );
+		delete_option( 'gf_zero_spam_salt_version' );
+		delete_option( 'gf_zero_spam_prev_salt_version' );
+		delete_option( 'gf_zero_spam_legacy_deadline' );
 
 		wp_clear_scheduled_hook( 'gf_zero_spam_send_report' );
 	}
@@ -38,10 +44,14 @@ class GF_Zero_Spam {
 	 * @since 1.0
 	 */
 	public function __construct() {
+		new GF_Zero_Spam_Token_Endpoint();
+
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
 		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', [ $this, 'add_zero_spam_key_to_entry' ], 10, 3 );
 		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 20, 2 );
+		add_action( 'admin_notices', [ $this, 'migration_notice' ] );
+		add_action( 'admin_init', [ $this, 'maybe_cleanup_legacy' ] );
 	}
 
 	/**
@@ -73,13 +83,13 @@ class GF_Zero_Spam {
 			return $submission_json;
 		}
 
-		// The Zero Spam key is already set; we don't need to do anything.
-		if ( isset( $submission['partial_entry']['gf_zero_spam_key'] ) ) {
+		// The Zero Spam token is already set; we don't need to do anything.
+		if ( isset( $submission['partial_entry']['gf_zero_spam_token'] ) ) {
 			return $submission_json;
 		}
 
-		// Add the Zero Spam key to the partial entry if it's available in the POST data.
-		$submission['partial_entry']['gf_zero_spam_key'] = rgpost( 'gf_zero_spam_key' );
+		// Store the token in the draft JSON for audit purposes only; not re-validated on resume.
+		$submission['partial_entry']['gf_zero_spam_token'] = rgpost( 'gf_zero_spam_token' );
 
 		return wp_json_encode( $submission );
 	}
@@ -110,13 +120,6 @@ class GF_Zero_Spam {
 			return false;
 		}
 
-		$key = get_option( 'gf_zero_spam_key' );
-
-		// No key stored yet; plugin not fully initialized.
-		if ( ! $key ) {
-			return false;
-		}
-
 		$should_check_key_field = ! GFCommon::is_preview();
 
 		/** This filter is documented in includes/class-gf-zero-spam.php. */
@@ -126,17 +129,23 @@ class GF_Zero_Spam {
 			return false;
 		}
 
+		$submitted_token = rgpost( 'gf_zero_spam_token' );
+
+		// Check for signed token first.
+		if ( ! rgblank( $submitted_token ) ) {
+			$result = GF_Zero_Spam_Token::validate( $submitted_token, (int) rgar( $form, 'id' ) );
+
+			return ! $result['valid'];
+		}
+
+		// Fall back to legacy static key during migration.
 		$submitted_key = rgpost( 'gf_zero_spam_key' );
 
 		if ( rgblank( $submitted_key ) ) {
 			return true;
 		}
 
-		if ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $key ) {
-			return true;
-		}
-
-		return false;
+		return true !== $this->validate_legacy_key( $submitted_key );
 	}
 
 	/**
@@ -182,17 +191,81 @@ class GF_Zero_Spam {
 			return;
 		}
 
-		$spam_key = esc_js( $this->get_key() );
-
 		$form_id = (int) $form['id'];
+
+		$fallback_token = GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS );
+		$rest_url       = esc_url( rest_url( 'gf-zero-spam/v1/token' ) );
+		$ajax_url       = esc_url( admin_url( 'admin-ajax.php' ) );
+
+		/**
+		 * Filters the timeout (in milliseconds) for AJAX token fetch attempts.
+		 *
+		 * @since TBD
+		 *
+		 * @param int $timeout Timeout in milliseconds. Default 3000.
+		 */
+		$timeout = (int) apply_filters( 'gf_zero_spam_token_fetch_timeout', 3000 );
+
+		// Embedded as a JS object literal since add_init_script doesn't use a registered script handle.
+		$config = wp_json_encode(
+            [
+				'restUrl'       => $rest_url,
+				'ajaxUrl'       => $ajax_url,
+				'fallbackToken' => $fallback_token,
+				'formId'        => $form_id,
+				'timeout'       => $timeout,
+			]
+        );
 
 		if ( version_compare( GFForms::$version, '2.9.0', '>=' ) ) {
 			$script = <<<EOD
 				gform.utils.addAsyncFilter('gform/submission/pre_submission', async (data) => {
+				    const cfg = {$config};
+
+				    // Only process the form this filter was registered for.
+				    if (parseInt(data.form.dataset.formid, 10) !== cfg.formId) {
+				        return data;
+				    }
+
+				    let token = cfg.fallbackToken;
+
+				    try {
+				        const ctrl = new AbortController();
+				        const timer = setTimeout(() => ctrl.abort(), cfg.timeout);
+				        const res = await fetch(cfg.restUrl + '?form_id=' + cfg.formId, { signal: ctrl.signal });
+
+				        clearTimeout(timer);
+
+				        if (res.ok) {
+				            const json = await res.json();
+				            token = json.token;
+				        } else {
+				            throw new Error('REST failed');
+				        }
+				    } catch (e) {
+				        try {
+				            const ctrl2 = new AbortController();
+				            const timer2 = setTimeout(() => ctrl2.abort(), cfg.timeout);
+				            const res2 = await fetch(cfg.ajaxUrl + '?action=gf_zero_spam_token&form_id=' + cfg.formId, { signal: ctrl2.signal });
+
+				            clearTimeout(timer2);
+
+				            if (res2.ok) {
+				                const json2 = await res2.json();
+				                token = json2.token;
+				            }
+				        } catch (e2) {
+				            // Both endpoints failed; use fallback token.
+				        }
+				    }
+
+				    const old = data.form.querySelector('input[name="gf_zero_spam_token"]');
+				    if (old) { old.remove(); }
+
 				    const input = document.createElement('input');
 				    input.type = 'hidden';
-				    input.name = 'gf_zero_spam_key';
-				    input.value = '{$spam_key}';
+				    input.name = 'gf_zero_spam_token';
+				    input.value = token;
 				    input.setAttribute('autocomplete', 'new-password');
 				    data.form.appendChild(input);
 
@@ -200,17 +273,58 @@ class GF_Zero_Spam {
 				});
 EOD;
 		} else {
-			$autocomplete = RGFormsModel::is_html5_enabled() ? "\n\t\t\t\t\t    input.setAttribute('autocomplete', 'new-password');" : '';
-
 			$script = <<<EOD
-				var form = document.getElementById('gform_{$form_id}');
-				if (form) {
-				    form.addEventListener('submit', function() {
-				        var input = document.createElement('input');
+				const gfzsForm = document.getElementById('gform_{$form_id}');
+
+				if (gfzsForm && !gfzsForm.dataset.gfzsBound) {
+				    gfzsForm.dataset.gfzsBound = '1';
+				    gfzsForm.addEventListener('submit', async function(e) {
+				        e.preventDefault();
+
+				        const cfg = {$config};
+				        let token = cfg.fallbackToken;
+
+				        try {
+				            const ctrl = new AbortController();
+				            const timer = setTimeout(() => ctrl.abort(), cfg.timeout);
+				            const res = await fetch(cfg.restUrl + '?form_id=' + cfg.formId, { signal: ctrl.signal });
+
+				            clearTimeout(timer);
+
+				            if (res.ok) {
+				                const json = await res.json();
+				                token = json.token;
+				            } else {
+				                throw new Error('REST failed');
+				            }
+				        } catch (e1) {
+				            try {
+				                const ctrl2 = new AbortController();
+				                const timer2 = setTimeout(() => ctrl2.abort(), cfg.timeout);
+				                const res2 = await fetch(cfg.ajaxUrl + '?action=gf_zero_spam_token&form_id=' + cfg.formId, { signal: ctrl2.signal });
+
+				                clearTimeout(timer2);
+
+				                if (res2.ok) {
+				                    const json2 = await res2.json();
+				                    token = json2.token;
+				                }
+				            } catch (e2) {
+				                // Both endpoints failed; use fallback token.
+				            }
+				        }
+
+				        const old = this.querySelector('input[name="gf_zero_spam_token"]');
+				        if (old) { old.remove(); }
+
+				        const input = document.createElement('input');
 				        input.type = 'hidden';
-				        input.name = 'gf_zero_spam_key';
-				        input.value = '{$spam_key}';{$autocomplete}
+				        input.name = 'gf_zero_spam_token';
+				        input.value = token;
+				        input.setAttribute('autocomplete', 'new-password');
 				        this.appendChild(input);
+
+				        this.submit();
 				    });
 				}
 EOD;
@@ -273,14 +387,49 @@ EOD;
 			return $is_spam;
 		}
 
+		$submitted_token = rgpost( 'gf_zero_spam_token' );
+
+		// Validate signed token if present.
+		if ( ! rgblank( $submitted_token ) ) {
+			$result = GF_Zero_Spam_Token::validate( $submitted_token, (int) rgar( $form, 'id' ) );
+
+			if ( $result['valid'] ) {
+				return false;
+			}
+
+			$reason_map = [
+				'token_missing' => __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' ),
+				'bad_format'    => __( 'The spam prevention token format is invalid.', 'gravity-forms-zero-spam' ),
+				'expired'       => __( 'The spam prevention token has expired. This may be caused by page caching.', 'gravity-forms-zero-spam' ),
+				'form_mismatch' => __( 'The spam prevention token was issued for a different form.', 'gravity-forms-zero-spam' ),
+				'sig_invalid'   => __( 'The spam prevention token signature is invalid.', 'gravity-forms-zero-spam' ),
+			];
+
+			$reason = isset( $reason_map[ $result['reason'] ] ) ? $reason_map[ $result['reason'] ] : $result['reason'];
+
+			if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
+				GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
+			} else {
+				add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
+			}
+
+			return true;
+		}
+
+		// Fall back to legacy static key during migration.
 		$submitted_key = rgpost( 'gf_zero_spam_key' );
+		$reason        = '';
 
 		if ( rgblank( $submitted_key ) ) {
 			$is_spam = true;
-			$reason  = __( 'The submission did not include the key.', 'gravity-forms-zero-spam' );
-		} elseif ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $this->get_key() ) {
-			$is_spam = true;
-			$reason  = __( 'The submitted key is invalid.', 'gravity-forms-zero-spam' );
+			$reason  = __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' );
+		} else {
+			$legacy_result = $this->validate_legacy_key( $submitted_key );
+
+			if ( true !== $legacy_result ) {
+				$is_spam = true;
+				$reason  = $legacy_result;
+			}
 		}
 
 		if ( ! $is_spam ) {
@@ -288,13 +437,104 @@ EOD;
 		}
 
 		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-			// GF 2.7+ — sets the spam filter with a reason shown in the entry detail.
 			GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
 		} else {
 			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
 		}
 
 		return $is_spam;
+	}
+
+	/**
+	 * Validates a legacy static key during the migration period.
+	 *
+	 * Sets a migration deadline on first encounter and accepts the legacy key
+	 * until the deadline passes. After the deadline, the legacy key is rejected.
+	 *
+	 * @since TBD
+	 *
+	 * @param string $submitted_key The submitted legacy key.
+	 *
+	 * @return true|string True if valid, or an error message string if invalid.
+	 */
+	private function validate_legacy_key( string $submitted_key ) {
+		$deadline = get_option( 'gf_zero_spam_legacy_deadline' );
+
+		// Set the migration deadline on first encounter.
+		if ( false === $deadline ) {
+			$deadline = time() + ( 14 * DAY_IN_SECONDS );
+
+			update_option( 'gf_zero_spam_legacy_deadline', $deadline, false );
+		}
+
+		// Migration window has closed.
+		if ( time() >= (int) $deadline ) {
+			return __( 'Legacy spam prevention key no longer accepted. Please clear your page cache.', 'gravity-forms-zero-spam' );
+		}
+
+		$key = get_option( 'gf_zero_spam_key' );
+
+		if ( ! $key ) {
+			return __( 'The submitted key is invalid.', 'gravity-forms-zero-spam' );
+		}
+
+		if ( html_entity_decode( sanitize_text_field( $submitted_key ) ) !== $key ) {
+			return __( 'The submitted key is invalid.', 'gravity-forms-zero-spam' );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Displays an admin notice during the migration from static key to signed tokens.
+	 *
+	 * @since TBD
+	 *
+	 * @return void
+	 */
+	public function migration_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$deadline = get_option( 'gf_zero_spam_legacy_deadline' );
+
+		if ( false === $deadline || time() >= (int) $deadline ) {
+			return;
+		}
+
+		$date = date_i18n( get_option( 'date_format' ), (int) $deadline );
+
+		printf(
+			'<div class="notice notice-info is-dismissible"><p>%s</p></div>',
+			sprintf(
+				/* translators: %s: The date when legacy support ends. */
+				esc_html__( 'Gravity Forms Zero Spam has been upgraded with improved spam protection. Please clear your page cache to ensure all forms use the new protection. Legacy support ends on %s.', 'gravity-forms-zero-spam' ),
+				'<strong>' . esc_html( $date ) . '</strong>'
+			)
+		);
+	}
+
+	/**
+	 * Cleans up legacy options after the migration deadline has passed.
+	 *
+	 * @since TBD
+	 *
+	 * @return void
+	 */
+	public function maybe_cleanup_legacy() {
+		$deadline = get_option( 'gf_zero_spam_legacy_deadline' );
+
+		if ( false === $deadline ) {
+			return;
+		}
+
+		if ( time() < (int) $deadline ) {
+			return;
+		}
+
+		delete_option( 'gf_zero_spam_key' );
+		delete_option( 'gf_zero_spam_legacy_deadline' );
 	}
 
 	/**
