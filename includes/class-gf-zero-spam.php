@@ -493,7 +493,9 @@ EOD;
 	 * @return void
 	 */
 	public function migration_notice() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		$screen = get_current_screen();
+
+		if ( ! $screen || 'dashboard' !== $screen->id || ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
