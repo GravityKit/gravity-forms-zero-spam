@@ -191,6 +191,13 @@ class GF_Zero_Spam {
 			return;
 		}
 
+		// Respect per-form toggle (same filter used during validation).
+		$add_key_field = gf_apply_filters( 'gf_zero_spam_check_key_field', rgar( $form, 'id' ), true, $form, [] );
+
+		if ( ! $add_key_field ) {
+			return;
+		}
+
 		$form_id = (int) $form['id'];
 
 		$fallback_token = GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS );
