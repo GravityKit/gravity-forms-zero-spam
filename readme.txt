@@ -112,7 +112,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 = develop =
 
-* Added: Stronger spam prevention using signed tokens that can't be copied from the page source by bots
+* Added: Stronger spam prevention using signed, time-limited tokens fetched at submit time
 * API: Added `gf_zero_spam_client_ip` filter to override the visitor IP used for rate limiting (useful for sites behind Cloudflare or load balancers)
 * API: Added `gf_zero_spam_rate_limit` filter to adjust the maximum token requests allowed per IP per minute (default: 30)
 

@@ -96,7 +96,8 @@ class GF_Zero_Spam_Token_Endpoint {
 		nocache_headers();
 
 		if ( is_wp_error( $result ) ) {
-			$status = (int) $result->get_error_data();
+			$error_data = $result->get_error_data();
+			$status     = is_array( $error_data ) && isset( $error_data['status'] ) ? (int) $error_data['status'] : 500;
 
 			wp_send_json_error( $result->get_error_message(), $status );
 		}
@@ -115,20 +116,20 @@ class GF_Zero_Spam_Token_Endpoint {
 	 */
 	private function handle_token_request( int $form_id ) {
 		if ( $form_id < 1 ) {
-			return new WP_Error( 'missing_form_id', __( 'A valid form_id is required.', 'gravity-forms-zero-spam' ), 400 );
+			return new WP_Error( 'missing_form_id', __( 'A valid form_id is required.', 'gravity-forms-zero-spam' ), [ 'status' => 400 ] );
 		}
 
 		$form = GFAPI::get_form( $form_id );
 
 		if ( ! $form ) {
-			return new WP_Error( 'invalid_form', __( 'Form not found.', 'gravity-forms-zero-spam' ), 400 );
+			return new WP_Error( 'invalid_form', __( 'Form not found.', 'gravity-forms-zero-spam' ), [ 'status' => 400 ] );
 		}
 
 		// Check if Zero Spam is enabled for this form.
 		$enabled = gf_apply_filters( 'gf_zero_spam_check_key_field', $form_id, true, $form, [] );
 
 		if ( false === $enabled ) {
-			return new WP_Error( 'zero_spam_disabled', __( 'Zero Spam is not enabled for this form.', 'gravity-forms-zero-spam' ), 400 );
+			return new WP_Error( 'zero_spam_disabled', __( 'Zero Spam is not enabled for this form.', 'gravity-forms-zero-spam' ), [ 'status' => 400 ] );
 		}
 
 		$rate_check = $this->check_rate_limit();
@@ -193,7 +194,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		$limit = (int) apply_filters( 'gf_zero_spam_rate_limit', self::RATE_LIMIT );
 
 		if ( $count >= $limit ) {
-			return new WP_Error( 'rate_limited', __( 'Too many requests. Please try again later.', 'gravity-forms-zero-spam' ), 429 );
+			return new WP_Error( 'rate_limited', __( 'Too many requests. Please try again later.', 'gravity-forms-zero-spam' ), [ 'status' => 429 ] );
 		}
 
 		set_transient( $key, $count + 1, 60 );
