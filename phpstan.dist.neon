@@ -16,6 +16,7 @@ parameters:
         - %currentWorkingDirectory%/vendor/php-stubs/gravity-forms-stubs/gravity-forms-stubs.php
     ignoreErrors:
         - '#(Used )?[Cc]onstant GF_ZERO_SPAM_\w+ not found#'
+        - '#Constant (AUTH_KEY|SECURE_AUTH_KEY) not found#'
         - '#Parameter \#6 \$sub_type of static method GFAPI::add_note\(\) expects null, string given#'
         - '#Function gf_apply_filters invoked with \d+ parameters, 2 required#'
         - '#Action callback returns bool but should not return anything#'
