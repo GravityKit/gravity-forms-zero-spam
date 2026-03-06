@@ -152,7 +152,24 @@ class GF_Zero_Spam_Token {
 	 * @return string The derived HMAC secret.
 	 */
 	public static function get_site_secret( int $salt_version ): string {
-		return hash_hmac( 'sha256', $salt_version . '|' . AUTH_KEY, SECURE_AUTH_KEY );
+		$auth_key        = defined( 'AUTH_KEY' ) ? AUTH_KEY : '';
+		$secure_auth_key = defined( 'SECURE_AUTH_KEY' ) ? SECURE_AUTH_KEY : '';
+
+		// Fall back to a DB-stored secret if wp-config.php salts are missing.
+		if ( '' === $auth_key && '' === $secure_auth_key ) {
+			$fallback = get_option( 'gf_zero_spam_fallback_secret' );
+
+			if ( ! $fallback ) {
+				$fallback = wp_generate_password( 64, true, true );
+
+				update_option( 'gf_zero_spam_fallback_secret', $fallback, false );
+			}
+
+			$auth_key        = $fallback;
+			$secure_auth_key = $fallback;
+		}
+
+		return hash_hmac( 'sha256', $salt_version . '|' . $auth_key, $secure_auth_key );
 	}
 
 	/**
