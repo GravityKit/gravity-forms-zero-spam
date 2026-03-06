@@ -162,7 +162,9 @@ class GF_Zero_Spam_Token {
 			if ( ! $fallback ) {
 				$fallback = wp_generate_password( 64, true, true );
 
-				update_option( 'gf_zero_spam_fallback_secret', $fallback, false );
+				if ( ! add_option( 'gf_zero_spam_fallback_secret', $fallback, '', false ) ) {
+					$fallback = get_option( 'gf_zero_spam_fallback_secret' );
+				}
 			}
 
 			$auth_key        = $fallback;
