@@ -207,7 +207,7 @@ class GF_Zero_Spam {
 		/**
 		 * Filters the timeout (in milliseconds) for AJAX token fetch attempts.
 		 *
-		 * @since TBD
+		 * @since 1.7.0
 		 *
 		 * @param int $timeout Timeout in milliseconds. Default 3000.
 		 */
@@ -458,7 +458,7 @@ EOD;
 	 * Sets a migration deadline on first encounter and accepts the legacy key
 	 * until the deadline passes. After the deadline, the legacy key is rejected.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param string $submitted_key The submitted legacy key.
 	 *
@@ -495,7 +495,7 @@ EOD;
 	/**
 	 * Displays an admin notice during the migration from static key to signed tokens.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return void
 	 */
@@ -527,7 +527,7 @@ EOD;
 	/**
 	 * Cleans up legacy options after the migration deadline has passed.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return void
 	 */

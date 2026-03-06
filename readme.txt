@@ -3,7 +3,7 @@ Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
 Tested up to: 6.9.1
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,9 +110,9 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= develop =
+= 1.7.0 on March 5, 2026 =
 
-* Added: Stronger spam prevention using signed, time-limited tokens fetched at submit time
+* Added: Stronger spam prevention using signed, time-limited tokens
 * API: Added `gf_zero_spam_client_ip` filter to override the visitor IP used for rate limiting (useful for sites behind Cloudflare or load balancers)
 * API: Added `gf_zero_spam_rate_limit` filter to adjust the maximum token requests allowed per IP per minute (default: 30)
 

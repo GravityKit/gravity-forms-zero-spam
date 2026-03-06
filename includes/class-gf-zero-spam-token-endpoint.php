@@ -2,7 +2,7 @@
 /**
  * REST API and admin-ajax endpoints for token minting.
  *
- * @since TBD
+ * @since 1.7.0
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -14,7 +14,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Maximum token requests per IP per minute.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @var int
 	 */
@@ -23,7 +23,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * REST API namespace.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @var string
 	 */
@@ -32,7 +32,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Registers hooks for both REST and admin-ajax endpoints.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 */
 	public function __construct() {
 		add_action( 'rest_api_init', [ $this, 'register_rest_route' ] );
@@ -43,7 +43,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Registers the REST API route for token minting.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return void
 	 */
@@ -69,7 +69,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Handles the REST API token request.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param WP_REST_Request $request The REST request.
 	 *
@@ -84,7 +84,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Handles the admin-ajax token request.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return void
 	 */
@@ -108,7 +108,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Shared handler that validates the request and mints a token.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param int $form_id The form ID to mint a token for.
 	 *
@@ -157,7 +157,7 @@ class GF_Zero_Spam_Token_Endpoint {
 	/**
 	 * Checks per-IP rate limit using transients.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return true|WP_Error True if within limits, WP_Error if exceeded.
 	 */
@@ -171,7 +171,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		 * Useful for sites behind Cloudflare, load balancers, or reverse proxies
 		 * where REMOTE_ADDR is the proxy IP, not the visitor's IP.
 		 *
-		 * @since TBD
+		 * @since 1.7.0
 		 *
 		 * @param string $ip The client IP address. Default: $_SERVER['REMOTE_ADDR'].
 		 */
@@ -187,7 +187,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		 *
 		 * Increase for sites behind corporate NAT or shared IP environments.
 		 *
-		 * @since TBD
+		 * @since 1.7.0
 		 *
 		 * @param int $limit The maximum request count per minute. Default: 30.
 		 */

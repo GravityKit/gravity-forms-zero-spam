@@ -2,7 +2,7 @@
 /**
  * Stateless HMAC-SHA256 token minting and validation.
  *
- * @since TBD
+ * @since 1.7.0
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -14,7 +14,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Mints a signed anti-spam token for a given form.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param int $form_id The Gravity Forms form ID.
 	 * @param int $ttl     Token time-to-live in seconds. Default 600 (10 minutes).
@@ -36,7 +36,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Validates a signed anti-spam token.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param string $token            The token to validate.
 	 * @param int    $expected_form_id The form ID the token must match.
@@ -145,7 +145,7 @@ class GF_Zero_Spam_Token {
 	 * Uses WordPress AUTH_KEY and SECURE_AUTH_KEY constants, which are unique per
 	 * site and never exposed in HTML output.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param int $salt_version The salt version number.
 	 *
@@ -158,7 +158,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Returns the current salt version.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return int The current salt version number.
 	 */
@@ -169,7 +169,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Returns the previous salt version, if one exists during a rotation window.
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @return int|null The previous salt version, or null if not in a rotation window.
 	 */
@@ -186,7 +186,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Encodes data using base64url (RFC 4648 section 5).
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param string $data The data to encode.
 	 *
@@ -199,7 +199,7 @@ class GF_Zero_Spam_Token {
 	/**
 	 * Decodes a base64url-encoded string (RFC 4648 section 5).
 	 *
-	 * @since TBD
+	 * @since 1.7.0
 	 *
 	 * @param string $data The base64url-encoded string.
 	 *
