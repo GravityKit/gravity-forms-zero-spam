@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build:css": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map",
-    "build:js": "terser assets/js/email-rejection.js -o dist/js/gf-zero-spam.js --compress --mangle",
+    "build:js": "terser assets/js/email-rejection.js -o dist/js/gf-zero-spam-admin.js --compress --mangle && terser assets/js/token-injection.js -o dist/js/gf-zero-spam.js --compress --mangle",
     "build": "npm run build:css && npm run build:js",
     "watch": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map --watch",
     "lint": "biome lint assets/",
