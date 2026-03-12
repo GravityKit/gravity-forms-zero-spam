@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 6.9.1
+Tested up to: 6.9.4
 Stable tag: 1.7.2
 Requires PHP: 7.4
 License: GPLv2 or later
