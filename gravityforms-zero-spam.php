@@ -3,7 +3,7 @@
  * Plugin Name:       Gravity Forms Zero Spam
  * Plugin URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=pluginuri
  * Description:       Enhance Gravity Forms to include effective anti-spam measures—without using a CAPTCHA.
- * Version:           1.7.1
+ * Version:           1.7.2
  * Author:            GravityKit
  * Author URI:        https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri
  * Requires PHP:      7.4
