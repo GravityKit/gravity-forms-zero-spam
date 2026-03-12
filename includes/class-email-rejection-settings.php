@@ -124,19 +124,12 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	/**
 	 * Gets the asset version string for cache-busting.
 	 *
-	 * Uses the plugin version constant when available, falls back to
-	 * the JS file's modification time.
-	 *
 	 * @since 1.5.0
 	 *
 	 * @return string
 	 */
 	public static function get_asset_version() {
-		if ( defined( 'GF_ZERO_SPAM_VERSION' ) ) {
-			return GF_ZERO_SPAM_VERSION;
-		}
-
-		$mtime = @filemtime( dirname( __DIR__ ) . '/dist/js/gf-zero-spam.js' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Graceful fallback when file is missing.
+		$mtime = @filemtime( dirname( __DIR__ ) . '/dist/js/gf-zero-spam-admin.js' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Graceful fallback when file is missing.
 
 		return $mtime ? (string) $mtime : '1.0.0';
 	}
@@ -241,7 +234,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 
 		wp_enqueue_script(
 			'gf-zero-spam',
-			$plugin_dir . 'dist/js/gf-zero-spam.js',
+			$plugin_dir . 'dist/js/gf-zero-spam-admin.js',
 			[],
 			$version,
 			true

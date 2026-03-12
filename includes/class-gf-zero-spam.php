@@ -7,6 +7,15 @@ if ( ! defined( 'WPINC' ) ) {
 class GF_Zero_Spam {
 
 	/**
+	 * Scripts queued for output after each form.
+	 *
+	 * @since TBD
+	 *
+	 * @var array<int, string> Keyed by form ID.
+	 */
+	private $pending_scripts = [];
+
+	/**
 	 * Instantiates the plugin on Gravity Forms loading.
 	 *
 	 * @since 1.0.5
@@ -47,6 +56,7 @@ class GF_Zero_Spam {
 		new GF_Zero_Spam_Token_Endpoint();
 
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
+		add_filter( 'gform_get_form_filter', [ $this, 'enqueue_script' ], 10, 2 );
 		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', [ $this, 'add_zero_spam_key_to_entry' ], 10, 3 );
 		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 20, 2 );
@@ -167,11 +177,13 @@ class GF_Zero_Spam {
 	}
 
 	/**
-	 * Injects the hidden field and key into the form at submission.
+	 * Collects the Zero Spam configuration for a form.
+	 *
+	 * The configuration is passed to a separate JavaScript file via
+	 * wp_localize_script to avoid breaking Gravity Forms' conditional logic
+	 * if a JS optimization plugin mangles the inline script.
 	 *
 	 * @since 1.0
-	 *
-	 * @uses GFFormDisplay::add_init_script() to inject the code into the `gform_post_render` hook.
 	 *
 	 * @param array $form The Form Object.
 	 *
@@ -200,10 +212,6 @@ class GF_Zero_Spam {
 
 		$form_id = (int) $form['id'];
 
-		$fallback_token = GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS );
-		$rest_url       = esc_url( rest_url( 'gf-zero-spam/v1/token' ) );
-		$ajax_url       = esc_url( admin_url( 'admin-ajax.php' ) );
-
 		/**
 		 * Filters the timeout (in milliseconds) for AJAX token fetch attempts.
 		 *
@@ -213,131 +221,57 @@ class GF_Zero_Spam {
 		 */
 		$timeout = (int) apply_filters( 'gf_zero_spam_token_fetch_timeout', 3000 );
 
-		// Embedded as a JS object literal since add_init_script doesn't use a registered script handle.
-		$config = wp_json_encode(
-            [
-				'restUrl'       => $rest_url,
-				'ajaxUrl'       => $ajax_url,
-				'fallbackToken' => $fallback_token,
-				'formId'        => $form_id,
-				'timeout'       => $timeout,
-			]
-        );
+		$this->pending_scripts[ $form_id ] = [
+			'restUrl'       => esc_url_raw( rest_url( 'gf-zero-spam/v1/token' ) ),
+			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
+			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS ),
+			'formId'        => $form_id,
+			'timeout'       => $timeout,
+		];
+	}
 
-		if ( version_compare( GFForms::$version, '2.9.0', '>=' ) ) {
-			$script = <<<EOD
-				gform.utils.addAsyncFilter('gform/submission/pre_submission', async (data) => {
-				    const cfg = {$config};
-
-				    // Only process the form this filter was registered for.
-				    if (parseInt(data.form.dataset.formid, 10) !== cfg.formId) {
-				        return data;
-				    }
-
-				    let token = cfg.fallbackToken;
-
-				    try {
-				        const ctrl = new AbortController();
-				        const timer = setTimeout(() => ctrl.abort(), cfg.timeout);
-				        const res = await fetch(cfg.restUrl + '?form_id=' + cfg.formId, { signal: ctrl.signal });
-
-				        clearTimeout(timer);
-
-				        if (res.ok) {
-				            const json = await res.json();
-				            token = json.token;
-				        } else {
-				            throw new Error('REST failed');
-				        }
-				    } catch (e) {
-				        try {
-				            const ctrl2 = new AbortController();
-				            const timer2 = setTimeout(() => ctrl2.abort(), cfg.timeout);
-				            const res2 = await fetch(cfg.ajaxUrl + '?action=gf_zero_spam_token&form_id=' + cfg.formId, { signal: ctrl2.signal });
-
-				            clearTimeout(timer2);
-
-				            if (res2.ok) {
-				                const json2 = await res2.json();
-				                token = json2.token;
-				            }
-				        } catch (e2) {
-				            // Both endpoints failed; use fallback token.
-				        }
-				    }
-
-				    const old = data.form.querySelector('input[name="gf_zero_spam_token"]');
-				    if (old) { old.remove(); }
-
-				    const input = document.createElement('input');
-				    input.type = 'hidden';
-				    input.name = 'gf_zero_spam_token';
-				    input.value = token;
-				    input.setAttribute('autocomplete', 'new-password');
-				    data.form.appendChild(input);
-
-				    return data;
-				});
-EOD;
-		} else {
-			$script = <<<EOD
-				const gfzsForm = document.getElementById('gform_{$form_id}');
-
-				if (gfzsForm && !gfzsForm.dataset.gfzsBound) {
-				    gfzsForm.dataset.gfzsBound = '1';
-				    gfzsForm.addEventListener('submit', async function(e) {
-				        e.preventDefault();
-
-				        const cfg = {$config};
-				        let token = cfg.fallbackToken;
-
-				        try {
-				            const ctrl = new AbortController();
-				            const timer = setTimeout(() => ctrl.abort(), cfg.timeout);
-				            const res = await fetch(cfg.restUrl + '?form_id=' + cfg.formId, { signal: ctrl.signal });
-
-				            clearTimeout(timer);
-
-				            if (res.ok) {
-				                const json = await res.json();
-				                token = json.token;
-				            } else {
-				                throw new Error('REST failed');
-				            }
-				        } catch (e1) {
-				            try {
-				                const ctrl2 = new AbortController();
-				                const timer2 = setTimeout(() => ctrl2.abort(), cfg.timeout);
-				                const res2 = await fetch(cfg.ajaxUrl + '?action=gf_zero_spam_token&form_id=' + cfg.formId, { signal: ctrl2.signal });
-
-				                clearTimeout(timer2);
-
-				                if (res2.ok) {
-				                    const json2 = await res2.json();
-				                    token = json2.token;
-				                }
-				            } catch (e2) {
-				                // Both endpoints failed; use fallback token.
-				            }
-				        }
-
-				        const old = this.querySelector('input[name="gf_zero_spam_token"]');
-				        if (old) { old.remove(); }
-
-				        const input = document.createElement('input');
-				        input.type = 'hidden';
-				        input.name = 'gf_zero_spam_token';
-				        input.value = token;
-				        input.setAttribute('autocomplete', 'new-password');
-				        this.appendChild(input);
-
-				        this.submit();
-				    });
-				}
-EOD;
+	/**
+	 * Enqueues the Zero Spam script with collected form configurations.
+	 *
+	 * Uses a separate JavaScript file loaded after Gravity Forms' scripts so
+	 * that any error does not prevent conditional logic from executing, which
+	 * would leave the form hidden with display:none.
+	 *
+	 * @since TBD
+	 *
+	 * @param string $form_string The form HTML.
+	 * @param array  $form        The Form Object.
+	 *
+	 * @return string The unmodified form HTML.
+	 */
+	public function enqueue_script( $form_string, $form ) {
+		if ( empty( $this->pending_scripts ) ) {
+			return $form_string;
 		}
 
-		GFFormDisplay::add_init_script( $form_id, 'gf-zero-spam', GFFormDisplay::ON_PAGE_RENDER, $script );
+		if ( wp_script_is( 'gf-zero-spam', 'enqueued' ) ) {
+			return $form_string;
+		}
+
+		$handle = version_compare( GFForms::$version, '2.9.0', '>=' )
+			? 'gform_gravityforms_utils'
+			: 'gform_gravityforms';
+
+		wp_enqueue_script(
+			'gf-zero-spam',
+			plugins_url( 'dist/js/gf-zero-spam.js', GF_ZERO_SPAM_FILE ),
+			[ $handle ],
+			(string) @filemtime( GF_ZERO_SPAM_DIR . 'dist/js/gf-zero-spam.js' ), // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Graceful fallback when file is missing.
+			true
+		);
+
+		wp_localize_script(
+			'gf-zero-spam',
+			'gfZeroSpamConfig',
+			[ 'forms' => array_values( $this->pending_scripts ) ]
+		);
+
+		return $form_string;
 	}
 
 	/**

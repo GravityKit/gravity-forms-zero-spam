@@ -64,7 +64,7 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 
 		wp_enqueue_script(
 			'gf-zero-spam',
-			$plugin_dir . 'dist/js/gf-zero-spam.js',
+			$plugin_dir . 'dist/js/gf-zero-spam-admin.js',
 			[],
 			$version,
 			true
