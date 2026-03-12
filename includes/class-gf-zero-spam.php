@@ -261,7 +261,7 @@ class GF_Zero_Spam {
 			'gf-zero-spam',
 			plugins_url( 'dist/js/gf-zero-spam.js', GF_ZERO_SPAM_FILE ),
 			[ $handle ],
-			defined( 'GF_ZERO_SPAM_VERSION' ) ? GF_ZERO_SPAM_VERSION : (string) @filemtime( GF_ZERO_SPAM_DIR . 'dist/js/gf-zero-spam.js' ),
+			(string) @filemtime( GF_ZERO_SPAM_DIR . 'dist/js/gf-zero-spam.js' ), // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Graceful fallback when file is missing.
 			true
 		);
 
