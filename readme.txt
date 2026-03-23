@@ -3,7 +3,7 @@ Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
 Tested up to: 6.9.4
-Stable tag: 1.7.2
+Stable tag: 1.7.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,9 +110,9 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= develop =
+= 1.7.3 on March 24, 2026 =
 
-* Improved: Switched to admin-ajax for token generation and extended token lifetime to 7 days
+* Improved: Extended token lifetime to 7 days and improved token fetching compatibility
 * Fixed: Submissions from pages with multiple Gravity Forms were incorrectly marked as spam when the form wasn't the first one on the page
 * Added: `gf_zero_spam_token_ttl` and `gf_zero_spam_fallback_token_ttl` filters to adjust the lifetime of dynamically fetched and HTML-embedded fallback tokens respectively (default for both: 7 days)
 

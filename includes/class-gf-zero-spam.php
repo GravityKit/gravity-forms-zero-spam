@@ -9,7 +9,7 @@ class GF_Zero_Spam {
 	/**
 	 * Scripts queued for output after each form.
 	 *
-	 * @since TBD
+	 * @since 1.7.3
 	 *
 	 * @var array<int, string> Keyed by form ID.
 	 */
@@ -227,7 +227,7 @@ class GF_Zero_Spam {
 		 * The fallback token is used when the AJAX token fetch fails.
 		 * Its TTL should exceed the longest page cache duration on the site.
 		 *
-		 * @since TBD
+		 * @since 1.7.3
 		 *
 		 * @param int $ttl Fallback token lifetime in seconds. Default 604800 (7 days).
 		 */
@@ -248,7 +248,7 @@ class GF_Zero_Spam {
 	 * that any error does not prevent conditional logic from executing, which
 	 * would leave the form hidden with display:none.
 	 *
-	 * @since TBD
+	 * @since 1.7.3
 	 *
 	 * @param string $form_string The form HTML.
 	 * @param array  $form        The Form Object.
@@ -288,7 +288,7 @@ class GF_Zero_Spam {
 	 * Runs in wp_footer so all forms on the page have been processed
 	 * by add_key_field() before the config is serialized.
 	 *
-	 * @since TBD
+	 * @since 1.7.3
 	 *
 	 * @return void
 	 */

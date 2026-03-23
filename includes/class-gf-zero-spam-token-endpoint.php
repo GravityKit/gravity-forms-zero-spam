@@ -90,7 +90,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		/**
 		 * Filters the token time-to-live in seconds for dynamically fetched tokens.
 		 *
-		 * @since TBD
+		 * @since 1.7.3
 		 *
 		 * @param int $ttl Token lifetime in seconds. Default 604800 (7 days).
 		 */

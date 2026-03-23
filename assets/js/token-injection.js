@@ -4,7 +4,7 @@
  * Registers an async pre-submission filter (GF 2.9+) or a submit-event
  * listener (older GF) for each form configured in gfZeroSpamConfig.
  *
- * @since TBD
+ * @since 1.7.3
  */
 (() => {
 	if (typeof gfZeroSpamConfig === 'undefined') {
