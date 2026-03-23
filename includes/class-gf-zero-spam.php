@@ -276,6 +276,27 @@ class GF_Zero_Spam {
 			true
 		);
 
+		// Output config in the footer so all forms have been collected.
+		add_action( 'wp_footer', [ $this, 'localize_config' ], 1 );
+
+		return $form_string;
+	}
+
+	/**
+	 * Passes the collected form configurations to the external script.
+	 *
+	 * Runs in wp_footer so all forms on the page have been processed
+	 * by add_key_field() before the config is serialized.
+	 *
+	 * @since TBD
+	 *
+	 * @return void
+	 */
+	public function localize_config() {
+		if ( empty( $this->pending_scripts ) ) {
+			return;
+		}
+
 		wp_localize_script(
 			'gf-zero-spam',
 			'gfZeroSpamConfig',
@@ -284,8 +305,6 @@ class GF_Zero_Spam {
 				'debug' => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			]
 		);
-
-		return $form_string;
 	}
 
 	/**
