@@ -221,9 +221,21 @@ class GF_Zero_Spam {
 		 */
 		$timeout = (int) apply_filters( 'gf_zero_spam_token_fetch_timeout', 3000 );
 
+		/**
+		 * Filters the fallback token TTL embedded in the page HTML.
+		 *
+		 * The fallback token is used when the AJAX token fetch fails.
+		 * Its TTL should exceed the longest page cache duration on the site.
+		 *
+		 * @since TBD
+		 *
+		 * @param int $ttl Fallback token lifetime in seconds. Default 604800 (7 days).
+		 */
+		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', GF_ZERO_SPAM_TOKEN_TTL );
+
 		$this->pending_scripts[ $form_id ] = [
 			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
-			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS ),
+			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, $fallback_ttl ),
 			'formId'        => $form_id,
 			'timeout'       => $timeout,
 		];
