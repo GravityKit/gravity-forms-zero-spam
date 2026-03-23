@@ -110,6 +110,12 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= develop =
+
+* Improved: Switched to admin-ajax for token generation and extended token lifetime to 7 days
+* Fixed: Submissions from pages with multiple Gravity Forms were incorrectly marked as spam when the form wasn't the first one on the page
+* Added: `gf_zero_spam_token_ttl` and `gf_zero_spam_fallback_token_ttl` filters to adjust the lifetime of dynamically fetched and HTML-embedded fallback tokens respectively (default for both: 7 days)
+
 = 1.7.2 on March 12, 2026 =
 
 * Fixed: Forms with conditional logic could be invisible to visitors
