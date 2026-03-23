@@ -222,7 +222,6 @@ class GF_Zero_Spam {
 		$timeout = (int) apply_filters( 'gf_zero_spam_token_fetch_timeout', 3000 );
 
 		$this->pending_scripts[ $form_id ] = [
-			'restUrl'       => esc_url_raw( rest_url( 'gf-zero-spam/v1/token' ) ),
 			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
 			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS ),
 			'formId'        => $form_id,
@@ -268,7 +267,10 @@ class GF_Zero_Spam {
 		wp_localize_script(
 			'gf-zero-spam',
 			'gfZeroSpamConfig',
-			[ 'forms' => array_values( $this->pending_scripts ) ]
+			[
+				'forms' => array_values( $this->pending_scripts ),
+				'debug' => defined( 'WP_DEBUG' ) && WP_DEBUG,
+			]
 		);
 
 		return $form_string;

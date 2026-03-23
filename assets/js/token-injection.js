@@ -12,36 +12,42 @@
 	}
 
 	const forms = gfZeroSpamConfig.forms;
+	const debug = !!gfZeroSpamConfig.debug;
 
 	if (!forms || !forms.length) {
 		return;
 	}
 
+	function log(msg) {
+		if (debug) {
+			console.warn('[GF Zero Spam] ' + msg);
+		}
+	}
+
 	/**
-	 * Fetches a fresh token, falling back through REST → admin-ajax → embedded fallback.
+	 * Fetches a fresh token via admin-ajax, falling back to the embedded token.
 	 */
 	function fetchToken(cfg) {
-		return fetch(cfg.restUrl + '?form_id=' + cfg.formId, {
+		const body = new FormData();
+		body.append('action', 'gf_zero_spam_token');
+		body.append('form_id', cfg.formId);
+
+		return fetch(cfg.ajaxUrl, {
+			method: 'POST',
+			body: body,
 			signal: AbortSignal.timeout(cfg.timeout)
 		})
 			.then((res) => {
 				if (!res.ok) {
-					throw new Error('REST failed');
+					throw new Error('AJAX ' + res.status);
 				}
 				return res.json();
 			})
 			.then((json) => json.token)
-			.catch(() => fetch(cfg.ajaxUrl + '?action=gf_zero_spam_token&form_id=' + cfg.formId, {
-					signal: AbortSignal.timeout(cfg.timeout)
-				})
-					.then((res) => {
-						if (!res.ok) {
-							throw new Error('AJAX failed');
-						}
-						return res.json();
-					})
-					.then((json) => json.token)
-					.catch(() => cfg.fallbackToken));
+			.catch((err) => {
+				log('Token fetch failed for form ' + cfg.formId + ': ' + err.message + '. Using fallback token.');
+				return cfg.fallbackToken;
+			});
 	}
 
 	/**
