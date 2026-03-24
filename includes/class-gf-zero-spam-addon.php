@@ -10,6 +10,7 @@ GFForms::include_addon_framework();
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-field-settings.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-shield-silent-captcha.php';
 
 /**
  * @since 1.2
@@ -65,6 +66,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private $email_rejection_settings;
 
 	/**
+	 * Shield silentCAPTCHA integration instance.
+	 */
+	private ?GF_Zero_Spam_Shield_Silent_Captcha $shield_silent_captcha = null;
+
+	/**
 	 * Gets the singleton instance.
 	 *
 	 * @since 1.5.0
@@ -100,6 +106,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		$email_rejection_field_settings = new GF_Zero_Spam_Email_Rejection_Field_Settings();
 		$email_rejection_field_settings->init();
+
+		$this->shield_silent_captcha = new GF_Zero_Spam_Shield_Silent_Captcha( $this );
+		$this->shield_silent_captcha->init();
 
 		parent::init();
 
@@ -437,6 +446,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			$sections = $this->email_rejection_settings->add_settings_section( $sections );
 		}
 
+		if ( $this->shield_silent_captcha ) {
+			$sections = $this->shield_silent_captcha->add_plugin_settings_fields( $sections );
+		}
+
 		return $sections;
 	}
 
@@ -452,6 +465,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	public function update_plugin_settings( $settings ) {
 		if ( $this->email_rejection_settings ) {
 			$settings = $this->email_rejection_settings->save_rules_from_post( $settings );
+		}
+		if ( $this->shield_silent_captcha ) {
+			$settings = $this->shield_silent_captcha->normalize_plugin_settings( $settings );
 		}
 
 		parent::update_plugin_settings( $settings );
