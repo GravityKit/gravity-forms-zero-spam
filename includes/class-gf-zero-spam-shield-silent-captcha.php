@@ -57,12 +57,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Adds Shield fields to the existing Spam Blocking plugin settings section.
-	 *
-	 * @param array $sections Settings sections.
-	 *
-	 * @return array
 	 */
-	public function add_plugin_settings_fields( $sections ) {
+	public function add_plugin_settings_fields( array $sections ): array {
 		$shield_fields = $this->get_plugin_settings_fields();
 
 		foreach ( $sections as &$section ) {
@@ -160,9 +156,12 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Adds the Shield form-settings tooltip.
 	 *
-	 * @param array $tooltips Existing tooltips.
+	 * Public filter boundary. Gravity Forms intends this value to be an array,
+	 * but other callbacks can still pass through a non-array value.
 	 *
-	 * @return array
+	 * @param mixed $tooltips Existing tooltips.
+	 *
+	 * @return mixed
 	 */
 	public function add_tooltips( $tooltips ) {
 		if ( is_array( $tooltips ) ) {
@@ -190,7 +189,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			return false;
 		}
 
-		if ( ! $this->is_submission_context_supported( $form, $entry ) ) {
+		if ( ! $this->is_submission_context_supported( $entry ) ) {
 			return $is_spam;
 		}
 
@@ -205,7 +204,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 		$form_id = (int) rgar( $form, 'id' );
 
 		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, sprintf(__( 'This submission was flagged as spam by %s.', 'gravity-forms-zero-spam' ), 'Shield silentCAPTCHA' ) );
+			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, sprintf(__( 'This submission was flagged as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ) );
 		} else {
 			$this->flagged_forms[ $form_id ] = true;
 		}
@@ -259,7 +258,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			$entry['id'],
 			0,
 			self::SPAM_FILTER_NAME,
-			__( 'This entry has been marked as spam by Shield silentCAPTCHA.', 'gravity-forms-zero-spam' ),
+			sprintf( __( 'This entry has been marked as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ),
 			'gf-zero-spam',
 			'warning'
 		);
@@ -465,10 +464,9 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Determines if the current request is a supported submission context.
 	 *
-	 * @param array $form  Form object.
 	 * @param array $entry Entry object.
 	 */
-	private function is_submission_context_supported( $form, $entry ): bool {
+	private function is_submission_context_supported( $entry ): bool {
 		if ( GFCommon::is_preview() ) {
 			return false;
 		}
@@ -618,7 +616,9 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * Returns the form tooltip text for the current Shield state.
 	 */
 	private function get_form_tooltip_text( $form ): string {
-		$setting_scope = $this->get_form_setting_scope_text( $form );
+		$setting_scope = $this->has_saved_form_setting( $form )
+			? __( 'This setting is currently overriding the global default setting.', 'gravity-forms-zero-spam' )
+			: __( 'This setting is currently inheriting the global default setting.', 'gravity-forms-zero-spam' );
 
 		if ( ! $this->is_shield_available() ) {
 			return $setting_scope . ' ' . $this->get_unavailable_message();
@@ -747,14 +747,6 @@ HTML;
 		}
 
 		return $updated;
-	}
-
-	private function get_form_setting_scope_text( $form ): string {
-		if ( $this->has_saved_form_setting( $form ) ) {
-			return __( 'This setting is currently overriding the global default setting.', 'gravity-forms-zero-spam' );
-		}
-
-		return __( 'This setting is currently inheriting the global default setting.', 'gravity-forms-zero-spam' );
 	}
 
 	private function get_form_help_text(): string {
