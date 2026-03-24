@@ -48,7 +48,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 */
 	public function init() {
 		add_filter( 'gform_form_settings_fields', [ $this, 'add_form_settings_fields' ], 11, 2 );
-		add_filter( 'gform_form_settings_before_save', [ $this, 'normalize_form_settings' ] );
+		add_filter( 'gform_pre_form_settings_save', [ $this, 'normalize_form_settings' ] );
 		add_filter( 'gform_tooltips', [ $this, 'add_tooltips' ] );
 		add_filter( 'gform_entry_is_spam', [ $this, 'filter_entry_is_spam' ], 20, 3 );
 		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 30, 2 );
@@ -139,14 +139,18 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return array
 	 */
 	public function normalize_form_settings( $form ) {
-		$submitted = rgpost( self::SETTING_KEY );
-		$persisted  = rgpost( self::PERSIST_KEY );
+		$submitted         = rgpost( '_gform_setting_' . self::SETTING_KEY );
+		$persisted         = rgpost( '_gform_setting_' . self::PERSIST_KEY );
+		$had_saved_setting = $this->has_saved_form_setting( $form );
+		$current_value     = $this->get_effective_form_setting_value( $form );
+		$resolved          = $this->resolve_setting_value_for_save( $submitted, $persisted, $current_value );
 
-		$form[ self::SETTING_KEY ] = $this->resolve_setting_value_for_save(
-			$submitted,
-			$persisted,
-			$this->get_effective_form_setting_value( $form )
-		);
+		// Keep missing-key inheritance intact unless the form already had an override or the user changed the value.
+		if ( ! $had_saved_setting && $resolved === $current_value ) {
+			unset( $form[ self::SETTING_KEY ] );
+		} else {
+			$form[ self::SETTING_KEY ] = $resolved;
+		}
 
 		unset( $form[ self::PERSIST_KEY ], $form[ self::STATUS_FIELD_KEY ] );
 
@@ -286,7 +290,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	}
 
 	/**
-	 * Renders the hidden form-settings field used only for the disable-script fallback.
+	 * Renders the form-settings status field.
+	 *
+	 * Emits the disable-script fallback when Shield is unavailable and the inline
+	 * threshold warning when Shield is available but its bot threshold is zero.
 	 *
 	 * @param array $field Field config.
 	 * @param bool  $echo  Whether to echo markup.
