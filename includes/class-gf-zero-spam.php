@@ -9,7 +9,7 @@ class GF_Zero_Spam {
 	/**
 	 * Scripts queued for output after each form.
 	 *
-	 * @since TBD
+	 * @since 1.7.3
 	 *
 	 * @var array<int, string> Keyed by form ID.
 	 */
@@ -221,10 +221,21 @@ class GF_Zero_Spam {
 		 */
 		$timeout = (int) apply_filters( 'gf_zero_spam_token_fetch_timeout', 3000 );
 
+		/**
+		 * Filters the fallback token TTL embedded in the page HTML.
+		 *
+		 * The fallback token is used when the AJAX token fetch fails.
+		 * Its TTL should exceed the longest page cache duration on the site.
+		 *
+		 * @since 1.7.3
+		 *
+		 * @param int $ttl Fallback token lifetime in seconds. Default 604800 (7 days).
+		 */
+		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', GF_ZERO_SPAM_TOKEN_TTL );
+
 		$this->pending_scripts[ $form_id ] = [
-			'restUrl'       => esc_url_raw( rest_url( 'gf-zero-spam/v1/token' ) ),
 			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
-			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, DAY_IN_SECONDS ),
+			'fallbackToken' => GF_Zero_Spam_Token::mint( $form_id, $fallback_ttl ),
 			'formId'        => $form_id,
 			'timeout'       => $timeout,
 		];
@@ -237,7 +248,7 @@ class GF_Zero_Spam {
 	 * that any error does not prevent conditional logic from executing, which
 	 * would leave the form hidden with display:none.
 	 *
-	 * @since TBD
+	 * @since 1.7.3
 	 *
 	 * @param string $form_string The form HTML.
 	 * @param array  $form        The Form Object.
@@ -265,13 +276,35 @@ class GF_Zero_Spam {
 			true
 		);
 
+		// Output config in the footer so all forms have been collected.
+		add_action( 'wp_footer', [ $this, 'localize_config' ], 1 );
+
+		return $form_string;
+	}
+
+	/**
+	 * Passes the collected form configurations to the external script.
+	 *
+	 * Runs in wp_footer so all forms on the page have been processed
+	 * by add_key_field() before the config is serialized.
+	 *
+	 * @since 1.7.3
+	 *
+	 * @return void
+	 */
+	public function localize_config() {
+		if ( empty( $this->pending_scripts ) ) {
+			return;
+		}
+
 		wp_localize_script(
 			'gf-zero-spam',
 			'gfZeroSpamConfig',
-			[ 'forms' => array_values( $this->pending_scripts ) ]
+			[
+				'forms' => array_values( $this->pending_scripts ),
+				'debug' => defined( 'WP_DEBUG' ) && WP_DEBUG,
+			]
 		);
-
-		return $form_string;
 	}
 
 	/**

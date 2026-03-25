@@ -21,6 +21,6 @@
   },
   "scripts": {
     "code:sniff": "vendor/bin/phpcs",
-    "code:analyze": "vendor/bin/phpstan analyse"
+    "code:analyze": "php -d xdebug.mode=off vendor/bin/phpstan analyse --memory-limit=1G"
   }
 }
