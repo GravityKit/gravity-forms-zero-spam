@@ -110,6 +110,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= develop =
+
+* Fixed: Email rejection settings and form editor scripts not loading when Gravity Forms No Conflict mode is enabled
+
 = 1.7.3 on March 24, 2026 =
 
 * Improved: Extended token lifetime to 7 days and improved token fetching compatibility

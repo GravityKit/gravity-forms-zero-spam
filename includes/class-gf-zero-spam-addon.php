@@ -103,6 +103,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		parent::init();
 
+		add_filter( 'gform_noconflict_scripts', [ $this, 'register_noconflict_scripts' ] );
+		add_filter( 'gform_noconflict_styles', [ $this, 'register_noconflict_styles' ] );
+
 		add_filter( 'gform_form_settings_fields', [ $this, 'add_settings_field' ], 10, 2 );
 		add_filter( 'gform_tooltips', [ $this, 'add_tooltip' ] );
 
@@ -184,6 +187,36 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$tooltips['enableGFZeroSpam'] = esc_html__( 'Enable to fight spam using a simple, effective method that is more effective than the built-in anti-spam honeypot.', 'gravity-forms-zero-spam' );
 
 		return $tooltips;
+	}
+
+	/**
+	 * Registers scripts with GF No Conflict mode.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $scripts Allowed script handles.
+	 *
+	 * @return array
+	 */
+	public function register_noconflict_scripts( $scripts ) {
+		$scripts[] = 'gf-zero-spam';
+
+		return $scripts;
+	}
+
+	/**
+	 * Registers styles with GF No Conflict mode.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $styles Allowed style handles.
+	 *
+	 * @return array
+	 */
+	public function register_noconflict_styles( $styles ) {
+		$styles[] = 'gf-zero-spam';
+
+		return $styles;
 	}
 
 	/**
