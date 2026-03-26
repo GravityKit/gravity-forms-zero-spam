@@ -112,6 +112,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 = develop =
 
+* Added: "Anti-Spam Expiration" setting to control how long spam prevention tokens remain valid, accessible from Forms → Settings → Zero Spam
 * Fixed: Email rejection settings and form editor scripts not loading when Gravity Forms No Conflict mode is enabled
 
 = 1.7.3 on March 24, 2026 =
