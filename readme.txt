@@ -3,7 +3,7 @@ Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
 Tested up to: 6.9.4
-Stable tag: 1.7.3
+Stable tag: 1.7.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,7 +110,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= develop =
+= 1.7.4 on April 2, 2026 =
 
 * Added: "Anti-Spam Expiration" setting to control how long spam prevention tokens remain valid, accessible from Forms > Settings > Zero Spam
 * Fixed: Email rejection settings and form editor scripts not loading when Gravity Forms No Conflict mode is enabled

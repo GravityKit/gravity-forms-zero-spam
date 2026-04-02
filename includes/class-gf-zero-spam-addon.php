@@ -192,7 +192,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Registers scripts with GF No Conflict mode.
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @param array $scripts Allowed script handles.
 	 *
@@ -207,7 +207,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Registers styles with GF No Conflict mode.
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @param array $styles Allowed style handles.
 	 *
@@ -804,7 +804,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * Falls back to the GF_ZERO_SPAM_TOKEN_TTL constant when no setting is saved
 	 * or the stored value is invalid (empty, zero, negative, or sub-hour).
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @return int Token TTL in seconds.
 	 */
@@ -826,7 +826,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * The stored value is in seconds; on load it is reverse-converted to
 	 * the appropriate unit for display.
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @param array $field The field configuration array.
 	 *
@@ -932,7 +932,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Converts the token lifetime number and unit inputs to seconds for storage.
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @param array  $field The field configuration array.
 	 * @param string $value The raw value from the main field name (unused).
@@ -967,7 +967,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * Ensures the value is a positive integer and within the allowed range
 	 * (minimum 1 hour, maximum 90 days equivalent).
 	 *
-	 * @since TBD
+	 * @since 1.7.4
 	 *
 	 * @param object $field The GF Settings Field object with a set_error() method.
 	 * @param string $value The raw value from the main field name (unused).
