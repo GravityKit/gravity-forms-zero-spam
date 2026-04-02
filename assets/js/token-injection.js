@@ -32,25 +32,13 @@
 		body.append('action', 'gf_zero_spam_token');
 		body.append('form_id', cfg.formId);
 
-		let response;
+		const options = { method: 'POST', body: body };
 
-		try {
-			response = fetch(cfg.ajaxUrl, {
-				method: 'POST',
-				body: body,
-				signal: AbortSignal.timeout(cfg.timeout)
-			});
-		} catch (err) {
-			log('Token fetch failed for form ' + cfg.formId + ': ' + err.message + '. Using fallback token.');
-			return Promise.resolve(cfg.fallbackToken);
+		if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) {
+			options.signal = AbortSignal.timeout(cfg.timeout);
 		}
 
-		if (!response || typeof response.then !== 'function') {
-			log('Token fetch failed for form ' + cfg.formId + ': fetch returned non-thenable. Using fallback token.');
-			return Promise.resolve(cfg.fallbackToken);
-		}
-
-		return response
+		return fetch(cfg.ajaxUrl, options)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error('AJAX ' + res.status);
