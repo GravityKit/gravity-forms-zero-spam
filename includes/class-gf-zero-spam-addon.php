@@ -103,6 +103,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		parent::init();
 
+		add_filter( 'gform_noconflict_scripts', [ $this, 'register_noconflict_scripts' ] );
+		add_filter( 'gform_noconflict_styles', [ $this, 'register_noconflict_styles' ] );
+
 		add_filter( 'gform_form_settings_fields', [ $this, 'add_settings_field' ], 10, 2 );
 		add_filter( 'gform_tooltips', [ $this, 'add_tooltip' ] );
 
@@ -187,6 +190,36 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	}
 
 	/**
+	 * Registers scripts with GF No Conflict mode.
+	 *
+	 * @since 1.7.4
+	 *
+	 * @param array $scripts Allowed script handles.
+	 *
+	 * @return array
+	 */
+	public function register_noconflict_scripts( $scripts ) {
+		$scripts[] = 'gf-zero-spam';
+
+		return $scripts;
+	}
+
+	/**
+	 * Registers styles with GF No Conflict mode.
+	 *
+	 * @since 1.7.4
+	 *
+	 * @param array $styles Allowed style handles.
+	 *
+	 * @return array
+	 */
+	public function register_noconflict_styles( $styles ) {
+		$styles[] = 'gf-zero-spam';
+
+		return $styles;
+	}
+
+	/**
 	 * Adds the Zero Spam field to form settings.
 	 *
 	 * Uses the "Spam" section (GF 2.9.21+) when available, falls back to "Form Options".
@@ -227,7 +260,6 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array
 	 */
 	public function plugin_settings_fields() {
-
 		$spam_report_description = sprintf(
             '<h3 style="margin-top: 0">%s</h3><p>%s</p><p><strong>%s</strong></p><p>%s</p><hr style="margin: 1em 0;">',
 			esc_html__( 'Know when entries are flagged as spam.', 'gravity-forms-zero-spam' ),
@@ -281,6 +313,22 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 							],
 						],
 						'required'      => false,
+					],
+					[
+						'label'               => esc_html__( 'Anti-Spam Expiration', 'gravity-forms-zero-spam' ),
+						'type'                => 'token_lifetime',
+						'name'                => 'gf_zero_spam_token_lifetime',
+						'dependency'          => [
+							'live'   => true,
+							'fields' => [
+								[
+									'field'  => 'gf_zero_spam_blocking',
+									'values' => [ '1' ],
+								],
+							],
+						],
+						'save_callback'       => [ $this, 'save_token_lifetime' ],
+						'validation_callback' => [ $this, 'validate_token_lifetime' ],
 					],
 				],
 			],
@@ -748,6 +796,210 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$results = $this->get_latest_spam_entries();
 
 		return count( $results );
+	}
+
+	/**
+	 * Returns the configured token TTL in seconds.
+	 *
+	 * Falls back to the GF_ZERO_SPAM_TOKEN_TTL constant when no setting is saved
+	 * or the stored value is invalid (empty, zero, negative, or sub-hour).
+	 *
+	 * @since 1.7.4
+	 *
+	 * @return int Token TTL in seconds.
+	 */
+	public function get_token_ttl_seconds(): int {
+		$seconds = $this->get_plugin_setting( 'gf_zero_spam_token_lifetime' );
+
+		// Fallback to constant for fresh installs or corrupted settings.
+		if ( null === $seconds || '' === $seconds || (int) $seconds < HOUR_IN_SECONDS ) {
+			return GF_ZERO_SPAM_TOKEN_TTL;
+		}
+
+		return (int) $seconds;
+	}
+
+	/**
+	 * Renders the token lifetime custom settings field.
+	 *
+	 * Outputs a number input and unit dropdown (hours/days) side-by-side.
+	 * The stored value is in seconds; on load it is reverse-converted to
+	 * the appropriate unit for display.
+	 *
+	 * @since 1.7.4
+	 *
+	 * @param array $field The field configuration array.
+	 *
+	 * @return void
+	 */
+	public function settings_token_lifetime( $field ) {
+		$name_prefix  = '_gaddon_setting_' . $field['name'];
+		$posted_value = rgpost( $name_prefix . '_value' );
+		$posted_unit  = rgpost( $name_prefix . '_unit' );
+
+		// On postback (validation error), preserve what the user typed.
+		if ( '' !== $posted_value ) {
+			$display_value = $posted_value;
+			$display_unit  = in_array( $posted_unit, [ 'hours', 'days' ], true ) ? $posted_unit : 'days';
+		} else {
+			$stored_seconds = (int) $this->get_setting( $field['name'], '' );
+
+			// Reverse-convert stored seconds to display value and unit.
+			if ( $stored_seconds > 0 && 0 === $stored_seconds % DAY_IN_SECONDS ) {
+				$display_value = $stored_seconds / DAY_IN_SECONDS;
+				$display_unit  = 'days';
+			} elseif ( $stored_seconds > 0 ) {
+				$display_value = (int) ceil( $stored_seconds / HOUR_IN_SECONDS );
+				$display_unit  = 'hours';
+			} else {
+				// Default display: 7 days.
+				$display_value = 7;
+				$display_unit  = 'days';
+			}
+		}
+
+		$value_id = esc_attr( '_gaddon_setting_' . $field['name'] . '_value' );
+		$unit_id  = esc_attr( '_gaddon_setting_' . $field['name'] . '_unit' );
+		?>
+		<span class="gform-settings-description" style="margin-bottom: 8px;">
+			<?php esc_html_e( 'How long a spam prevention token remains valid after a visitor loads your form. If form submissions are being incorrectly flagged as spam, try increasing this value. (Default: 7 days)', 'gravity-forms-zero-spam' ); ?>
+		</span>
+		<span style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+			<label for="<?php echo esc_attr( $value_id ); ?>" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px);">
+				<?php esc_html_e( 'Expiration length', 'gravity-forms-zero-spam' ); ?>
+			</label>
+			<input
+				type="number"
+				name="<?php echo esc_attr( $value_id ); ?>"
+				id="<?php echo esc_attr( $value_id ); ?>"
+				min="1"
+				style="display: inline-block; width: auto;"
+				value="<?php echo esc_attr( $display_value ); ?>"
+				class="small-text"
+			/>
+			<label for="<?php echo esc_attr( $unit_id ); ?>" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px);">
+				<?php esc_html_e( 'Expiration unit', 'gravity-forms-zero-spam' ); ?>
+			</label>
+			<select
+				name="<?php echo esc_attr( $unit_id ); ?>"
+				id="<?php echo esc_attr( $unit_id ); ?>"
+				style="display: inline-block; width: auto;"
+			>
+				<option value="hours" <?php selected( $display_unit, 'hours' ); ?>>
+					<?php esc_html_e( 'hours', 'gravity-forms-zero-spam' ); ?>
+				</option>
+				<option value="days" <?php selected( $display_unit, 'days' ); ?>>
+					<?php esc_html_e( 'days', 'gravity-forms-zero-spam' ); ?>
+				</option>
+			</select>
+		</span>
+		<?php
+		// Render validation error if the field object supports it.
+		if ( is_object( $field ) && method_exists( $field, 'get_error_icon' ) ) {
+			echo $field->get_error_icon(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- GF framework handles escaping.
+		}
+		?>
+		<div
+			id="gf-zero-spam-ttl-warning"
+			class="alert gforms_note_warning"
+			role="alert"
+			style="display: none; margin-top: 8px;"
+		>
+			<?php esc_html_e( 'Short expiration times may cause false positives on sites with page caching.', 'gravity-forms-zero-spam' ); ?>
+		</div>
+		<script>
+			( function() {
+				const valueInput = document.getElementById( '<?php echo esc_js( $value_id ); ?>' );
+				const unitSelect = document.getElementById( '<?php echo esc_js( $unit_id ); ?>' );
+				const warning    = document.getElementById( 'gf-zero-spam-ttl-warning' );
+
+				function checkWarning() {
+					const val     = parseInt( valueInput.value, 10 ) || 0;
+					const unit    = unitSelect.value;
+					const seconds = unit === 'days' ? val * 86400 : val * 3600;
+
+					warning.style.display = seconds > 0 && seconds < 86400 ? 'block' : 'none';
+				}
+
+				valueInput.addEventListener( 'input', checkWarning );
+				unitSelect.addEventListener( 'change', checkWarning );
+				checkWarning();
+			} )();
+		</script>
+		<?php
+	}
+
+	/**
+	 * Converts the token lifetime number and unit inputs to seconds for storage.
+	 *
+	 * @since 1.7.4
+	 *
+	 * @param array  $field The field configuration array.
+	 * @param string $value The raw value from the main field name (unused).
+	 *
+	 * @return int The token lifetime in seconds.
+	 */
+	public function save_token_lifetime( $field, $value ) {
+		$name_prefix = '_gaddon_setting_' . $field['name'];
+		$raw_value   = sanitize_text_field( rgpost( $name_prefix . '_value' ) );
+		$unit        = sanitize_text_field( rgpost( $name_prefix . '_unit' ) );
+
+		$numeric_value = (int) $raw_value;
+
+		if ( $numeric_value < 1 ) {
+			return GF_ZERO_SPAM_TOKEN_TTL;
+		}
+
+		if ( ! in_array( $unit, [ 'hours', 'days' ], true ) ) {
+			return GF_ZERO_SPAM_TOKEN_TTL;
+		}
+
+		if ( 'days' === $unit ) {
+			return $numeric_value * DAY_IN_SECONDS;
+		}
+
+		return $numeric_value * HOUR_IN_SECONDS;
+	}
+
+	/**
+	 * Validates the token lifetime inputs.
+	 *
+	 * Ensures the value is a positive integer and within the allowed range
+	 * (minimum 1 hour, maximum 90 days equivalent).
+	 *
+	 * @since 1.7.4
+	 *
+	 * @param object $field The GF Settings Field object with a set_error() method.
+	 * @param string $value The raw value from the main field name (unused).
+	 *
+	 * @return void
+	 */
+	public function validate_token_lifetime( $field, $value ) {
+		$name_prefix = '_gaddon_setting_' . $field['name'];
+		$raw_value   = sanitize_text_field( rgpost( $name_prefix . '_value' ) );
+		$unit        = sanitize_text_field( rgpost( $name_prefix . '_unit' ) );
+
+		$numeric_value = (int) $raw_value;
+
+		if ( $numeric_value < 1 ) {
+			$field->set_error(
+				'days' === $unit
+					? esc_html__( 'Please enter at least 1 day.', 'gravity-forms-zero-spam' )
+					: esc_html__( 'Please enter at least 1 hour.', 'gravity-forms-zero-spam' )
+			);
+			return;
+		}
+
+		if ( ! in_array( $unit, [ 'hours', 'days' ], true ) ) {
+			$field->set_error( esc_html__( 'Please select hours or days.', 'gravity-forms-zero-spam' ) );
+			return;
+		}
+
+		if ( 'days' === $unit && $numeric_value > 90 ) {
+			$field->set_error( esc_html__( 'The maximum expiration is 90 days.', 'gravity-forms-zero-spam' ) );
+		} elseif ( 'hours' === $unit && $numeric_value > 2160 ) {
+			$field->set_error( esc_html__( 'The maximum expiration is 2160 hours (90 days).', 'gravity-forms-zero-spam' ) );
+		}
 	}
 
 	/**

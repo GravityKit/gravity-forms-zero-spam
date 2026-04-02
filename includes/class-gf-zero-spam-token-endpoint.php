@@ -94,7 +94,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		 *
 		 * @param int $ttl Token lifetime in seconds. Default 604800 (7 days).
 		 */
-		$ttl = (int) apply_filters( 'gf_zero_spam_token_ttl', GF_ZERO_SPAM_TOKEN_TTL );
+		$ttl = (int) apply_filters( 'gf_zero_spam_token_ttl', GF_Zero_Spam_AddOn::get_instance()->get_token_ttl_seconds() );
 
 		return [
 			'token'   => GF_Zero_Spam_Token::mint( $form_id, $ttl ),

@@ -32,11 +32,13 @@
 		body.append('action', 'gf_zero_spam_token');
 		body.append('form_id', cfg.formId);
 
-		return fetch(cfg.ajaxUrl, {
-			method: 'POST',
-			body: body,
-			signal: AbortSignal.timeout(cfg.timeout)
-		})
+		const options = { method: 'POST', body: body };
+
+		if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) {
+			options.signal = AbortSignal.timeout(cfg.timeout);
+		}
+
+		return fetch(cfg.ajaxUrl, options)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error('AJAX ' + res.status);

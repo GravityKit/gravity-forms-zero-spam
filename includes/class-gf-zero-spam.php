@@ -231,7 +231,7 @@ class GF_Zero_Spam {
 		 *
 		 * @param int $ttl Fallback token lifetime in seconds. Default 604800 (7 days).
 		 */
-		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', GF_ZERO_SPAM_TOKEN_TTL );
+		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', GF_Zero_Spam_AddOn::get_instance()->get_token_ttl_seconds() );
 
 		$this->pending_scripts[ $form_id ] = [
 			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
