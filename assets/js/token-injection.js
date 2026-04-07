@@ -38,7 +38,21 @@
 			options.signal = AbortSignal.timeout(cfg.timeout);
 		}
 
-		return fetch(cfg.ajaxUrl, options)
+		let response;
+
+		try {
+			response = fetch(cfg.ajaxUrl, options);
+		} catch (err) {
+			log('Token fetch failed for form ' + cfg.formId + ': ' + err.message + '. Using fallback token.');
+			return Promise.resolve(cfg.fallbackToken);
+		}
+
+		if (!response || typeof response.then !== 'function') {
+			log('Token fetch failed for form ' + cfg.formId + ': fetch returned non-thenable. Using fallback token.');
+			return Promise.resolve(cfg.fallbackToken);
+		}
+
+		return response
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error('AJAX ' + res.status);
