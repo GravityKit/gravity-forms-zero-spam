@@ -110,7 +110,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= develop =
+= 1.7.5 on April 9, 2026 =
 
 * Fixed: Forms rendered in modals or other elements output via `wp_footer` (e.g., site-wide popups, slide-ins) were missing the spam prevention token, causing legitimate submissions to be flagged as spam
 

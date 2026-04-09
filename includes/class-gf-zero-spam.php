@@ -293,7 +293,7 @@ class GF_Zero_Spam {
 	 * built at print time, after all forms on the page (including those
 	 * rendered via wp_footer by themes and plugins) have been collected.
 	 *
-	 * @since TBD
+	 * @since 1.7.5
 	 *
 	 * @param string $tag    The script tag HTML.
 	 * @param string $handle The script handle.
