@@ -110,6 +110,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= develop =
+
+* Fixed: Forms rendered in modals or other elements output via `wp_footer` (e.g., site-wide popups, slide-ins) were missing the spam prevention token, causing legitimate submissions to be flagged as spam
+
 = 1.7.4 on April 2, 2026 =
 
 * Added: "Anti-Spam Expiration" setting to control how long spam prevention tokens remain valid, accessible from Forms > Settings > Zero Spam
