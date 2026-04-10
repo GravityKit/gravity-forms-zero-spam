@@ -276,35 +276,45 @@ class GF_Zero_Spam {
 			true
 		);
 
-		// Output config in the footer so all forms have been collected.
-		add_action( 'wp_footer', [ $this, 'localize_config' ], 1 );
+		// Inject the config at print time via script_loader_tag rather than
+		// wp_localize_script in a wp_footer callback. This guarantees all forms
+		// have been collected because script_loader_tag fires during
+		// wp_print_footer_scripts (wp_footer priority 20), after themes and
+		// plugins that render forms via wp_footer at default priority.
+		add_filter( 'script_loader_tag', [ $this, 'inject_config' ], 10, 2 );
 
 		return $form_string;
 	}
 
 	/**
-	 * Passes the collected form configurations to the external script.
+	 * Injects the form configuration inline before the Zero Spam script tag.
 	 *
-	 * Runs in wp_footer so all forms on the page have been processed
-	 * by add_key_field() before the config is serialized.
+	 * Uses script_loader_tag instead of wp_localize_script so the config is
+	 * built at print time, after all forms on the page (including those
+	 * rendered via wp_footer by themes and plugins) have been collected.
 	 *
-	 * @since 1.7.3
+	 * @since 1.7.5
 	 *
-	 * @return void
+	 * @param string $tag    The script tag HTML.
+	 * @param string $handle The script handle.
+	 *
+	 * @return string The (possibly modified) script tag HTML.
 	 */
-	public function localize_config() {
-		if ( empty( $this->pending_scripts ) ) {
-			return;
+	public function inject_config( $tag, $handle ) {
+		if ( 'gf-zero-spam' !== $handle || empty( $this->pending_scripts ) ) {
+			return $tag;
 		}
 
-		wp_localize_script(
-			'gf-zero-spam',
-			'gfZeroSpamConfig',
+		$config = wp_json_encode(
 			[
 				'forms' => array_values( $this->pending_scripts ),
 				'debug' => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			]
 		);
+
+		$inline = sprintf( "<script type='text/javascript'>var gfZeroSpamConfig = %s;</script>\n", $config );
+
+		return $inline . $tag;
 	}
 
 	/**
