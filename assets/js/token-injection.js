@@ -52,7 +52,7 @@
 			return Promise.resolve(cfg.fallbackToken);
 		}
 
-		return response
+		return Promise.resolve(response)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error('AJAX ' + res.status);
