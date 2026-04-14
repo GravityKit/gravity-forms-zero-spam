@@ -6,43 +6,69 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Shield silentCAPTCHA integration for Gravity Forms Zero Spam.
+ *
+ * @since TBD
  */
 class GF_Zero_Spam_Shield_Silent_Captcha {
 
-	private const SETTING_KEY      = 'shield_silent_captcha';
-	private const PERSIST_KEY      = 'shield_silent_captcha_persist';
-	private const STATUS_FIELD_KEY = 'shield_silent_captcha_status';
-	private const HELP_URL         = 'https://clk.shldscrty.com/gravityformszerospamsilentcaptcha';
-	private const SPAM_FILTER_NAME = 'Shield silentCAPTCHA';
+	const SETTING_KEY      = 'shield_silent_captcha';
+	const PERSIST_KEY      = 'shield_silent_captcha_persist';
+	const STATUS_FIELD_KEY = 'shield_silent_captcha_status';
+	const HELP_URL         = 'https://clk.shldscrty.com/gravityformszerospamsilentcaptcha';
+	const SPAM_FILTER_NAME = 'Shield silentCAPTCHA';
 
 	/**
 	 * Add-on instance.
+	 *
+	 * @since TBD
+	 *
+	 * @var GF_Zero_Spam_AddOn
 	 */
-	private GF_Zero_Spam_AddOn $addon;
+	private $addon;
 
 	/**
 	 * Cached Shield availability after plugins_loaded.
+	 *
+	 * @since TBD
+	 *
+	 * @var bool|null
 	 */
-	private ?bool $shield_available = null;
+	private $shield_available;
 
 	/**
 	 * Cached threshold-zero state after plugins_loaded.
+	 *
+	 * @since TBD
+	 *
+	 * @var bool|null
 	 */
-	private ?bool $shield_threshold_zero = null;
+	private $shield_threshold_zero;
 
 	/**
-	 * Shield-flagged form IDs used for the entry-note fallback path.
+	 * Shield-flagged form IDs during the current request.
+	 *
+	 * Set by filter_entry_is_spam() when Shield flags a form and GFCommon::set_spam_filter()
+	 * is unavailable. Read and cleared by maybe_add_entry_note() to add a fallback entry note.
+	 *
+	 * @since TBD
 	 *
 	 * @var array<int, bool>
 	 */
-	private array $flagged_forms = [];
+	private $flagged_forms = [];
 
+	/**
+	 * @since TBD
+	 *
+	 * @param GF_Zero_Spam_AddOn $addon Add-on instance.
+	 */
 	public function __construct( GF_Zero_Spam_AddOn $addon ) {
 		$this->addon = $addon;
 	}
 
 	/**
 	 * Registers Shield hooks.
+	 *
+	 * @since TBD
 	 *
 	 * @return void
 	 */
@@ -57,6 +83,12 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Adds Shield fields to the existing Spam Blocking plugin settings section.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $sections Settings sections.
+	 *
+	 * @return array
 	 */
 	public function add_plugin_settings_fields( array $sections ): array {
 		$shield_fields = $this->get_plugin_settings_fields();
@@ -80,17 +112,17 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Normalizes Shield plugin settings before save.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $settings Settings array.
 	 *
 	 * @return array
 	 */
 	public function normalize_plugin_settings( $settings ) {
 		$submitted = $settings[ self::SETTING_KEY ] ?? null;
-		$persisted = rgar( $settings, self::PERSIST_KEY );
-
-		if ( null === $persisted ) {
-			$persisted = rgpost( '_gform_setting_' . self::PERSIST_KEY );
-		}
+		$persisted = array_key_exists( self::PERSIST_KEY, $settings )
+			? $settings[ self::PERSIST_KEY ]
+			: rgpost( '_gform_setting_' . self::PERSIST_KEY );
 
 		$settings[ self::SETTING_KEY ] = $this->resolve_setting_value_for_save(
 			$submitted,
@@ -105,6 +137,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Adds Shield per-form fields after the existing Zero Spam toggle.
+	 *
+	 * @since TBD
 	 *
 	 * @param array $fields Settings sections.
 	 * @param array $form   Current form object.
@@ -130,12 +164,15 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Normalizes Shield form settings before save.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $form Form object.
 	 *
 	 * @return array
 	 */
 	public function normalize_form_settings( $form ) {
-		$submitted         = rgpost( '_gform_setting_' . self::SETTING_KEY );
+		$post_key          = '_gform_setting_' . self::SETTING_KEY;
+		$submitted         = isset( $_POST[ $post_key ] ) ? rgpost( $post_key ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by GF's form settings save handler.
 		$persisted         = rgpost( '_gform_setting_' . self::PERSIST_KEY );
 		$had_saved_setting = $this->has_saved_form_setting( $form );
 		$current_value     = $this->get_effective_form_setting_value( $form );
@@ -159,20 +196,32 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * Public filter boundary. Gravity Forms intends this value to be an array,
 	 * but other callbacks can still pass through a non-array value.
 	 *
+	 * @since TBD
+	 *
 	 * @param mixed $tooltips Existing tooltips.
 	 *
 	 * @return mixed
 	 */
 	public function add_tooltips( $tooltips ) {
-		if ( is_array( $tooltips ) ) {
-			$tooltips[ self::SETTING_KEY ] = esc_html( $this->get_form_tooltip_text( $this->addon->get_current_form() ) );
+		if ( ! is_array( $tooltips ) ) {
+			return $tooltips;
 		}
+
+		$form = $this->addon->get_current_form();
+
+		if ( empty( $form ) ) {
+			return $tooltips;
+		}
+
+		$tooltips[ self::SETTING_KEY ] = esc_html( $this->get_form_tooltip_text( $form ) );
 
 		return $tooltips;
 	}
 
 	/**
 	 * Flags the entry as spam when Shield returns a strict true verdict.
+	 *
+	 * @since TBD
 	 *
 	 * @param bool  $is_spam Existing spam state.
 	 * @param array $form    Form object.
@@ -204,7 +253,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 		$form_id = (int) rgar( $form, 'id' );
 
 		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, sprintf(__( 'This submission was flagged as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ) );
+			/* translators: %s: spam filter name. */
+			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, sprintf( __( 'This submission was flagged as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ) );
 		} else {
 			$this->flagged_forms[ $form_id ] = true;
 		}
@@ -214,6 +264,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Aborts Save and Continue draft creation when Shield returns a strict true verdict.
+	 *
+	 * @since TBD
 	 *
 	 * @param bool  $do_abort Existing abort state.
 	 * @param array $form     Form object.
@@ -239,6 +291,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Adds a fallback entry note when GFCommon::set_spam_filter() is unavailable.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $entry Entry object.
 	 *
 	 * @return void
@@ -258,6 +312,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			$entry['id'],
 			0,
 			self::SPAM_FILTER_NAME,
+			/* translators: %s: spam filter name. */
 			sprintf( __( 'This entry has been marked as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ),
 			'gf-zero-spam',
 			'warning'
@@ -268,6 +323,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Renders the plugin-settings status/help field.
+	 *
+	 * @since TBD
 	 *
 	 * @param array $field Field config.
 	 * @param bool  $echo  Whether to echo markup.
@@ -293,6 +350,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 *
 	 * Emits the disable-script fallback when Shield is unavailable and the inline
 	 * threshold warning when Shield is available but its bot threshold is zero.
+	 *
+	 * @since TBD
 	 *
 	 * @param array $field Field config.
 	 * @param bool  $echo  Whether to echo markup.
@@ -321,6 +380,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Builds the Shield plugin settings field definitions.
 	 *
+	 * @since TBD
+	 *
 	 * @return array<int, array<string, mixed>>
 	 */
 	private function get_plugin_settings_fields(): array {
@@ -348,6 +409,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Builds the Shield form settings field definitions.
+	 *
+	 * @since TBD
 	 *
 	 * @param array $form Form object.
 	 *
@@ -382,6 +445,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Returns the stored global Shield setting in normalized string form.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
 	 */
 	private function get_plugin_setting_value(): string {
 		return $this->normalize_setting_value( $this->addon->get_plugin_setting( self::SETTING_KEY ) );
@@ -390,7 +457,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Determines whether the form has a saved Shield setting.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $form Form object.
+	 *
+	 * @return bool
 	 */
 	private function has_saved_form_setting( $form ): bool {
 		return is_array( $form ) && array_key_exists( self::SETTING_KEY, $form );
@@ -399,7 +470,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Returns the saved per-form Shield setting when present.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $form Form object.
+	 *
+	 * @return string|null
 	 */
 	private function get_saved_form_setting_value( $form ): ?string {
 		if ( ! $this->has_saved_form_setting( $form ) ) {
@@ -412,7 +487,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Returns the effective Shield setting for the form.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $form Form object.
+	 *
+	 * @return string
 	 */
 	private function get_effective_form_setting_value( $form ): string {
 		$saved_value = $this->get_saved_form_setting_value( $form );
@@ -423,7 +502,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Determines if Shield is enabled for the current form.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $form Form object.
+	 *
+	 * @return bool
 	 */
 	private function is_shield_enabled_for_form( $form ): bool {
 		return '1' === $this->get_effective_form_setting_value( $form );
@@ -432,7 +515,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Normalizes a stored toggle value into the committed string shape.
 	 *
+	 * @since TBD
+	 *
 	 * @param mixed $value Raw value.
+	 *
+	 * @return string
 	 */
 	private function normalize_setting_value( $value ): string {
 		return in_array( (string) $value, [ '1', 'true', 'on', 'yes' ], true ) ? '1' : '0';
@@ -441,20 +528,26 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Resolves the stored Shield setting value during a save operation.
 	 *
+	 * @since TBD
+	 *
 	 * @param mixed  $submitted     Submitted toggle value, if present.
 	 * @param mixed  $persisted     Hidden persisted value, if present.
 	 * @param string $current_value Current stored normalized value.
+	 *
+	 * @return string
 	 */
 	private function resolve_setting_value_for_save( $submitted, $persisted, string $current_value ): string {
 		if ( null !== $submitted ) {
 			return $this->normalize_setting_value( $submitted );
 		}
 
-		if ( ! $this->is_shield_available() ) {
-			if ( null !== $persisted ) {
-				return $this->normalize_setting_value( $persisted );
-			}
+		// Toggle was not submitted (disabled in UI or programmatic save). Prefer the
+		// hidden persist field, then the previously-stored value, then default to off.
+		if ( null !== $persisted && '' !== $persisted ) {
+			return $this->normalize_setting_value( $persisted );
+		}
 
+		if ( ! $this->is_shield_available() ) {
 			return $current_value;
 		}
 
@@ -464,7 +557,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Determines if the current request is a supported submission context.
 	 *
+	 * @since TBD
+	 *
 	 * @param array $entry Entry object.
+	 *
+	 * @return bool
 	 */
 	private function is_submission_context_supported( $entry ): bool {
 		if ( GFCommon::is_preview() ) {
@@ -480,11 +577,19 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			return false;
 		}
 
-		return !( isset( $entry['user_agent'] ) && 'API' === $entry['user_agent'] );
+		if ( isset( $entry['user_agent'] ) && 'API' === $entry['user_agent'] ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
 	 * Resolves the Shield verdict using the documented callable order.
+	 *
+	 * @since TBD
+	 *
+	 * @return bool|null True if bot, false if not, null if undetermined.
 	 */
 	private function resolve_shield_bot_verdict(): ?bool {
 		if ( ! did_action( 'plugins_loaded' ) ) {
@@ -513,6 +618,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Determines if Shield is available for the current request.
+	 *
+	 * @since TBD
+	 *
+	 * @return bool
 	 */
 	private function is_shield_available(): bool {
 		if ( ! did_action( 'plugins_loaded' ) ) {
@@ -537,6 +646,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Determines if Shield is available and the threshold is zero.
+	 *
+	 * @since TBD
+	 *
+	 * @return bool
 	 */
 	private function is_threshold_zero(): bool {
 		if ( ! did_action( 'plugins_loaded' ) ) {
@@ -576,6 +689,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	}
 
 	/**
+	 * Returns the ordered list of Shield bot-detection callables.
+	 *
+	 * @since TBD
+	 *
 	 * @return array<int, string>
 	 */
 	private function get_shield_callables(): array {
@@ -586,6 +703,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	}
 
 	/**
+	 * Returns the ordered list of Shield threshold callables.
+	 *
+	 * @since TBD
+	 *
 	 * @return array<int, string>
 	 */
 	private function get_shield_threshold_callables(): array {
@@ -598,7 +719,11 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Normalizes the Shield verdict into a strict tri-state.
 	 *
+	 * @since TBD
+	 *
 	 * @param mixed $verdict Raw verdict.
+	 *
+	 * @return bool|null
 	 */
 	private function normalize_verdict( $verdict ): ?bool {
 		if ( true === $verdict ) {
@@ -614,6 +739,12 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Returns the form tooltip text for the current Shield state.
+	 *
+	 * @since TBD
+	 *
+	 * @param array|false $form Form object or false when no form context.
+	 *
+	 * @return string
 	 */
 	private function get_form_tooltip_text( $form ): string {
 		$setting_scope = $this->has_saved_form_setting( $form )
@@ -633,6 +764,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Returns the plugin-settings status text for the current Shield state.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
 	 */
 	private function get_plugin_status_text(): string {
 		if ( ! $this->is_shield_available() ) {
@@ -648,6 +783,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 	/**
 	 * Renders the plugin-settings status message with the Learn More link.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
 	 */
 	private function render_plugin_status_message(): string {
 		$style = $this->is_shield_available() && $this->is_threshold_zero()
@@ -666,7 +805,13 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	/**
 	 * Creates a tiny inline script to disable the visible Shield toggle.
 	 *
+	 * This is a defensive fallback alongside GF's native 'disabled' field property.
+	 *
+	 * @since TBD
+	 *
 	 * @param array<int, string> $field_names Candidate field names.
+	 *
+	 * @return string
 	 */
 	private function render_disable_control_script( $field_names ): string {
 		$field_names_json = wp_json_encode( array_values( $field_names ) );
@@ -704,8 +849,12 @@ HTML;
 	/**
 	 * Determines whether the section contains a given field name.
 	 *
+	 * @since TBD
+	 *
 	 * @param array  $section    Section config.
 	 * @param string $field_name Field name.
+	 *
+	 * @return bool
 	 */
 	private function section_contains_field( $section, $field_name ): bool {
 		foreach ( $section['fields'] as $field ) {
@@ -720,9 +869,13 @@ HTML;
 	/**
 	 * Inserts fields immediately after a named field, appending if not found.
 	 *
+	 * @since TBD
+	 *
 	 * @param array  $fields     Existing fields.
 	 * @param string $field_name Target field name.
 	 * @param array  $new_fields Fields to insert.
+	 *
+	 * @return array
 	 */
 	private function insert_fields_after_name( $fields, $field_name, $new_fields ): array {
 		$updated  = [];
@@ -749,18 +902,46 @@ HTML;
 		return $updated;
 	}
 
+	/**
+	 * Returns the form-level help text.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
+	 */
 	private function get_form_help_text(): string {
 		return __( 'Runs Shield silentCAPTCHA server-side for this form. No field needs to be added to the form.', 'gravity-forms-zero-spam' );
 	}
 
+	/**
+	 * Returns the global-level help text.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
+	 */
 	private function get_global_help_text(): string {
 		return __( 'Enable Shield silentCAPTCHA by default for forms. No field needs to be added to the form. Forms without their own Shield setting will use this default.', 'gravity-forms-zero-spam' );
 	}
 
+	/**
+	 * Returns the message shown when Shield is not available.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
+	 */
 	private function get_unavailable_message(): string {
 		return __( 'Shield silentCAPTCHA is currently unavailable because Shield Security is not installed or active. This setting is disabled until Shield becomes available again.', 'gravity-forms-zero-spam' );
 	}
 
+	/**
+	 * Returns the message shown when Shield's bot threshold is zero.
+	 *
+	 * @since TBD
+	 *
+	 * @return string
+	 */
 	private function get_threshold_zero_message(): string {
 		return __( 'Shield silentCAPTCHA is available, but Shield\'s bot threshold is 0, so it will not flag submissions until that threshold is increased.', 'gravity-forms-zero-spam' );
 	}

@@ -78,8 +78,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 	/**
 	 * Shield silentCAPTCHA integration instance.
+	 *
+	 * @since TBD
+	 *
+	 * @var GF_Zero_Spam_Shield_Silent_Captcha|null
 	 */
-	private ?GF_Zero_Spam_Shield_Silent_Captcha $shield_silent_captcha = null;
+	private $shield_silent_captcha;
 
 	/**
 	 * Gets the singleton instance.
