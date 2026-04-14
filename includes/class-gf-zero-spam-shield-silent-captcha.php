@@ -57,6 +57,18 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	private $flagged_forms = [];
 
 	/**
+	 * Cached Shield bot verdict for the current request.
+	 *
+	 * Avoids calling Shield's callable twice on Save & Continue submissions,
+	 * where both filter_entry_is_spam() and maybe_abort_submission() fire.
+	 *
+	 * @since TBD
+	 *
+	 * @var bool|null|string 'unset' when not yet resolved, bool|null after.
+	 */
+	private $cached_verdict = 'unset';
+
+	/**
 	 * @since TBD
 	 *
 	 * @param GF_Zero_Spam_AddOn $addon Add-on instance.
@@ -592,9 +604,15 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return bool|null True if bot, false if not, null if undetermined.
 	 */
 	private function resolve_shield_bot_verdict(): ?bool {
+		if ( 'unset' !== $this->cached_verdict ) {
+			return $this->cached_verdict;
+		}
+
 		if ( ! did_action( 'plugins_loaded' ) ) {
 			return null;
 		}
+
+		$this->cached_verdict = null;
 
 		foreach ( $this->get_shield_callables() as $callable ) {
 			if ( ! is_callable( $callable ) ) {
@@ -608,7 +626,10 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			}
 
 			$normalized = $this->normalize_verdict( $verdict );
+
 			if ( null !== $normalized ) {
+				$this->cached_verdict = $normalized;
+
 				return $normalized;
 			}
 		}
