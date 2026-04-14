@@ -21,3 +21,5 @@ phpstan.dist.neon export-ignore
 /assets export-ignore
 /svn export-ignore
 /vendor export-ignore
+.gktools.json export-ignore
+.gktools.env export-ignore

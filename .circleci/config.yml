@@ -9,85 +9,87 @@ anchors:
     machine:
       image: default
 
+  test_job_config: &test_job_config
+    <<: *context
+    requires:
+      - prepare
+
 jobs:
-  lint:
+  prepare:
     <<: *default_job_config
     steps:
       - checkout
       - run:
-          name: Getting GravityKit test/build tools
+          name: Fetch tags
+          command: git fetch --tags
+      - run:
+          name: Create .npmrc
           command: |
-            git clone git@github.com:GravityKit/Tooling.git /home/circleci/tooling
+            echo "//npm.pkg.github.com/:_authToken=${GH_AUTH_TOKEN}" >> ~/.npmrc
+            echo "@gravitykit:registry=https://npm.pkg.github.com" >> ~/.npmrc
       - run:
-          name: Install npm dependencies
-          command: npm ci
-      - run:
-          name: Lint JS/CSS
-          command: npm run lint
-      - run:
-          name: Install Composer dependencies
+          name: Install dependencies
           command: |
-            /home/circleci/tooling/build-tools/build_tools.sh composer -o install
+            npx @gravitykit/gktools composer install
+            npx @gravitykit/gktools npm install
       - run:
-          name: Analyze code
-          command: |
-            /home/circleci/tooling/build-tools/build_tools.sh composer -o code:analyze
+          name: Prepare unit test dependencies
+          command: npx @gravitykit/phpunit prepare
       - run:
-          name: Run code sniffer
+          name: Run tests
           command: |
-            /home/circleci/tooling/build-tools/build_tools.sh composer -o code:sniff
+            if git log -1 --pretty=%B | grep -iq "\[skip tests\]"; then
+              echo "Skipping tests."
+              exit 0
+            fi
+            npx @gravitykit/phpunit test --parallel
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - .
 
   build_package_release:
     <<: *default_job_config
     steps:
-      - checkout
+      - attach_workspace:
+          at: /home/circleci
       - run:
-          name: Getting GravityKit test/build tools
+          name: Configure git
           command: |
-            git clone git@github.com:GravityKit/Tooling.git /home/circleci/tooling
+            git config user.email "support@gravitykit.com"
+            git config user.name "GravityKit - CI"
       - run:
-          name: Build assets
-          command: |
-            npm ci
-            npm run build
+          name: Replace @since tags
+          command: npx @gravitykit/gktools replace-since --commit
+
       - run:
-          name: Packaging
-          command: |
-            if [ "${CIRCLE_BRANCH}" != "main" ]; then
-              /home/circleci/tooling/build-tools/build_tools.sh package_build -o "gravity-forms-zero-spam gravityforms-zero-spam.php --include-hash"
-            else
-              /home/circleci/tooling/build-tools/build_tools.sh package_build -o "gravity-forms-zero-spam gravityforms-zero-spam.php $([[ $(git log -n 1 | grep "\[skip release\]") ]] && echo --include-hash)"
-            fi
-            mkdir -p gravity-forms-zero-spam
-            cp -R dist gravity-forms-zero-spam
-            zip -gr $(ls gravity-forms-zero-spam-*.zip) gravity-forms-zero-spam
-            rm -rf gravity-forms-zero-spam
-            mkdir .release
-            cp gravity-forms-zero-spam-*.zip .release
+          name: Build and package
+          command: npx @gravitykit/gktools build
       - run:
-          name: Creating a GitHub release
+          name: Create GitHub release
+          command: npx @gravitykit/gktools release
+      - run:
+          name: Announce build
           command: |
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              git config user.email "support@gravitykit.com"
-              git config user.name "GravityKit - CI"
-              /home/circleci/tooling/build-tools/build_tools.sh create_release -o "gravityforms-zero-spam.php $(ls gravity-forms-zero-spam-*.zip)"
+            if ! git log -1 --pretty=%B | grep -iq "\[skip notify\]"; then
+              npx @gravitykit/gktools announce
             fi
       - run:
-          name: Notifying GravityKit Release Manager
+          name: Collect build artifacts
           command: |
-            if ! [[ $(git log -n 1 | grep "\[skip notify\]") ]]; then
-              /home/circleci/tooling/build-tools/build_tools.sh announce_build -o "gravityforms-zero-spam.php $(ls gravity-forms-zero-spam-*.zip) --with-circle"
-            fi
+            mkdir -p .release
+            cp gravity-forms-zero-spam-*.zip .release/ 2>/dev/null || true
       - store_artifacts:
           path: .release
           destination: release
 
 workflows:
   version: 2
-  test_and_package:
+  test_and_release:
     jobs:
-      - lint
+      - prepare:
+          <<: *context
       - build_package_release:
           <<: *context
           requires:
-            - lint
+            - prepare

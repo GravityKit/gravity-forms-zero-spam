@@ -1,0 +1,10 @@
+{
+	"build": ["composer install --no-dev"],
+	"package": {
+		"prefix": "gravity-forms-zero-spam"
+	},
+	"release": {
+		"branch": "main",
+		"mergeTo": "develop"
+	}
+}
