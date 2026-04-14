@@ -1,7 +1,8 @@
 {
-	"build": ["composer install --no-dev"],
+	"build": ["npm run build", "composer install --no-dev"],
 	"package": {
-		"prefix": "gravity-forms-zero-spam"
+		"prefix": "gravity-forms-zero-spam",
+		"includeExtra": ["dist"]
 	},
 	"release": {
 		"branch": "main",

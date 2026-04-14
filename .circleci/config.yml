@@ -28,6 +28,12 @@ jobs:
             npx @gravitykit/gktools composer install
             npx @gravitykit/gktools npm install
       - run:
+          name: Lint
+          command: |
+            npm run lint
+            npx @gravitykit/gktools composer code:analyze
+            npx @gravitykit/gktools composer code:sniff
+      - run:
           name: Configure git
           command: |
             git config user.email "support@gravitykit.com"
@@ -58,7 +64,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_release:
+  lint_build_and_release:
     jobs:
       - build_package_release:
           <<: *context
