@@ -338,11 +338,11 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			'invalidDomain'                  => __( 'Please enter a valid domain.', 'gravity-forms-zero-spam' ),
 			'importNone'                     => __( 'No valid rules found to import.', 'gravity-forms-zero-spam' ),
 			'importOne'                      => __( '1 rule imported.', 'gravity-forms-zero-spam' ),
-			// translators: %d is the number of rules imported.
-			'importMany'                     => __( '%d rules imported.', 'gravity-forms-zero-spam' ),
+			// translators: [count] is the number of rules imported. Do not translate text inside square brackets.
+			'importMany'                     => __( '[count] rules imported.', 'gravity-forms-zero-spam' ),
 			'importSkippedOne'               => __( 'Skipped 1 invalid value.', 'gravity-forms-zero-spam' ),
-			// translators: %d is the number of invalid values skipped.
-			'importSkippedMany'              => __( 'Skipped %d invalid values.', 'gravity-forms-zero-spam' ),
+			// translators: [count] is the number of invalid values skipped. Do not translate text inside square brackets.
+			'importSkippedMany'              => __( 'Skipped [count] invalid values.', 'gravity-forms-zero-spam' ),
 			'blockNotice'                    => __( 'Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update.', 'gravity-forms-zero-spam' ),
 			'blockAvailable'                 => __( 'Upgrading to Gravity Forms 2.9.15 or higher enables the ability to configure rules that block matching form submissions.', 'gravity-forms-zero-spam' ),
 			'blockRequiresGF'                => __( 'Requires Gravity Forms 2.9.15+', 'gravity-forms-zero-spam' ),

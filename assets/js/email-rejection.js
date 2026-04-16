@@ -755,13 +755,13 @@
 			} else if ( newRules.length === 1 ) {
 				msg = ( t.importOne || '1 rule imported.' );
 			} else {
-				msg = ( t.importMany || '%d rules imported.' ).replace( '%d', newRules.length );
+				msg = ( t.importMany || '[count] rules imported.' ).replace( '[count]', newRules.length );
 			}
 
 			if ( skipped === 1 ) {
 				msg += ' ' + ( t.importSkippedOne || 'Skipped 1 invalid value.' );
 			} else if ( skipped > 1 ) {
-				msg += ' ' + ( t.importSkippedMany || 'Skipped %d invalid values.' ).replace( '%d', skipped );
+				msg += ' ' + ( t.importSkippedMany || 'Skipped [count] invalid values.' ).replace( '[count]', skipped );
 			}
 
 			if ( duplicates === 1 ) {
