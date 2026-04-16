@@ -1,5 +1,5 @@
 {
-	"build": ["npm run build", "composer install --no-dev"],
+	"build": ["npm install", "npm run build", "grunt", "composer install --no-dev"],
 	"package": {
 		"prefix": "gravity-forms-zero-spam",
 		"includeExtra": ["dist"]
