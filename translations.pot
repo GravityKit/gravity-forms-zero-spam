@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-15T20:24:50-04:00\n"
+"POT-Creation-Date: 2026-04-15T20:50:48-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -176,24 +176,22 @@ msgstr ""
 msgid "1 rule imported."
 msgstr ""
 
-#. translators: %d is the number of rules imported.
+#. translators: [count] is the number of rules imported. Do not translate text inside square brackets.
 #: includes/class-email-rejection-settings.php:342
-#, php-format
-msgid "%d rules imported."
+msgid "[count] rules imported."
 msgstr ""
 
-#. translators: %d is the number of rules imported.
+#. translators: [count] is the number of rules imported. Do not translate text inside square brackets.
 #: includes/class-email-rejection-settings.php:343
 msgid "Skipped 1 invalid value."
 msgstr ""
 
-#. translators: %d is the number of invalid values skipped.
+#. translators: [count] is the number of invalid values skipped. Do not translate text inside square brackets.
 #: includes/class-email-rejection-settings.php:345
-#, php-format
-msgid "Skipped %d invalid values."
+msgid "Skipped [count] invalid values."
 msgstr ""
 
-#. translators: %d is the number of invalid values skipped.
+#. translators: [count] is the number of invalid values skipped. Do not translate text inside square brackets.
 #: includes/class-email-rejection-settings.php:346
 msgid "Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update."
 msgstr ""
