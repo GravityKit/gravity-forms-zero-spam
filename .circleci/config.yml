@@ -34,16 +34,32 @@ jobs:
             npx @gravitykit/gktools composer code:analyze
             npx @gravitykit/gktools composer code:sniff
       - run:
+          name: Verify version consistency
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              npx @gravitykit/gktools verify
+            else
+              echo "Skipping version verification (only runs on main)."
+            fi
+      - run:
           name: Configure git
           command: |
             git config user.email "support@gravitykit.com"
             git config user.name "GravityKit - CI"
       - run:
           name: Replace @since tags
-          command: npx @gravitykit/gktools replace-since --commit
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              npx @gravitykit/gktools replace-since --commit
+            else
+              echo "Skipping @since tag replacement (only runs on main, before release build)."
+            fi
       - run:
           name: Build and package
           command: npx @gravitykit/gktools build
+      - run:
+          name: Sign build
+          command: npx @gravitykit/gktools sign
       - run:
           name: Trigger translation pipeline
           command: |
