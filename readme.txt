@@ -112,6 +112,7 @@ You can enable a spam summary report email. This email will be sent to the email
 
 = develop =
 
+* Added: Translations for 27 languages
 * Fixed: Spam report emails may not be sent when the feature is first enabled
 
 = 1.7.5 on April 9, 2026 =

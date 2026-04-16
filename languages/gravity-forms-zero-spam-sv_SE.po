@@ -1,0 +1,621 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Förbättra Gravity Forms med effektiva antispåramåtgärder—utan att använda "
+"CAPTCHA."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Blockera, flagga eller logga e-postinlämningar som matchar specifika "
+"adresser, domäner eller mönster. Regler gäller för alla e-postfält såvida "
+"det inte åsidosätts per fält."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Flagga eller logga e-postinlämningar som matchar specifika adresser, "
+"domäner eller mönster. Regler gäller för alla e-postfält såvida det inte "
+"åsidosätts per fält."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "Regler för avvisning av e-post"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "Aktivera regler för avvisning av e-post"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Regler"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Standardvalideringsmeddelande"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr "Visas när åtgärden är \"Blockera\". Kan åsidosättas per e-postfält."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Lägg till regel"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Ta bort"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Redigera"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Aktivera"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Inaktivera"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Spara"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Domän"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "E-post"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Wildcard"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Regex"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Blockera"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Markera som skräppost"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Endast logg"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Typ"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Värde"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Åtgärd"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Inga regler har definierats än."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Importera regler"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Klistra in värden, ett per rad eller kommaseparerade. Typen upptäcks "
+"automatiskt som domän eller e-post."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Importera"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Ta bort denna regel?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Ogiltigt reguljärt uttryck."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Ange en giltig e-postadress."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Ange en giltig domän."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Inga giltiga regler hittades att importera."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 regel importerad."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "Ignorerade 1 ogiltigt värde."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Vissa regler använder Blockera-åtgärden, vilket kräver Gravity Forms "
+"2.9.15+. Dessa regler är inaktiva tills du uppdaterar."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Uppgradering till Gravity Forms 2.9.15 eller högre möjliggör konfigurering "
+"av regler som blockerar matchande formulärinlämningar."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Kräver Gravity Forms 2.9.15+"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "t.ex. spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Aktivera avvisningsregler"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Lägg till regler för att blockera, flagga eller logga inlämningar baserat "
+"på e-postadressen som anges i detta fält. Regler kan utöka eller ersätta de "
+"globala avvisningsreglerna."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Lägg till regler för att blockera, flagga eller logga inlämningar baserat "
+"på e-postadressen som anges i detta fält. Regler kan utöka eller ersätta "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "de globala avvisningsreglerna"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Regelläge"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Ärv globala regler + lägg till fältspecifika regler"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Använd endast fältspecifika regler (ignorera globala)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Fältspecifika regler"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Valideringsmeddelande (valfritt)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Lämna tomt för att använda det globala standardmeddelandet."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"E-postadressen du angav är inte tillåten. Vänligen använd en annan "
+"e-postadress."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Aktivera för att bekämpa skräppost med en enkel, effektiv metod som är mer "
+"effektiv än den inbyggda anti-spam honeypoten."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Förhindra skräppost med Gravity Forms Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Vet när poster markeras som skräppost."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Det kan vara svårt att veta när poster markeras som skräppost. När den här "
+"funktionen är aktiverad skickas en automatisk rapport om skräppost som ger "
+"dig en sammanfattning av nyligen inkomna skräppostposter. Om inga "
+"skräppostposter har skickats in skickas ingen rapport."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Den här funktionen fungerar med alla skräppostfilter, inklusive Gravity "
+"Forms skräppost-honeypot, Gravity Forms Zero Spam, reCAPTCHA eller andra."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Observera: Beroende på webbplatsens trafik skickas kanske inte tidsbaserade "
+"rapporter alltid enligt det schemalagda intervallet. {{link}}Se hur du "
+"ställer in en ”cron” för att göra detta mer tillförlitligt{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "Du har mottagit {{total_spam_count}} skräppostposter från följande formulär:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"För att ändra eller inaktivera detta e-postmeddelande, besök "
+"{{settings_link}}inställningssidan för Gravity Forms Zero "
+"Spam{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Följande variabler kan användas:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Namn på denna webbplats"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "E-postadressen till webbplatsadministratören"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Totalt antal mottagna skräppostmeddelanden sedan senaste rapporten."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "En lista över formulär och antalet skräppostposter sedan senaste rapporten."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"En länk till inställningssidan för tillägget. Texten inom variablerna blir "
+"länktexten. Se till att inkludera både öppnings- och stängningsvariablerna."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Blockering av skräppost"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Det går att aktivera eller inaktivera skräppostblockering för varje enskilt "
+"formulär i respektive formulärs inställningar."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Aktivera Zero Spam som standard"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Aktiverad: Lägg till Zero Spam i Gravity Forms-formulär"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Inaktiverad: Använd Gravity Forms inbyggda skräppostskydd"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Utgångstid för anti-skräppost"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "E-post för skräppostrapport"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Frekvens för spamrapport"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Hur ofta ska spamrapporter skickas via e-post?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Tröskelbaserad"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "Två gånger dagligen"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Dagligen"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Veckovis"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Månatligen"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Tröskel för spamposter"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr "En spamrapport kommer att skickas när det angivna antalet spamposter uppnås."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Begränsningen för poster måste vara 1 eller mer."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "E-postadress"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Skicka spamrapport till denna e-postadress."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Den angivna e-postadressen är ogiltig."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "Ämne för e-post"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Din Gravity Forms spamrapport för {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "E-postmeddelande"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Skicka testmail & spara inställningar"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "Skicka e-post & spara inställningar"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "En gång i månaden"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "spam-post"
+msgstr[1] "spam-poster"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Hur länge en spamförebyggande token är giltig efter att en besökare laddar "
+"ditt formulär. Om formulärinlämningar felaktigt flaggas som spam, försök "
+"öka detta värde. (Standard: 7 dagar)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Utgångslängd"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Utgångsenhet"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "timmar"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "dagar"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Kort utgångstid kan orsaka falska träffar på webbplatser med "
+"sidcachelagring."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Ange minst 1 dag."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Ange minst 1 timme."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Välj timmar eller dagar."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Maximal utgångstid är 90 dagar."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Maximal utgångstid är 2160 timmar (90 dagar)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Ett giltigt form_id krävs."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Formulär hittades inte."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam är inte aktiverat för detta formulär."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "För många förfrågningar. Försök igen senare."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Inlämningen innehöll ingen spamförebyggande token."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Formatet för spamförebyggande token är ogiltigt."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "Spamförebyggande token har gått ut. Detta kan orsakas av sidcachelagring."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Spamförebyggande token utfärdades för ett annat formulär."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Signaturen för skräppostförebyggande token är ogiltig."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Äldre nyckel för skräppostförebyggande accepteras inte längre. Rensa din "
+"sidcache."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Den inskickade nyckeln är ogiltig."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam har uppgraderats med förbättrat skydd mot "
+"skräppost. Rensa din sidcache för att säkerställa att alla formulär "
+"använder det nya skyddet. Stödet för äldre versioner upphör den %s."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Denna post har markerats som skräppost."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] regler importerades."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "Hoppade över [count] ogiltiga värden."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms Spam Report"

@@ -1,0 +1,628 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Sıfır Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Gravity Forms'u CAPTCHA kullanmadan etkili anti-spam önlemleriyle "
+"geliştirin."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Belirli adresler, alan adları veya desenlerle eşleşen e-posta "
+"gönderimlerini engelleyin, işaretleyin veya kaydedin. Kurallar, her alan "
+"için geçersiz kılınmadıkça tüm e-posta alanlarına uygulanır."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Belirli adresler, alan adları veya desenlerle eşleşen e-posta "
+"gönderimlerini işaretleyin veya kaydedin. Kurallar, her alan için geçersiz "
+"kılınmadıkça tüm e-posta alanlarına uygulanır."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "E-posta Reddetme Kuralları"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "E-posta Reddetme Kurallarını Etkinleştir"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Kurallar"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Varsayılan Doğrulama Mesajı"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr ""
+"Eylem \"Engelle\" olduğunda gösterilir. Her e-posta alanı için geçersiz "
+"kılınabilir."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Kural Ekle"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Kaldır"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Düzenle"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Devre Dışı Bırak"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Kaydet"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "İptal"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Alan Adı"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "E-posta"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Joker Karakter"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Regex"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Engelle"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Spam Olarak İşaretle"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Sadece Günlük"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Tür"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Değer"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Eylem"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Henüz kural tanımlanmadı."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Kuralları İçe Aktar"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Değerleri yapıştırın, satır başına bir veya virgülle ayrılmış. Otomatik "
+"olarak Alan Adı veya E-posta türü olarak algılanır."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "İçe Aktar"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Bu kural kaldırılsın mı?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Geçersiz düzenli ifade."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Lütfen geçerli bir e-posta adresi girin."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Lütfen geçerli bir alan adı girin."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "İçe aktarılacak geçerli kural bulunamadı."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 kural içe aktarıldı."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "1 geçersiz değer atlandı."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Bazı kurallar, Gravity Forms 2.9.15+ gerektiren Engelleme eylemini "
+"kullanır. Bu kurallar, güncelleme yapana kadar devre dışıdır."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Gravity Forms 2.9.15 veya üzeri sürüme yükseltme, eşleşen form "
+"gönderimlerini engelleyecek kuralları yapılandırma olanağı sağlar."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Gravity Forms 2.9.15+ gerektirir"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "örneğin, spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Reddetme kurallarını etkinleştir"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Bu alana girilen e-postaya göre gönderimleri engellemek, işaretlemek veya "
+"kaydetmek için kurallar ekleyin. Kurallar, genel reddetme kurallarını "
+"genişletebilir veya yerine geçebilir."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Bu alana girilen e-postaya göre gönderimleri engellemek, işaretlemek veya "
+"kaydetmek için kurallar ekleyin. Kurallar, "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "genel reddetme kurallarını"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Kural Modu"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Genel kuralları devral + alan özel kuralları ekle"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Yalnızca alan özel kurallarını kullan (geneli yoksay)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Alan Özel Kuralları"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Doğrulama Mesajı (isteğe bağlı)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Genel varsayılan mesajı kullanmak için boş bırakın."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"Girdiğiniz e-posta adresine izin verilmiyor. Lütfen farklı bir e-posta "
+"adresi kullanın."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Yerleşik anti-spam tuzağından daha etkili, basit ve etkili bir yöntem "
+"kullanarak spam ile mücadele etmek için etkinleştirin."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam kullanarak spam'i engelle"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Girdilerin spam olarak işaretlendiğini bilin."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Girdilerin spam olarak işaretlendiğini bilmek zor olabilir. "
+"Etkinleştirildiğinde, bu özellik otomatik bir spam raporu gönderir ve size "
+"son spam girdilerinin özetini sağlar. Eğer gönderilmiş spam girişi yoksa, "
+"rapor gönderilmez."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Bu özellik, Gravity Forms spam honeypot, Gravity Forms Zero Spam, reCAPTCHA "
+"veya diğerleri dahil olmak üzere herhangi bir spam filtresiyle çalışır."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Not: Site trafiğine bağlı olarak, zaman bazlı raporlar her zaman planlanan "
+"sıklıkta gönderilmeyebilir. {{link}}Bunu daha güvenilir hale getirmek için "
+"\"cron\" nasıl ayarlanır, görün{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Bağlantı yeni sekmede açılır"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "Aşağıdaki form(lar)dan {{total_spam_count}} spam girişi aldınız:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Bu e-postayı değiştirmek veya devre dışı bırakmak için "
+"{{settings_link}}Gravity Forms Zero Spam ayarları sayfasını ziyaret "
+"edin{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Aşağıdaki değişkenler kullanılabilir:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Bu web sitesinin adı"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "Site yöneticisinin e-posta adresi"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Son rapordan bu yana alınan toplam spam e-posta sayısı."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "Formların listesi ve son rapordan bu yana spam girişlerinin sayısı."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Eklenti ayarları sayfasına bir bağlantı. Değişkenlerin içindeki metin "
+"bağlantı metni olacaktır. Açılış ve kapanış değişkenlerini dahil "
+"ettiğinizden emin olun."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Spam Engelleme"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Her formun ayarları içinde form bazında spam engelleme etkinleştirilebilir "
+"veya devre dışı bırakılabilir."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Zero Spam'i Varsayılan Olarak Etkinleştir"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Etkin: Gravity Forms formlarına Zero Spam ekle"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Devre dışı: Gravity Forms'un yerleşik spam önlemesini kullan"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Anti-Spam Süresi Dolumu"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "Spam Raporu E-postası"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Spam Rapor Sıklığı"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Spam rapor e-postaları ne sıklıkla gönderilmelidir?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Eşik Tabanlı"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "Günde İki Kez"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Günlük"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Haftalık"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Aylık"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Spam Giriş Eşiği"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Belirtilen spam giriş sayısına ulaşıldığında bir spam rapor e-postası "
+"gönderilecektir."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Giriş limiti 1 veya daha fazla olmalıdır."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Spam raporunu bu e-posta adresine gönder."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Girilen e-posta geçersiz."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "E-posta Konusu"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Gravity Forms spam raporunuz {{site_name}} için"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "E-posta Mesajı"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Test E-postası Gönder ve Ayarları Kaydet"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "E-posta Gönder ve Ayarları Kaydet"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "Ayda Bir Kez"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "spam girişi"
+msgstr[1] "spam girişleri"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Bir ziyaretçi formunuzu yükledikten sonra bir spam önleme belirtecinin ne "
+"kadar süre geçerli kaldığı. Form gönderimleri yanlışlıkla spam olarak "
+"işaretleniyorsa, bu değeri artırmayı deneyin. (Varsayılan: 7 gün)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Sona erme süresi"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Sona erme birimi"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "saat"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "gün"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Kısa sona erme süreleri, sayfa önbellekleme olan sitelerde yanlış "
+"pozitiflere neden olabilir."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Lütfen en az 1 gün girin."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Lütfen en az 1 saat girin."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Lütfen saat veya gün seçin."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Maksimum sona erme süresi 90 gündür."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Maksimum sona erme süresi 2160 saattir (90 gün)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Geçerli bir form_id gereklidir."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Form bulunamadı."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Bu form için Zero Spam etkinleştirilmemiştir."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "Çok fazla istek. Lütfen daha sonra tekrar deneyin."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Gönderim spam önleme belirteci içermiyor."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Spam önleme belirteci formatı geçersiz."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr ""
+"Spam önleme belirteci süresi doldu. Bu, sayfa önbelleklemeden "
+"kaynaklanabilir."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Spam önleme belirteci farklı bir form için verilmiş."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Spam önleme belirteci imzası geçersiz."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Eski spam önleme anahtarı artık kabul edilmiyor. Lütfen sayfa önbelleğinizi "
+"temizleyin."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Gönderilen anahtar geçersiz."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam, geliştirilmiş spam koruması ile güncellendi. Tüm "
+"formların yeni korumayı kullanmasını sağlamak için lütfen sayfa "
+"önbelleğinizi temizleyin. Eski destek %s tarihinde sona erecektir."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Bu giriş spam olarak işaretlendi."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] kural içe aktarıldı."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "[count] geçersiz değer atlandı."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms Spam Raporu"

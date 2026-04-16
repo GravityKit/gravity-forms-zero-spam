@@ -1,0 +1,592 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr "CAPTCHAを使用せずに効果的なスパム防止対策を追加することで、Gravity Formsを強化します。"
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"特定のメールアドレス、ドメイン、またはパターンに一致するメール送信をブロック、フラグ付け、またはログ記録します。ルールはフィールドごとに上書きしない限り"
+"、すべてのメールフィールドに適用されます。"
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"特定のメールアドレス、ドメイン、またはパターンに一致するメール送信をフラグ付けまたはログ記録します。ルールはフィールドごとに上書きしない限り、すべてのメ"
+"ールフィールドに適用されます。"
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "メール拒否ルール"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "メール拒否ルールを有効にする"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "ルール"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "デフォルトの検証メッセージ"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr "アクションが「ブロック」の場合に表示されます。メールフィールドごとに上書き可能です。"
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "ルールを追加"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "削除"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "編集"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "有効にする"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "無効にする"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "保存"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "ドメイン"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "メール"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "ワイルドカード"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "正規表現"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "ブロック"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "スパムとしてマーク"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "ログのみ"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "タイプ"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "値"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "アクション"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "まだルールが定義されていません。"
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "ルールをインポート"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr "値を貼り付けてください。1行に1つ、またはカンマ区切り。ドメインまたはメールタイプとして自動検出されます。"
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "インポート"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "このルールを削除しますか？"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "無効な正規表現です。"
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "有効なメールアドレスを入力してください。"
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "有効なドメインを入力してください。"
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "インポート可能な有効なルールが見つかりませんでした。"
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1件のルールがインポートされました。"
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "無効な値を1件スキップしました。"
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"一部のルールはブロックアクションを使用しており、これはGravity Forms "
+"2.9.15以降が必要です。これらのルールは更新するまで無効になります。"
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr "Gravity Forms 2.9.15以降にアップグレードすると、該当するフォーム送信をブロックするルールを設定できるようになります。"
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Gravity Forms 2.9.15以降が必要です"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "例: spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "拒否ルールを有効にする"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"このフィールドに入力されたメールアドレスに基づき、送信をブロック、フラグ付け、またはログ記録するルールを追加します。ルールはグローバルな拒否ルールを拡張"
+"または置換できます。"
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr "このフィールドに入力されたメールアドレスに基づき、送信をブロック、フラグ付け、またはログ記録するルールを追加します。ルールは"
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "グローバルな拒否ルール"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "。"
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "ルールモード"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "グローバルルールを継承し、フィールド固有のルールを追加"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "フィールド固有のルールのみを使用（グローバルは無視）"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "フィールド固有のルール"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "検証メッセージ（任意）"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "空欄の場合はグローバルのデフォルトメッセージを使用します。"
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr "入力されたメールアドレスは許可されていません。別のメールアドレスを使用してください。"
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr "内蔵のアンチスパムホネポットよりも効果的なシンプルで効果的な方法でスパム対策を有効にします。"
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spamを使ってスパムを防止"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "エントリがスパムとしてフラグ付けされたときに通知します。"
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"エントリがスパムとしてマークされているかどうかを把握するのは難しい場合があります。有効にすると、この機能は自動的にスパムレポートを送信し、最近のスパムエ"
+"ントリの概要を提供します。スパムエントリが送信されていない場合は、レポートは送信されません。"
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"この機能は、Gravity Formsのスパムハニーポット、Gravity Forms Zero "
+"Spam、reCAPTCHA、その他のスパムフィルターと連携して動作します。"
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"注意：サイトのトラフィックにより、時間ベースのレポートが予定された頻度で送信されない場合があります。{{link}}「cron」の設定方法はこちら{{/"
+"link}}。"
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "リンクは新しいタブで開きます"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "以下のフォームから {{total_spam_count}} 件のスパムエントリを受信しました："
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"{{settings_link}}Gravity Forms Zero "
+"Spam設定ページ{{/settings_link}}にアクセスして、このメールの変更または無効化を行えます。"
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "以下の変数を使用できます："
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "このウェブサイトの名前"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "サイト管理者のメールアドレス"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "前回のレポート以降に受信したスパムメールの合計数。"
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "前回のレポート以降のスパムエントリのフォーム一覧と件数。"
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr "プラグイン設定ページへのリンク。変数内のテキストがリンクテキストになります。開始と終了の両方の変数を必ず含めてください。"
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "スパムブロック"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr "各フォームの設定内で、フォームごとにスパムブロックを有効または無効にすることが可能です。"
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Zero Spamをデフォルトで有効にする"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "有効：Gravity FormsフォームにZero Spamを追加"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "無効：Gravity Formsの標準スパム防止機能を使用"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "アンチスパムの有効期限"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "スパムレポートメール"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "スパムレポートの送信頻度"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "スパムレポートのメールはどのくらいの頻度で送信しますか？"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "無効"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "しきい値ベース"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "1日2回"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "毎日"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "毎週"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "毎月"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "スパムエントリーのしきい値"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr "指定されたスパムエントリー数に達したときにスパムレポートメールが送信されます。"
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "エントリーの上限は1以上でなければなりません。"
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "メールアドレス"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "スパムレポートをこのメールアドレスに送信します。"
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "入力されたメールアドレスが無効です。"
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "メール件名"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "{{site_name}} の Gravity Forms スパムレポート"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "メール本文"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "テストメールを送信して設定を保存"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "メールを送信して設定を保存"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "月1回"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "スパムエントリ"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"訪問者がフォームを読み込んだ後、スパム防止トークンが有効である期間。フォームの送信が誤ってスパムと判定される場合は、この値を増やしてみてください。（デフ"
+"ォルト：7日間）"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "有効期限の長さ"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "有効期限の単位"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "時間"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "日"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr "短い有効期限は、ページキャッシュが有効なサイトで誤検知を引き起こす可能性があります。"
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "少なくとも1日を入力してください。"
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "少なくとも1時間を入力してください。"
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "時間または日を選択してください。"
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "最大有効期限は90日です。"
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "最大有効期限は2160時間（90日）です。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "有効なform_idが必要です。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "フォームが見つかりません。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "このフォームではZero Spamが有効になっていません。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "リクエストが多すぎます。後でもう一度お試しください。"
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "送信にスパム防止トークンが含まれていませんでした。"
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "スパム防止トークンの形式が無効です。"
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "スパム防止トークンの有効期限が切れています。これはページキャッシュが原因の可能性があります。"
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "スパム防止トークンは別のフォーム用に発行されました。"
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "スパム防止トークンの署名が無効です。"
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr "レガシースパム防止キーはもう受け付けられません。ページキャッシュをクリアしてください。"
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "送信されたキーが無効です。"
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero "
+"Spamは改良されたスパム保護機能にアップグレードされました。すべてのフォームが新しい保護機能を使用するように、ページキャッシュをクリアしてください。レ"
+"ガシーサポートは%sに終了します。"
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "このエントリーはスパムとしてマークされています。"
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] 件のルールがインポートされました。"
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "[count] 件の無効な値がスキップされました。"
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms スパムレポート"

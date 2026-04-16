@@ -1,0 +1,630 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Paranna Gravity Formsia tehokkailla roskapostinesto-ominaisuuksilla—ilman "
+"CAPTCHAa."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Estä, merkitse tai kirjaa sähköpostilähetykset, jotka vastaavat tiettyjä "
+"osoitteita, domaineja tai malleja. Säännöt koskevat kaikkia "
+"sähköpostikenttiä, ellei niitä ohiteta kenttäkohtaisesti."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Merkitse tai kirjaa sähköpostilähetykset, jotka vastaavat tiettyjä "
+"osoitteita, domaineja tai malleja. Säännöt koskevat kaikkia "
+"sähköpostikenttiä, ellei niitä ohiteta kenttäkohtaisesti."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "Sähköpostin hylkäyssäännöt"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "Ota käyttöön sähköpostin hylkäyssäännöt"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Säännöt"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Oletustarkistuksen viesti"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr ""
+"Näytetään, kun toiminto on \"Estä\". Voidaan ohittaa "
+"sähköpostikenttäkohtaisesti."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Lisää sääntö"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Poista"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Ota käyttöön"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Poista käytöstä"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Tallenna"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Verkkotunnus"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "Sähköposti"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Jokerimerkki"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Säännöllinen lauseke"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Estä"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Merkitse roskapostiksi"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Kirjaa vain"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Tyyppi"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Arvo"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Toiminto"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Sääntöjä ei ole vielä määritelty."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Tuo säännöt"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Liitä arvot, yksi per rivi tai pilkuilla erotettuna. Tyyppi tunnistetaan "
+"automaattisesti domainiksi tai sähköpostiksi."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Tuo"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Poistetaanko tämä sääntö?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Virheellinen säännöllinen lauseke."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Syötä kelvollinen sähköpostiosoite."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Syötä kelvollinen domain."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Tuontiin ei löytynyt kelvollisia sääntöjä."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 sääntö tuotu."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "Ohitettu 1 virheellinen arvo."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Jotkin säännöt käyttävät Estä-toimintoa, joka vaatii Gravity Forms 2.9.15+ "
+"-version. Nämä säännöt ovat passiivisia, kunnes päivität."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Päivitys Gravity Forms 2.9.15- tai uudempiin mahdollistaa sääntöjen "
+"määrittämisen, jotka estävät vastaavia lomakkeen lähetyksiä."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Vaatii Gravity Forms 2.9.15+ -version"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "esim. spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Ota hylkäyssäännöt käyttöön"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Lisää sääntöjä, jotka estävät, merkitsevät tai kirjaavat lähetykset tämän "
+"kenttään syötetyn sähköpostin perusteella. Säännöt voivat laajentaa tai "
+"korvata globaalit hylkäyssäännöt."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Lisää sääntöjä, jotka estävät, merkitsevät tai kirjaavat lähetykset tämän "
+"kenttään syötetyn sähköpostin perusteella. Säännöt voivat laajentaa tai "
+"korvata "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "globaalit hylkäyssäännöt"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Sääntötila"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Peri globaalit säännöt + lisää kenttäkohtaiset säännöt"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Käytä vain kenttäkohtaisia sääntöjä (ohita globaalit)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Kenttäkohtaiset säännöt"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Vahvistusviesti (valinnainen)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Jätä tyhjäksi käyttääksesi globaalin oletusviestin."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"Antamasi sähköpostiosoite ei ole sallittu. Käytäthän toista "
+"sähköpostiosoitetta."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Ota käyttöön roskapostin torjumiseksi yksinkertainen ja tehokas menetelmä, "
+"joka on tehokkaampi kuin sisäänrakennettu roskapostin hunajapurkki."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Estä roskaposti Gravity Forms Zero Spamilla"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Tiedä, milloin merkinnät on merkitty roskapostiksi."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Roskapostimerkintöjen tunnistaminen voi olla vaikeaa. Kun tämä ominaisuus "
+"on käytössä, se lähettää automaattisen roskapostiraportin, joka antaa "
+"yhteenvedon viimeaikaisista roskapostimerkinnöistä. Jos "
+"roskapostimerkintöjä ei ole lähetetty, raporttia ei lähetetä."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Tämä ominaisuus toimii minkä tahansa roskapostisuodattimen kanssa, mukaan "
+"lukien Gravity Forms -roskapostihoukutin, Gravity Forms Zero Spam, "
+"reCAPTCHA tai muut."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Huomaa: Sivuston liikenteestä riippuen aikaperusteisia raportteja ei "
+"välttämättä aina lähetetä ajoitetulla taajuudella. {{link}}Katso, kuinka "
+"voit määrittää \"cronin\" tämän luotettavuuden parantamiseksi{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr ""
+"Olet saanut {{total_spam_count}} roskapostimerkintää seuraavista "
+"lomakkeista:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Jos haluat muokata tai poistaa tämän sähköpostin käytöstä, käy "
+"{{settings_link}}Gravity Forms Zero Spam -asetussivulla{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Seuraavia muuttujia voidaan käyttää:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Tämän verkkosivuston nimi"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "Sivuston ylläpitäjän sähköpostiosoite"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Roskapostiviestien kokonaismäärä viimeisimmän raportin jälkeen."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr ""
+"Lista lomakkeista ja roskapostimerkintöjen määrästä viimeisimmän raportin "
+"jälkeen."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Linkki lisäosan asetussivulle. Muuttujien sisällä oleva teksti on linkin "
+"teksti. Varmista, että sisällytät sekä avaavan että sulkevan muuttujan."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Roskapostin estäminen"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Roskapostin eston voi ottaa käyttöön tai poistaa käytöstä lomakekohtaisesti "
+"kunkin lomakkeen asetuksissa."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Ota Zero Spam käyttöön oletuksena"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Käytössä: Lisää Zero Spam Gravity Forms -lomakkeisiin"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Pois käytöstä: Käytä Gravity Forms -sisäänrakennettua roskapostinestoa"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Roskapostin esto vanhenee"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "Roskapostiraportin sähköposti"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Roskapostiraportin lähetysväli"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Kuinka usein roskapostiraporttien sähköpostit tulisi lähettää?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Pois käytöstä"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Kynnysarvoperusteinen"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "Kaksi kertaa päivässä"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Päivittäin"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Viikoittain"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Kuukausittain"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Roskapostimerkintöjen kynnysarvo"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Roskapostiraportti lähetetään, kun määritelty määrä roskapostimerkintöjä on "
+"saavutettu."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Merkintörajan on oltava vähintään 1."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "Sähköpostiosoite"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Lähetä roskapostiraportti tähän sähköpostiosoitteeseen."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Syötetty sähköposti ei ole kelvollinen."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "Sähköpostin aihe"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Gravity Forms -roskapostiraporttisi kohteelle {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "Sähköpostiviesti"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Lähetä testisähköposti ja tallenna asetukset"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "Lähetä sähköposti ja tallenna asetukset"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "Kerran kuukaudessa"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "roskapostimerkintä"
+msgstr[1] "roskapostimerkinnät"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Kuinka kauan roskapostinestotunnus on voimassa sen jälkeen, kun kävijä "
+"lataa lomakkeesi. Jos lomakkeen lähetykset merkitään virheellisesti "
+"roskapostiksi, kokeile suurentaa tätä arvoa. (Oletus: 7 päivää)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Voimassaoloajan pituus"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Voimassaoloajan yksikkö"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "tunnit"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "päivät"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Lyhyet voimassaoloajat voivat aiheuttaa virheellisiä positiivisia tuloksia "
+"sivustoilla, joissa on sivun välimuistitus."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Anna vähintään 1 päivä."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Anna vähintään 1 tunti."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Valitse tunnit tai päivät."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Suurin voimassaoloaika on 90 päivää."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Suurin voimassaoloaika on 2160 tuntia (90 päivää)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Voimassa oleva form_id on vaadittu."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Lomaketta ei löytynyt."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam ei ole käytössä tässä lomakkeessa."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "Liian monta pyyntöä. Yritä myöhemmin uudelleen."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Lähetys ei sisältänyt roskapostinestotunnusta."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Roskapostinestotunnuksen muoto on virheellinen."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "Roskapostinestotunnus on vanhentunut. Tämä voi johtua sivun välimuistista."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Roskapostinestotunnus on myönnetty toista lomaketta varten."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Roskapostin estomerkinnän allekirjoitus on virheellinen."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Vanhaa roskapostin eston avainta ei enää hyväksytä. Tyhjennä sivun "
+"välimuisti."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Lähetetty avain on virheellinen."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam on päivitetty parannetulla roskapostisuojauksella. "
+"Tyhjennä sivun välimuisti varmistaaksesi, että kaikki lomakkeet käyttävät "
+"uutta suojausta. Perintötuki päättyy %s."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Tämä merkintä on merkitty roskapostiksi."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] sääntöä tuotu."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "[count] virheellistä arvoa ohitettu."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms Roskapostiraportti"

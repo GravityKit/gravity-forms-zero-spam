@@ -1,0 +1,626 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr "Forbedre Gravity Forms med effektive antispam-tiltak—uten å bruke CAPTCHA."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Blokker, merk eller loggfør e-postinnsendinger som samsvarer med bestemte "
+"adresser, domener eller mønstre. Regler gjelder for alle e-postfelt med "
+"mindre det overstyres per felt."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Merk eller loggfør e-postinnsendinger som samsvarer med bestemte adresser, "
+"domener eller mønstre. Regler gjelder for alle e-postfelt med mindre det "
+"overstyres per felt."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "Regler for avvisning av e-post"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "Aktiver regler for avvisning av e-post"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Regler"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Standard valideringsmelding"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr "Vises når handlingen er «Blokker». Kan overstyres per e-postfelt."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Legg til regel"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Fjern"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Rediger"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Aktiver"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Deaktiver"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Lagre"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Domene"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "E-post"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Jokertegn"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Regex"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Blokker"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Merk som søppelpost"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Bare logg"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Type"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Verdi"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Handling"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Ingen regler definert ennå."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Importer regler"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Lim inn verdier, én per linje eller kommaseparert. Oppdages automatisk som "
+"domene- eller e-posttype."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Importer"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Fjern denne regelen?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Ugyldig regulært uttrykk."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Vennligst skriv inn en gyldig e-postadresse."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Vennligst skriv inn et gyldig domene."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Ingen gyldige regler funnet for import."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 regel importert."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "Hoppet over 1 ugyldig verdi."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Noen regler bruker blokkering, som krever Gravity Forms 2.9.15+. Disse "
+"reglene er inaktive til du oppdaterer."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Oppgradering til Gravity Forms 2.9.15 eller høyere aktiverer muligheten til "
+"å konfigurere regler som blokkerer samsvarende skjema-innsendinger."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Krever Gravity Forms 2.9.15+"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "f.eks. spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Aktiver avvisningsregler"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Legg til regler for å blokkere, merke eller logge innsendinger basert på "
+"e-posten som er skrevet inn i dette feltet. Regler kan utvide eller "
+"erstatte de globale avvisningsreglene."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Legg til regler for å blokkere, merke eller logge innsendinger basert på "
+"e-posten som er skrevet inn i dette feltet. Regler kan utvide eller "
+"erstatte "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "de globale avvisningsreglene"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Regelmodus"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Arv globale regler + legg til feltspesifikke regler"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Bruk kun feltspesifikke regler (ignorer globale)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Feltspesifikke regler"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Valideringsmelding (valgfritt)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "La stå tomt for å bruke standardmeldingen globalt."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"E-postadressen du skrev inn er ikke tillatt. Vennligst bruk en annen "
+"e-postadresse."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Aktiver for å bekjempe spam med en enkel, effektiv metode som er mer "
+"effektiv enn den innebygde anti-spam honeypoten."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Forebygg spam med Gravity Forms Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Vite når oppføringer blir flagget som søppelpost."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Det kan være vanskelig å vite når oppføringer blir merket som søppelpost. "
+"Når aktivert, vil denne funksjonen sende en automatisk søppelpostrapport "
+"som gir deg en oppsummering av nylige søppelpostoppføringer. Hvis ingen "
+"søppelpostoppføringer er sendt inn, vil ingen rapport bli sendt."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Denne funksjonen fungerer med alle søppelpostfiltre, inkludert Gravity "
+"Forms søppelposthoneypot, Gravity Forms Zero Spam, reCAPTCHA eller andre."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Merk: Avhengig av nettstedets trafikk, kan tidsbaserte rapporter ikke "
+"alltid sendes med planlagt frekvens. {{link}}Se hvordan du setter opp en "
+"«cron» for å gjøre dette mer pålitelig{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Lenken åpnes i en ny fane"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr ""
+"Du har mottatt {{total_spam_count}} søppelpostoppføringer fra følgende "
+"skjema(er):"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"For å endre eller deaktivere denne e-posten, besøk "
+"{{settings_link}}innstillingssiden for Gravity Forms Zero "
+"Spam{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Følgende variabler kan brukes:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Navnet på dette nettstedet"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "E-posten til nettstedsadministratoren"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Totalt antall mottatte søppelpost-e-poster siden forrige rapport."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr ""
+"En liste over skjemaer og antall søppelpostoppføringer siden forrige "
+"rapport."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"En lenke til plugin-innstillingssiden. Teksten inne i variablene vil være "
+"lenketeksten. Sørg for å inkludere både åpne- og lukkede variabler."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Blokkering av søppelpost"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Det er mulig å aktivere eller deaktivere blokkering av søppelpost per "
+"skjema inne i innstillingene for hvert skjema."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Aktiver Zero Spam som standard"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Aktivert: Legg til Zero Spam i Gravity Forms-skjemaer"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Deaktivert: Bruk Gravity Forms innebygde søppelpostbeskyttelse"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Utløpstid for anti-søppelpost"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "E-post for søppelpostrapport"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Frekvens for spamrapport"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Hvor ofte skal e-poster med spamrapporter sendes?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Deaktivert"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Terskelbasert"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "To ganger daglig"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Daglig"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Ukentlig"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Månedlig"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Terskel for spamoppføringer"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"En e-post med spamrapport vil bli sendt når det angitte antallet "
+"spamoppføringer er nådd."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Grensen for oppføringer må være 1 eller mer."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "E-postadresse"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Send spamrapport til denne e-postadressen."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Den angitte e-postadressen er ugyldig."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "E-postemne"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Din Gravity Forms spamrapport for {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "E-postmelding"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Send testepost og lagre innstillinger"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "Send e-post og lagre innstillinger"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "En gang i måneden"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "spamoppføring"
+msgstr[1] "spamoppføringer"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Hvor lenge en spamforebyggingstoken forblir gyldig etter at en besøkende "
+"har lastet inn skjemaet ditt. Hvis skjemainnsendinger feilaktig blir merket "
+"som spam, prøv å øke denne verdien. (Standard: 7 dager)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Utløpslengde"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Utløpsenhet"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "timer"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "dager"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Korte utløpstidspunkter kan føre til falske positive på nettsteder med "
+"sidebufring."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Vennligst oppgi minst 1 dag."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Vennligst oppgi minst 1 time."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Vennligst velg timer eller dager."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Maksimal utløpstid er 90 dager."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Maksimal utløpstid er 2160 timer (90 dager)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "En gyldig form_id er påkrevd."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Skjema ikke funnet."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam er ikke aktivert for dette skjemaet."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "For mange forespørsler. Vennligst prøv igjen senere."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Innsendingen inkluderte ikke en spamforebyggingstoken."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Formatet på spamforebyggingstoken er ugyldig."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "Spamforebyggingstoken har utløpt. Dette kan skyldes sidebufring."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Spamforebyggingstoken ble utstedt for et annet skjema."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Signaturen for spamforebyggingstokenet er ugyldig."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Legacy-nøkkel for spamforebygging godtas ikke lenger. Vennligst tøm "
+"sidebufferen din."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Den innsendte nøkkelen er ugyldig."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam har blitt oppgradert med forbedret "
+"spam-beskyttelse. Vennligst tøm sidebufferen din for å sikre at alle "
+"skjemaer bruker den nye beskyttelsen. Legacy-støtten avsluttes %s."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Denne oppføringen er merket som spam."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] regler importert."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "Hoppet over [count] ugyldige verdier."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms Spam Report"
