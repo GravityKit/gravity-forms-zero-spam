@@ -1,0 +1,632 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && "
+"n%100<20)) ? 1 : 2);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Îmbunătățiți Gravity Forms pentru a include măsuri eficiente anti-spam—fără "
+"a folosi un CAPTCHA."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Blocați, marcați sau înregistrați trimiterea de emailuri care corespund "
+"unor adrese, domenii sau tipare specifice. Regulile se aplică tuturor "
+"câmpurilor de email, cu excepția cazului în care sunt suprascrise pe câmp."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Marcați sau înregistrați trimiterea de emailuri care corespund unor adrese, "
+"domenii sau tipare specifice. Regulile se aplică tuturor câmpurilor de "
+"email, cu excepția cazului în care sunt suprascrise pe câmp."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "Reguli de respingere a emailurilor"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "Activați regulile de respingere a emailurilor"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Reguli"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Mesaj de validare implicit"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr ""
+"Apare când acțiunea este „Blocare”. Poate fi suprascris pe fiecare câmp de "
+"email."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Adaugă regulă"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Elimină"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Editează"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Activează"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Dezactivează"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Salvează"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Anulează"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Domeniu"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "Email"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Caractere universale"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Regex"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Blochează"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Marchează ca Spam"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Doar înregistrare"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Tip"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Valoare"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Acțiune"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Nu există reguli definite încă."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Importă reguli"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Lipiți valorile, câte una pe linie sau separate prin virgulă. Se detectează "
+"automat ca tip Domeniu sau Email."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Importă"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Șterge această regulă?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Expresie regulată invalidă."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Introduceți o adresă de email validă."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Introduceți un domeniu valid."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Nu s-au găsit reguli valide pentru import."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 regulă importată."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "S-a sărit peste 1 valoare nevalidă."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Unele reguli folosesc acțiunea Blocare, care necesită Gravity Forms "
+"2.9.15+. Aceste reguli sunt inactive până faceți actualizarea."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Actualizarea la Gravity Forms 2.9.15 sau mai nou permite configurarea "
+"regulilor care blochează trimiterea formularelor care se potrivesc."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Necesită Gravity Forms 2.9.15+"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "ex., spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Activează regulile de respingere"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Adaugă reguli pentru a bloca, marca sau înregistra trimiterea pe baza "
+"emailului introdus în acest câmp. Regulile pot extinde sau înlocui regulile "
+"globale de respingere."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Adaugă reguli pentru a bloca, marca sau înregistra trimiterea pe baza "
+"emailului introdus în acest câmp. Regulile pot extinde sau înlocui "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "regulile globale de respingere"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Modul Regulă"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Moștenește regulile globale + adaugă reguli specifice câmpului"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Folosește doar regulile specifice câmpului (ignora regulile globale)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Reguli specifice câmpului"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Mesaj de validare (opțional)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Lăsați gol pentru a folosi mesajul implicit global."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"Adresa de email introdusă nu este permisă. Vă rugăm să folosiți o altă "
+"adresă de email."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Activează pentru a combate spamul folosind o metodă simplă și eficientă, "
+"mai eficace decât capcana anti-spam integrată."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Preveniți spamul folosind Gravity Forms Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Fii la curent când intrările sunt marcate ca spam."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Poate fi dificil să știi când intrările sunt marcate ca spam. Când este "
+"activată, această funcție va trimite un raport automat de spam, oferindu-ți "
+"un rezumat al intrărilor recente de spam. Dacă nu au fost trimise intrări "
+"de spam, nu se va trimite niciun raport."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Această funcție funcționează cu orice filtru de spam, inclusiv cu capcana "
+"de spam Gravity Forms, Gravity Forms Zero Spam, reCAPTCHA sau altele."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Notă: În funcție de traficul site-ului, rapoartele bazate pe timp s-ar "
+"putea să nu fie întotdeauna trimise la frecvența programată. {{link}}Vezi "
+"cum să configurezi un „cron” pentru a face acest lucru mai fiabil{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Link-ul se deschide într-un tab nou"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr ""
+"Ai primit {{total_spam_count}} intrări de spam de la următorul/următoarele "
+"formulare:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Pentru a modifica sau dezactiva acest email, vizitează "
+"{{settings_link}}pagina de setări Gravity Forms Zero Spam{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Următoarele variabile pot fi folosite:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Numele acestui site web"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "Emailul administratorului site-ului"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Numărul total de emailuri spam primite de la ultimul raport."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "O listă cu formulare și numărul de intrări spam de la ultimul raport."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Un link către pagina de setări a pluginului. Textul din variabile va fi "
+"textul linkului. Asigură-te că incluzi atât variabila de deschidere, cât și "
+"pe cea de închidere."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Blocare Spam"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Este posibil să activezi sau să dezactivezi blocarea spam-ului pentru "
+"fiecare formular în parte din setările fiecărui formular."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Activează Zero Spam în mod implicit"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Activat: Adaugă Zero Spam formularelor Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Dezactivat: Folosește prevenirea spam încorporată în Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Expirarea anti-spam"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "Email raport spam"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Frecvența Raportului de Spam"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Cât de des ar trebui trimise emailurile cu rapoarte de spam?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Dezactivat"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Pe bază de prag"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "De două ori pe zi"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Zilnic"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Săptămânal"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Lunar"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Pragul de intrări de spam"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Un email cu raportul de spam va fi trimis când este atins numărul "
+"specificat de intrări de spam."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Limita intrărilor trebuie să fie 1 sau mai mare."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "Adresă de email"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Trimite raportul de spam la această adresă de email."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Emailul introdus este invalid."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "Subiectul emailului"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Raportul tău de spam Gravity Forms pentru {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "Mesajul emailului"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Trimite email de test și salvează setările"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "Trimite email și salvează setările"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "O dată pe lună"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "înregistrare spam"
+msgstr[1] "înregistrări spam"
+msgstr[2] "înregistrări spam"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Durata de valabilitate a unui token de prevenire a spamului după ce un "
+"vizitator încarcă formularul dvs. Dacă trimiterea formularelor este marcată "
+"incorect ca spam, încercați să măriți această valoare. (Implicit: 7 zile)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Durata expirării"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Unitatea de expirare"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "ore"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "zile"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Timpurile scurte de expirare pot cauza rezultate false pozitive pe "
+"site-urile cu cache de pagină."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Vă rugăm să introduceți cel puțin 1 zi."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Vă rugăm să introduceți cel puțin 1 oră."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Vă rugăm să selectați ore sau zile."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Expirarea maximă este de 90 de zile."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Expirarea maximă este de 2160 ore (90 zile)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Este necesar un form_id valid."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Formularul nu a fost găsit."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam nu este activat pentru acest formular."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "Prea multe cereri. Vă rugăm să încercați din nou mai târziu."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Trimiterea nu a inclus un token de prevenire a spamului."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Formatul tokenului de prevenire a spamului este invalid."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr ""
+"Tokenul de prevenire a spamului a expirat. Acest lucru poate fi cauzat de "
+"cache-ul paginii."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Tokenul de prevenire a spamului a fost emis pentru un formular diferit."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Semnătura tokenului de prevenire a spamului este invalidă."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Cheia veche de prevenire a spamului nu mai este acceptată. Vă rugăm să "
+"goliți memoria cache a paginii."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Cheia trimisă este invalidă."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam a fost actualizat cu o protecție îmbunătățită "
+"împotriva spamului. Vă rugăm să goliți memoria cache a paginii pentru a vă "
+"asigura că toate formularele folosesc noua protecție. Suportul vechi se "
+"încheie la %s."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Această înregistrare a fost marcată ca spam."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] reguli importate."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "Au fost sărite [count] valori invalide."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Raport de spam Gravity Forms"

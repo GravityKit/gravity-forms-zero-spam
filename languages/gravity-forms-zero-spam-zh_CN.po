@@ -1,0 +1,575 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms 零垃圾邮件"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr "增强 Gravity Forms，包含有效的反垃圾邮件措施——无需使用验证码。"
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr "阻止、标记或记录匹配特定地址、域名或模式的电子邮件提交。规则适用于所有电子邮件字段，除非针对单个字段另有覆盖。"
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr "标记或记录匹配特定地址、域名或模式的电子邮件提交。规则适用于所有电子邮件字段，除非针对单个字段另有覆盖。"
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "电子邮件拒绝规则"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "启用电子邮件拒绝规则"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "规则"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "默认验证消息"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr "当操作为“阻止”时显示。可以针对每个电子邮件字段覆盖。"
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "添加规则"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "移除"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "编辑"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "启用"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "禁用"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "保存"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "取消"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "域名"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "电子邮件"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "通配符"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "正则表达式"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "阻止"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "标记为垃圾邮件"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "仅记录"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "类型"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "值"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "操作"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "尚未定义任何规则。"
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "导入规则"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr "粘贴值，每行一个或用逗号分隔。自动检测为域名或电子邮件类型。"
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "导入"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "要删除此规则吗？"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "无效的正则表达式。"
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "请输入有效的电子邮件地址。"
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "请输入有效的域名。"
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "未找到有效的规则可导入。"
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "已导入 1 条规则。"
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "跳过 1 个无效值。"
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr "某些规则使用阻止操作，该操作需要 Gravity Forms 2.9.15 及以上版本。在您更新之前，这些规则处于非激活状态。"
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr "升级到 Gravity Forms 2.9.15 或更高版本，可启用配置阻止匹配表单提交的规则的功能。"
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "需要 Gravity Forms 2.9.15 及以上版本"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "例如，spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "启用拒绝规则"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr "添加规则以根据该字段中输入的电子邮件阻止、标记或记录提交。规则可以扩展或替代全局拒绝规则。"
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr "添加规则以根据该字段中输入的电子邮件阻止、标记或记录提交。规则可以扩展或替代 "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "全局拒绝规则"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "。"
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "规则模式"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "继承全局规则 + 添加字段特定规则"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "仅使用字段特定规则（忽略全局规则）"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "字段特定规则"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "验证信息（可选）"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "留空以使用全局默认信息。"
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr "您输入的电子邮件地址不被允许。请使用其他电子邮件地址。"
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr "启用此项以使用一种简单有效的方法对抗垃圾邮件，比内置的反垃圾邮件蜜罐更有效。"
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "使用 Gravity Forms Zero Spam 防止垃圾邮件"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "知道条目何时被标记为垃圾邮件。"
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr "有时很难知道条目何时被标记为垃圾邮件。启用后，此功能会发送自动垃圾邮件报告，向您汇总最近的垃圾邮件条目。如果没有提交垃圾邮件条目，则不会发送报告。"
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"此功能可与任何垃圾邮件过滤器配合使用，包括 Gravity Forms 垃圾邮件诱捕器、Gravity Forms Zero "
+"Spam、reCAPTCHA 或其他过滤器。"
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr "注意：根据网站流量，基于时间的报告可能不会始终按计划频率发送。{{link}}查看如何设置“cron”以提高可靠性{{/link}}。"
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "链接将在新标签页中打开"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "您已从以下表单收到 {{total_spam_count}} 条垃圾邮件条目："
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"要修改或禁用此电子邮件，请访问 {{settings_link}}Gravity Forms Zero Spam "
+"设置页面{{/settings_link}}。"
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "可使用以下变量："
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "该网站的名称"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "网站管理员的电子邮件"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "自上次报告以来收到的垃圾邮件总数。"
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "自上次报告以来的表单列表及垃圾邮件条目数量。"
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr "指向插件设置页面的链接。变量内的文本将作为链接文本。请确保包括开启和关闭的变量。"
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "垃圾邮件拦截"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr "可以在每个表单的设置中按表单启用或禁用垃圾邮件拦截。"
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "默认启用 Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "已启用：向 Gravity Forms 表单添加 Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "已禁用：使用 Gravity Forms 内置的垃圾邮件防护"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "反垃圾邮件过期时间"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "垃圾邮件报告邮件"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "垃圾邮件报告频率"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "垃圾邮件报告邮件应多久发送一次？"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "已禁用"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "基于阈值"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "每日两次"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "每日"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "每周"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "每月"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "垃圾邮件条目阈值"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr "当达到指定数量的垃圾邮件条目时，将发送垃圾邮件报告邮件。"
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "条目限制必须为1或以上。"
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "电子邮件地址"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "将垃圾邮件报告发送到此电子邮件地址。"
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "输入的电子邮件无效。"
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "电子邮件主题"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "您来自 {{site_name}} 的 Gravity Forms 垃圾邮件报告"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "电子邮件内容"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "发送测试邮件并保存设置"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "发送邮件并保存设置"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "每月一次"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "垃圾条目"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr "访客加载您的表单后，防垃圾令牌保持有效的时间。如果表单提交被错误地标记为垃圾邮件，请尝试增加此值。（默认值：7 天）"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "过期时长"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "过期单位"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "小时"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "天"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr "较短的过期时间可能会导致启用了页面缓存的网站出现误报。"
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "请输入至少 1 天。"
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "请输入至少 1 小时。"
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "请选择小时或天。"
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "最大过期时间为 90 天。"
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "最大过期时间为 2160 小时（90 天）。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "需要有效的 form_id。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "未找到表单。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "此表单未启用 Zero Spam。"
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "请求过多。请稍后再试。"
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "提交未包含防垃圾令牌。"
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "防垃圾令牌格式无效。"
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "防垃圾令牌已过期。可能是由于页面缓存引起。"
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "防垃圾令牌是为不同的表单颁发的。"
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "垃圾邮件防护令牌签名无效。"
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr "不再接受旧版垃圾邮件防护密钥。请清除您的页面缓存。"
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "提交的密钥无效。"
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr "Gravity Forms Zero Spam 已升级，增强了垃圾邮件防护。请清除您的页面缓存，以确保所有表单使用新的防护。旧版支持将于 %s 结束。"
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "此条目已被标记为垃圾邮件。"
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "已导入 [count] 条规则。"
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "跳过了 [count] 个无效值。"
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms 垃圾邮件报告"

@@ -656,7 +656,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			$this->log_error( __METHOD__ . '(): Spam report email failed to send.' );
 		}
 
-		return false;
+		return $success;
 	}
 
 	/**
@@ -708,7 +708,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return string Date in format passed by $date_format.
 	 */
 	private function get_last_report_date( $date_format = 'Y-m-d' ) {
-		$last_report_timestamp = get_option( self::REPORT_LAST_SENT_DATE_OPTION, time() );
+		$last_report_timestamp = get_option( self::REPORT_LAST_SENT_DATE_OPTION, 0 );
 
 		return gmdate( $date_format, $last_report_timestamp );
 	}

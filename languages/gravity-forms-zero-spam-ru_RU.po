@@ -1,0 +1,631 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"Расширьте возможности Gravity Forms, добавив эффективные меры защиты от "
+"спама — без использования CAPTCHA."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Блокировать, помечать или записывать отправки электронной почты, "
+"соответствующие определённым адресам, доменам или шаблонам. Правила "
+"применяются ко всем полям электронной почты, если не переопределены для "
+"конкретного поля."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"Помечать или записывать отправки электронной почты, соответствующие "
+"определённым адресам, доменам или шаблонам. Правила применяются ко всем "
+"полям электронной почты, если не переопределены для конкретного поля."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "Правила отклонения электронной почты"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "Включить правила отклонения электронной почты"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Правила"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Сообщение по умолчанию для проверки"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr ""
+"Отображается, когда действие — «Блокировать». Может быть переопределено для "
+"каждого поля электронной почты."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Добавить правило"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Удалить"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Редактировать"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Включить"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Отключить"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Сохранить"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Отмена"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Домен"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "Электронная почта"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Подстановочный символ"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Регулярное выражение"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Блокировать"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Отметить как спам"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Только запись"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Тип"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Значение"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Действие"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Правила ещё не заданы."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Импорт правил"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Вставьте значения, по одному на строку или через запятую. Тип определяется "
+"автоматически: Домен или Электронная почта."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Импортировать"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Удалить это правило?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Неверное регулярное выражение."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Пожалуйста, введите правильный адрес электронной почты."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Пожалуйста, введите правильный домен."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Не найдено подходящих правил для импорта."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "Импортировано 1 правило."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "Пропущено 1 неверное значение."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Некоторые правила используют действие Блокировка, которое требует Gravity "
+"Forms версии 2.9.15 или выше. Эти правила неактивны, пока вы не обновитесь."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"Обновление до Gravity Forms 2.9.15 или выше позволяет настраивать правила, "
+"блокирующие соответствующие отправки форм."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Требуется Gravity Forms 2.9.15 и выше"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "например, spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Включить правила отклонения"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Добавьте правила для блокировки, пометки или логирования отправок на основе "
+"электронной почты, введённой в это поле. Правила могут расширять или "
+"заменять глобальные правила отклонения."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Добавьте правила для блокировки, пометки или логирования отправок на основе "
+"электронной почты, введённой в это поле. Правила могут расширять или "
+"заменять "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "глобальные правила отклонения"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Режим правил"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Наследовать глобальные правила + добавить правила, специфичные для поля"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Использовать только правила, специфичные для поля (игнорировать глобальные)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Правила, специфичные для поля"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Сообщение проверки (необязательно)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Оставьте пустым, чтобы использовать глобальное сообщение по умолчанию."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"Введённый адрес электронной почты не разрешён. Пожалуйста, используйте "
+"другой адрес электронной почты."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Включите, чтобы бороться со спамом простым и эффективным способом, который "
+"работает лучше встроенного антиспам-ловушки."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Предотвращайте спам с помощью Gravity Forms Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Узнавайте, когда записи отмечены как спам."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Иногда трудно понять, когда записи помечаются как спам. Если функция "
+"включена, она будет отправлять автоматический отчет о спаме с кратким "
+"обзором последних спам-записей. Если спам-записей нет, отчет не "
+"отправляется."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Эта функция работает с любым спам-фильтром, включая Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA и другие."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Примечание: В зависимости от трафика сайта, отчеты по времени могут не "
+"всегда отправляться согласно расписанию. {{link}}Узнайте, как настроить "
+"«cron» для повышения надежности{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "Ссылка откроется в новой вкладке"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "Вы получили {{total_spam_count}} спам-записей из следующих форм:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Чтобы изменить или отключить это письмо, перейдите на "
+"{{settings_link}}страницу настроек Gravity Forms Zero "
+"Spam{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "Можно использовать следующие переменные:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Название этого сайта"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "Электронная почта администратора сайта"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "Общее количество спам-писем, полученных с момента последнего отчета."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "Список форм и количество спам-записей с момента последнего отчета."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Ссылка на страницу настроек плагина. Текст внутри переменных будет текстом "
+"ссылки. Обязательно включайте как открывающую, так и закрывающую переменную."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Блокировка спама"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Можно включать или отключать блокировку спама для каждой формы отдельно в "
+"настройках этой формы."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Включить Zero Spam по умолчанию"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Включено: Добавить Zero Spam к формам Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Отключено: Использовать встроенную защиту от спама Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Время истечения антиспама"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "Письмо с отчетом о спаме"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Частота отчётов о спаме"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Как часто следует отправлять электронные письма с отчётами о спаме?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Отключено"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "На основе порога"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "Дважды в день"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Ежедневно"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Еженедельно"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Ежемесячно"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Порог спам-записей"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Электронное письмо с отчётом о спаме будет отправлено, когда будет "
+"достигнуто указанное количество спам-записей."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "Лимит записей должен быть 1 или больше."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Отправлять отчёт о спаме на этот адрес электронной почты."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "Введённый адрес электронной почты недействителен."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "Тема письма"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Ваш отчёт о спаме Gravity Forms для {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "Сообщение письма"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Отправить тестовое письмо и сохранить настройки"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "Отправить письмо и сохранить настройки"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "Один раз в месяц"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "спам-запись"
+msgstr[1] "спам-записи"
+msgstr[2] "спам-записей"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Сколько времени токен предотвращения спама остается действительным после "
+"загрузки вашей формы посетителем. Если отправка форм ошибочно определяется "
+"как спам, попробуйте увеличить это значение. (По умолчанию: 7 дней)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Длительность срока действия"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Единица измерения срока действия"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "часы"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "дни"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"Короткие сроки действия могут вызывать ложные срабатывания на сайтах с "
+"кэшированием страниц."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Пожалуйста, введите минимум 1 день."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Пожалуйста, введите минимум 1 час."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Пожалуйста, выберите часы или дни."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "Максимальный срок действия — 90 дней."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "Максимальный срок действия — 2160 часов (90 дней)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Требуется действительный form_id."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Форма не найдена."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam не активирован для этой формы."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "Слишком много запросов. Попробуйте позже."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "Отправка не содержала токен предотвращения спама."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "Неверный формат токена предотвращения спама."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr ""
+"Токен предотвращения спама истек. Это может быть вызвано кэшированием "
+"страниц."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "Токен предотвращения спама был выдан для другой формы."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "Подпись токена защиты от спама недействительна."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"Устаревший ключ защиты от спама больше не принимается. Пожалуйста, очистите "
+"кэш страницы."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "Представленный ключ недействителен."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam был обновлён с улучшенной защитой от спама. "
+"Пожалуйста, очистите кэш страницы, чтобы все формы использовали новую "
+"защиту. Поддержка устаревших версий заканчивается %s."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Эта запись была отмечена как спам."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "Импортировано [count] правило."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "Пропущено [count] некорректное значение."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Отчёт о спаме Gravity Forms"

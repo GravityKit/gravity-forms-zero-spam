@@ -1,0 +1,622 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms ضد هرزنامه"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"افزایش قابلیت‌های Gravity Forms با افزودن تدابیر مؤثر ضد هرزنامه—بدون "
+"استفاده از CAPTCHA."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"مسدود کردن، علامت‌گذاری یا ثبت ارسال‌های ایمیل که با آدرس‌ها، دامنه‌ها یا "
+"الگوهای خاص مطابقت دارند. قوانین برای همه فیلدهای ایمیل اعمال می‌شود مگر "
+"اینکه به صورت جداگانه برای هر فیلد لغو شده باشد."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"علامت‌گذاری یا ثبت ارسال‌های ایمیل که با آدرس‌ها، دامنه‌ها یا الگوهای خاص "
+"مطابقت دارند. قوانین برای همه فیلدهای ایمیل اعمال می‌شود مگر اینکه به صورت "
+"جداگانه برای هر فیلد لغو شده باشد."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "قوانین رد ایمیل"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "فعال‌سازی قوانین رد ایمیل"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "قوانین"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "پیام اعتبارسنجی پیش‌فرض"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr ""
+"نمایش هنگام انتخاب «مسدود کردن». می‌توان برای هر فیلد ایمیل جداگانه آن را "
+"تغییر داد."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "افزودن قانون"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "حذف"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "ویرایش"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "فعال‌سازی"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "غیرفعال‌سازی"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "ذخیره"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "لغو"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "دامنه"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "ایمیل"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "کاراکتر جایگزین"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "عبارت منظم"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "مسدود کردن"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "علامت‌گذاری به‌عنوان اسپم"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "فقط ثبت"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "نوع"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "مقدار"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "عمل"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "هنوز هیچ قانونی تعریف نشده است."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "وارد کردن قوانین"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"مقادیر را وارد کنید، هر خط یک مقدار یا جداشده با ویرگول. به‌صورت خودکار "
+"به‌عنوان نوع دامنه یا ایمیل شناسایی می‌شود."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "وارد کردن"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "این قانون حذف شود؟"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "عبارت منظم نامعتبر است."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "لطفاً یک دامنه معتبر وارد کنید."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "هیچ قانون معتبری برای وارد کردن یافت نشد."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "۱ قانون وارد شد."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "یک مقدار نامعتبر رد شد."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"برخی قوانین از عمل مسدودسازی استفاده می‌کنند که نیاز به Gravity Forms نسخه "
+"2.9.15 یا بالاتر دارد. این قوانین تا زمان به‌روزرسانی غیرفعال هستند."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"ارتقاء به Gravity Forms نسخه 2.9.15 یا بالاتر امکان پیکربندی قوانینی را "
+"فراهم می‌کند که ارسال فرم‌های مطابق را مسدود می‌کنند."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "نیازمند Gravity Forms نسخه 2.9.15 یا بالاتر"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "مثلاً، spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "فعال‌سازی قوانین رد کردن"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"افزودن قوانین برای مسدودسازی، علامت‌گذاری یا ثبت ارسال‌ها بر اساس ایمیل "
+"وارد شده در این فیلد. قوانین می‌توانند قوانین رد کلی را گسترش داده یا "
+"جایگزین کنند."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"افزودن قوانین برای مسدودسازی، علامت‌گذاری یا ثبت ارسال‌ها بر اساس ایمیل "
+"وارد شده در این فیلد. قوانین می‌توانند قوانین رد کلی را گسترش داده یا "
+"جایگزین "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "قوانین رد کلی"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "حالت قانون"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "ارث‌بری قوانین کلی + افزودن قوانین مخصوص فیلد"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "استفاده تنها از قوانین مخصوص فیلد (نادیده گرفتن قوانین کلی)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "قوانین مخصوص فیلد"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "پیام اعتبارسنجی (اختیاری)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "برای استفاده از پیام پیش‌فرض کلی، خالی بگذارید."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"آدرس ایمیلی که وارد کرده‌اید مجاز نیست. لطفاً از آدرس ایمیل دیگری استفاده "
+"کنید."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"برای مقابله با اسپم از روشی ساده و مؤثر استفاده کنید که موثرتر از honeypot "
+"ضد اسپم داخلی است."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "جلوگیری از اسپم با استفاده از Gravity Forms Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "زمانی که ورودی‌ها به‌عنوان هرزنامه علامت‌گذاری شده‌اند را بدانید."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"ممکن است سخت باشد بدانید که چه زمانی ورودی‌ها به‌عنوان هرزنامه علامت‌گذاری "
+"می‌شوند. وقتی فعال باشد، این ویژگی گزارشی خودکار از هرزنامه ارسال می‌کند که "
+"خلاصه‌ای از ورودی‌های هرزنامه اخیر را به شما می‌دهد. اگر ورودی هرزنامه‌ای "
+"ارسال نشده باشد، گزارشی ارسال نخواهد شد."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"این ویژگی با هر فیلتر هرزنامه‌ای کار می‌کند، از جمله تله هرزنامه Gravity "
+"Forms، Gravity Forms Zero Spam، reCAPTCHA یا سایر موارد."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"توجه: بسته به ترافیک سایت، گزارش‌های مبتنی بر زمان ممکن است همیشه در فرکانس "
+"برنامه‌ریزی شده ارسال نشوند. {{link}}برای دیدن نحوه راه‌اندازی «کرون» به "
+"منظور افزایش قابلیت اطمینان اینجا کلیک کنید{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "پیوند در یک تب جدید باز می‌شود"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "شما {{total_spam_count}} ورودی هرزنامه از فرم(های) زیر دریافت کرده‌اید:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"برای تغییر یا غیرفعال کردن این ایمیل، به صفحه تنظیمات Gravity Forms Zero "
+"Spam در {{settings_link}}اینجا{{/settings_link}} مراجعه کنید."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "متغیرهای زیر ممکن است استفاده شوند:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "نام این وب‌سایت"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "ایمیل مدیر سایت"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "تعداد کل ایمیل‌های هرزنامه دریافت شده از آخرین گزارش."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "فهرستی از فرم‌ها و تعداد ورودی‌های هرزنامه از آخرین گزارش."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"یک پیوند به صفحه تنظیمات افزونه. متن داخل متغیرها متن پیوند خواهد بود. "
+"حتماً هر دو متغیر باز و بسته را شامل کنید."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "مسدودسازی هرزنامه"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"امکان فعال یا غیرفعال کردن مسدودسازی هرزنامه به ازای هر فرم در تنظیمات هر "
+"فرم وجود دارد."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "فعال‌سازی Zero Spam به‌صورت پیش‌فرض"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "فعال: افزودن Zero Spam به فرم‌های Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "غیرفعال: استفاده از پیشگیری هرزنامه داخلی Gravity Forms"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "انقضای ضد هرزنامه"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "ایمیل گزارش هرزنامه"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "فرکانس گزارش اسپم"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "گزارش‌های ایمیل اسپم باید با چه فرکانسی ارسال شوند؟"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "غیرفعال"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "بر اساس آستانه"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "دو بار در روز"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "روزانه"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "هفتگی"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "ماهانه"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "آستانه ورودی اسپم"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"زمانی که تعداد مشخص شده ورودی‌های اسپم برسد، ایمیل گزارش اسپم ارسال خواهد "
+"شد."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "حد ورودی باید ۱ یا بیشتر باشد."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "گزارش اسپم به این آدرس ایمیل ارسال شود."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "ایمیل وارد شده نامعتبر است."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "موضوع ایمیل"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "گزارش اسپم فرم‌های Gravity شما برای {{site_name}}"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "متن ایمیل"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "ارسال ایمیل آزمایشی و ذخیره تنظیمات"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "ارسال ایمیل و ذخیره تنظیمات"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "یک بار در ماه"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "ورودی هرزنامه"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"طول مدت اعتبار یک نشانگر جلوگیری از هرزنامه پس از بارگذاری فرم توسط "
+"بازدیدکننده. اگر ارسال‌های فرم به اشتباه به عنوان هرزنامه علامت‌گذاری "
+"می‌شوند، سعی کنید این مقدار را افزایش دهید. (پیش‌فرض: ۷ روز)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "مدت زمان انقضا"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "واحد انقضا"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "ساعت"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "روز"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr "زمان‌های کوتاه انقضا ممکن است باعث مثبت کاذب در سایت‌هایی با کش صفحه شود."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "لطفاً حداقل ۱ روز وارد کنید."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "لطفاً حداقل ۱ ساعت وارد کنید."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "لطفاً ساعت یا روز را انتخاب کنید."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "حداکثر زمان انقضا ۹۰ روز است."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "حداکثر زمان انقضا ۲۱۶۰ ساعت (۹۰ روز) است."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "یک form_id معتبر لازم است."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "فرم پیدا نشد."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "Zero Spam برای این فرم فعال نیست."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "درخواست‌های زیادی ارسال شده است. لطفاً بعداً دوباره تلاش کنید."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "ارسال شامل نشانگر جلوگیری از هرزنامه نبود."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "فرمت نشانگر جلوگیری از هرزنامه نامعتبر است."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr "نشانگر جلوگیری از هرزنامه منقضی شده است. این ممکن است به دلیل کش صفحه باشد."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "نشانگر جلوگیری از هرزنامه برای فرم دیگری صادر شده است."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "امضای نشانه جلوگیری از هرزنامه نامعتبر است."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"کلید جلوگیری از هرزنامه قدیمی دیگر پذیرفته نمی‌شود. لطفاً کش صفحه خود را "
+"پاک کنید."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "کلید ارسال شده نامعتبر است."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"Gravity Forms Zero Spam با محافظت بهتر در برابر هرزنامه به‌روزرسانی شده "
+"است. لطفاً کش صفحه خود را پاک کنید تا همه فرم‌ها از محافظت جدید استفاده "
+"کنند. پشتیبانی قدیمی در %s به پایان می‌رسد."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "این ورودی به عنوان هرزنامه علامت‌گذاری شده است."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] قانون وارد شده است."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "[count] مقدار نامعتبر رد شد."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "گزارش هرزنامه Gravity Forms"

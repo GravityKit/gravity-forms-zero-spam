@@ -1,0 +1,628 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gravity-forms-zero-spam\n"
+"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gravityforms-zero-spam.php
+msgid "Gravity Forms Zero Spam"
+msgstr "Gravity Forms Zero Spam"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=pluginuri"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"Enhance Gravity Forms to include effective anti-spam measures—without using "
+"a CAPTCHA."
+msgstr ""
+"A Gravity Forms kiterjesztése hatékony spam elleni védelemmel – CAPTCHA "
+"használata nélkül."
+
+#: gravityforms-zero-spam.php
+msgid "GravityKit"
+msgstr "GravityKit"
+
+#: gravityforms-zero-spam.php
+msgid ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+msgstr ""
+"https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
+"content=authoruri"
+
+#: includes/class-email-rejection-settings.php:171
+msgid ""
+"Block, flag, or log email submissions matching specific addresses, domains, "
+"or patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"E-mail küldemények blokkolása, megjelölése vagy naplózása adott címek, "
+"domainek vagy minták alapján. A szabályok minden e-mail mezőre érvényesek, "
+"hacsak mezőnként másként nem rendelkeznek."
+
+#: includes/class-email-rejection-settings.php:172
+msgid ""
+"Flag or log email submissions matching specific addresses, domains, or "
+"patterns. Rules apply to all email fields unless overridden per field."
+msgstr ""
+"E-mail küldemények megjelölése vagy naplózása adott címek, domainek vagy "
+"minták alapján. A szabályok minden e-mail mezőre érvényesek, hacsak "
+"mezőnként másként nem rendelkeznek."
+
+#: includes/class-email-rejection-settings.php:175
+msgid "Email Rejection Rules"
+msgstr "E-mail elutasítási szabályok"
+
+#: includes/class-email-rejection-settings.php:180
+msgid "Enable Email Rejection Rules"
+msgstr "E-mail elutasítási szabályok engedélyezése"
+
+#: includes/class-email-rejection-settings.php:186
+msgid "Rules"
+msgstr "Szabályok"
+
+#: includes/class-email-rejection-settings.php:200
+msgid "Default Validation Message"
+msgstr "Alapértelmezett ellenőrző üzenet"
+
+#: includes/class-email-rejection-settings.php:204
+msgid "Shown when action is \"Block\". Can be overridden per email field."
+msgstr "Megjelenik, ha az akció „Blokkolás”. Mezőszerűen felülírható."
+
+#: includes/class-email-rejection-settings.php:314
+msgid "Add Rule"
+msgstr "Szabály hozzáadása"
+
+#: includes/class-email-rejection-settings.php:315
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: includes/class-email-rejection-settings.php:316
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: includes/class-email-rejection-settings.php:317
+msgid "Enable"
+msgstr "Engedélyezés"
+
+#: includes/class-email-rejection-settings.php:318
+msgid "Disable"
+msgstr "Letiltás"
+
+#: includes/class-email-rejection-settings.php:319
+msgid "Save"
+msgstr "Mentés"
+
+#: includes/class-email-rejection-settings.php:320
+msgid "Cancel"
+msgstr "Mégse"
+
+#: includes/class-email-rejection-settings.php:321
+msgid "Domain"
+msgstr "Domain"
+
+#: includes/class-email-rejection-settings.php:322
+msgid "Email"
+msgstr "Email"
+
+#: includes/class-email-rejection-settings.php:323
+msgid "Wildcard"
+msgstr "Helyettesítő karakter"
+
+#: includes/class-email-rejection-settings.php:324
+msgid "Regex"
+msgstr "Regex"
+
+#: includes/class-email-rejection-settings.php:325
+msgid "Block"
+msgstr "Blokkolás"
+
+#: includes/class-email-rejection-settings.php:326
+msgid "Flag as Spam"
+msgstr "Spamként jelölés"
+
+#: includes/class-email-rejection-settings.php:327
+msgid "Log Only"
+msgstr "Csak naplózás"
+
+#: includes/class-email-rejection-settings.php:328
+msgid "Type"
+msgstr "Típus"
+
+#: includes/class-email-rejection-settings.php:329
+msgid "Value"
+msgstr "Érték"
+
+#: includes/class-email-rejection-settings.php:330
+msgid "Action"
+msgstr "Művelet"
+
+#: includes/class-email-rejection-settings.php:331
+msgid "No rules defined yet."
+msgstr "Még nincsenek definiált szabályok."
+
+#: includes/class-email-rejection-settings.php:332
+msgid "Import Rules"
+msgstr "Szabályok importálása"
+
+#: includes/class-email-rejection-settings.php:333
+msgid ""
+"Paste values, one per line or comma-separated. Auto-detected as Domain or "
+"Email type."
+msgstr ""
+"Illessze be az értékeket, egyet soronként vagy vesszővel elválasztva. "
+"Automatikusan domain vagy email típusra érzékeli."
+
+#: includes/class-email-rejection-settings.php:334
+msgid "Import"
+msgstr "Importálás"
+
+#: includes/class-email-rejection-settings.php:335
+msgid "Remove this rule?"
+msgstr "Eltávolítja ezt a szabályt?"
+
+#: includes/class-email-rejection-settings.php:336
+msgid "Invalid regular expression."
+msgstr "Érvénytelen reguláris kifejezés."
+
+#: includes/class-email-rejection-settings.php:337
+msgid "Please enter a valid email address."
+msgstr "Kérjük, adjon meg egy érvényes email címet."
+
+#: includes/class-email-rejection-settings.php:338
+msgid "Please enter a valid domain."
+msgstr "Kérjük, adjon meg egy érvényes domaint."
+
+#: includes/class-email-rejection-settings.php:339
+msgid "No valid rules found to import."
+msgstr "Nem található importálható érvényes szabály."
+
+#: includes/class-email-rejection-settings.php:340
+msgid "1 rule imported."
+msgstr "1 szabály importálva."
+
+#: includes/class-email-rejection-settings.php:343
+msgid "Skipped 1 invalid value."
+msgstr "1 érvénytelen érték kihagyva."
+
+#: includes/class-email-rejection-settings.php:346
+msgid ""
+"Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
+"These rules are inactive until you update."
+msgstr ""
+"Néhány szabály a Blokk műveletet használja, ami Gravity Forms 2.9.15+ "
+"verziót igényel. Ezek a szabályok inaktívak, amíg nem frissítesz."
+
+#: includes/class-email-rejection-settings.php:347
+msgid ""
+"Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
+"configure rules that block matching form submissions."
+msgstr ""
+"A Gravity Forms 2.9.15 vagy újabb verzióra való frissítés lehetővé teszi "
+"olyan szabályok konfigurálását, amelyek blokkolják az egyező "
+"űrlapbeküldéseket."
+
+#: includes/class-email-rejection-settings.php:348
+msgid "Requires Gravity Forms 2.9.15+"
+msgstr "Gravity Forms 2.9.15+ szükséges"
+
+#: includes/class-email-rejection-settings.php:349
+msgid "e.g., spamdomain.com"
+msgstr "pl. spamdomain.com"
+
+#: includes/class-email-rejection-settings.php:350
+msgid "Enable rejection rules"
+msgstr "Elutasítási szabályok engedélyezése"
+
+#: includes/class-email-rejection-settings.php:351
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the global rejection rules."
+msgstr ""
+"Adj hozzá szabályokat az ebben a mezőben megadott e-mail alapján történő "
+"beküldések blokkolásához, megjelöléséhez vagy naplózásához. A szabályok "
+"kiterjeszthetik vagy felülírhatják a globális elutasítási szabályokat."
+
+#: includes/class-email-rejection-settings.php:352
+msgid ""
+"Add rules to block, flag, or log submissions based on the email entered in "
+"this field. Rules can extend or replace the "
+msgstr ""
+"Adj hozzá szabályokat az ebben a mezőben megadott e-mail alapján történő "
+"beküldések blokkolásához, megjelöléséhez vagy naplózásához. A szabályok "
+"kiterjeszthetik vagy felülírhatják a "
+
+#: includes/class-email-rejection-settings.php:353
+msgid "global rejection rules"
+msgstr "globális elutasítási szabályokat"
+
+#: includes/class-email-rejection-settings.php:354
+msgid "."
+msgstr "."
+
+#: includes/class-email-rejection-settings.php:355
+msgid "Rule Mode"
+msgstr "Szabály mód"
+
+#: includes/class-email-rejection-settings.php:356
+msgid "Inherit global rules + add field-specific rules"
+msgstr "Globális szabályok öröklése + mezőspecifikus szabályok hozzáadása"
+
+#: includes/class-email-rejection-settings.php:357
+msgid "Use only field-specific rules (ignore global)"
+msgstr "Csak mezőspecifikus szabályok használata (globális figyelmen kívül hagyása)"
+
+#: includes/class-email-rejection-settings.php:358
+msgid "Field-Specific Rules"
+msgstr "Mezőspecifikus szabályok"
+
+#: includes/class-email-rejection-settings.php:359
+msgid "Validation Message (optional)"
+msgstr "Érvényesítési üzenet (opcionális)"
+
+#: includes/class-email-rejection-settings.php:360
+msgid "Leave blank to use the global default message."
+msgstr "Hagyd üresen a globális alapértelmezett üzenet használatához."
+
+#: includes/class-email-rejection.php:623
+msgid ""
+"The email address you entered is not allowed. Please use a different email "
+"address."
+msgstr ""
+"Az általad megadott e-mail cím nem engedélyezett. Kérjük, használj másik "
+"e-mail címet."
+
+#: includes/class-gf-zero-spam-addon.php:187
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"Enable to fight spam using a simple, effective method that is more "
+"effective than the built-in anti-spam honeypot."
+msgstr ""
+"Engedélyezd a spam elleni küzdelemhez egy egyszerű, hatékony módszert, "
+"amely hatékonyabb, mint a beépített spam elleni mézesmadzag."
+
+#: includes/class-gf-zero-spam-addon.php:240
+msgid "Prevent spam using Gravity Forms Zero Spam"
+msgstr "Spam megelőzése a Gravity Forms Zero Spam segítségével"
+
+#: includes/class-gf-zero-spam-addon.php:265
+msgid "Know when entries are flagged as spam."
+msgstr "Tudd, mikor vannak a bejegyzések spamként megjelölve."
+
+#: includes/class-gf-zero-spam-addon.php:266
+msgid ""
+"It can be hard to know when entries are being marked as spam. When enabled, "
+"this feature will send an automated spam report, giving you a summary of "
+"recent spam entries. If no spam entries have been submitted, no report will "
+"be sent."
+msgstr ""
+"Nehéz lehet tudni, mikor jelölnek meg bejegyzéseket spamként. Ha "
+"engedélyezve van, ez a funkció automatikus spam jelentést küld, amely "
+"összefoglalót ad a közelmúlt spam bejegyzéseiről. Ha nem érkezett spam "
+"bejegyzés, nem kerül jelentés kiküldésre."
+
+#: includes/class-gf-zero-spam-addon.php:267
+msgid ""
+"This feature works with any spam filter, including the Gravity Forms spam "
+"honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
+msgstr ""
+"Ez a funkció bármilyen spam szűrővel működik, beleértve a Gravity Forms "
+"spam csapdát, a Gravity Forms Zero Spam-et, a reCAPTCHA-t vagy másokat."
+
+#: includes/class-gf-zero-spam-addon.php:269
+msgid ""
+"Note: Depending on site traffic, time-based reports may not always be sent "
+"at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
+"this more reliable{{/link}}."
+msgstr ""
+"Megjegyzés: A webhely forgalmától függően az időalapú jelentések nem mindig "
+"az ütemezett gyakorisággal kerülnek kiküldésre. {{link}}Nézze meg, hogyan "
+"állíthat be „cron”-t a megbízhatóbb működéshez{{/link}}."
+
+#: includes/class-gf-zero-spam-addon.php:272
+msgid "Link opens in a new tab"
+msgstr "A link új lapon nyílik meg"
+
+#: includes/class-gf-zero-spam-addon.php:281
+msgid ""
+"You have received {{total_spam_count}} spam entries from the following "
+"form(s):"
+msgstr "A következő űrlap(oka)tól {{total_spam_count}} spam bejegyzést kaptál:"
+
+#: includes/class-gf-zero-spam-addon.php:284
+msgid ""
+"To modify or disable this email, visit {{settings_link}}the Gravity Forms "
+"Zero Spam settings page{{/settings_link}}."
+msgstr ""
+"Az e-mail módosításához vagy kikapcsolásához látogass el a "
+"{{settings_link}}Gravity Forms Zero Spam beállítások "
+"oldalára{{/settings_link}}."
+
+#: includes/class-gf-zero-spam-addon.php:286
+msgid "The following variables may be used:"
+msgstr "A következő változók használhatók:"
+
+#: includes/class-gf-zero-spam-addon.php:288
+msgid "The name of this website"
+msgstr "Ennek a webhelynek a neve"
+
+#: includes/class-gf-zero-spam-addon.php:289
+msgid "The email of the site administrator"
+msgstr "A webhely adminisztrátorának e-mail címe"
+
+#: includes/class-gf-zero-spam-addon.php:290
+msgid "The total number of spam emails received since the last report."
+msgstr "A spam e-mailek összesített száma az utolsó jelentés óta."
+
+#: includes/class-gf-zero-spam-addon.php:291
+msgid "A list of forms and the number of spam entries since the last report."
+msgstr "Az űrlapok listája és a spam bejegyzések száma az utolsó jelentés óta."
+
+#: includes/class-gf-zero-spam-addon.php:292
+msgid ""
+"A link to the plugin settings page. Text inside the variables will be the "
+"link text. Make sure to include both the opening and closing variables."
+msgstr ""
+"Link a bővítmény beállítási oldalára. A változók közötti szöveg lesz a link "
+"szövege. Ügyelj arra, hogy mind a nyitó, mind a záró változó benne legyen."
+
+#: includes/class-gf-zero-spam-addon.php:297
+msgid "Spam Blocking"
+msgstr "Spam blokkolás"
+
+#: includes/class-gf-zero-spam-addon.php:298
+msgid ""
+"It is possible to enable or disable spam blocking on a per-form basis "
+"inside each form's settings."
+msgstr ""
+"Lehetőség van a spam blokkolás engedélyezésére vagy letiltására űrlaponként "
+"az egyes űrlapok beállításaiban."
+
+#: includes/class-gf-zero-spam-addon.php:301
+msgid "Enable Zero Spam by Default"
+msgstr "Zero Spam alapértelmezett engedélyezése"
+
+#: includes/class-gf-zero-spam-addon.php:307
+msgid "Enabled: Add Zero Spam to Gravity Forms forms"
+msgstr "Engedélyezve: Zero Spam hozzáadása a Gravity Forms űrlapokhoz"
+
+#: includes/class-gf-zero-spam-addon.php:311
+msgid "Disabled: Use Gravity Forms' built-in spam prevention"
+msgstr "Letiltva: Gravity Forms beépített spam megelőzésének használata"
+
+#: includes/class-gf-zero-spam-addon.php:318
+msgid "Anti-Spam Expiration"
+msgstr "Anti-spam lejárati idő"
+
+#: includes/class-gf-zero-spam-addon.php:336
+msgid "Spam Report Email"
+msgstr "Spam jelentés e-mail"
+
+#: includes/class-gf-zero-spam-addon.php:340
+msgid "Spam Report Frequency"
+msgstr "Spam jelentés gyakorisága"
+
+#: includes/class-gf-zero-spam-addon.php:342
+msgid "How frequently should spam report emails be sent?"
+msgstr "Milyen gyakran küldjünk spam jelentés e-maileket?"
+
+#: includes/class-gf-zero-spam-addon.php:348
+msgid "Disabled"
+msgstr "Letiltva"
+
+#: includes/class-gf-zero-spam-addon.php:352
+msgid "Threshold-Based"
+msgstr "Küszöbérték alapú"
+
+#: includes/class-gf-zero-spam-addon.php:356
+msgid "Twice Daily"
+msgstr "Naponta kétszer"
+
+#: includes/class-gf-zero-spam-addon.php:360
+msgid "Daily"
+msgstr "Naponta"
+
+#: includes/class-gf-zero-spam-addon.php:364
+msgid "Weekly"
+msgstr "Hetente"
+
+#: includes/class-gf-zero-spam-addon.php:368
+msgid "Monthly"
+msgstr "Havonta"
+
+#: includes/class-gf-zero-spam-addon.php:379
+msgid "Spam Entry Threshold"
+msgstr "Spam bejegyzés küszöbérték"
+
+#: includes/class-gf-zero-spam-addon.php:380
+msgid ""
+"A spam report email will be sent when the specified number of spam entries "
+"is reached."
+msgstr ""
+"Spam jelentés e-mail kerül elküldésre, amikor az adott számú spam bejegyzés "
+"eléri a megadott értéket."
+
+#: includes/class-gf-zero-spam-addon.php:398
+msgid "Entry limit has to be 1 or more."
+msgstr "A bejegyzés limitnek 1 vagy annál nagyobbnak kell lennie."
+
+#: includes/class-gf-zero-spam-addon.php:404
+msgid "Email Address"
+msgstr "E-mail cím"
+
+#: includes/class-gf-zero-spam-addon.php:405
+msgid "Send spam report to this email address."
+msgstr "Ide az e-mail címre küldje a spam jelentést."
+
+#: includes/class-gf-zero-spam-addon.php:415
+msgid "The email entered is invalid."
+msgstr "A megadott e-mail cím érvénytelen."
+
+#: includes/class-gf-zero-spam-addon.php:429
+msgid "Email Subject"
+msgstr "E-mail tárgy"
+
+#: includes/class-gf-zero-spam-addon.php:431
+msgid "Your Gravity Forms spam report for {{site_name}}"
+msgstr "Az Ön Gravity Forms spam jelentése a(z) {{site_name}} oldalról"
+
+#: includes/class-gf-zero-spam-addon.php:444
+msgid "Email Message"
+msgstr "E-mail üzenet"
+
+#: includes/class-gf-zero-spam-addon.php:474
+msgid "Send Test Email & Save Settings"
+msgstr "Teszt e-mail küldése és beállítások mentése"
+
+#: includes/class-gf-zero-spam-addon.php:475
+msgid "Send Email & Save Settings"
+msgstr "E-mail küldése és beállítások mentése"
+
+#: includes/class-gf-zero-spam-addon.php:589
+msgid "Once Monthly"
+msgstr "Havonta egyszer"
+
+#: includes/class-gf-zero-spam-addon.php:778
+msgid "spam entry"
+msgid_plural "spam entries"
+msgstr[0] "spam bejegyzés"
+msgstr[1] "spam bejegyzések"
+
+#: includes/class-gf-zero-spam-addon.php:865
+msgid ""
+"How long a spam prevention token remains valid after a visitor loads your "
+"form. If form submissions are being incorrectly flagged as spam, try "
+"increasing this value. (Default: 7 days)"
+msgstr ""
+"Meddig érvényes a spam elleni védelem tokenje, miután egy látogató betölti "
+"az űrlapját. Ha az űrlapbeküldések tévesen spamként vannak jelölve, "
+"próbálja meg növelni ezt az értéket. (Alapértelmezett: 7 nap)"
+
+#: includes/class-gf-zero-spam-addon.php:869
+msgid "Expiration length"
+msgstr "Lejárati idő hossza"
+
+#: includes/class-gf-zero-spam-addon.php:881
+msgid "Expiration unit"
+msgstr "Lejárati egység"
+
+#: includes/class-gf-zero-spam-addon.php:889
+msgid "hours"
+msgstr "óra"
+
+#: includes/class-gf-zero-spam-addon.php:892
+msgid "days"
+msgstr "nap"
+
+#: includes/class-gf-zero-spam-addon.php:908
+msgid "Short expiration times may cause false positives on sites with page caching."
+msgstr ""
+"A rövid lejárati idők hamis pozitív eredményeket okozhatnak oldal "
+"gyorsítótárazás esetén."
+
+#: includes/class-gf-zero-spam-addon.php:987
+msgid "Please enter at least 1 day."
+msgstr "Kérem, adjon meg legalább 1 napot."
+
+#: includes/class-gf-zero-spam-addon.php:988
+msgid "Please enter at least 1 hour."
+msgstr "Kérem, adjon meg legalább 1 órát."
+
+#: includes/class-gf-zero-spam-addon.php:994
+msgid "Please select hours or days."
+msgstr "Kérem, válasszon órát vagy napot."
+
+#: includes/class-gf-zero-spam-addon.php:999
+msgid "The maximum expiration is 90 days."
+msgstr "A maximális lejárati idő 90 nap."
+
+#: includes/class-gf-zero-spam-addon.php:1001
+msgid "The maximum expiration is 2160 hours (90 days)."
+msgstr "A maximális lejárati idő 2160 óra (90 nap)."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:68
+msgid "A valid form_id is required."
+msgstr "Érvényes form_id szükséges."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:74
+msgid "Form not found."
+msgstr "Űrlap nem található."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:81
+msgid "Zero Spam is not enabled for this form."
+msgstr "A Zero Spam nincs engedélyezve ezen az űrlapon."
+
+#: includes/class-gf-zero-spam-token-endpoint.php:145
+msgid "Too many requests. Please try again later."
+msgstr "Túl sok kérés. Kérjük, próbálja újra később."
+
+#: includes/class-gf-zero-spam.php:385
+#: includes/class-gf-zero-spam.php:409
+msgid "The submission did not include a spam prevention token."
+msgstr "A beküldés nem tartalmazott spam elleni védelmi tokent."
+
+#: includes/class-gf-zero-spam.php:386
+msgid "The spam prevention token format is invalid."
+msgstr "A spam elleni védelem token formátuma érvénytelen."
+
+#: includes/class-gf-zero-spam.php:387
+msgid "The spam prevention token has expired. This may be caused by page caching."
+msgstr ""
+"A spam elleni védelem token lejárt. Ennek oka lehet az oldal "
+"gyorsítótárazása."
+
+#: includes/class-gf-zero-spam.php:388
+msgid "The spam prevention token was issued for a different form."
+msgstr "A spam elleni védelem tokent másik űrlaphoz adták ki."
+
+#: includes/class-gf-zero-spam.php:389
+msgid "The spam prevention token signature is invalid."
+msgstr "A kéretlen levelek elleni védelem token aláírása érvénytelen."
+
+#: includes/class-gf-zero-spam.php:456
+msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
+msgstr ""
+"A régi kéretlen levelek elleni védelem kulcsát már nem fogadjuk el. Kérjük, "
+"ürítse ki az oldal gyorsítótárát."
+
+#: includes/class-gf-zero-spam.php:462
+#: includes/class-gf-zero-spam.php:466
+msgid "The submitted key is invalid."
+msgstr "A megadott kulcs érvénytelen."
+
+#: includes/class-gf-zero-spam.php:498
+msgid ""
+"Gravity Forms Zero Spam has been upgraded with improved spam protection. "
+"Please clear your page cache to ensure all forms use the new protection. "
+"Legacy support ends on %s."
+msgstr ""
+"A Gravity Forms Zero Spam továbbfejlesztett kéretlen levelek elleni "
+"védelemmel frissült. Kérjük, ürítse ki az oldal gyorsítótárát, hogy az "
+"összes űrlap az új védelmet használja. A régi támogatás %s dátummal ér "
+"véget."
+
+#: includes/class-gf-zero-spam.php:542
+msgid "This entry has been marked as spam."
+msgstr "Ez a bejegyzés kéretlen levélként lett megjelölve."
+
+#: includes/class-email-rejection-settings.php:342
+msgid "[count] rules imported."
+msgstr "[count] importált szabály."
+
+#: includes/class-email-rejection-settings.php:345
+msgid "Skipped [count] invalid values."
+msgstr "[count] kihagyott érvénytelen érték."
+
+#: includes/class-gf-zero-spam-addon.php:279
+msgctxt "The heading inside the email body."
+msgid "Gravity Forms Spam Report"
+msgstr "Gravity Forms kéretlen levelek jelentése"

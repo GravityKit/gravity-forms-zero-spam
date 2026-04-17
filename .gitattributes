@@ -8,7 +8,9 @@ package.json export-ignore
 package-lock.json export-ignore
 composer.json export-ignore
 composer.lock export-ignore
+Gruntfile.js export-ignore
 postcss.config.mjs export-ignore
+translations.pot export-ignore
 phpcs.xml.dist export-ignore
 phpstan.dist.neon export-ignore
 
@@ -21,3 +23,5 @@ phpstan.dist.neon export-ignore
 /assets export-ignore
 /svn export-ignore
 /vendor export-ignore
+.gktools.json export-ignore
+.gktools.env export-ignore

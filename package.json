@@ -1,6 +1,6 @@
 {
   "name": "gravity-forms-zero-spam",
-  "version": "1.7.5",
+  "version": "1.8.0",
   "private": true,
   "scripts": {
     "build:css": "postcss assets/css/email-rejection.pcss -o dist/css/gf-zero-spam.css --no-map",
@@ -20,6 +20,9 @@
     "postcss-cli": "^11.0.0",
     "postcss-nesting": "^13.0.1",
     "postcss-simple-vars": "^7.0.1",
+    "grunt": "^1.5.3",
+    "grunt-exec": "^0.4.6",
+    "grunt-wp-i18n": "^1.0.3",
     "terser": "^5.37.0"
   },
   "lint-staged": {
