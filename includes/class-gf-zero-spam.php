@@ -224,14 +224,23 @@ class GF_Zero_Spam {
 		/**
 		 * Filters the fallback token TTL embedded in the page HTML.
 		 *
-		 * The fallback token is used when the AJAX token fetch fails.
-		 * Its TTL should exceed the longest page cache duration on the site.
+		 * The fallback token is what JS submits when the admin-ajax token fetch fails.
+		 * It is rendered into the form HTML at request time and therefore travels into
+		 * any HTTP cache (Cloudflare, WP Rocket, Varnish, host edge caches). A long TTL
+		 * means a single cached page yields a long-lived bearer token to anyone who can
+		 * read the HTML — including scrapers — so this value is intentionally short.
+		 *
+		 * Real visitors only fall back to this token when the admin-ajax fetch fails,
+		 * so 15 minutes is more than enough slack for a single render→submit sequence.
+		 * Sites that need to outlive longer cache windows can raise this via the filter.
 		 *
 		 * @since 1.7.3
+		 * @since TBD Default reduced from the configurable AJAX TTL to 15 minutes to
+		 *            limit the cached-token leak window.
 		 *
-		 * @param int $ttl Fallback token lifetime in seconds. Default 604800 (7 days).
+		 * @param int $ttl Fallback token lifetime in seconds. Default 900 (15 minutes).
 		 */
-		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', GF_Zero_Spam_AddOn::get_instance()->get_token_ttl_seconds() );
+		$fallback_ttl = (int) apply_filters( 'gf_zero_spam_fallback_token_ttl', 15 * MINUTE_IN_SECONDS );
 
 		$this->pending_scripts[ $form_id ] = [
 			'ajaxUrl'       => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
