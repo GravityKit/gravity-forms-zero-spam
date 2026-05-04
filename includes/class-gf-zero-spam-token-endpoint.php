@@ -21,6 +21,24 @@ class GF_Zero_Spam_Token_Endpoint {
 	const RATE_LIMIT = 30;
 
 	/**
+	 * Option name storing the diagnostic ring buffer of recent mint attempts.
+	 *
+	 * @since TBD
+	 *
+	 * @var string
+	 */
+	const DIAGNOSTIC_OPTION = 'gf_zero_spam_mint_log';
+
+	/**
+	 * Maximum number of mint-attempt records kept in the diagnostic ring buffer.
+	 *
+	 * @since TBD
+	 *
+	 * @var int
+	 */
+	const DIAGNOSTIC_MAX_ENTRIES = 200;
+
+	/**
 	 * Registers the admin-ajax endpoint hooks.
 	 *
 	 * @since 1.7.0
@@ -44,7 +62,7 @@ class GF_Zero_Spam_Token_Endpoint {
 		$form_id = isset( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
 
 		if ( ! $this->is_request_origin_allowed() ) {
-			$this->log_debug( sprintf( 'rejecting mint for form %d: bad origin (origin=%s referer=%s sec-fetch-site=%s ip=%s ua=%s)', $form_id, $this->server_value( 'HTTP_ORIGIN' ), $this->server_value( 'HTTP_REFERER' ), $this->server_value( 'HTTP_SEC_FETCH_SITE' ), $this->client_ip(), $this->server_value( 'HTTP_USER_AGENT' ) ) );
+			$this->record_mint_attempt( $form_id, 'rejected_origin' );
 
 			wp_send_json_error( __( 'Invalid request origin.', 'gravity-forms-zero-spam' ), 403 );
 		}
@@ -55,12 +73,12 @@ class GF_Zero_Spam_Token_Endpoint {
 			$error_data = $result->get_error_data();
 			$status     = is_array( $error_data ) && isset( $error_data['status'] ) ? (int) $error_data['status'] : 500;
 
-			$this->log_debug( sprintf( 'rejecting mint for form %d: %s (status=%d ip=%s)', $form_id, $result->get_error_code(), $status, $this->client_ip() ) );
+			$this->record_mint_attempt( $form_id, 'rejected_' . $result->get_error_code() );
 
 			wp_send_json_error( $result->get_error_message(), $status );
 		}
 
-		$this->log_debug( sprintf( 'minted token for form %d (ip=%s)', $form_id, $this->client_ip() ) );
+		$this->record_mint_attempt( $form_id, 'allowed' );
 
 		wp_send_json( $result );
 	}
@@ -167,24 +185,67 @@ class GF_Zero_Spam_Token_Endpoint {
 	}
 
 	/**
-	 * Writes a debug log line via the addon when WP_DEBUG is on.
+	 * Records a mint attempt in the diagnostic ring buffer stored in wp_options.
+	 *
+	 * The buffer keeps the last DIAGNOSTIC_MAX_ENTRIES attempts with full request
+	 * fingerprint (IP, User-Agent, Origin, Referer, Sec-Fetch-Site) and the result
+	 * code. This is intentionally always-on (filterable to disable) so support can
+	 * investigate spam patterns on customer sites that do not have WP_DEBUG or GF
+	 * Logging enabled. Read with `wp option get gf_zero_spam_mint_log --format=json`
+	 * or via the admin Tools UI when present.
 	 *
 	 * @since TBD
 	 *
-	 * @param string $message The message to log (will be prefixed with the method name).
+	 * @param int    $form_id The form ID the mint was for.
+	 * @param string $result  The result code (allowed | rejected_origin | rejected_<code>).
 	 *
 	 * @return void
 	 */
-	private function log_debug( $message ) {
-		if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+	private function record_mint_attempt( $form_id, $result ) {
+		/**
+		 * Filters whether to record mint attempts in the diagnostic ring buffer.
+		 *
+		 * @since TBD
+		 *
+		 * @param bool $enabled Whether to record mint attempts. Default true.
+		 */
+		if ( ! apply_filters( 'gf_zero_spam_log_mint_attempts', true ) ) {
 			return;
 		}
 
-		if ( ! class_exists( 'GF_Zero_Spam_AddOn' ) ) {
-			return;
+		$ua = $this->server_value( 'HTTP_USER_AGENT' );
+
+		// Cap UA to a reasonable length; some bots send extremely long strings.
+		if ( strlen( $ua ) > 300 ) {
+			$ua = substr( $ua, 0, 300 ) . '...';
 		}
 
-		GF_Zero_Spam_AddOn::get_instance()->log_debug( 'GF_Zero_Spam_Token_Endpoint: ' . $message );
+		$entry = [
+			't'       => time(),
+			'form_id' => (int) $form_id,
+			'result'  => (string) $result,
+			'ip'      => $this->client_ip(),
+			'ua'      => $ua,
+			'origin'  => $this->server_value( 'HTTP_ORIGIN' ),
+			'ref'     => $this->server_value( 'HTTP_REFERER' ),
+			'sfs'     => $this->server_value( 'HTTP_SEC_FETCH_SITE' ),
+		];
+
+		$log = get_option( self::DIAGNOSTIC_OPTION, [] );
+
+		if ( ! is_array( $log ) ) {
+			$log = [];
+		}
+
+		$log[] = $entry;
+
+		// Trim to the last N entries.
+		if ( count( $log ) > self::DIAGNOSTIC_MAX_ENTRIES ) {
+			$log = array_slice( $log, -self::DIAGNOSTIC_MAX_ENTRIES );
+		}
+
+		// Autoload off — this can grow to ~100KB.
+		update_option( self::DIAGNOSTIC_OPTION, $log, false );
 	}
 
 	/**
