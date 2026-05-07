@@ -45,6 +45,15 @@ jobs:
             npx @gravitykit/gktools composer code:analyze
             npx @gravitykit/gktools composer code:sniff
       - run:
+          # The plugin enqueues dist/js/gf-zero-spam.js and
+          # dist/js/gf-zero-spam-admin.js at runtime; without them the
+          # token-injection async filter never registers (real-user submits
+          # land as spam) and the email-rejection rule-builder UI never
+          # renders. Build the assets before E2E or 6 tests fail with
+          # 404-on-script-load symptoms.
+          name: Build front-end assets
+          command: npm run build
+      - run:
           name: Configure E2E environment
           command: |
             npx @gravitykit/gktools gh release download -R gravityforms/gravityforms --clobber --pattern "*.zip" --dir .tmp

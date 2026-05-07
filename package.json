@@ -15,7 +15,7 @@
     "wp-env:cli": "npm run wp-env run cli -- ",
     "wp-env:bash": "npm run wp-env:cli bash -c",
     "tests:e2e:download-gf": "node scripts/download-gf.js",
-    "tests:e2e:setup": "npm run wp-env:configure && npm run wp-env start",
+    "tests:e2e:setup": "npm run build && npm run wp-env:configure && npm run wp-env start",
     "tests:e2e:clean": "npm run wp-env:configure && npm run wp-env clean all",
     "tests:e2e:run": "playwright test --config=tests/E2E/setup/playwright.config.js",
     "tests:e2e:debug": "USE_LOCAL_BROWSER=1 playwright test --config=tests/E2E/setup/playwright.config.js --debug",
