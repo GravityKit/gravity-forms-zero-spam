@@ -22,12 +22,10 @@
     "tests:e2e:js:lint": "prettier --check tests/E2E && eslint tests/E2E",
     "tests:e2e:js:format": "prettier --write tests/E2E"
   },
-  "dependencies": {
-    "@gravitykit/e2e-bootstrap": "^1.0.0",
-    "@gravitykit/e2e-fixtures": "^1.1.0"
-  },
   "devDependencies": {
     "@biomejs/biome": "^2.4.3",
+    "@gravitykit/e2e-bootstrap": "^1.0.0",
+    "@gravitykit/e2e-fixtures": "^1.1.0",
     "@playwright/test": "1.56.1",
     "@types/node": "^20.14.14",
     "@wordpress/e2e-test-utils-playwright": "^1.14.0",

@@ -54,13 +54,13 @@ jobs:
           name: Build front-end assets
           command: npm run build
       - run:
-          name: Configure E2E environment
+          # Only fetch the GF zip here; .env (which carries the license key) is
+          # generated in run_e2e_tests so the secret never lands in the
+          # persisted workspace.
+          name: Download Gravity Forms
           command: |
             npx @gravitykit/gktools gh release download -R gravityforms/gravityforms --clobber --pattern "*.zip" --dir .tmp
             unzip .tmp/gravityforms*.zip -d .tmp
-            cp .env.sample .env
-            sed -i "s|WP_ENV_PLUGINS=.*|WP_ENV_PLUGINS=${PWD}/.tmp/gravityforms|" .env
-            sed -i "s|GRAVITY_FORMS_LICENSE_KEY=.*|GRAVITY_FORMS_LICENSE_KEY=${GRAVITYFORMS_KEY}|" .env
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "composer.lock" }}
           paths:
@@ -84,6 +84,20 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/circleci
+      - run:
+          # Build .env at runtime from the CircleCI context so the
+          # GRAVITY_FORMS_LICENSE_KEY value is never written into the
+          # persisted workspace and never interpolated into a shell command
+          # string. awk reads the secret out of the process environment.
+          name: Render .env
+          command: |
+            cp .env.sample .env
+            awk -v val="${PWD}/.tmp/gravityforms" \
+                'sub(/^WP_ENV_PLUGINS=.*/, "WP_ENV_PLUGINS=" val) {print; next} 1' \
+                .env > .env.tmp && mv .env.tmp .env
+            awk -v val="${GRAVITYFORMS_KEY}" \
+                'sub(/^GRAVITY_FORMS_LICENSE_KEY=.*/, "GRAVITY_FORMS_LICENSE_KEY=" val) {print; next} 1' \
+                .env > .env.tmp && mv .env.tmp .env
       - run:
           name: Run E2E tests
           command: |

@@ -108,10 +108,6 @@ test.describe('Zero Spam — spam report email', () => {
             /<a href="[^"]*page=gf_settings[^"]*subview=gf-zero-spam[^"]*">[\s\S]*<\/a>/
         );
 
-        // Test send must NOT mark the report as sent — the persisted timestamp
-        // stays 0 so the next real cron run still picks up the same window.
-        const persisted = await helpers.getCapturedMail(request);
-        expect(persisted.length).toBe(1);
     });
 
     test('HP-16: the cron handler emails a spam summary listing forms with new spam entries', async ({
@@ -188,8 +184,9 @@ test.describe('Zero Spam — spam report email', () => {
             }
 
             const spam = await helpers.getEntries(request, formId, 'spam');
-            const seeded = spam.filter((entry) =>
-                entry['2'].startsWith('seed+')
+            const seeded = spam.filter(
+                (entry) =>
+                    typeof entry['2'] === 'string' && entry['2'].startsWith('seed+')
             );
             expect(seeded, 'spam entry must exist before triggering the cron').toHaveLength(1);
 

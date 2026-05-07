@@ -125,7 +125,7 @@ test.describe('Zero Spam — rule management', () => {
         }
 
         // Behavioral check: settings option contains the imported rules.
-        const stored = await helpers.setEmailRules(request, {});
+        const stored = await helpers.getEmailRules(request);
         const importedValues = stored.rules.map((rule) => rule.value).sort();
         expect(importedValues).toEqual(lines.slice().sort());
         for (const rule of stored.rules) {
@@ -159,7 +159,7 @@ test.describe('Zero Spam — rule management', () => {
         // Sanity precondition: with the rule enabled, the submission would be
         // flagged. We assert the disable path below; this assertion documents
         // the baseline so a future change to default rule semantics is caught.
-        const baseline = await helpers.setEmailRules(request, {});
+        const baseline = await helpers.getEmailRules(request);
         expect(baseline.rules).toHaveLength(1);
         expect(baseline.rules[0].enabled).toBe(true);
 
@@ -174,7 +174,7 @@ test.describe('Zero Spam — rule management', () => {
         await page.locator(SAVE_BUTTON).click();
         await expect(page.locator(SUCCESS_NOTICE)).toContainText('Settings updated.');
 
-        const persisted = await helpers.setEmailRules(request, {});
+        const persisted = await helpers.getEmailRules(request);
         expect(persisted.rules).toHaveLength(1);
         expect(persisted.rules[0].enabled).toBe(false);
 

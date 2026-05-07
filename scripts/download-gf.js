@@ -10,7 +10,7 @@
  * Run: npm run tests:e2e:download-gf
  */
 
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,17 +19,24 @@ const tmpDir = path.join(repoRoot, '.tmp');
 const targetDir = path.join(tmpDir, 'gravityforms');
 const envPath = path.join(repoRoot, '.env');
 
-function run(cmd, opts = {}) {
-    return execSync(cmd, { stdio: 'inherit', cwd: repoRoot, ...opts });
+// gh CLI reads GH_TOKEN / GITHUB_TOKEN. Honor a project-specific
+// GRAVITYFORMS_GH_TOKEN as a fallback so a CI machine can scope a token
+// to this script without mutating other gh-using jobs.
+if (!process.env.GH_TOKEN && !process.env.GITHUB_TOKEN && process.env.GRAVITYFORMS_GH_TOKEN) {
+    process.env.GH_TOKEN = process.env.GRAVITYFORMS_GH_TOKEN;
+}
+
+function run(file, args = [], opts = {}) {
+    return execFileSync(file, args, { stdio: 'inherit', cwd: repoRoot, ...opts });
 }
 
 function ensureGhAuth() {
     try {
-        execSync('gh auth status', { stdio: 'ignore' });
+        execFileSync('gh', ['auth', 'status'], { stdio: 'ignore' });
     } catch {
-        if (!process.env.GRAVITYFORMS_GH_TOKEN && !process.env.GITHUB_TOKEN) {
+        if (!process.env.GH_TOKEN && !process.env.GITHUB_TOKEN) {
             console.error(
-                'gh is not authenticated and neither GRAVITYFORMS_GH_TOKEN nor GITHUB_TOKEN is set.\n' +
+                'gh is not authenticated and neither GRAVITYFORMS_GH_TOKEN, GH_TOKEN, nor GITHUB_TOKEN is set.\n' +
                     'Run `gh auth login` or export a token with access to gravityforms/gravityforms.'
             );
             process.exit(1);
@@ -61,9 +68,17 @@ function main() {
     }
 
     console.log('Downloading latest gravityforms release...');
-    run(
-        `gh release download -R gravityforms/gravityforms --clobber --pattern "*.zip" --dir "${tmpDir}"`
-    );
+    run('gh', [
+        'release',
+        'download',
+        '-R',
+        'gravityforms/gravityforms',
+        '--clobber',
+        '--pattern',
+        '*.zip',
+        '--dir',
+        tmpDir,
+    ]);
 
     const zip = fs
         .readdirSync(tmpDir)
@@ -77,7 +92,7 @@ function main() {
     }
 
     console.log(`Unzipping ${path.basename(zip)}...`);
-    run(`unzip -o -q "${zip}" -d "${tmpDir}"`);
+    run('unzip', ['-o', '-q', zip, '-d', tmpDir]);
 
     if (!fs.existsSync(targetDir)) {
         console.error(`Expected ${targetDir} to exist after unzip.`);

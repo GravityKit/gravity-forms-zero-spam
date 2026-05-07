@@ -86,12 +86,10 @@ add_action(
 					// Clear last report timestamp so cron behaves deterministically.
 					delete_option( 'gf_zero_spam_report_last_date' );
 
-					// Clear any scheduled reports.
-					$timestamp = wp_next_scheduled( 'gf_zero_spam_send_report' );
-
-					if ( $timestamp ) {
-						wp_unschedule_event( $timestamp, 'gf_zero_spam_send_report' );
-					}
+					// Clear ALL scheduled instances of the report hook —
+					// wp_unschedule_event removes only the next occurrence and
+					// would leave any later queued runs in place.
+					wp_clear_scheduled_hook( 'gf_zero_spam_send_report' );
 
 					return rest_ensure_response( [ 'reset' => true ] );
 				},
@@ -134,6 +132,26 @@ add_action(
 						[
 							'form_id'          => $form_id,
 							'enableGFZeroSpam' => $form['enableGFZeroSpam'],
+						]
+					);
+				},
+			]
+		);
+
+		register_rest_route(
+			ZS_E2E_NAMESPACE,
+			'/email-rules',
+			[
+				'methods'             => 'GET',
+				'permission_callback' => $auth,
+				'callback'            => static function () {
+					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
+
+					return rest_ensure_response(
+						[
+							'enabled' => rgar( $settings, 'gf_zero_spam_email_rejection_enabled' ) ? true : false,
+							'rules'   => (array) ( $settings['gf_zero_spam_email_rules'] ?? [] ),
+							'message' => rgar( $settings, 'gf_zero_spam_email_rejection_message' ),
 						]
 					);
 				},

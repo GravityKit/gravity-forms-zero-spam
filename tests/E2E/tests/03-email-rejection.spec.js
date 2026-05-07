@@ -96,7 +96,12 @@ test.describe('Zero Spam — email rejection rules', () => {
 
     test.afterEach(async ({ request }) => {
         await helpers.cleanup(testId);
-        await helpers.cleanupPages(request, [pageId]);
+        // Filter falsy ids: if beforeEach throws before pageId is assigned,
+        // we don't want to send [undefined] to the cleanup endpoint.
+        const pageIds = [pageId].filter(Boolean);
+        if (pageIds.length) {
+            await helpers.cleanupPages(request, pageIds);
+        }
 
         // Clear email-rejection-specific state. Leaves gf_zero_spam_blocking
         // and other unrelated keys alone so HP-6 in another file isn't
@@ -264,10 +269,15 @@ test.describe('Zero Spam — email rejection rules', () => {
         expect(ours, 'log rule must NOT change entry status').toHaveLength(1);
 
         const notes = await helpers.getEntryNotes(request, ours[0].id);
-        // The plugin tags its notes with note_type='gf-zero-spam'; sub_type
-        // is 'info' for log matches and 'warning' for flag matches.
-        const zsNotes = notes.filter((note) => note.note_type === 'gf-zero-spam');
-        expect(zsNotes.length, 'log rule must add an entry note').toBeGreaterThan(0);
-        expect(zsNotes[0].value).toMatch(/log action/i);
+        // Assert structured fields rather than free-text wording. The plugin
+        // tags log notes with note_type='gf-zero-spam' and sub_type='info'
+        // (flag rules use sub_type='warning'). The note body should mention
+        // the rule's value so we know we're looking at the right match, but
+        // we keep that check tolerant — wording is not stable.
+        const logNotes = notes.filter(
+            (note) => note.note_type === 'gf-zero-spam' && note.sub_type === 'info'
+        );
+        expect(logNotes.length, 'log rule must add an info-typed Zero Spam note').toBeGreaterThan(0);
+        expect(logNotes[0].value).toContain('*+log@*');
     });
 });

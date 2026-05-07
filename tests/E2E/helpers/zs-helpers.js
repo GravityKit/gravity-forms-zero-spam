@@ -133,6 +133,18 @@ async function setEmailRules(request, { enabled, rules, message } = {}) {
 }
 
 /**
+ * Read the current email-rejection plugin settings.
+ *
+ * Tests previously relied on calling setEmailRules(request, {}) as a getter
+ * (its server-side handler returns the persisted state after applying
+ * whatever it was told to change). That conflated read and write — this
+ * helper is the explicit reader.
+ */
+async function getEmailRules(request) {
+    return callJson(request, 'GET', '/email-rules');
+}
+
+/**
  * Create a published page with arbitrary content (typically a Gravity Forms shortcode).
  *
  * Returns { page_id, permalink }. Pages created this way are tagged with
@@ -182,9 +194,9 @@ async function clearCapturedMail(request) {
  * @returns {Promise<import('@playwright/test').Locator>}
  */
 async function getZeroSpamInput(page) {
-    const tokenInput = page.locator('input[name="gf_zero_spam_token"]').first();
-    if ((await tokenInput.count()) > 0) {
-        return tokenInput;
+    const tokenInputs = page.locator('input[name="gf_zero_spam_token"]');
+    if ((await tokenInputs.count()) > 0) {
+        return tokenInputs.first();
     }
 
     return page.locator('input[name="gf_zero_spam_key"]').first();
@@ -200,7 +212,7 @@ async function stripZeroSpamInputs(page) {
             .querySelectorAll(
                 'input[name="gf_zero_spam_token"], input[name="gf_zero_spam_key"]'
             )
-            .forEach((el) => el.parentNode && el.parentNode.removeChild(el));
+            .forEach((el) => el.remove());
     });
 }
 
@@ -220,6 +232,7 @@ module.exports = {
     cleanupPages,
     getEntryNotes,
     setEmailRules,
+    getEmailRules,
     runReportCron,
     getScheduledCron,
     setReportConfig,
