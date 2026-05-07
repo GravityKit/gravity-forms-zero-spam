@@ -105,7 +105,10 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'enabled' => [ 'type' => 'boolean', 'required' => true ],
+					'enabled' => [
+'type' => 'boolean',
+'required' => true
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					if ( ! class_exists( 'GFAPI' ) ) {
@@ -128,7 +131,10 @@ add_action(
 					}
 
 					return rest_ensure_response(
-						[ 'form_id' => $form_id, 'enableGFZeroSpam' => $form['enableGFZeroSpam'] ]
+						[
+'form_id' => $form_id,
+'enableGFZeroSpam' => $form['enableGFZeroSpam']
+]
 					);
 				},
 			]
@@ -141,9 +147,18 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'enabled' => [ 'type' => 'boolean', 'required' => false ],
-					'rules'   => [ 'type' => 'array', 'required' => false ],
-					'message' => [ 'type' => 'string', 'required' => false ],
+					'enabled' => [
+'type' => 'boolean',
+'required' => false
+],
+					'rules'   => [
+'type' => 'array',
+'required' => false
+],
+					'message' => [
+'type' => 'string',
+'required' => false
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
@@ -198,7 +213,10 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'enabled' => [ 'type' => 'boolean', 'required' => true ],
+					'enabled' => [
+'type' => 'boolean',
+'required' => true
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
@@ -217,8 +235,14 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'form_id' => [ 'type' => 'integer', 'required' => true ],
-					'ttl'     => [ 'type' => 'integer', 'required' => false ],
+					'form_id' => [
+'type' => 'integer',
+'required' => true
+],
+					'ttl'     => [
+'type' => 'integer',
+'required' => false
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					if ( ! class_exists( 'GF_Zero_Spam_Token' ) ) {
@@ -226,7 +250,7 @@ add_action(
 					}
 
 					$form_id = (int) $request->get_param( 'form_id' );
-					$ttl     = (int) ( $request->get_param( 'ttl' ) ?: 600 );
+					$ttl     = (int) ( $request->get_param( 'ttl' ) ? $request->get_param( 'ttl' ) : 600 );
 
 					return rest_ensure_response( [ 'token' => GF_Zero_Spam_Token::mint( $form_id, $ttl ) ] );
 				},
@@ -240,9 +264,18 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'title'   => [ 'type' => 'string', 'required' => true ],
-					'content' => [ 'type' => 'string', 'required' => true ],
-					'slug'    => [ 'type' => 'string', 'required' => false ],
+					'title'   => [
+'type' => 'string',
+'required' => true
+],
+					'content' => [
+'type' => 'string',
+'required' => true
+],
+					'slug'    => [
+'type' => 'string',
+'required' => false
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$post_id = wp_insert_post(
@@ -251,7 +284,7 @@ add_action(
 							'post_content' => $request->get_param( 'content' ),
 							'post_status'  => 'publish',
 							'post_type'    => 'page',
-							'post_name'    => $request->get_param( 'slug' ) ?: '',
+							'post_name'    => $request->get_param( 'slug' ) ? $request->get_param( 'slug' ) : '',
 							'meta_input'   => [ '_zs_e2e_test' => '1' ],
 						],
 						true
@@ -262,7 +295,10 @@ add_action(
 					}
 
 					return rest_ensure_response(
-						[ 'page_id' => (int) $post_id, 'permalink' => get_permalink( $post_id ) ]
+						[
+'page_id' => (int) $post_id,
+'permalink' => get_permalink( $post_id )
+]
 					);
 				},
 			]
@@ -322,10 +358,22 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $auth,
 				'args'                => [
-					'frequency' => [ 'type' => 'string', 'required' => false ],
-					'recipient' => [ 'type' => 'string', 'required' => false ],
-					'subject'   => [ 'type' => 'string', 'required' => false ],
-					'body'      => [ 'type' => 'string', 'required' => false ],
+					'frequency' => [
+'type' => 'string',
+'required' => false
+],
+					'recipient' => [
+'type' => 'string',
+'required' => false
+],
+					'subject'   => [
+'type' => 'string',
+'required' => false
+],
+					'body'      => [
+'type' => 'string',
+'required' => false
+],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
@@ -396,7 +444,7 @@ add_action(
 						[
 							'hook'      => $hook,
 							'scheduled' => (bool) $timestamp,
-							'timestamp' => $timestamp ?: null,
+							'timestamp' => $timestamp ? $timestamp : null,
 						]
 					);
 				},
@@ -448,7 +496,7 @@ add_action(
 					}
 
 					$form_id = (int) $request->get_param( 'form_id' );
-					$status  = (string) $request->get_param( 'status' ); // active|spam|trash, optional
+					$status  = (string) $request->get_param( 'status' ); // active|spam|trash, optional.
 
 					$search = $status ? [ 'status' => $status ] : [];
 
