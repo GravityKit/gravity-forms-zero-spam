@@ -9,8 +9,16 @@ anchors:
     machine:
       image: default
 
+  test_job_config: &test_job_config
+    <<: *context
+    requires:
+      - prepare
+
 jobs:
-  build_package_release:
+  # Single source of truth for checkout / dependency install / E2E env setup.
+  # Persists the working directory so test and release jobs attach instead of
+  # re-installing.
+  prepare:
     <<: *default_job_config
     steps:
       - checkout
@@ -22,17 +30,81 @@ jobs:
           command: |
             echo "//npm.pkg.github.com/:_authToken=${GH_AUTH_TOKEN}" >> ~/.npmrc
             echo "@gravitykit:registry=https://npm.pkg.github.com" >> ~/.npmrc
+      - restore_cache:
+          keys:
+            - deps-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "composer.lock" }}
       - run:
           name: Install dependencies
           command: |
-            npx @gravitykit/gktools composer install
             npx @gravitykit/gktools npm install
+            npx @gravitykit/gktools composer install
       - run:
           name: Lint
           command: |
             npm run lint
             npx @gravitykit/gktools composer code:analyze
             npx @gravitykit/gktools composer code:sniff
+      - run:
+          name: Configure E2E environment
+          command: |
+            npx @gravitykit/gktools gh release download -R gravityforms/gravityforms --clobber --pattern "*.zip" --dir .tmp
+            unzip .tmp/gravityforms*.zip -d .tmp
+            cp .env.sample .env
+            sed -i "s|WP_ENV_PLUGINS=.*|WP_ENV_PLUGINS=${PWD}/.tmp/gravityforms|" .env
+            sed -i "s|GRAVITY_FORMS_LICENSE_KEY=.*|GRAVITY_FORMS_LICENSE_KEY=${GRAVITYFORMS_KEY}|" .env
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "composer.lock" }}
+          paths:
+            - /home/circleci/plugin/node_modules
+            - /home/circleci/plugin/vendor
+            - /home/circleci/plugin/vendor_prefixed
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - .
+
+  # Brings up wp-env (with retries — Docker pulls and DB init occasionally
+  # flake on first start) and runs the Playwright suite. The suite is
+  # configured workers:1 in playwright.config.js because tests mutate one
+  # shared WordPress option; xlarge resource still finishes the suite well
+  # under the job's wallclock budget.
+  run_e2e_tests:
+    <<: *default_job_config
+    parallelism: 1
+    resource_class: xlarge
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Run E2E tests
+          command: |
+            attempt=0
+            max_attempts=3
+            sleep_time=5
+            while [ $attempt -lt $max_attempts ]; do
+              npm run tests:e2e:setup && break
+              attempt=$(( attempt + 1 ))
+              rm -rf /home/circleci/.wp-env
+              echo "Retrying WP-ENV setup in $sleep_time seconds… (attempt $attempt/$max_attempts)"
+              sleep $sleep_time
+            done
+            if [ $attempt -eq $max_attempts ]; then
+              echo "WP-ENV setup failed."
+              exit 1
+            fi
+            npm run tests:e2e:run
+      - store_artifacts:
+          path: tests/E2E/results
+      - store_artifacts:
+          path: tests/E2E/report
+      - store_test_results:
+          path: tests/E2E/results
+
+  build_package_release:
+    <<: *default_job_config
+    steps:
+      - attach_workspace:
+          at: /home/circleci
       - run:
           name: Verify version consistency
           command: |
@@ -88,7 +160,13 @@ jobs:
 
 workflows:
   version: 2
-  lint_build_and_release:
+  test_build_and_release:
     jobs:
+      - prepare:
+          <<: *context
+      - run_e2e_tests:
+          <<: *test_job_config
       - build_package_release:
           <<: *context
+          requires:
+            - run_e2e_tests
