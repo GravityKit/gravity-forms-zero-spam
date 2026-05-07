@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const ZS_E2E_NAMESPACE = 'zs-e2e/v1';
+const ZS_E2E_NAMESPACE  = 'zs-e2e/v1';
 const ZS_E2E_TEST_TOKEN = 'gravitykit-e2e-test';
 
 /**
@@ -106,9 +106,9 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'enabled' => [
-'type' => 'boolean',
-'required' => true
-],
+						'type'     => 'boolean',
+						'required' => true,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					if ( ! class_exists( 'GFAPI' ) ) {
@@ -132,9 +132,9 @@ add_action(
 
 					return rest_ensure_response(
 						[
-'form_id' => $form_id,
-'enableGFZeroSpam' => $form['enableGFZeroSpam']
-]
+							'form_id'          => $form_id,
+							'enableGFZeroSpam' => $form['enableGFZeroSpam'],
+						]
 					);
 				},
 			]
@@ -148,17 +148,17 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'enabled' => [
-'type' => 'boolean',
-'required' => false
-],
+						'type'     => 'boolean',
+						'required' => false,
+					],
 					'rules'   => [
-'type' => 'array',
-'required' => false
-],
+						'type'     => 'array',
+						'required' => false,
+					],
 					'message' => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
@@ -214,12 +214,12 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'enabled' => [
-'type' => 'boolean',
-'required' => true
-],
+						'type'     => 'boolean',
+						'required' => true,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
-					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
+					$settings                          = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
 					$settings['gf_zero_spam_blocking'] = $request->get_param( 'enabled' ) ? '1' : '0';
 					update_option( 'gravityformsaddon_gf-zero-spam_settings', $settings );
 
@@ -236,13 +236,13 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'form_id' => [
-'type' => 'integer',
-'required' => true
-],
+						'type'     => 'integer',
+						'required' => true,
+					],
 					'ttl'     => [
-'type' => 'integer',
-'required' => false
-],
+						'type'     => 'integer',
+						'required' => false,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					if ( ! class_exists( 'GF_Zero_Spam_Token' ) ) {
@@ -265,17 +265,17 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'title'   => [
-'type' => 'string',
-'required' => true
-],
+						'type'     => 'string',
+						'required' => true,
+					],
 					'content' => [
-'type' => 'string',
-'required' => true
-],
+						'type'     => 'string',
+						'required' => true,
+					],
 					'slug'    => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$post_id = wp_insert_post(
@@ -296,9 +296,9 @@ add_action(
 
 					return rest_ensure_response(
 						[
-'page_id' => (int) $post_id,
-'permalink' => get_permalink( $post_id )
-]
+							'page_id'   => (int) $post_id,
+							'permalink' => get_permalink( $post_id ),
+						]
 					);
 				},
 			]
@@ -359,21 +359,21 @@ add_action(
 				'permission_callback' => $auth,
 				'args'                => [
 					'frequency' => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 					'recipient' => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 					'subject'   => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 					'body'      => [
-'type' => 'string',
-'required' => false
-],
+						'type'     => 'string',
+						'required' => false,
+					],
 				],
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );

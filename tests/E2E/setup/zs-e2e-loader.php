@@ -12,10 +12,10 @@ $zs_e2e_dir = WPMU_PLUGIN_DIR . '/zs-e2e';
 
 if ( is_dir( $zs_e2e_dir ) ) {
 	foreach ( [ 'zs-e2e-mailcatch.php', 'zs-e2e-helpers.php' ] as $file ) {
-		$path = $zs_e2e_dir . '/' . $file;
+		$zs_e2e_path = $zs_e2e_dir . '/' . $file;
 
-		if ( file_exists( $path ) ) {
-			require_once $path;
+		if ( file_exists( $zs_e2e_path ) ) {
+			require_once $zs_e2e_path;
 		}
 	}
 }
