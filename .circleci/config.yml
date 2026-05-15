@@ -54,13 +54,19 @@ jobs:
           name: Build front-end assets
           command: npm run build
       - run:
-          # Only fetch the GF zip here; .env (which carries the license key) is
-          # generated in run_e2e_tests so the secret never lands in the
-          # persisted workspace.
-          name: Download Gravity Forms
+          # Fetch GF and render .env. The .env file must be in the persisted
+          # workspace so the downstream run_post_build_smoke job (which
+          # attaches the workspace from build_package_release) can boot wp-env
+          # against the built .zip artifact. The license key is sourced from
+          # the CircleCI context and written via sed so it never appears on
+          # any command line.
+          name: Configure E2E environment
           command: |
             npx @gravitykit/gktools gh release download -R gravityforms/gravityforms --clobber --pattern "*.zip" --dir .tmp
             unzip .tmp/gravityforms*.zip -d .tmp
+            cp .env.sample .env
+            sed -i "s|WP_ENV_PLUGINS=.*|WP_ENV_PLUGINS=${PWD}/.tmp/gravityforms|" .env
+            sed -i "s|GRAVITY_FORMS_LICENSE_KEY=.*|GRAVITY_FORMS_LICENSE_KEY=${GRAVITYFORMS_KEY}|" .env
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "composer.lock" }}
           paths:
@@ -84,20 +90,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/circleci
-      - run:
-          # Build .env at runtime from the CircleCI context so the
-          # GRAVITY_FORMS_LICENSE_KEY value is never written into the
-          # persisted workspace and never interpolated into a shell command
-          # string. awk reads the secret out of the process environment.
-          name: Render .env
-          command: |
-            cp .env.sample .env
-            awk -v val="${PWD}/.tmp/gravityforms" \
-                'sub(/^WP_ENV_PLUGINS=.*/, "WP_ENV_PLUGINS=" val) {print; next} 1' \
-                .env > .env.tmp && mv .env.tmp .env
-            awk -v val="${GRAVITYFORMS_KEY}" \
-                'sub(/^GRAVITY_FORMS_LICENSE_KEY=.*/, "GRAVITY_FORMS_LICENSE_KEY=" val) {print; next} 1' \
-                .env > .env.tmp && mv .env.tmp .env
       - run:
           name: Run E2E tests
           command: |
@@ -173,13 +165,54 @@ jobs:
               npx @gravitykit/gktools announce
             fi
       - run:
+          # Fail loudly if the build produced no .zip — silently swallowing
+          # the cp error would let an empty release slip through to
+          # run_post_build_smoke (which would then "pass" with nothing to
+          # exercise).
           name: Collect build artifacts
           command: |
             mkdir -p .release
-            cp gravity-forms-zero-spam-*.zip .release/ 2>/dev/null || true
+            cp gravity-forms-zero-spam-*.zip .release/
       - store_artifacts:
           path: .release
           destination: release
+      - persist_to_workspace:
+          # Persist BOTH the .release/ directory AND the zip at the working
+          # directory root. run_post_build_smoke needs the zip from .release/
+          # to install the built artifact; future publish_release jobs use
+          # `gktools release` which greps the cwd (not .release/) for the zip.
+          root: /home/circleci
+          paths:
+            - plugin/.release
+            - plugin/gravity-forms-zero-spam-*.zip
+
+  # Boots wp-env against the *built* .zip artifact and runs the @smoke-tagged
+  # subset of the Playwright suite (currently activation.spec.js). This is the
+  # last gate before release: it catches packaging defects that the source-tree
+  # E2E suite cannot see (missing dist/ files, autoloader misses, dev-only
+  # dependencies that didn't get bundled, etc.). The bootstrap CLI handles
+  # unzipping, dev-dep restore via the gktools Docker composer (PHP 7.4), and
+  # wp-env boot with retry; see @gravitykit/e2e-bootstrap README.
+  run_post_build_smoke:
+    <<: *default_job_config
+    machine:
+      image: default
+      docker_layer_caching: true
+    resource_class: xlarge
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Post-build smoke
+          command: |
+            npx @gravitykit/e2e-bootstrap smoke \
+              --composer-cmd "npx @gravitykit/gktools composer install"
+      - store_artifacts:
+          path: tests/E2E/results
+      - store_artifacts:
+          path: tests/E2E/report
+      - store_test_results:
+          path: tests/E2E/results/junit.xml
 
 workflows:
   version: 2
@@ -193,3 +226,7 @@ workflows:
           <<: *context
           requires:
             - run_e2e_tests
+      - run_post_build_smoke:
+          <<: *context
+          requires:
+            - build_package_release

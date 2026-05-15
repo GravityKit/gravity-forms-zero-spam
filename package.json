@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.3",
-    "@gravitykit/e2e-bootstrap": "^1.0.0",
+    "@gravitykit/e2e-bootstrap": "^1.1.0",
     "@gravitykit/e2e-fixtures": "^1.1.0",
     "@playwright/test": "1.56.1",
     "@types/node": "^20.14.14",
