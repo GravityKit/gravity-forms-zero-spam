@@ -145,9 +145,6 @@ jobs:
           name: Build and package
           command: npx @gravitykit/gktools build
       - run:
-          name: Sign build
-          command: npx @gravitykit/gktools sign
-      - run:
           name: Trigger translation pipeline
           command: |
             if [ "${CIRCLE_BRANCH}" == "develop" ] || [ "${CIRCLE_BRANCH}" == "main" ]; then
