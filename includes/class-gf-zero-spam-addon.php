@@ -760,7 +760,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				$args['field_id'] = 'date_created';
 				$args['orderby']  = '0';
 				$args['order']    = 'ASC';
-				$args['operator'] = '>';
+				// URL-encode the operator so esc_url() keeps it. A literal '>' is not in
+				// esc_url()'s allowed character set, so it gets stripped to an empty operator,
+				// which Gravity Forms then treats as 'is' (exact-day match) instead of 'greater than'.
+				$args['operator'] = urlencode( '>' );
 			}
 
 			$link = add_query_arg(

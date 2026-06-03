@@ -204,6 +204,20 @@ test.describe('Zero Spam — spam report email', () => {
             expect(summary.message).toMatch(
                 new RegExp(`page=gf_entries[^"]*id=${formId}[^"]*filter=spam`)
             );
+
+            // GFZSPAM-22: the per-form link must carry a usable "greater than"
+            // operator. esc_url() strips a literal ">", collapsing it to an empty
+            // operator that GF treats as "is" (exact-day match), so spam from any
+            // day after the last report is hidden. The operator must be URL-encoded
+            // so it survives esc_url() and decodes back to ">".
+            const formLink = summary.message.match(
+                new RegExp(`href="([^"]*page=gf_entries[^"]*id=${formId}[^"]*filter=spam[^"]*)"`)
+            );
+            expect(formLink, 'summary must contain a per-form spam entries link').not.toBeNull();
+            expect(formLink[1], 'operator must be URL-encoded ">" so esc_url() keeps it').toContain(
+                'operator=%3E'
+            );
+
             // No unrendered merge tags should leak through.
             expect(summary.message).not.toMatch(/\{\{[^}]+\}\}/);
         } finally {

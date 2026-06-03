@@ -110,6 +110,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= develop =
+
+* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report
+
 = 1.8.0 on April 16, 2026 =
 
 * Added: Translations in 27 languages
