@@ -1,5 +1,5 @@
 /**
- * Zero Spam — core protection (HP-1, HP-2, HP-3).
+ * Zero Spam — core protection (HP-1, HP-2, HP-3, HP-4).
  *
  * Verified live with Playwright MCP against wp-env (GF 2.9.25.1, ZS 1.8.0):
  *   - Form id: form#gform_<formId>; submit btn: input#gform_submit_button_<formId>.
@@ -124,6 +124,44 @@ test.describe('Zero Spam — core protection', () => {
         const active = await helpers.getEntries(request, formId, 'active');
         const leaked = active.filter((entry) => entry['2'] === 'bot@gravitykit.test');
         expect(leaked, 'tokenless POST must not slip into active entries').toHaveLength(0);
+    });
+
+    test('HP-4: token rejection action captures the stable reason code', async ({
+        page,
+        request,
+    }) => {
+        await page.goto(pageUrl);
+
+        const email = `bad-token+${testId}@gravitykit.test`;
+        const result = await page.evaluate(
+            async ({ id, submittedEmail }) => {
+                const form = document.getElementById('gform_' + id);
+                const fd = new FormData(form);
+                fd.set('input_1', 'BadToken');
+                fd.set('input_2', submittedEmail);
+                fd.set('gf_zero_spam_token', 'not-a-valid-zero-spam-token');
+                fd.delete('gf_zero_spam_key');
+
+                const res = await fetch(form.action || location.href, {
+                    method: 'POST',
+                    body: fd,
+                    redirect: 'follow',
+                });
+
+                return { status: res.status };
+            },
+            { id: formId, submittedEmail: email }
+        );
+
+        expect(result.status).toBe(200);
+
+        const spam = await helpers.getEntries(request, formId, 'spam');
+        const trapped = spam.filter((entry) => entry['2'] === email);
+        expect(trapped, 'tampered-token POST must produce a spam entry').toHaveLength(1);
+
+        const rejection = await helpers.getTokenRejection(request, formId);
+        expect(rejection.reason_code).toBe('bad_format');
+        expect(rejection.form_id).toBe(formId);
     });
 
     test('HP-3: AJAX token endpoint issues a usable token for the form', async ({ page }) => {

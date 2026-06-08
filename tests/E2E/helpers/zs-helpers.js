@@ -51,10 +51,99 @@ async function setFormZeroSpam(request, formId, enabled) {
 }
 
 /**
+ * Set a form's trash state.
+ */
+async function setFormTrash(request, formId, trashed) {
+    return callJson(request, 'POST', `/form/${formId}/trash`, { trashed });
+}
+
+/**
  * Set the global "Enable Zero Spam by Default" plugin setting.
  */
 async function setGlobalDefault(request, enabled) {
     return callJson(request, 'POST', '/global-default', { enabled });
+}
+
+/**
+ * Configure the AI review E2E verdict seam and global AI settings.
+ */
+async function setAiReview(request, payload = {}) {
+    const body = { ...payload };
+
+    if (Object.prototype.hasOwnProperty.call(body, 'forceResult')) {
+        body.force_result = body.forceResult;
+        delete body.forceResult;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'forceRescueResult')) {
+        body.force_rescue_result = body.forceRescueResult;
+        delete body.forceRescueResult;
+    }
+	if (Object.prototype.hasOwnProperty.call(body, 'otherSpam')) {
+        body.other_spam = body.otherSpam;
+        delete body.otherSpam;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'otherSpamFormId')) {
+        body.other_spam_form_id = body.otherSpamFormId;
+        delete body.otherSpamFormId;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'rescueGlobalEnabled')) {
+        body.rescue_global_enabled = body.rescueGlobalEnabled;
+        delete body.rescueGlobalEnabled;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'rescueThreshold')) {
+        body.rescue_threshold = body.rescueThreshold;
+        delete body.rescueThreshold;
+    }
+
+    return callJson(request, 'POST', '/ai-review', body);
+}
+
+/**
+ * Read the AI review E2E verdict seam state.
+ */
+async function getAiReview(request) {
+    return callJson(request, 'GET', '/ai-review');
+}
+
+/**
+ * Reset the AI review E2E verdict seam and global AI settings.
+ */
+async function resetAiReview(request) {
+    return callJson(request, 'DELETE', '/ai-review');
+}
+
+/**
+ * Set per-form AI review settings.
+ */
+async function setFormAiReview(
+	request,
+	formId,
+	{ enabled, rescueEnabled, maxCallsPerHour, prompt, excludedFields } = {}
+) {
+    const body = {};
+    if (typeof enabled === 'boolean') {
+        body.enabled = enabled;
+    }
+    if (typeof rescueEnabled === 'boolean') {
+        body.rescue_enabled = rescueEnabled;
+    }
+    if (typeof maxCallsPerHour === 'number') {
+        body.max_calls_per_hour = maxCallsPerHour;
+    }
+    if (typeof prompt === 'string') {
+        body.prompt = prompt;
+    }
+    if (Array.isArray(excludedFields)) {
+        body.excluded_fields = excludedFields.map((fieldId) => String(fieldId));
+    }
+	return callJson(request, 'POST', `/form/${formId}/ai-review`, body);
+}
+
+/**
+ * Add or replace a deterministic form-submission notification.
+ */
+async function setFormNotification(request, formId, payload = {}) {
+    return callJson(request, 'POST', `/form/${formId}/notification`, payload);
 }
 
 /**
@@ -65,6 +154,15 @@ async function mintToken(request, formId, ttl) {
     const json = await callJson(request, 'POST', '/token', body);
 
     return json.token;
+}
+
+/**
+ * Read the latest captured Zero Spam token rejection reason.
+ */
+async function getTokenRejection(request, formId) {
+    const qs = typeof formId === 'number' ? `?form_id=${encodeURIComponent(formId)}` : '';
+
+    return callJson(request, 'GET', `/token-rejection${qs}`);
 }
 
 /**
@@ -125,9 +223,15 @@ async function getScheduledCron(request, hook) {
  */
 async function setEmailRules(request, { enabled, rules, message } = {}) {
     const body = {};
-    if (typeof enabled === 'boolean') body.enabled = enabled;
-    if (Array.isArray(rules)) body.rules = rules;
-    if (typeof message === 'string') body.message = message;
+    if (typeof enabled === 'boolean') {
+        body.enabled = enabled;
+    }
+    if (Array.isArray(rules)) {
+        body.rules = rules;
+    }
+    if (typeof message === 'string') {
+        body.message = message;
+    }
 
     return callJson(request, 'POST', '/email-rules', body);
 }
@@ -221,8 +325,15 @@ module.exports = {
     TEST_TOKEN,
     resetZeroSpam,
     setFormZeroSpam,
+    setFormTrash,
     setGlobalDefault,
-    mintToken,
+    setAiReview,
+    getAiReview,
+	resetAiReview,
+	setFormAiReview,
+	setFormNotification,
+	mintToken,
+    getTokenRejection,
     getEntries,
     getCapturedMail,
     clearCapturedMail,

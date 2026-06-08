@@ -112,6 +112,11 @@ You can enable a spam summary report email. This email will be sent to the email
 
 = develop =
 
+* Added: AI-based content review for token-cleared submissions using the WordPress AI Client, including address/phone scanning, per-form prompt overrides, and a field-exclusion picker.
+* Changed: AI spam review now ships as synchronous-only for v1; background processing is deferred to a later release.
+* Added: Optional AI recovery for legitimate submissions incorrectly rejected by the Zero Spam token check.
+* Added: Token rejection reason diagnostics in Gravity Forms Logging, with a `gf_zero_spam_token_rejected` action for custom diagnostics.
+* Developer: Consolidated the AI review hooks into a smaller extension surface.
 * Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report
 
 = 1.8.0 on April 16, 2026 =

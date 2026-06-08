@@ -18,6 +18,16 @@ parameters:
         - '#(Used )?[Cc]onstant GF_ZERO_SPAM_\w+ not found#'
         - '#Parameter \#6 \$sub_type of static method GFAPI::add_note\(\) expects null, string given#'
         - '#Function gf_apply_filters invoked with \d+ parameters, 2 required#'
-        - '#Action callback returns bool but should not return anything#'
+        - '#Action callback returns (bool|int) but should not return anything#'
         - '#Cannot access property \$title on object\|true#'
+        # WP 7.0 AI Client — no phpstan stubs available yet.
+        -
+            message: '#Function wp_ai_client_prompt not found#'
+            path: includes/class-gf-zero-spam-ai-review.php
+        -
+            message: '#Call to static method fromArray\(\) on an unknown class WordPress\\AiClient\\Providers\\Http\\DTO\\RequestOptions\.#'
+            path: includes/class-gf-zero-spam-ai-review.php
+        -
+            message: '#Access to constant KEY_TIMEOUT on an unknown class WordPress\\AiClient\\Providers\\Http\\DTO\\RequestOptions\.#'
+            path: includes/class-gf-zero-spam-ai-review.php
     treatPhpDocTypesAsCertain: false
