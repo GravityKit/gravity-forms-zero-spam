@@ -47,7 +47,7 @@ class GF_Zero_Spam_AI_Review {
 	 *
 	 * @var float
 	 */
-	const DEFAULT_RESCUE_CONFIDENCE_THRESHOLD = 0.95;
+	const DEFAULT_RESCUE_CONFIDENCE_THRESHOLD = 0.90;
 
 	/**
 	 * Default AI request timeout in seconds.
@@ -61,11 +61,16 @@ class GF_Zero_Spam_AI_Review {
 	/**
 	 * Default maximum generated tokens.
 	 *
+	 * The JSON verdict is small, but reasoning models such as Gemini 2.5 can
+	 * consume output budget on internal thinking before emitting the answer.
+	 * A 200-token cap truncated Gemini to empty candidates; 512 gives headroom
+	 * for thinking, the JSON verdict, and a short reason.
+	 *
 	 * @since TBD
 	 *
 	 * @var int
 	 */
-	const DEFAULT_MAX_TOKENS = 200;
+	const DEFAULT_MAX_TOKENS = 512;
 
 	/**
 	 * Default maximum serialized payload size.
@@ -243,7 +248,7 @@ class GF_Zero_Spam_AI_Review {
 		}
 
 		$threshold = $this->get_rescue_confidence_threshold( $form, $entry );
-		$verdict   = $this->resolve_verdict( $form, $entry, $threshold );
+		$verdict   = $this->resolve_verdict( $form, $entry, $threshold, self::CONTEXT_RESCUE );
 
 		if ( null === $verdict ) {
 			$this->log_rescue_decision(
@@ -318,7 +323,7 @@ class GF_Zero_Spam_AI_Review {
 	 */
 	public function classify( $form, $entry ) {
 		$threshold = $this->get_confidence_threshold( $form, $entry );
-		$verdict   = $this->resolve_verdict( $form, $entry, $threshold );
+		$verdict   = $this->resolve_verdict( $form, $entry, $threshold, self::CONTEXT_REVIEW );
 
 		return $this->get_classification_result( $verdict, $form, $entry, $threshold );
 	}
@@ -331,12 +336,13 @@ class GF_Zero_Spam_AI_Review {
 	 * @param array      $form            The form currently being processed.
 	 * @param array      $entry           The entry currently being processed.
 	 * @param float|null $cache_threshold Optional threshold used to preserve the existing cache key.
+	 * @param string     $context         Either "review" or "rescue".
 	 *
 	 * @return array|null Normalized verdict, or null when review failed open/closed.
 	 */
-	private function resolve_verdict( $form, $entry, $cache_threshold = null ) {
+	private function resolve_verdict( $form, $entry, $cache_threshold = null, $context = self::CONTEXT_REVIEW ) {
 		try {
-			return $this->resolve_verdict_without_exception_boundary( $form, $entry, $cache_threshold );
+			return $this->resolve_verdict_without_exception_boundary( $form, $entry, $cache_threshold, $context );
 		} catch ( BaseThrowable $e ) {
 			$this->log( 'AI verdict resolution failed: ' . get_class( $e ) . ' ' . $e->getMessage() );
 
@@ -352,10 +358,11 @@ class GF_Zero_Spam_AI_Review {
 	 * @param array      $form            The form currently being processed.
 	 * @param array      $entry           The entry currently being processed.
 	 * @param float|null $cache_threshold Optional threshold used to preserve the existing cache key.
+	 * @param string     $context         Either "review" or "rescue".
 	 *
 	 * @return array|null Normalized verdict, or null when review failed open/closed.
 	 */
-	private function resolve_verdict_without_exception_boundary( $form, $entry, $cache_threshold = null ) {
+	private function resolve_verdict_without_exception_boundary( $form, $entry, $cache_threshold = null, $context = self::CONTEXT_REVIEW ) {
 		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
 			return null;
 		}
@@ -368,7 +375,8 @@ class GF_Zero_Spam_AI_Review {
 
 		$system_instruction = $this->get_system_instruction( $form, $entry, $payload );
 		$threshold          = is_numeric( $cache_threshold ) ? (float) $cache_threshold : $this->get_confidence_threshold( $form, $entry );
-		$cache_key          = $this->get_cache_key( $form, $payload, $system_instruction, $threshold );
+		$provider_id        = $this->get_provider_id( $context, $form, $entry );
+		$cache_key          = $this->get_cache_key( $form, $payload, $system_instruction, $threshold, $provider_id );
 
 		if ( array_key_exists( $cache_key, self::$verdict_cache ) ) {
 			return self::$verdict_cache[ $cache_key ];
@@ -406,7 +414,7 @@ class GF_Zero_Spam_AI_Review {
 			return $verdict;
 		}
 
-		$verdict = $this->get_ai_verdict( $payload, $system_instruction, $form, $entry );
+		$verdict = $this->get_ai_verdict( $payload, $system_instruction, $form, $entry, $provider_id );
 
 		if ( null === $verdict ) {
 			self::$verdict_cache[ $cache_key ] = null;
@@ -1138,6 +1146,38 @@ class GF_Zero_Spam_AI_Review {
 	}
 
 	/**
+	 * Gets the AI provider ID for the current request.
+	 *
+	 * @since TBD
+	 *
+	 * @param string $context Either "review" or "rescue".
+	 * @param array  $form    The form currently being processed.
+	 * @param array  $entry   The entry currently being processed.
+	 *
+	 * @return string Provider ID, or empty string for automatic selection.
+	 */
+	private function get_provider_id( $context, $form, $entry ) {
+		$provider_id = $this->addon->get_plugin_setting( 'gf_zero_spam_ai_provider' );
+		$provider_id = is_string( $provider_id ) ? trim( $provider_id ) : '';
+
+		/**
+		 * Modifies the AI provider used for the current classification request.
+		 *
+		 * Return an empty string to use the WordPress AI Client default provider.
+		 *
+		 * @since TBD
+		 *
+		 * @param string $provider_id Provider ID, or empty string for automatic selection.
+		 * @param string $context     Either "review" or "rescue".
+		 * @param array  $form        The form currently being processed.
+		 * @param array  $entry       The entry currently being processed.
+		 */
+		$provider_id = apply_filters( 'gf_zero_spam_ai_provider', $provider_id, $context, $form, $entry );
+
+		return is_string( $provider_id ) ? trim( $provider_id ) : '';
+	}
+
+	/**
 	 * Gets a request-local cache key.
 	 *
 	 * @since TBD
@@ -1146,11 +1186,12 @@ class GF_Zero_Spam_AI_Review {
 	 * @param string $payload            The serialized payload.
 	 * @param string $system_instruction The AI system instruction.
 	 * @param float  $threshold          The confidence threshold.
+	 * @param string $provider_id        Provider ID, or empty string for automatic selection.
 	 *
 	 * @return string Cache key.
 	 */
-	private function get_cache_key( $form, $payload, $system_instruction, $threshold ) {
-		return $this->get_form_id( $form ) . ':' . md5( $payload . '|' . $system_instruction . '|' . $threshold );
+	private function get_cache_key( $form, $payload, $system_instruction, $threshold, $provider_id = '' ) {
+		return $this->get_form_id( $form ) . ':' . md5( $payload . '|' . $system_instruction . '|' . $threshold . '|' . $provider_id );
 	}
 
 	/**
@@ -1259,10 +1300,11 @@ class GF_Zero_Spam_AI_Review {
 	 * @param string $system_instruction The AI system instruction.
 	 * @param array  $form               The form currently being processed.
 	 * @param array  $entry              The entry currently being processed.
+	 * @param string $provider_id        Provider ID, or empty string for automatic selection.
 	 *
 	 * @return array|null Normalized verdict, or null on failure.
 	 */
-	private function get_ai_verdict( $payload, $system_instruction, $form, $entry ) {
+	private function get_ai_verdict( $payload, $system_instruction, $form, $entry, $provider_id = '' ) {
 		$prompt = wp_ai_client_prompt( $payload )
 			->using_system_instruction( $system_instruction )
 			->using_max_tokens( self::DEFAULT_MAX_TOKENS )
@@ -1275,8 +1317,8 @@ class GF_Zero_Spam_AI_Review {
 			)
 			->as_json_response( self::get_json_schema() );
 
-		if ( ! $prompt->is_supported_for_text_generation() ) {
-			return null;
+		if ( '' !== $provider_id ) {
+			$prompt = $prompt->using_provider( $provider_id );
 		}
 
 		$response = $prompt->generate_text();

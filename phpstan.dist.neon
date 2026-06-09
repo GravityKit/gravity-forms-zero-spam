@@ -25,9 +25,6 @@ parameters:
             message: '#Function wp_ai_client_prompt not found#'
             path: includes/class-gf-zero-spam-ai-review.php
         -
-            message: '#Function wp_ai_client_prompt not found#'
-            path: includes/class-gf-zero-spam-ai-review-settings.php
-        -
             message: '#Call to static method fromArray\(\) on an unknown class WordPress\\AiClient\\Providers\\Http\\DTO\\RequestOptions\.#'
             path: includes/class-gf-zero-spam-ai-review.php
         -

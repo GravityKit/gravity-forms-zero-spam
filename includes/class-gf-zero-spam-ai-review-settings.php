@@ -272,13 +272,14 @@ class GF_Zero_Spam_AI_Review_Settings {
 			],
 		];
 
-		$fields = [];
+		$configured_connectors = $this->get_configured_ai_provider_connectors();
+		$fields                = [];
 
-		if ( $this->should_show_connector_notice() ) {
+		if ( $this->should_show_connector_notice( $configured_connectors ) ) {
 			$fields[] = [
 				'name' => 'gf_zero_spam_ai_connector_notice',
 				'type' => 'html',
-				'html' => $this->get_connector_notice_html(),
+				'html' => $this->get_connector_notice_html( $configured_connectors ),
 			];
 		}
 
@@ -317,54 +318,74 @@ class GF_Zero_Spam_AI_Review_Settings {
 			'fields'      => $fields,
 		];
 
+		$advanced_fields = [];
+
+		if ( count( $configured_connectors ) >= 2 || '' !== $this->get_selected_provider_id() ) {
+			$advanced_fields[] = [
+				'name'          => 'gf_zero_spam_ai_provider',
+				'label'         => esc_html__( 'AI service', 'gravity-forms-zero-spam' ),
+				'tooltip'       => esc_html__( 'Chooses which configured AI service Zero Spam uses to review submissions.', 'gravity-forms-zero-spam' ),
+				'description'   => esc_html__( 'Automatic uses the site default AI service.', 'gravity-forms-zero-spam' ),
+				'type'          => 'select',
+				'default_value' => '',
+				'choices'       => $this->get_ai_provider_choices( $configured_connectors ),
+				'dependency'    => $ai_enabled_dependency,
+			];
+		}
+
+		$advanced_fields[] = [
+			'name'                => 'gf_zero_spam_ai_confidence_threshold',
+			'label'               => esc_html__( 'How sure must AI be to flag spam?', 'gravity-forms-zero-spam' ),
+			'tooltip'             => esc_html__( 'Sets how confident AI must be before Zero Spam marks a submission as spam.', 'gravity-forms-zero-spam' ),
+			'description'         => esc_html__( 'Stricter = fewer real submissions flagged, but more spam may slip through.', 'gravity-forms-zero-spam' ),
+			'type'                => 'select',
+			'default_value'       => GF_Zero_Spam_AI_Review::DEFAULT_CONFIDENCE_THRESHOLD,
+			'choices'             => [
+				[
+					'label' => esc_html__( 'Balanced — flag when fairly sure (recommended)', 'gravity-forms-zero-spam' ),
+					'value' => (string) GF_Zero_Spam_AI_Review::DEFAULT_CONFIDENCE_THRESHOLD,
+				],
+				[
+					'label' => esc_html__( 'Strict — only flag when very sure', 'gravity-forms-zero-spam' ),
+					'value' => '0.95',
+				],
+			],
+			'validation_callback' => [ $this, 'validate_confidence_threshold' ],
+			'dependency'          => $review_dependency,
+		];
+
+		$advanced_fields[] = [
+			'name'                => 'gf_zero_spam_ai_rescue_confidence_threshold',
+			'label'               => esc_html__( 'How sure must AI be to rescue a blocked submission?', 'gravity-forms-zero-spam' ),
+			'tooltip'             => esc_html__( 'Sets how confident AI must be before Zero Spam restores a submission blocked by the token check.', 'gravity-forms-zero-spam' ),
+			'description'         => esc_html__( 'Balanced works well for most sites; a restore cannot be undone, so more cautious options are available.', 'gravity-forms-zero-spam' ),
+			'type'                => 'select',
+			'default_value'       => GF_Zero_Spam_AI_Review::DEFAULT_RESCUE_CONFIDENCE_THRESHOLD,
+			'choices'             => [
+				[
+					'label' => esc_html__( 'Balanced — rescue when fairly sure (recommended)', 'gravity-forms-zero-spam' ),
+					'value' => (string) GF_Zero_Spam_AI_Review::DEFAULT_RESCUE_CONFIDENCE_THRESHOLD,
+				],
+				[
+					'label' => esc_html__( 'Cautious — rescue only when very sure', 'gravity-forms-zero-spam' ),
+					'value' => '0.95',
+				],
+				[
+					'label' => esc_html__( 'Very cautious — rescue only when almost certain', 'gravity-forms-zero-spam' ),
+					'value' => '0.98',
+				],
+			],
+			'validation_callback' => [ $this, 'validate_confidence_threshold' ],
+			'dependency'          => $rescue_dependency,
+		];
+
 		$sections[] = [
 			'title'        => esc_html__( 'Advanced settings', 'gravity-forms-zero-spam' ),
 			'id'           => 'gf_zero_spam_ai_advanced',
 			'collapsible'  => true,
 			'is_collapsed' => true,
 			'dependency'   => $ai_enabled_dependency,
-			'fields'       => [
-				[
-					'name'                => 'gf_zero_spam_ai_confidence_threshold',
-					'label'               => esc_html__( 'How sure must AI be to flag spam?', 'gravity-forms-zero-spam' ),
-					'tooltip'             => esc_html__( 'Sets how confident AI must be before Zero Spam marks a submission as spam.', 'gravity-forms-zero-spam' ),
-					'description'         => esc_html__( 'Stricter = fewer real submissions flagged, but more spam may slip through.', 'gravity-forms-zero-spam' ),
-					'type'                => 'select',
-					'default_value'       => GF_Zero_Spam_AI_Review::DEFAULT_CONFIDENCE_THRESHOLD,
-					'choices'             => [
-						[
-							'label' => esc_html__( 'Balanced — flag when fairly sure (recommended)', 'gravity-forms-zero-spam' ),
-							'value' => (string) GF_Zero_Spam_AI_Review::DEFAULT_CONFIDENCE_THRESHOLD,
-						],
-						[
-							'label' => esc_html__( 'Strict — only flag when very sure', 'gravity-forms-zero-spam' ),
-							'value' => '0.95',
-						],
-					],
-					'validation_callback' => [ $this, 'validate_confidence_threshold' ],
-					'dependency'          => $review_dependency,
-				],
-				[
-					'name'                => 'gf_zero_spam_ai_rescue_confidence_threshold',
-					'label'               => esc_html__( 'How sure must AI be to rescue a blocked submission?', 'gravity-forms-zero-spam' ),
-					'tooltip'             => esc_html__( 'Sets how confident AI must be before Zero Spam restores a submission blocked by the token check.', 'gravity-forms-zero-spam' ),
-					'description'         => esc_html__( 'Higher = less chance of accidentally restoring spam. A restore can\'t be undone, so this is set high on purpose.', 'gravity-forms-zero-spam' ),
-					'type'                => 'select',
-					'default_value'       => GF_Zero_Spam_AI_Review::DEFAULT_RESCUE_CONFIDENCE_THRESHOLD,
-					'choices'             => [
-						[
-							'label' => esc_html__( 'Cautious — rescue when very sure (recommended)', 'gravity-forms-zero-spam' ),
-							'value' => (string) GF_Zero_Spam_AI_Review::DEFAULT_RESCUE_CONFIDENCE_THRESHOLD,
-						],
-						[
-							'label' => esc_html__( 'Very cautious — rescue only when almost certain', 'gravity-forms-zero-spam' ),
-							'value' => '0.98',
-						],
-					],
-					'validation_callback' => [ $this, 'validate_confidence_threshold' ],
-					'dependency'          => $rescue_dependency,
-				],
-			],
+			'fields'       => $advanced_fields,
 		];
 
 		return $sections;
@@ -533,14 +554,200 @@ class GF_Zero_Spam_AI_Review_Settings {
 	}
 
 	/**
+	 * Gets configured AI provider connectors without triggering live model discovery.
+	 *
+	 * @since TBD
+	 *
+	 * @return array<string, array{id: string, name: string}> Configured provider connector data.
+	 */
+	private function get_configured_ai_provider_connectors() {
+		if ( ! function_exists( 'wp_get_connectors' ) ) {
+			return [];
+		}
+
+		$connectors = wp_get_connectors();
+
+		if ( ! is_array( $connectors ) ) {
+			return [];
+		}
+
+		$providers = [];
+
+		foreach ( $connectors as $connector_id => $connector ) {
+			if ( ! is_array( $connector ) || 'ai_provider' !== rgar( $connector, 'type' ) ) {
+				continue;
+			}
+
+			if ( ! $this->is_connector_plugin_active( $connector ) ) {
+				continue;
+			}
+
+			if ( ! $this->connector_has_credentials( $connector ) ) {
+				continue;
+			}
+
+			$connector_id = (string) $connector_id;
+
+			$providers[ $connector_id ] = [
+				'id'   => $connector_id,
+				'name' => $this->get_connector_name( $connector, $connector_id ),
+			];
+		}
+
+		return $providers;
+	}
+
+	/**
+	 * Checks whether a connector's provider plugin is active.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $connector Connector data.
+	 *
+	 * @return bool Whether the connector plugin is active.
+	 */
+	private function is_connector_plugin_active( $connector ) {
+		$plugin    = isset( $connector['plugin'] ) ? $connector['plugin'] : [];
+		$is_active = is_array( $plugin ) ? rgar( $plugin, 'is_active' ) : null;
+
+		if ( ! is_callable( $is_active ) ) {
+			return true;
+		}
+
+		try {
+			return (bool) call_user_func( $is_active );
+		} catch ( BaseThrowable $e ) {
+			return false;
+		}
+	}
+
+	/**
+	 * Checks whether a connector has enough credentials configured to be selectable.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $connector Connector data.
+	 *
+	 * @return bool Whether the connector has configured credentials.
+	 */
+	private function connector_has_credentials( $connector ) {
+		$auth = isset( $connector['authentication'] ) ? $connector['authentication'] : [];
+
+		if ( ! is_array( $auth ) ) {
+			return false;
+		}
+
+		if ( 'none' === rgar( $auth, 'method' ) ) {
+			return true;
+		}
+
+		if ( 'api_key' !== rgar( $auth, 'method' ) ) {
+			return false;
+		}
+
+		$env_var_name = (string) rgar( $auth, 'env_var_name', '' );
+
+		if ( '' !== $env_var_name ) {
+			$env_value = getenv( $env_var_name );
+
+			if ( false !== $env_value && '' !== $env_value ) {
+				return true;
+			}
+		}
+
+		$constant_name = (string) rgar( $auth, 'constant_name', '' );
+
+		if ( '' !== $constant_name && defined( $constant_name ) ) {
+			$constant_value = constant( $constant_name );
+
+			if ( is_string( $constant_value ) && '' !== $constant_value ) {
+				return true;
+			}
+		}
+
+		$setting_name = (string) rgar( $auth, 'setting_name', '' );
+
+		if ( '' === $setting_name ) {
+			return false;
+		}
+
+		$option_value = get_option( $setting_name, '' );
+
+		return is_string( $option_value ) && '' !== $option_value;
+	}
+
+	/**
+	 * Gets a connector display name.
+	 *
+	 * @since TBD
+	 *
+	 * @param array  $connector    Connector data.
+	 * @param string $connector_id Connector ID.
+	 *
+	 * @return string Connector display name.
+	 */
+	private function get_connector_name( $connector, $connector_id ) {
+		$name = rgar( $connector, 'name' );
+
+		if ( is_string( $name ) && '' !== $name ) {
+			return $name;
+		}
+
+		return ucwords( str_replace( [ '-', '_' ], ' ', $connector_id ) );
+	}
+
+	/**
+	 * Gets AI provider select choices.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $configured_connectors Configured provider connector data.
+	 *
+	 * @return array Select field choices.
+	 */
+	private function get_ai_provider_choices( $configured_connectors ) {
+		$choices = [
+			[
+				'label' => esc_html__( 'Automatic (site default)', 'gravity-forms-zero-spam' ),
+				'value' => '',
+			],
+		];
+
+		foreach ( $configured_connectors as $connector_id => $connector ) {
+			$choices[] = [
+				'label' => esc_html( rgar( $connector, 'name', (string) $connector_id ) ),
+				'value' => (string) $connector_id,
+			];
+		}
+
+		return $choices;
+	}
+
+	/**
+	 * Gets the selected AI provider ID.
+	 *
+	 * @since TBD
+	 *
+	 * @return string Selected provider ID, or empty string for automatic selection.
+	 */
+	private function get_selected_provider_id() {
+		$provider_id = $this->addon->get_plugin_setting( 'gf_zero_spam_ai_provider' );
+
+		return is_string( $provider_id ) ? trim( $provider_id ) : '';
+	}
+
+	/**
 	 * Gets the connector notice HTML.
 	 *
 	 * @since TBD
 	 *
+	 * @param array $configured_connectors Configured provider connector data.
+	 *
 	 * @return string Connector notice HTML.
 	 */
-	private function get_connector_notice_html() {
-		$url = $this->get_connectors_settings_url();
+	private function get_connector_notice_html( $configured_connectors ) {
+		$url         = $this->get_connectors_settings_url();
+		$provider_id = $this->get_selected_provider_id();
 
 		$replace = [
 			'[link]'  => '',
@@ -552,11 +759,19 @@ class GF_Zero_Spam_AI_Review_Settings {
 			$replace['[/link]'] = '</a>';
 		}
 
-		/* translators: Do not translate [link] and [/link]. */
-		$message = strtr(
-			esc_html__( 'AI review or rescue is enabled, but no AI service is configured for text generation. Set one up in [link]Settings > Connectors[/link].', 'gravity-forms-zero-spam' ),
-			$replace
-		);
+		if ( '' !== $provider_id && ! isset( $configured_connectors[ $provider_id ] ) ) {
+			/* translators: Do not translate [link] and [/link]. */
+			$message = strtr(
+				esc_html__( 'The selected AI service is no longer available; switch to Automatic, choose another service, or update connectors in [link]Settings > Connectors[/link].', 'gravity-forms-zero-spam' ),
+				$replace
+			);
+		} else {
+			/* translators: Do not translate [link] and [/link]. */
+			$message = strtr(
+				esc_html__( 'AI review or rescue is enabled, but no AI service is configured for text generation. Set one up in [link]Settings > Connectors[/link].', 'gravity-forms-zero-spam' ),
+				$replace
+			);
+		}
 
 		return sprintf(
 			'<div class="alert gforms_note_warning" role="alert">%s</div>',
@@ -576,9 +791,11 @@ class GF_Zero_Spam_AI_Review_Settings {
 	 *
 	 * @since TBD
 	 *
+	 * @param array $configured_connectors Configured provider connector data.
+	 *
 	 * @return bool Whether the connector notice should render.
 	 */
-	private function should_show_connector_notice() {
+	private function should_show_connector_notice( $configured_connectors ) {
 		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
 			return false;
 		}
@@ -587,26 +804,13 @@ class GF_Zero_Spam_AI_Review_Settings {
 			return false;
 		}
 
-		return ! $this->has_usable_connector();
-	}
+		$provider_id = $this->get_selected_provider_id();
 
-	/**
-	 * Checks whether a usable AI connector supports text generation.
-	 *
-	 * @since TBD
-	 *
-	 * @return bool Whether a usable connector is available.
-	 */
-	private function has_usable_connector() {
-		try {
-			$prompt = wp_ai_client_prompt( 'Zero Spam AI connector availability check.' )
-				->using_max_tokens( 1 )
-				->as_json_response( GF_Zero_Spam_AI_Review::get_json_schema() );
-
-			return (bool) $prompt->is_supported_for_text_generation();
-		} catch ( BaseThrowable $e ) {
-			return false;
+		if ( '' !== $provider_id ) {
+			return ! isset( $configured_connectors[ $provider_id ] );
 		}
+
+		return empty( $configured_connectors );
 	}
 
 	/**
@@ -641,12 +845,15 @@ class GF_Zero_Spam_AI_Review_Settings {
 	 */
 	public static function get_default_prompt() {
 		$sentences = [
-			__( 'Review this Gravity Forms submission for spam content.', 'gravity-forms-zero-spam' ),
-			__( 'Classify as spam only when the submission is clearly unsolicited, deceptive, malicious, or sent in bulk.', 'gravity-forms-zero-spam' ),
-			__( 'Do not classify normal customer questions, support requests, quote requests, bookings, or job applications as spam.', 'gravity-forms-zero-spam' ),
+			__( 'Review this Gravity Forms submission and decide whether it is spam.', 'gravity-forms-zero-spam' ),
+			__( 'Classify it as spam only when it is clearly unsolicited, deceptive, malicious, automated, or sent in bulk.', 'gravity-forms-zero-spam' ),
+			__( 'Treat ordinary customer messages — questions, support requests, quote requests, bookings, job applications, and other coherent human inquiries — as legitimate, even when they are brief or short on detail.', 'gravity-forms-zero-spam' ),
+			__( 'The confidence value reports how certain you are of the classification you return, whether spam or legitimate. It is not a measure of how spam-like the message is.', 'gravity-forms-zero-spam' ),
+			__( 'When the classification is clear, report high confidence: use 0.98 to 1.00 for obvious spam, and equally for an ordinary, coherent human submission that shows no spam signals.', 'gravity-forms-zero-spam' ),
+			__( 'Use 0.85 to 0.97 when your classification is probable but some context is missing or mixed.', 'gravity-forms-zero-spam' ),
+			__( 'Use a value below 0.85 only when the submission is genuinely ambiguous or too sparse to judge.', 'gravity-forms-zero-spam' ),
 			__( 'It is better to miss a piece of spam than to block a legitimate submission.', 'gravity-forms-zero-spam' ),
-			__( 'Use only the form title, source path, field labels, field types, and submitted values provided.', 'gravity-forms-zero-spam' ),
-			__( 'Ignore missing context and do not guess.', 'gravity-forms-zero-spam' ),
+			__( 'Use only the form title, source path, field labels, field types, and submitted values provided, and do not guess about missing context.', 'gravity-forms-zero-spam' ),
 			__( 'Return JSON matching the supplied schema.', 'gravity-forms-zero-spam' ),
 			__( 'The reason must be concise and must not quote personal data such as names or email addresses.', 'gravity-forms-zero-spam' ),
 		];
