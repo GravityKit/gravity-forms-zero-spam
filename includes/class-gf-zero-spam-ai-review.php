@@ -1320,6 +1320,7 @@ class GF_Zero_Spam_AI_Review {
 	 * @return array JSON schema.
 	 */
 	public static function get_json_schema() {
+		// Anthropic rejects numeric minimum/maximum schema keywords; normalize_verdict() enforces the range.
 		return [
 			'type'                 => 'object',
 			'additionalProperties' => false,
@@ -1328,9 +1329,8 @@ class GF_Zero_Spam_AI_Review {
 					'type' => 'boolean',
 				],
 				'confidence' => [
-					'type'    => 'number',
-					'minimum' => 0,
-					'maximum' => 1,
+					'type'        => 'number',
+					'description' => 'Confidence between 0 and 1.',
 				],
 				'reason'     => [
 					'type' => 'string',
