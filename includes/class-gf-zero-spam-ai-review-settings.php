@@ -1,11 +1,13 @@
 <?php
 
+use Throwable as BaseThrowable;
+
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
 /**
- * Registers AI Spam Review settings and admin notices.
+ * Registers AI Spam Review settings and settings notices.
  *
  * @since TBD
  */
@@ -40,7 +42,6 @@ class GF_Zero_Spam_AI_Review_Settings {
 	public function init() {
 		add_filter( 'gf_zero_spam_ai_enabled', [ $this, 'filter_ai_enabled' ], 20, 4 );
 		add_filter( 'gform_form_settings_initial_values', [ $this, 'filter_form_settings_initial_values' ], 10, 2 );
-		add_action( 'admin_notices', [ $this, 'maybe_show_connector_notice' ] );
 		add_action( 'admin_footer', [ $this, 'print_form_settings_scripts' ] );
 	}
 
@@ -163,6 +164,8 @@ class GF_Zero_Spam_AI_Review_Settings {
 	 * @return bool Whether AI is enabled.
 	 */
 	public function filter_ai_enabled( $enabled = false, $context = GF_Zero_Spam_AI_Review::CONTEXT_REVIEW, $form = [], $entry = [] ) {
+		unset( $enabled, $entry );
+
 		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
 			return false;
 		}
@@ -269,37 +272,49 @@ class GF_Zero_Spam_AI_Review_Settings {
 			],
 		];
 
+		$fields = [];
+
+		if ( $this->should_show_connector_notice() ) {
+			$fields[] = [
+				'name' => 'gf_zero_spam_ai_connector_notice',
+				'type' => 'html',
+				'html' => $this->get_connector_notice_html(),
+			];
+		}
+
+		$fields[] = [
+			'name'          => 'gf_zero_spam_ai_review_enabled',
+			'label'         => esc_html__( 'Catch spam the token check misses', 'gravity-forms-zero-spam' ),
+			'tooltip'       => esc_html__( 'Reviews submissions that were allowed through — a second opinion to catch bots that defeated the token check.', 'gravity-forms-zero-spam' ),
+			'description'   => esc_html__( 'After a submission passes the normal spam checks, AI reads it and flags it as spam if it looks suspicious.', 'gravity-forms-zero-spam' ),
+			'type'          => 'toggle',
+			'default_value' => false,
+		];
+
+		$fields[] = [
+			'name'          => 'gf_zero_spam_ai_rescue_enabled',
+			'label'         => esc_html__( 'Rescue good submissions blocked by mistake', 'gravity-forms-zero-spam' ),
+			'tooltip'       => esc_html__( 'Reviews submissions blocked by Zero Spam\'s own token check (not Akismet, the honeypot, or email rules). Always runs before notifications are sent.', 'gravity-forms-zero-spam' ),
+			'description'   => esc_html__( 'If the token check blocks a submission but the content looks genuine, AI can let it through. Only submissions blocked by Zero Spam\'s token check are eligible; during a token-failure flood this can increase AI usage.', 'gravity-forms-zero-spam' ),
+			'type'          => 'toggle',
+			'default_value' => false,
+		];
+
+		$fields[] = [
+			'name'          => 'gf_zero_spam_ai_default_prompt',
+			'label'         => esc_html__( 'AI instructions', 'gravity-forms-zero-spam' ),
+			'tooltip'       => esc_html__( 'Tell the AI how to evaluate submissions — what counts as spam for your site and what doesn\'t.', 'gravity-forms-zero-spam' ),
+			'description'   => esc_html__( 'Tell the AI what counts as spam on your site. These instructions are used by both tools above; the default works well for most sites.', 'gravity-forms-zero-spam' ),
+			'type'          => 'textarea',
+			'default_value' => self::get_default_prompt(),
+			'class'         => 'large',
+			'dependency'    => $ai_enabled_dependency,
+		];
+
 		$sections[] = [
 			'title'       => esc_html__( 'AI spam protection', 'gravity-forms-zero-spam' ),
 			'description' => $section_description,
-			'fields'      => [
-				[
-					'name'          => 'gf_zero_spam_ai_review_enabled',
-					'label'         => esc_html__( 'Catch spam the token check misses', 'gravity-forms-zero-spam' ),
-					'tooltip'       => esc_html__( 'Reviews submissions that were allowed through — a second opinion to catch bots that defeated the token check.', 'gravity-forms-zero-spam' ),
-					'description'   => esc_html__( 'After a submission passes the normal spam checks, AI reads it and flags it as spam if it looks suspicious.', 'gravity-forms-zero-spam' ),
-					'type'          => 'toggle',
-					'default_value' => false,
-				],
-				[
-					'name'          => 'gf_zero_spam_ai_rescue_enabled',
-					'label'         => esc_html__( 'Rescue good submissions blocked by mistake', 'gravity-forms-zero-spam' ),
-					'tooltip'       => esc_html__( 'Reviews submissions blocked by Zero Spam\'s own token check (not Akismet, the honeypot, or email rules). Always runs before notifications are sent.', 'gravity-forms-zero-spam' ),
-					'description'   => esc_html__( 'If the token check blocks a submission but the content looks genuine, AI can let it through. Only submissions blocked by Zero Spam\'s token check are eligible; during a token-failure flood this can increase AI usage.', 'gravity-forms-zero-spam' ),
-					'type'          => 'toggle',
-					'default_value' => false,
-				],
-				[
-					'name'          => 'gf_zero_spam_ai_default_prompt',
-					'label'         => esc_html__( 'AI instructions', 'gravity-forms-zero-spam' ),
-					'tooltip'       => esc_html__( 'Tell the AI how to evaluate submissions — what counts as spam for your site and what doesn\'t.', 'gravity-forms-zero-spam' ),
-					'description'   => esc_html__( 'Tell the AI what counts as spam on your site. These instructions are used by both tools above; the default works well for most sites.', 'gravity-forms-zero-spam' ),
-					'type'          => 'textarea',
-					'default_value' => self::get_default_prompt(),
-					'class'         => 'large',
-					'dependency'    => $ai_enabled_dependency,
-				],
-			],
+			'fields'      => $fields,
 		];
 
 		$sections[] = [
@@ -518,67 +533,33 @@ class GF_Zero_Spam_AI_Review_Settings {
 	}
 
 	/**
-	 * Shows a connector notice when AI review is enabled without a usable connector.
+	 * Gets the connector notice HTML.
 	 *
 	 * @since TBD
 	 *
-	 * @return void
+	 * @return string Connector notice HTML.
 	 */
-	public function maybe_show_connector_notice() {
-		if ( ! $this->is_settings_page() ) {
-			return;
-		}
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-
-		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
-			return;
-		}
-
-		if ( ! $this->is_global_ai_review_enabled() ) {
-			return;
-		}
-
-		$prompt = wp_ai_client_prompt( 'Zero Spam AI connector availability check.' )
-			->using_max_tokens( 1 )
-			->as_json_response( GF_Zero_Spam_AI_Review::get_json_schema() );
-
-		if ( $prompt->is_supported_for_text_generation() ) {
-			return;
-		}
-
-		$this->render_connector_notice();
-	}
-
-	/**
-	 * Renders the connector notice.
-	 *
-	 * @since TBD
-	 *
-	 * @return void
-	 */
-	private function render_connector_notice() {
+	private function get_connector_notice_html() {
 		$url = $this->get_connectors_settings_url();
 
 		$replace = [
-			'{{link}}'  => '',
-			'{{/link}}' => '',
+			'[link]'  => '',
+			'[/link]' => '',
 		];
 
 		if ( '' !== $url ) {
-			$replace['{{link}}']  = '<a href="' . esc_url( $url ) . '">';
-			$replace['{{/link}}'] = '</a>';
+			$replace['[link]']  = '<a href="' . esc_url( $url ) . '">';
+			$replace['[/link]'] = '</a>';
 		}
 
+		/* translators: Do not translate [link] and [/link]. */
 		$message = strtr(
-			esc_html__( 'AI spam review is enabled, but no AI service is configured for text generation. Set one up in {{link}}Settings > Connectors{{/link}}.', 'gravity-forms-zero-spam' ),
+			esc_html__( 'AI review or rescue is enabled, but no AI service is configured for text generation. Set one up in [link]Settings > Connectors[/link].', 'gravity-forms-zero-spam' ),
 			$replace
 		);
 
-		printf(
-			'<div class="notice notice-warning"><p>%s</p></div>',
+		return sprintf(
+			'<div class="alert gforms_note_warning" role="alert">%s</div>',
 			wp_kses(
 				$message,
 				[
@@ -588,6 +569,44 @@ class GF_Zero_Spam_AI_Review_Settings {
 				]
 			)
 		);
+	}
+
+	/**
+	 * Checks whether the connector notice should render in settings.
+	 *
+	 * @since TBD
+	 *
+	 * @return bool Whether the connector notice should render.
+	 */
+	private function should_show_connector_notice() {
+		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
+			return false;
+		}
+
+		if ( ! $this->is_global_ai_review_enabled() ) {
+			return false;
+		}
+
+		return ! $this->has_usable_connector();
+	}
+
+	/**
+	 * Checks whether a usable AI connector supports text generation.
+	 *
+	 * @since TBD
+	 *
+	 * @return bool Whether a usable connector is available.
+	 */
+	private function has_usable_connector() {
+		try {
+			$prompt = wp_ai_client_prompt( 'Zero Spam AI connector availability check.' )
+				->using_max_tokens( 1 )
+				->as_json_response( GF_Zero_Spam_AI_Review::get_json_schema() );
+
+			return (bool) $prompt->is_supported_for_text_generation();
+		} catch ( BaseThrowable $e ) {
+			return false;
+		}
 	}
 
 	/**
@@ -611,19 +630,6 @@ class GF_Zero_Spam_AI_Review_Settings {
 	private function is_global_ai_review_enabled() {
 		return ! empty( $this->addon->get_plugin_setting( 'gf_zero_spam_ai_review_enabled' ) )
 			|| ! empty( $this->addon->get_plugin_setting( 'gf_zero_spam_ai_rescue_enabled' ) );
-	}
-
-	/**
-	 * Checks if the current screen is the Zero Spam settings page.
-	 *
-	 * @since TBD
-	 *
-	 * @return bool Whether the current screen is the Zero Spam settings page.
-	 */
-	private function is_settings_page() {
-		return is_admin()
-			&& rgget( 'page' ) === 'gf_settings'
-			&& rgget( 'subview' ) === 'gf-zero-spam';
 	}
 
 	/**
