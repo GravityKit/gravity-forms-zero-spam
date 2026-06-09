@@ -380,7 +380,7 @@ class GF_Zero_Spam_AI_Review_Settings {
 		];
 
 		$sections[] = [
-			'title'        => esc_html__( 'Advanced settings', 'gravity-forms-zero-spam' ),
+			'title'        => esc_html__( 'Advanced AI settings', 'gravity-forms-zero-spam' ),
 			'id'           => 'gf_zero_spam_ai_advanced',
 			'collapsible'  => true,
 			'is_collapsed' => true,

@@ -428,11 +428,14 @@ add_action(
 					'methods'             => 'GET',
 					'permission_callback' => $auth,
 					'callback'            => static function () {
-						$state    = (array) get_option( ZS_E2E_AI_REVIEW_OPTION, [] );
-						$settings = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
+						$state             = (array) get_option( ZS_E2E_AI_REVIEW_OPTION, [] );
+						$settings          = (array) get_option( 'gravityformsaddon_gf-zero-spam_settings', [] );
+						$schema            = class_exists( 'GF_Zero_Spam_AI_Review' ) ? GF_Zero_Spam_AI_Review::get_json_schema() : [];
+						$properties        = isset( $schema['properties'] ) && is_array( $schema['properties'] ) ? $schema['properties'] : [];
+						$confidence_schema = isset( $properties['confidence'] ) && is_array( $properties['confidence'] ) ? $properties['confidence'] : [];
 
 						return rest_ensure_response(
-                            [
+							[
 								'mode'                    => (string) ( $state['mode'] ?? 'none' ),
 								'verdict'                 => isset( $state['verdict'] ) ? $state['verdict'] : null,
 								'error_code'              => (string) ( $state['error_code'] ?? '' ),
@@ -451,6 +454,7 @@ add_action(
 								'default_prompt'          => rgar( $settings, 'gf_zero_spam_ai_default_prompt' ),
 								'rescue_global_enabled'   => rgar( $settings, 'gf_zero_spam_ai_rescue_enabled' ) ? true : false,
 								'rescue_threshold'        => rgar( $settings, 'gf_zero_spam_ai_rescue_confidence_threshold' ),
+								'schema_confidence'       => $confidence_schema,
 							]
 						);
 					},

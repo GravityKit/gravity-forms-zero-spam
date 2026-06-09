@@ -1,5 +1,5 @@
 /**
- * Zero Spam — AI spam review (HP-20 through HP-47).
+ * Zero Spam — AI spam review (HP-20 through HP-51).
  *
  * Uses the E2E-only `gf_zero_spam_ai_verdict` short-circuit seam so the tests
  * never need a configured connector or real API spend.
@@ -194,6 +194,16 @@ test.describe('Zero Spam — AI spam review', () => {
         if (pageId) {
             await helpers.cleanupPages(request, [pageId]);
         }
+    });
+
+    test('HP-49: confidence JSON schema omits provider-specific numeric bounds', async ({
+        request,
+    }) => {
+        const state = await helpers.getAiReview(request);
+
+        expect(state.schema_confidence).toMatchObject({ type: 'number' });
+        expect(state.schema_confidence).not.toHaveProperty('minimum');
+        expect(state.schema_confidence).not.toHaveProperty('maximum');
     });
 
     test('HP-20: spam verdict marks a token-cleared submission as spam with Zero Spam (AI)', async ({
@@ -440,6 +450,96 @@ test.describe('Zero Spam — AI spam review', () => {
 
         const notes = await helpers.getEntryNotes(request, Number(entry.id));
         expect(notes.some((note) => note.user_name === 'Zero Spam (AI Rescue)')).toBe(true);
+    });
+
+    test('HP-50: rescue restores token spam when ham confidence clears the default threshold', async ({
+        page,
+        request,
+    }) => {
+        const email = `ai-rescue-default-pass+${testId}@example.test`;
+        const subject = `AI Rescue Default Pass ${testId}`;
+
+        await configureSyncRescue(request, formId, subject, 'Default threshold rescued notification.');
+        await helpers.setAiReview(request, {
+            global_enabled: true,
+            mode: 'verdict',
+            verdict: {
+                is_spam: false,
+                confidence: 0.92,
+                reason: 'Legitimate above default rescue threshold',
+            },
+        });
+
+        const result = await postSubmission(
+            page,
+            request,
+            pageUrl,
+            formId,
+            {
+                name: 'Default Rescue Pass',
+                email,
+                message: 'Can we reschedule to next week?',
+            },
+            'not-a-valid-zero-spam-token'
+        );
+        expect(result.status).toBe(200);
+
+        const active = await helpers.getEntries(request, formId, 'active');
+        expect(findByEmail(active, email), '0.92 ham verdict must restore the entry').toHaveLength(1);
+
+        const spam = await helpers.getEntries(request, formId, 'spam');
+        expect(findByEmail(spam, email), '0.92 ham verdict must not remain spam').toHaveLength(0);
+
+        const mail = await helpers.getCapturedMail(request);
+        expect(findBySubject(mail, subject), 'rescued default-threshold entry must send notification').toHaveLength(1);
+
+        const state = await helpers.getAiReview(request);
+        expect(state.calls, 'default-threshold rescue must call the verdict seam').toBe(1);
+    });
+
+    test('HP-51: rescue leaves token spam when ham confidence misses the default threshold', async ({
+        page,
+        request,
+    }) => {
+        const email = `ai-rescue-default-fail+${testId}@example.test`;
+        const subject = `AI Rescue Default Fail ${testId}`;
+
+        await configureSyncRescue(request, formId, subject, 'Should not be sent.');
+        await helpers.setAiReview(request, {
+            global_enabled: true,
+            mode: 'verdict',
+            verdict: {
+                is_spam: false,
+                confidence: 0.88,
+                reason: 'Legitimate below default rescue threshold',
+            },
+        });
+
+        const result = await postSubmission(
+            page,
+            request,
+            pageUrl,
+            formId,
+            {
+                name: 'Default Rescue Fail',
+                email,
+                message: 'Can we reschedule to next week?',
+            },
+            'not-a-valid-zero-spam-token'
+        );
+        expect(result.status).toBe(200);
+
+        const spam = await helpers.getEntries(request, formId, 'spam');
+        expect(findByEmail(spam, email), '0.88 ham verdict must stay spam').toHaveLength(1);
+
+        const active = await helpers.getEntries(request, formId, 'active');
+        expect(findByEmail(active, email), '0.88 ham verdict must not restore the entry').toHaveLength(0);
+
+        const mail = await helpers.getCapturedMail(request);
+        expect(findBySubject(mail, subject), 'below-threshold rescue must not send notification').toHaveLength(0);
+
+        const state = await helpers.getAiReview(request);
+        expect(state.calls, 'below-threshold rescue must still call the verdict seam').toBe(1);
     });
 
     test('HP-48: result hook can veto a rescue verdict', async ({ page, request }) => {
