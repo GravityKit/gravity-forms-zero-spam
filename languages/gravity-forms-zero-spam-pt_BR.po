@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"PO-Revision-Date: 2026-06-10 20:08:31+0000\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -273,7 +273,7 @@ msgstr "Mensagem de Validação (opcional)"
 msgid "Leave blank to use the global default message."
 msgstr "Deixe em branco para usar a mensagem padrão global."
 
-#: includes/class-email-rejection.php:623
+#: includes/class-email-rejection.php:627
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -281,8 +281,8 @@ msgstr ""
 "O endereço de e-mail que você inseriu não é permitido. Por favor, use um "
 "endereço de e-mail diferente."
 
-#: includes/class-gf-zero-spam-addon.php:187
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:204
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -290,15 +290,15 @@ msgstr ""
 "Habilite para combater spam usando um método simples e eficaz, que é mais "
 "eficiente que o honeypot anti-spam embutido."
 
-#: includes/class-gf-zero-spam-addon.php:240
+#: includes/class-gf-zero-spam-addon.php:257
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Prevenir spam usando Gravity Forms Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:265
+#: includes/class-gf-zero-spam-addon.php:286
 msgid "Know when entries are flagged as spam."
 msgstr "Saiba quando as entradas são sinalizadas como spam."
 
-#: includes/class-gf-zero-spam-addon.php:266
+#: includes/class-gf-zero-spam-addon.php:287
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -310,7 +310,7 @@ msgstr ""
 "fornecendo um resumo das entradas recentes de spam. Se nenhuma entrada de "
 "spam tiver sido enviada, nenhum relatório será enviado."
 
-#: includes/class-gf-zero-spam-addon.php:267
+#: includes/class-gf-zero-spam-addon.php:288
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -318,7 +318,7 @@ msgstr ""
 "Este recurso funciona com qualquer filtro de spam, incluindo o honeypot de "
 "spam do Gravity Forms, Gravity Forms Zero Spam, reCAPTCHA ou outros."
 
-#: includes/class-gf-zero-spam-addon.php:269
+#: includes/class-gf-zero-spam-addon.php:290
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -328,11 +328,11 @@ msgstr ""
 "ser sempre enviados na frequência agendada. {{link}}Veja como configurar um "
 "“cron” para tornar isso mais confiável{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:272
+#: includes/class-gf-zero-spam-addon.php:293
 msgid "Link opens in a new tab"
 msgstr "O link abre em uma nova aba"
 
-#: includes/class-gf-zero-spam-addon.php:281
+#: includes/class-gf-zero-spam-addon.php:302
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
@@ -340,7 +340,7 @@ msgstr ""
 "Você recebeu {{total_spam_count}} entradas de spam do(s) seguinte(s) "
 "formulário(s):"
 
-#: includes/class-gf-zero-spam-addon.php:284
+#: includes/class-gf-zero-spam-addon.php:305
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -348,29 +348,29 @@ msgstr ""
 "Para modificar ou desativar este e-mail, visite {{settings_link}}a página "
 "de configurações do Gravity Forms Zero Spam{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:307
 msgid "The following variables may be used:"
 msgstr "As seguintes variáveis podem ser usadas:"
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:309
 msgid "The name of this website"
 msgstr "O nome deste site"
 
-#: includes/class-gf-zero-spam-addon.php:289
+#: includes/class-gf-zero-spam-addon.php:310
 msgid "The email of the site administrator"
 msgstr "O e-mail do administrador do site"
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:311
 msgid "The total number of spam emails received since the last report."
 msgstr "O número total de e-mails de spam recebidos desde o último relatório."
 
-#: includes/class-gf-zero-spam-addon.php:291
+#: includes/class-gf-zero-spam-addon.php:312
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr ""
 "Uma lista de formulários e o número de entradas de spam desde o último "
 "relatório."
 
-#: includes/class-gf-zero-spam-addon.php:292
+#: includes/class-gf-zero-spam-addon.php:313
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -379,11 +379,11 @@ msgstr ""
 "variáveis será o texto do link. Certifique-se de incluir tanto as variáveis "
 "de abertura quanto de fechamento."
 
-#: includes/class-gf-zero-spam-addon.php:297
+#: includes/class-gf-zero-spam-addon.php:318
 msgid "Spam Blocking"
 msgstr "Bloqueio de Spam"
 
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -391,63 +391,63 @@ msgstr ""
 "É possível ativar ou desativar o bloqueio de spam para cada formulário "
 "dentro das configurações de cada formulário."
 
-#: includes/class-gf-zero-spam-addon.php:301
+#: includes/class-gf-zero-spam-addon.php:322
 msgid "Enable Zero Spam by Default"
 msgstr "Ativar Zero Spam por padrão"
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:328
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Ativado: Adicionar Zero Spam aos formulários do Gravity Forms"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:332
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Desativado: Usar a prevenção de spam integrada do Gravity Forms"
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:339
 msgid "Anti-Spam Expiration"
 msgstr "Expiração Anti-Spam"
 
-#: includes/class-gf-zero-spam-addon.php:336
+#: includes/class-gf-zero-spam-addon.php:357
 msgid "Spam Report Email"
 msgstr "E-mail de Relatório de Spam"
 
-#: includes/class-gf-zero-spam-addon.php:340
+#: includes/class-gf-zero-spam-addon.php:361
 msgid "Spam Report Frequency"
 msgstr "Frequência do Relatório de Spam"
 
-#: includes/class-gf-zero-spam-addon.php:342
+#: includes/class-gf-zero-spam-addon.php:363
 msgid "How frequently should spam report emails be sent?"
 msgstr "Com que frequência os e-mails de relatório de spam devem ser enviados?"
 
-#: includes/class-gf-zero-spam-addon.php:348
+#: includes/class-gf-zero-spam-addon.php:369
 msgid "Disabled"
 msgstr "Desativado"
 
-#: includes/class-gf-zero-spam-addon.php:352
+#: includes/class-gf-zero-spam-addon.php:373
 msgid "Threshold-Based"
 msgstr "Baseado em Limite"
 
-#: includes/class-gf-zero-spam-addon.php:356
+#: includes/class-gf-zero-spam-addon.php:377
 msgid "Twice Daily"
 msgstr "Duas Vezes ao Dia"
 
-#: includes/class-gf-zero-spam-addon.php:360
+#: includes/class-gf-zero-spam-addon.php:381
 msgid "Daily"
 msgstr "Diariamente"
 
-#: includes/class-gf-zero-spam-addon.php:364
+#: includes/class-gf-zero-spam-addon.php:385
 msgid "Weekly"
 msgstr "Semanalmente"
 
-#: includes/class-gf-zero-spam-addon.php:368
+#: includes/class-gf-zero-spam-addon.php:389
 msgid "Monthly"
 msgstr "Mensalmente"
 
-#: includes/class-gf-zero-spam-addon.php:379
+#: includes/class-gf-zero-spam-addon.php:400
 msgid "Spam Entry Threshold"
 msgstr "Limite de Entradas de Spam"
 
-#: includes/class-gf-zero-spam-addon.php:380
+#: includes/class-gf-zero-spam-addon.php:401
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
@@ -455,53 +455,53 @@ msgstr ""
 "Um e-mail de relatório de spam será enviado quando o número especificado de "
 "entradas de spam for alcançado."
 
-#: includes/class-gf-zero-spam-addon.php:398
+#: includes/class-gf-zero-spam-addon.php:419
 msgid "Entry limit has to be 1 or more."
 msgstr "O limite de entradas deve ser 1 ou mais."
 
-#: includes/class-gf-zero-spam-addon.php:404
+#: includes/class-gf-zero-spam-addon.php:425
 msgid "Email Address"
 msgstr "Endereço de E-mail"
 
-#: includes/class-gf-zero-spam-addon.php:405
+#: includes/class-gf-zero-spam-addon.php:426
 msgid "Send spam report to this email address."
 msgstr "Enviar relatório de spam para este endereço de e-mail."
 
-#: includes/class-gf-zero-spam-addon.php:415
+#: includes/class-gf-zero-spam-addon.php:436
 msgid "The email entered is invalid."
 msgstr "O e-mail inserido é inválido."
 
-#: includes/class-gf-zero-spam-addon.php:429
+#: includes/class-gf-zero-spam-addon.php:450
 msgid "Email Subject"
 msgstr "Assunto do E-mail"
 
-#: includes/class-gf-zero-spam-addon.php:431
+#: includes/class-gf-zero-spam-addon.php:452
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Seu relatório de spam do Gravity Forms para {{site_name}}"
 
-#: includes/class-gf-zero-spam-addon.php:444
+#: includes/class-gf-zero-spam-addon.php:465
 msgid "Email Message"
 msgstr "Mensagem do E-mail"
 
-#: includes/class-gf-zero-spam-addon.php:474
+#: includes/class-gf-zero-spam-addon.php:495
 msgid "Send Test Email & Save Settings"
 msgstr "Enviar E-mail de Teste e Salvar Configurações"
 
-#: includes/class-gf-zero-spam-addon.php:475
+#: includes/class-gf-zero-spam-addon.php:496
 msgid "Send Email & Save Settings"
 msgstr "Enviar E-mail e Salvar Configurações"
 
-#: includes/class-gf-zero-spam-addon.php:589
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Once Monthly"
 msgstr "Uma Vez por Mês"
 
-#: includes/class-gf-zero-spam-addon.php:778
+#: includes/class-gf-zero-spam-addon.php:807
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "entrada de spam"
 msgstr[1] "entradas de spam"
 
-#: includes/class-gf-zero-spam-addon.php:865
+#: includes/class-gf-zero-spam-addon.php:894
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -512,45 +512,45 @@ msgstr ""
 "sendo sinalizados incorretamente como spam, tente aumentar esse valor. "
 "(Padrão: 7 dias)"
 
-#: includes/class-gf-zero-spam-addon.php:869
+#: includes/class-gf-zero-spam-addon.php:898
 msgid "Expiration length"
 msgstr "Duração da expiração"
 
-#: includes/class-gf-zero-spam-addon.php:881
+#: includes/class-gf-zero-spam-addon.php:910
 msgid "Expiration unit"
 msgstr "Unidade de expiração"
 
-#: includes/class-gf-zero-spam-addon.php:889
+#: includes/class-gf-zero-spam-addon.php:918
 msgid "hours"
 msgstr "horas"
 
-#: includes/class-gf-zero-spam-addon.php:892
+#: includes/class-gf-zero-spam-addon.php:921
 msgid "days"
 msgstr "dias"
 
-#: includes/class-gf-zero-spam-addon.php:908
+#: includes/class-gf-zero-spam-addon.php:937
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "Tempos curtos de expiração podem causar falsos positivos em sites com cache "
 "de página."
 
-#: includes/class-gf-zero-spam-addon.php:987
+#: includes/class-gf-zero-spam-addon.php:1016
 msgid "Please enter at least 1 day."
 msgstr "Por favor, insira pelo menos 1 dia."
 
-#: includes/class-gf-zero-spam-addon.php:988
+#: includes/class-gf-zero-spam-addon.php:1017
 msgid "Please enter at least 1 hour."
 msgstr "Por favor, insira pelo menos 1 hora."
 
-#: includes/class-gf-zero-spam-addon.php:994
+#: includes/class-gf-zero-spam-addon.php:1023
 msgid "Please select hours or days."
 msgstr "Por favor, selecione horas ou dias."
 
-#: includes/class-gf-zero-spam-addon.php:999
+#: includes/class-gf-zero-spam-addon.php:1028
 msgid "The maximum expiration is 90 days."
 msgstr "A expiração máxima é de 90 dias."
 
-#: includes/class-gf-zero-spam-addon.php:1001
+#: includes/class-gf-zero-spam-addon.php:1030
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "A expiração máxima é de 2160 horas (90 dias)."
 
@@ -570,41 +570,41 @@ msgstr "Zero Spam não está ativado para este formulário."
 msgid "Too many requests. Please try again later."
 msgstr "Muitas solicitações. Por favor, tente novamente mais tarde."
 
-#: includes/class-gf-zero-spam.php:385
-#: includes/class-gf-zero-spam.php:409
+#: includes/class-gf-zero-spam.php:491
+#: includes/class-gf-zero-spam.php:519
 msgid "The submission did not include a spam prevention token."
 msgstr "O envio não incluiu um token de prevenção de spam."
 
-#: includes/class-gf-zero-spam.php:386
+#: includes/class-gf-zero-spam.php:492
 msgid "The spam prevention token format is invalid."
 msgstr "O formato do token de prevenção de spam é inválido."
 
-#: includes/class-gf-zero-spam.php:387
+#: includes/class-gf-zero-spam.php:493
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr ""
 "O token de prevenção de spam expirou. Isso pode ser causado por cache de "
 "página."
 
-#: includes/class-gf-zero-spam.php:388
+#: includes/class-gf-zero-spam.php:494
 msgid "The spam prevention token was issued for a different form."
 msgstr "O token de prevenção de spam foi emitido para um formulário diferente."
 
-#: includes/class-gf-zero-spam.php:389
+#: includes/class-gf-zero-spam.php:495
 msgid "The spam prevention token signature is invalid."
 msgstr "A assinatura do token de prevenção de spam é inválida."
 
-#: includes/class-gf-zero-spam.php:456
+#: includes/class-gf-zero-spam.php:601
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "A chave legada de prevenção de spam não é mais aceita. Por favor, limpe o "
 "cache da sua página."
 
-#: includes/class-gf-zero-spam.php:462
-#: includes/class-gf-zero-spam.php:466
+#: includes/class-gf-zero-spam.php:607
+#: includes/class-gf-zero-spam.php:611
 msgid "The submitted key is invalid."
 msgstr "A chave enviada é inválida."
 
-#: includes/class-gf-zero-spam.php:498
+#: includes/class-gf-zero-spam.php:643
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -614,7 +614,7 @@ msgstr ""
 "aprimorada. Por favor, limpe o cache da sua página para garantir que todos "
 "os formulários usem a nova proteção. O suporte legado termina em %s."
 
-#: includes/class-gf-zero-spam.php:542
+#: includes/class-gf-zero-spam.php:687
 msgid "This entry has been marked as spam."
 msgstr "Esta entrada foi marcada como spam."
 
@@ -626,7 +626,366 @@ msgstr "[count] regras importadas."
 msgid "Skipped [count] invalid values."
 msgstr "Ignorados [count] valores inválidos."
 
-#: includes/class-gf-zero-spam-addon.php:279
+#: includes/class-gf-zero-spam-ai-review-settings.php:97
+msgid "Copy global instructions"
+msgstr "Copiar instruções globais"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:98
+msgid ""
+"Copies the global AI instructions into this field so you can edit them for "
+"this form."
+msgstr ""
+"Copia as instruções globais de IA para este campo para que você possa "
+"editá-las para este formulário."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:239
+msgid ""
+"Zero Spam blocks most spam with an invisible token check before AI is "
+"involved. Turn on the tools below to let AI handle the edge cases — "
+"catching spam that slips past, or rescuing real submissions blocked by "
+"mistake. Both use the same instructions and the same {{link}}AI "
+"service{{/link}}."
+msgstr ""
+"Zero Spam bloqueia a maior parte do spam com uma verificação invisível de "
+"token antes da intervenção da IA. Ative as ferramentas abaixo para permitir "
+"que a IA lide com os casos extremos — capturando spam que passa "
+"despercebido ou salvando envios reais bloqueados por engano. Ambas usam as "
+"mesmas instruções e o mesmo {{link}}serviço de IA{{/link}}."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:288
+#: includes/class-gf-zero-spam-ai-review-settings.php:455
+msgid "Catch spam the token check misses"
+msgstr "Capturar spam que a verificação de token não detecta"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:289
+msgid ""
+"Reviews submissions that were allowed through — a second opinion to catch "
+"bots that defeated the token check."
+msgstr ""
+"Revisa envios que foram permitidos — uma segunda opinião para detectar bots "
+"que passaram pela verificação de token."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:290
+msgid ""
+"After a submission passes the normal spam checks, AI reads it and flags it "
+"as spam if it looks suspicious."
+msgstr ""
+"Após um envio passar pelas verificações normais de spam, a IA o analisa e o "
+"sinaliza como spam se parecer suspeito."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:297
+#: includes/class-gf-zero-spam-ai-review-settings.php:463
+msgid "Rescue good submissions blocked by mistake"
+msgstr "Salvar envios bons bloqueados por engano"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:298
+msgid ""
+"Reviews submissions blocked by Zero Spam's own token check (not Akismet, "
+"the honeypot, or email rules). Always runs before notifications are sent."
+msgstr ""
+"Revisa envios bloqueados pela própria verificação de token do Zero Spam "
+"(não pelo Akismet, honeypot ou regras de e-mail). Sempre executa antes do "
+"envio de notificações."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:299
+msgid ""
+"If the token check blocks a submission but the content looks genuine, AI "
+"can let it through. Only submissions blocked by Zero Spam's token check are "
+"eligible; during a token-failure flood this can increase AI usage."
+msgstr ""
+"Se a verificação de token bloquear um envio, mas o conteúdo parecer "
+"genuíno, a IA pode permitir o envio. Apenas envios bloqueados pela "
+"verificação de token do Zero Spam são elegíveis; durante uma enxurrada de "
+"falhas de token, isso pode aumentar o uso da IA."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:306
+msgid "AI instructions"
+msgstr "Instruções da IA"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:307
+msgid ""
+"Tell the AI how to evaluate submissions — what counts as spam for your site "
+"and what doesn't."
+msgstr ""
+"Diga à IA como avaliar os envios — o que conta como spam para o seu site e "
+"o que não conta."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:308
+msgid ""
+"Tell the AI what counts as spam on your site. These instructions are used "
+"by both tools above; the default works well for most sites."
+msgstr ""
+"Informe à IA o que conta como spam no seu site. Essas instruções são usadas "
+"por ambas as ferramentas acima; o padrão funciona bem para a maioria dos "
+"sites."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:316
+msgid "AI spam protection"
+msgstr "Proteção contra spam por IA"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:326
+msgid "AI service"
+msgstr "Serviço de IA"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:327
+msgid "Chooses which configured AI service Zero Spam uses to review submissions."
+msgstr ""
+"Escolhe qual serviço de IA configurado o Zero Spam usa para revisar os "
+"envios."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:328
+msgid "Automatic uses the site default AI service."
+msgstr "Automático usa o serviço de IA padrão do site."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:338
+msgid "How sure must AI be to flag spam?"
+msgstr "Quão certo a IA deve estar para sinalizar spam?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:339
+msgid "Sets how confident AI must be before Zero Spam marks a submission as spam."
+msgstr ""
+"Define quanta confiança a IA deve ter antes que o Zero Spam marque um envio "
+"como spam."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:340
+msgid "Stricter = fewer real submissions flagged, but more spam may slip through."
+msgstr "Mais rigoroso = menos envios reais sinalizados, mas mais spam pode passar."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:345
+msgid "Balanced — flag when fairly sure (recommended)"
+msgstr "Equilibrado — sinalizar quando estiver razoavelmente certo (recomendado)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:349
+msgid "Strict — only flag when very sure"
+msgstr "Rigoroso — sinalizar apenas quando muito certo"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:359
+msgid "How sure must AI be to rescue a blocked submission?"
+msgstr "Quão certo a IA deve estar para resgatar uma submissão bloqueada?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:360
+msgid ""
+"Sets how confident AI must be before Zero Spam restores a submission "
+"blocked by the token check."
+msgstr ""
+"Define o quão confiante a IA deve estar antes que o Zero Spam restaure uma "
+"submissão bloqueada pela verificação do token."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:361
+msgid ""
+"Balanced works well for most sites; a restore cannot be undone, so more "
+"cautious options are available."
+msgstr ""
+"Equilibrado funciona bem para a maioria dos sites; uma restauração não pode "
+"ser desfeita, portanto opções mais cautelosas estão disponíveis."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:366
+msgid "Balanced — rescue when fairly sure (recommended)"
+msgstr "Equilibrado — resgatar quando razoavelmente certo (recomendado)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:370
+msgid "Cautious — rescue only when very sure"
+msgstr "Cauteloso — resgatar somente quando muito certo"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:374
+msgid "Very cautious — rescue only when almost certain"
+msgstr "Muito cauteloso — resgatar somente quando quase certo"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:383
+msgid "Advanced AI settings"
+msgstr "Configurações avançadas de IA"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:456
+msgid ""
+"When enabled, the AI reads each submission to this form and flags it as "
+"spam if the content looks suspicious."
+msgstr ""
+"Quando ativado, a IA lê cada submissão deste formulário e a sinaliza como "
+"spam se o conteúdo parecer suspeito."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:464
+msgid ""
+"When enabled, AI can restore this form's submissions that the Zero Spam "
+"token check flagged but the content appears legitimate."
+msgstr ""
+"Quando ativado, a IA pode restaurar as submissões deste formulário que a "
+"verificação do token Zero Spam sinalizou, mas cujo conteúdo parece legítimo."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:465
+msgid "Rescue always runs during submission, before notifications are sent."
+msgstr ""
+"O resgate sempre ocorre durante a submissão, antes do envio das "
+"notificações."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:472
+msgid "AI instructions for this form"
+msgstr "Instruções de IA para este formulário"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:473
+msgid "Tell the AI how to evaluate this form's submissions."
+msgstr "Informe à IA como avaliar as submissões deste formulário."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:474
+msgid "Leave blank to use the global instructions."
+msgstr "Deixe em branco para usar as instruções globais."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:482
+msgid "Skip these fields"
+msgstr "Ignorar estes campos"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:483
+msgid ""
+"Selected fields are left out of the content the AI reviews — use this for "
+"fields with sensitive data."
+msgstr ""
+"Os campos selecionados são excluídos do conteúdo que a IA analisa — use "
+"isso para campos com dados sensíveis."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:484
+msgid "Left out of what AI reads — use for sensitive data."
+msgstr "Excluído do que a IA lê — use para dados sensíveis."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:496
+msgid "Limit AI checks per hour"
+msgstr "Limitar verificações de IA por hora"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:497
+msgid ""
+"Limits how many of this form's submissions are sent to the AI each hour, to "
+"control usage."
+msgstr ""
+"Limita quantas submissões deste formulário são enviadas para a IA por hora, "
+"para controlar o uso."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:498
+msgid "0 = no limit."
+msgstr "0 = sem limite."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:530
+msgid "Minimum confidence must be a number between 0.5 and 1."
+msgstr "A confiança mínima deve ser um número entre 0,5 e 1."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:711
+msgid "Automatic (site default)"
+msgstr "Automático (padrão do site)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:765
+msgid ""
+"The selected AI service is no longer available; switch to Automatic, choose "
+"another service, or update connectors in [link]Settings > Connectors[/link]."
+msgstr ""
+"O serviço de IA selecionado não está mais disponível; altere para "
+"Automático, escolha outro serviço ou atualize os conectores em "
+"[link]Configurações > Conectores[/link]."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:771
+msgid ""
+"AI review or rescue is enabled, but no AI service is configured for text "
+"generation. Set one up in [link]Settings > Connectors[/link]."
+msgstr ""
+"A revisão ou resgate por IA está ativado, mas nenhum serviço de IA está "
+"configurado para geração de texto. Configure um em [link]Configurações > "
+"Conectores[/link]."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:848
+msgid "Review this Gravity Forms submission and decide whether it is spam."
+msgstr "Revise esta submissão do Gravity Forms e decida se é spam."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:849
+msgid ""
+"Classify it as spam only when it is clearly unsolicited, deceptive, "
+"malicious, automated, or sent in bulk."
+msgstr ""
+"Classifique como spam somente quando for claramente não solicitado, "
+"enganoso, malicioso, automatizado ou enviado em massa."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:850
+msgid ""
+"Treat ordinary customer messages — questions, support requests, quote "
+"requests, bookings, job applications, and other coherent human inquiries — "
+"as legitimate, even when they are brief or short on detail."
+msgstr ""
+"Trate mensagens comuns de clientes — perguntas, pedidos de suporte, "
+"solicitações de orçamento, reservas, candidaturas a emprego e outras "
+"consultas humanas coerentes — como legítimas, mesmo quando forem breves ou "
+"com poucos detalhes."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:851
+msgid ""
+"The confidence value reports how certain you are of the classification you "
+"return, whether spam or legitimate. It is not a measure of how spam-like "
+"the message is."
+msgstr ""
+"O valor de confiança indica o quão certo você está da classificação que "
+"retorna, seja spam ou legítimo. Não é uma medida de quão parecido com spam "
+"a mensagem é."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:852
+msgid ""
+"When the classification is clear, report high confidence: use 0.98 to 1.00 "
+"for obvious spam, and equally for an ordinary, coherent human submission "
+"that shows no spam signals."
+msgstr ""
+"Quando a classificação for clara, informe alta confiança: use de 0,98 a "
+"1,00 para spam óbvio, e igualmente para uma submissão humana comum e "
+"coerente que não apresenta sinais de spam."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:853
+msgid ""
+"Use 0.85 to 0.97 when your classification is probable but some context is "
+"missing or mixed."
+msgstr ""
+"Use de 0,85 a 0,97 quando sua classificação for provável, mas algum "
+"contexto estiver faltando ou misturado."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:854
+msgid ""
+"Use a value below 0.85 only when the submission is genuinely ambiguous or "
+"too sparse to judge."
+msgstr ""
+"Use um valor abaixo de 0,85 somente quando a submissão for realmente "
+"ambígua ou muito escassa para julgamento."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:855
+msgid "It is better to miss a piece of spam than to block a legitimate submission."
+msgstr ""
+"É melhor deixar passar uma mensagem de spam do que bloquear uma submissão "
+"legítima."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:856
+msgid ""
+"Use only the form title, source path, field labels, field types, and "
+"submitted values provided, and do not guess about missing context."
+msgstr ""
+"Use apenas o título do formulário, caminho de origem, rótulos de campos, "
+"tipos de campo e valores enviados fornecidos, e não tente adivinhar "
+"contextos faltantes."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:857
+msgid "Return JSON matching the supplied schema."
+msgstr "Retorne JSON que corresponda ao esquema fornecido."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:858
+msgid ""
+"The reason must be concise and must not quote personal data such as names "
+"or email addresses."
+msgstr ""
+"O motivo deve ser conciso e não deve citar dados pessoais como nomes ou "
+"endereços de e-mail."
+
+#: includes/class-gf-zero-spam-ai-review.php:1455
+msgid "AI classified this submission as spam."
+msgstr "A IA classificou esta submissão como spam."
+
+#: includes/class-gf-zero-spam-ai-review.php:1705
+msgid ""
+"Zero Spam: AI recovered this submission as legitimate (confidence "
+"[confidence])."
+msgstr ""
+"Zero Spam: A IA recuperou esta submissão como legítima (confiança "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-addon.php:300
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Relatório de Spam do Gravity Forms"

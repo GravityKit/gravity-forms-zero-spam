@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"PO-Revision-Date: 2026-06-10 20:08:31+0000\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -273,7 +273,7 @@ msgstr "Doğrulama Mesajı (isteğe bağlı)"
 msgid "Leave blank to use the global default message."
 msgstr "Genel varsayılan mesajı kullanmak için boş bırakın."
 
-#: includes/class-email-rejection.php:623
+#: includes/class-email-rejection.php:627
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -281,8 +281,8 @@ msgstr ""
 "Girdiğiniz e-posta adresine izin verilmiyor. Lütfen farklı bir e-posta "
 "adresi kullanın."
 
-#: includes/class-gf-zero-spam-addon.php:187
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:204
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -290,15 +290,15 @@ msgstr ""
 "Yerleşik anti-spam tuzağından daha etkili, basit ve etkili bir yöntem "
 "kullanarak spam ile mücadele etmek için etkinleştirin."
 
-#: includes/class-gf-zero-spam-addon.php:240
+#: includes/class-gf-zero-spam-addon.php:257
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Gravity Forms Zero Spam kullanarak spam'i engelle"
 
-#: includes/class-gf-zero-spam-addon.php:265
+#: includes/class-gf-zero-spam-addon.php:286
 msgid "Know when entries are flagged as spam."
 msgstr "Girdilerin spam olarak işaretlendiğini bilin."
 
-#: includes/class-gf-zero-spam-addon.php:266
+#: includes/class-gf-zero-spam-addon.php:287
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -310,7 +310,7 @@ msgstr ""
 "son spam girdilerinin özetini sağlar. Eğer gönderilmiş spam girişi yoksa, "
 "rapor gönderilmez."
 
-#: includes/class-gf-zero-spam-addon.php:267
+#: includes/class-gf-zero-spam-addon.php:288
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -318,7 +318,7 @@ msgstr ""
 "Bu özellik, Gravity Forms spam honeypot, Gravity Forms Zero Spam, reCAPTCHA "
 "veya diğerleri dahil olmak üzere herhangi bir spam filtresiyle çalışır."
 
-#: includes/class-gf-zero-spam-addon.php:269
+#: includes/class-gf-zero-spam-addon.php:290
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -328,17 +328,17 @@ msgstr ""
 "sıklıkta gönderilmeyebilir. {{link}}Bunu daha güvenilir hale getirmek için "
 "\"cron\" nasıl ayarlanır, görün{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:272
+#: includes/class-gf-zero-spam-addon.php:293
 msgid "Link opens in a new tab"
 msgstr "Bağlantı yeni sekmede açılır"
 
-#: includes/class-gf-zero-spam-addon.php:281
+#: includes/class-gf-zero-spam-addon.php:302
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "Aşağıdaki form(lar)dan {{total_spam_count}} spam girişi aldınız:"
 
-#: includes/class-gf-zero-spam-addon.php:284
+#: includes/class-gf-zero-spam-addon.php:305
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -347,27 +347,27 @@ msgstr ""
 "{{settings_link}}Gravity Forms Zero Spam ayarları sayfasını ziyaret "
 "edin{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:307
 msgid "The following variables may be used:"
 msgstr "Aşağıdaki değişkenler kullanılabilir:"
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:309
 msgid "The name of this website"
 msgstr "Bu web sitesinin adı"
 
-#: includes/class-gf-zero-spam-addon.php:289
+#: includes/class-gf-zero-spam-addon.php:310
 msgid "The email of the site administrator"
 msgstr "Site yöneticisinin e-posta adresi"
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:311
 msgid "The total number of spam emails received since the last report."
 msgstr "Son rapordan bu yana alınan toplam spam e-posta sayısı."
 
-#: includes/class-gf-zero-spam-addon.php:291
+#: includes/class-gf-zero-spam-addon.php:312
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "Formların listesi ve son rapordan bu yana spam girişlerinin sayısı."
 
-#: includes/class-gf-zero-spam-addon.php:292
+#: includes/class-gf-zero-spam-addon.php:313
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -376,11 +376,11 @@ msgstr ""
 "bağlantı metni olacaktır. Açılış ve kapanış değişkenlerini dahil "
 "ettiğinizden emin olun."
 
-#: includes/class-gf-zero-spam-addon.php:297
+#: includes/class-gf-zero-spam-addon.php:318
 msgid "Spam Blocking"
 msgstr "Spam Engelleme"
 
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -388,63 +388,63 @@ msgstr ""
 "Her formun ayarları içinde form bazında spam engelleme etkinleştirilebilir "
 "veya devre dışı bırakılabilir."
 
-#: includes/class-gf-zero-spam-addon.php:301
+#: includes/class-gf-zero-spam-addon.php:322
 msgid "Enable Zero Spam by Default"
 msgstr "Zero Spam'i Varsayılan Olarak Etkinleştir"
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:328
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Etkin: Gravity Forms formlarına Zero Spam ekle"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:332
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Devre dışı: Gravity Forms'un yerleşik spam önlemesini kullan"
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:339
 msgid "Anti-Spam Expiration"
 msgstr "Anti-Spam Süresi Dolumu"
 
-#: includes/class-gf-zero-spam-addon.php:336
+#: includes/class-gf-zero-spam-addon.php:357
 msgid "Spam Report Email"
 msgstr "Spam Raporu E-postası"
 
-#: includes/class-gf-zero-spam-addon.php:340
+#: includes/class-gf-zero-spam-addon.php:361
 msgid "Spam Report Frequency"
 msgstr "Spam Rapor Sıklığı"
 
-#: includes/class-gf-zero-spam-addon.php:342
+#: includes/class-gf-zero-spam-addon.php:363
 msgid "How frequently should spam report emails be sent?"
 msgstr "Spam rapor e-postaları ne sıklıkla gönderilmelidir?"
 
-#: includes/class-gf-zero-spam-addon.php:348
+#: includes/class-gf-zero-spam-addon.php:369
 msgid "Disabled"
 msgstr "Devre Dışı"
 
-#: includes/class-gf-zero-spam-addon.php:352
+#: includes/class-gf-zero-spam-addon.php:373
 msgid "Threshold-Based"
 msgstr "Eşik Tabanlı"
 
-#: includes/class-gf-zero-spam-addon.php:356
+#: includes/class-gf-zero-spam-addon.php:377
 msgid "Twice Daily"
 msgstr "Günde İki Kez"
 
-#: includes/class-gf-zero-spam-addon.php:360
+#: includes/class-gf-zero-spam-addon.php:381
 msgid "Daily"
 msgstr "Günlük"
 
-#: includes/class-gf-zero-spam-addon.php:364
+#: includes/class-gf-zero-spam-addon.php:385
 msgid "Weekly"
 msgstr "Haftalık"
 
-#: includes/class-gf-zero-spam-addon.php:368
+#: includes/class-gf-zero-spam-addon.php:389
 msgid "Monthly"
 msgstr "Aylık"
 
-#: includes/class-gf-zero-spam-addon.php:379
+#: includes/class-gf-zero-spam-addon.php:400
 msgid "Spam Entry Threshold"
 msgstr "Spam Giriş Eşiği"
 
-#: includes/class-gf-zero-spam-addon.php:380
+#: includes/class-gf-zero-spam-addon.php:401
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
@@ -452,53 +452,53 @@ msgstr ""
 "Belirtilen spam giriş sayısına ulaşıldığında bir spam rapor e-postası "
 "gönderilecektir."
 
-#: includes/class-gf-zero-spam-addon.php:398
+#: includes/class-gf-zero-spam-addon.php:419
 msgid "Entry limit has to be 1 or more."
 msgstr "Giriş limiti 1 veya daha fazla olmalıdır."
 
-#: includes/class-gf-zero-spam-addon.php:404
+#: includes/class-gf-zero-spam-addon.php:425
 msgid "Email Address"
 msgstr "E-posta Adresi"
 
-#: includes/class-gf-zero-spam-addon.php:405
+#: includes/class-gf-zero-spam-addon.php:426
 msgid "Send spam report to this email address."
 msgstr "Spam raporunu bu e-posta adresine gönder."
 
-#: includes/class-gf-zero-spam-addon.php:415
+#: includes/class-gf-zero-spam-addon.php:436
 msgid "The email entered is invalid."
 msgstr "Girilen e-posta geçersiz."
 
-#: includes/class-gf-zero-spam-addon.php:429
+#: includes/class-gf-zero-spam-addon.php:450
 msgid "Email Subject"
 msgstr "E-posta Konusu"
 
-#: includes/class-gf-zero-spam-addon.php:431
+#: includes/class-gf-zero-spam-addon.php:452
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Gravity Forms spam raporunuz {{site_name}} için"
 
-#: includes/class-gf-zero-spam-addon.php:444
+#: includes/class-gf-zero-spam-addon.php:465
 msgid "Email Message"
 msgstr "E-posta Mesajı"
 
-#: includes/class-gf-zero-spam-addon.php:474
+#: includes/class-gf-zero-spam-addon.php:495
 msgid "Send Test Email & Save Settings"
 msgstr "Test E-postası Gönder ve Ayarları Kaydet"
 
-#: includes/class-gf-zero-spam-addon.php:475
+#: includes/class-gf-zero-spam-addon.php:496
 msgid "Send Email & Save Settings"
 msgstr "E-posta Gönder ve Ayarları Kaydet"
 
-#: includes/class-gf-zero-spam-addon.php:589
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Once Monthly"
 msgstr "Ayda Bir Kez"
 
-#: includes/class-gf-zero-spam-addon.php:778
+#: includes/class-gf-zero-spam-addon.php:807
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "spam girişi"
 msgstr[1] "spam girişleri"
 
-#: includes/class-gf-zero-spam-addon.php:865
+#: includes/class-gf-zero-spam-addon.php:894
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -508,45 +508,45 @@ msgstr ""
 "kadar süre geçerli kaldığı. Form gönderimleri yanlışlıkla spam olarak "
 "işaretleniyorsa, bu değeri artırmayı deneyin. (Varsayılan: 7 gün)"
 
-#: includes/class-gf-zero-spam-addon.php:869
+#: includes/class-gf-zero-spam-addon.php:898
 msgid "Expiration length"
 msgstr "Sona erme süresi"
 
-#: includes/class-gf-zero-spam-addon.php:881
+#: includes/class-gf-zero-spam-addon.php:910
 msgid "Expiration unit"
 msgstr "Sona erme birimi"
 
-#: includes/class-gf-zero-spam-addon.php:889
+#: includes/class-gf-zero-spam-addon.php:918
 msgid "hours"
 msgstr "saat"
 
-#: includes/class-gf-zero-spam-addon.php:892
+#: includes/class-gf-zero-spam-addon.php:921
 msgid "days"
 msgstr "gün"
 
-#: includes/class-gf-zero-spam-addon.php:908
+#: includes/class-gf-zero-spam-addon.php:937
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "Kısa sona erme süreleri, sayfa önbellekleme olan sitelerde yanlış "
 "pozitiflere neden olabilir."
 
-#: includes/class-gf-zero-spam-addon.php:987
+#: includes/class-gf-zero-spam-addon.php:1016
 msgid "Please enter at least 1 day."
 msgstr "Lütfen en az 1 gün girin."
 
-#: includes/class-gf-zero-spam-addon.php:988
+#: includes/class-gf-zero-spam-addon.php:1017
 msgid "Please enter at least 1 hour."
 msgstr "Lütfen en az 1 saat girin."
 
-#: includes/class-gf-zero-spam-addon.php:994
+#: includes/class-gf-zero-spam-addon.php:1023
 msgid "Please select hours or days."
 msgstr "Lütfen saat veya gün seçin."
 
-#: includes/class-gf-zero-spam-addon.php:999
+#: includes/class-gf-zero-spam-addon.php:1028
 msgid "The maximum expiration is 90 days."
 msgstr "Maksimum sona erme süresi 90 gündür."
 
-#: includes/class-gf-zero-spam-addon.php:1001
+#: includes/class-gf-zero-spam-addon.php:1030
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "Maksimum sona erme süresi 2160 saattir (90 gün)."
 
@@ -566,41 +566,41 @@ msgstr "Bu form için Zero Spam etkinleştirilmemiştir."
 msgid "Too many requests. Please try again later."
 msgstr "Çok fazla istek. Lütfen daha sonra tekrar deneyin."
 
-#: includes/class-gf-zero-spam.php:385
-#: includes/class-gf-zero-spam.php:409
+#: includes/class-gf-zero-spam.php:491
+#: includes/class-gf-zero-spam.php:519
 msgid "The submission did not include a spam prevention token."
 msgstr "Gönderim spam önleme belirteci içermiyor."
 
-#: includes/class-gf-zero-spam.php:386
+#: includes/class-gf-zero-spam.php:492
 msgid "The spam prevention token format is invalid."
 msgstr "Spam önleme belirteci formatı geçersiz."
 
-#: includes/class-gf-zero-spam.php:387
+#: includes/class-gf-zero-spam.php:493
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr ""
 "Spam önleme belirteci süresi doldu. Bu, sayfa önbelleklemeden "
 "kaynaklanabilir."
 
-#: includes/class-gf-zero-spam.php:388
+#: includes/class-gf-zero-spam.php:494
 msgid "The spam prevention token was issued for a different form."
 msgstr "Spam önleme belirteci farklı bir form için verilmiş."
 
-#: includes/class-gf-zero-spam.php:389
+#: includes/class-gf-zero-spam.php:495
 msgid "The spam prevention token signature is invalid."
 msgstr "Spam önleme belirteci imzası geçersiz."
 
-#: includes/class-gf-zero-spam.php:456
+#: includes/class-gf-zero-spam.php:601
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "Eski spam önleme anahtarı artık kabul edilmiyor. Lütfen sayfa önbelleğinizi "
 "temizleyin."
 
-#: includes/class-gf-zero-spam.php:462
-#: includes/class-gf-zero-spam.php:466
+#: includes/class-gf-zero-spam.php:607
+#: includes/class-gf-zero-spam.php:611
 msgid "The submitted key is invalid."
 msgstr "Gönderilen anahtar geçersiz."
 
-#: includes/class-gf-zero-spam.php:498
+#: includes/class-gf-zero-spam.php:643
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -610,7 +610,7 @@ msgstr ""
 "formların yeni korumayı kullanmasını sağlamak için lütfen sayfa "
 "önbelleğinizi temizleyin. Eski destek %s tarihinde sona erecektir."
 
-#: includes/class-gf-zero-spam.php:542
+#: includes/class-gf-zero-spam.php:687
 msgid "This entry has been marked as spam."
 msgstr "Bu giriş spam olarak işaretlendi."
 
@@ -622,7 +622,366 @@ msgstr "[count] kural içe aktarıldı."
 msgid "Skipped [count] invalid values."
 msgstr "[count] geçersiz değer atlandı."
 
-#: includes/class-gf-zero-spam-addon.php:279
+#: includes/class-gf-zero-spam-ai-review-settings.php:97
+msgid "Copy global instructions"
+msgstr "Küresel talimatları kopyala"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:98
+msgid ""
+"Copies the global AI instructions into this field so you can edit them for "
+"this form."
+msgstr ""
+"Küresel AI talimatlarını bu alana kopyalar, böylece bu form için "
+"düzenleyebilirsiniz."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:239
+msgid ""
+"Zero Spam blocks most spam with an invisible token check before AI is "
+"involved. Turn on the tools below to let AI handle the edge cases — "
+"catching spam that slips past, or rescuing real submissions blocked by "
+"mistake. Both use the same instructions and the same {{link}}AI "
+"service{{/link}}."
+msgstr ""
+"Zero Spam, AI devreye girmeden önce görünmez bir token kontrolü ile çoğu "
+"spam'i engeller. Aşağıdaki araçları açarak, AI'nın kenar durumları "
+"işlemesine izin verin — token kontrolünden kaçan spam'i yakalayabilir veya "
+"yanlışlıkla engellenen gerçek gönderimleri kurtarabilir. İkisi de aynı "
+"talimatları ve aynı {{link}}AI servisini{{/link}} kullanır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:288
+#: includes/class-gf-zero-spam-ai-review-settings.php:455
+msgid "Catch spam the token check misses"
+msgstr "Token kontrolünün kaçırdığı spam'i yakala"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:289
+msgid ""
+"Reviews submissions that were allowed through — a second opinion to catch "
+"bots that defeated the token check."
+msgstr ""
+"İzin verilen gönderimleri gözden geçirir — token kontrolünü aşan botları "
+"yakalamak için ikinci bir görüş."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:290
+msgid ""
+"After a submission passes the normal spam checks, AI reads it and flags it "
+"as spam if it looks suspicious."
+msgstr ""
+"Bir gönderi normal spam kontrollerinden geçtikten sonra, AI onu okur ve "
+"şüpheli görünüyorsa spam olarak işaretler."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:297
+#: includes/class-gf-zero-spam-ai-review-settings.php:463
+msgid "Rescue good submissions blocked by mistake"
+msgstr "Yanlışlıkla engellenen iyi gönderimleri kurtar"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:298
+msgid ""
+"Reviews submissions blocked by Zero Spam's own token check (not Akismet, "
+"the honeypot, or email rules). Always runs before notifications are sent."
+msgstr ""
+"Zero Spam'in kendi token kontrolü tarafından engellenen gönderimleri "
+"inceler (Akismet, tuzak ya da e-posta kuralları değil). Her zaman "
+"bildirimler gönderilmeden önce çalışır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:299
+msgid ""
+"If the token check blocks a submission but the content looks genuine, AI "
+"can let it through. Only submissions blocked by Zero Spam's token check are "
+"eligible; during a token-failure flood this can increase AI usage."
+msgstr ""
+"Token kontrolü bir gönderiyi engeller ama içerik gerçek görünüyorsa, AI "
+"onun geçmesine izin verebilir. Sadece Zero Spam'in token kontrolü "
+"tarafından engellenen gönderimler uygundur; token başarısızlığı seli "
+"sırasında bu AI kullanımını artırabilir."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:306
+msgid "AI instructions"
+msgstr "AI talimatları"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:307
+msgid ""
+"Tell the AI how to evaluate submissions — what counts as spam for your site "
+"and what doesn't."
+msgstr ""
+"AI'ya gönderimleri nasıl değerlendireceğini söyleyin — siteniz için spam "
+"sayılan ve sayılmayan şeyler."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:308
+msgid ""
+"Tell the AI what counts as spam on your site. These instructions are used "
+"by both tools above; the default works well for most sites."
+msgstr ""
+"AI'ya sitenizde neyin spam sayıldığını söyleyin. Bu talimatlar yukarıdaki "
+"her iki araç tarafından kullanılır; varsayılan ayar çoğu site için iyi "
+"çalışır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:316
+msgid "AI spam protection"
+msgstr "AI spam koruması"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:326
+msgid "AI service"
+msgstr "AI servisi"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:327
+msgid "Chooses which configured AI service Zero Spam uses to review submissions."
+msgstr ""
+"Zero Spam'in gönderimleri incelemek için kullandığı yapılandırılmış AI "
+"servisinden birini seçer."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:328
+msgid "Automatic uses the site default AI service."
+msgstr "Otomatik, sitenin varsayılan AI servisini kullanır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:338
+msgid "How sure must AI be to flag spam?"
+msgstr "AI, spam olarak işaretlemek için ne kadar emin olmalı?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:339
+msgid "Sets how confident AI must be before Zero Spam marks a submission as spam."
+msgstr ""
+"Zero Spam'in bir gönderiyi spam olarak işaretlemeden önce AI'nın ne kadar "
+"emin olması gerektiğini ayarlar."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:340
+msgid "Stricter = fewer real submissions flagged, but more spam may slip through."
+msgstr ""
+"Daha sıkı = daha az gerçek gönderi işaretlenir, ancak daha fazla spam "
+"kaçabilir."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:345
+msgid "Balanced — flag when fairly sure (recommended)"
+msgstr "Dengeli — Oldukça emin olunca işaretle (önerilen)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:349
+msgid "Strict — only flag when very sure"
+msgstr "Katı — sadece çok emin olduğunda işaretle"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:359
+msgid "How sure must AI be to rescue a blocked submission?"
+msgstr "Bir engellenmiş gönderiyi kurtarmak için Yapay Zeka ne kadar emin olmalı?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:360
+msgid ""
+"Sets how confident AI must be before Zero Spam restores a submission "
+"blocked by the token check."
+msgstr ""
+"Zero Spam'in token kontrolü tarafından engellenen bir gönderiyi geri "
+"yüklemeden önce Yapay Zeka'nın ne kadar emin olması gerektiğini ayarlar."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:361
+msgid ""
+"Balanced works well for most sites; a restore cannot be undone, so more "
+"cautious options are available."
+msgstr ""
+"Dengeli çoğu site için iyi çalışır; bir geri yükleme geri alınamaz, bu "
+"yüzden daha temkinli seçenekler mevcuttur."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:366
+msgid "Balanced — rescue when fairly sure (recommended)"
+msgstr "Dengeli — oldukça emin olduğunda kurtar (önerilir)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:370
+msgid "Cautious — rescue only when very sure"
+msgstr "Tedbirli — sadece çok emin olduğunda kurtar"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:374
+msgid "Very cautious — rescue only when almost certain"
+msgstr "Çok tedbirli — neredeyse kesin olduğunda kurtar"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:383
+msgid "Advanced AI settings"
+msgstr "Gelişmiş Yapay Zeka ayarları"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:456
+msgid ""
+"When enabled, the AI reads each submission to this form and flags it as "
+"spam if the content looks suspicious."
+msgstr ""
+"Etkinleştirildiğinde, Yapay Zeka bu forma yapılan her gönderiyi okur ve "
+"içerik şüpheli görünüyorsa spam olarak işaretler."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:464
+msgid ""
+"When enabled, AI can restore this form's submissions that the Zero Spam "
+"token check flagged but the content appears legitimate."
+msgstr ""
+"Etkinleştirildiğinde, Yapay Zeka Zero Spam token kontrolü tarafından "
+"işaretlenen ancak içeriği meşru görünen bu formun gönderilerini geri "
+"yükleyebilir."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:465
+msgid "Rescue always runs during submission, before notifications are sent."
+msgstr ""
+"Kurtarma her zaman gönderim sırasında, bildirimler gönderilmeden önce "
+"çalışır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:472
+msgid "AI instructions for this form"
+msgstr "Bu form için Yapay Zeka talimatları"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:473
+msgid "Tell the AI how to evaluate this form's submissions."
+msgstr "Yapay Zeka'ya bu formun gönderilerini nasıl değerlendireceğini söyleyin."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:474
+msgid "Leave blank to use the global instructions."
+msgstr "Küresel talimatları kullanmak için boş bırakın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:482
+msgid "Skip these fields"
+msgstr "Bu alanları atla"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:483
+msgid ""
+"Selected fields are left out of the content the AI reviews — use this for "
+"fields with sensitive data."
+msgstr ""
+"Seçilen alanlar Yapay Zeka'nın incelediği içerikten çıkarılır — hassas "
+"veriler için kullanın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:484
+msgid "Left out of what AI reads — use for sensitive data."
+msgstr "Yapay Zeka'nın okuduklarından çıkarıldı — hassas veriler için kullanın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:496
+msgid "Limit AI checks per hour"
+msgstr "Saat başına Yapay Zeka kontrollerini sınırla"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:497
+msgid ""
+"Limits how many of this form's submissions are sent to the AI each hour, to "
+"control usage."
+msgstr ""
+"Bu formun gönderilerinden kaç tanesinin her saat Yapay Zeka'ya "
+"gönderileceğini sınırlar, kullanım kontrolü için."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:498
+msgid "0 = no limit."
+msgstr "0 = sınırsız."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:530
+msgid "Minimum confidence must be a number between 0.5 and 1."
+msgstr "Minimum güven puanı 0.5 ile 1 arasında bir sayı olmalıdır."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:711
+msgid "Automatic (site default)"
+msgstr "Otomatik (site varsayılanı)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:765
+msgid ""
+"The selected AI service is no longer available; switch to Automatic, choose "
+"another service, or update connectors in [link]Settings > Connectors[/link]."
+msgstr ""
+"Seçilen Yapay Zeka servisi artık kullanılamıyor; Otomatik’e geçin, başka "
+"bir servis seçin veya [link]Ayarlar > Bağlayıcılar[/link] bölümünden "
+"bağlayıcıları güncelleyin."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:771
+msgid ""
+"AI review or rescue is enabled, but no AI service is configured for text "
+"generation. Set one up in [link]Settings > Connectors[/link]."
+msgstr ""
+"Yapay Zeka inceleme veya kurtarma etkin, ancak metin üretimi için herhangi "
+"bir Yapay Zeka servisi yapılandırılmamış. Birini [link]Ayarlar > "
+"Bağlayıcılar[/link] bölümünde ayarlayın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:848
+msgid "Review this Gravity Forms submission and decide whether it is spam."
+msgstr "Bu Gravity Forms gönderimini inceleyin ve spam olup olmadığına karar verin."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:849
+msgid ""
+"Classify it as spam only when it is clearly unsolicited, deceptive, "
+"malicious, automated, or sent in bulk."
+msgstr ""
+"Gönderi açıkça istenmeyen, yanıltıcı, kötü niyetli, otomatik veya toplu "
+"olarak gönderilmişse sadece o zaman spam olarak sınıflandırın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:850
+msgid ""
+"Treat ordinary customer messages — questions, support requests, quote "
+"requests, bookings, job applications, and other coherent human inquiries — "
+"as legitimate, even when they are brief or short on detail."
+msgstr ""
+"Basit veya ayrıntısı az olsa bile sıradan müşteri mesajlarını — sorular, "
+"destek talepleri, teklif istekleri, rezervasyonlar, iş başvuruları ve diğer "
+"tutarlı insan talepleri — meşru olarak değerlendirin."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:851
+msgid ""
+"The confidence value reports how certain you are of the classification you "
+"return, whether spam or legitimate. It is not a measure of how spam-like "
+"the message is."
+msgstr ""
+"Güven değeri, döndürülen sınıflandırmanın (spam veya meşru) ne kadar emin "
+"olduğunuzu bildirir. Bu, mesajın ne kadar spam benzeri olduğunun ölçüsü "
+"değildir."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:852
+msgid ""
+"When the classification is clear, report high confidence: use 0.98 to 1.00 "
+"for obvious spam, and equally for an ordinary, coherent human submission "
+"that shows no spam signals."
+msgstr ""
+"Sınıflandırma net olduğunda yüksek güven bildirin: belirgin spam için 0.98 "
+"ile 1.00 arasında, aynı şekilde spam sinyali göstermeyen tutarlı, sıradan "
+"insan gönderileri için de kullanın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:853
+msgid ""
+"Use 0.85 to 0.97 when your classification is probable but some context is "
+"missing or mixed."
+msgstr ""
+"Sınıflandırmanız olası ancak bazı bağlamlar eksik veya karışıksa 0.85 ile "
+"0.97 arasında kullanın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:854
+msgid ""
+"Use a value below 0.85 only when the submission is genuinely ambiguous or "
+"too sparse to judge."
+msgstr ""
+"Gönderi gerçekten belirsiz veya değerlendirmek için çok azsa 0.85’in "
+"altında bir değer kullanın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:855
+msgid "It is better to miss a piece of spam than to block a legitimate submission."
+msgstr "Meşru bir gönderiyi engellemektense bir spam mesajını kaçırmak daha iyidir."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:856
+msgid ""
+"Use only the form title, source path, field labels, field types, and "
+"submitted values provided, and do not guess about missing context."
+msgstr ""
+"Yalnızca form başlığı, kaynak yolu, alan etiketleri, alan türleri ve "
+"sağlanan gönderilen değerleri kullanın, eksik bağlam hakkında tahminde "
+"bulunmayın."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:857
+msgid "Return JSON matching the supplied schema."
+msgstr "Verilen şemaya uygun JSON döndürün."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:858
+msgid ""
+"The reason must be concise and must not quote personal data such as names "
+"or email addresses."
+msgstr ""
+"Sebep kısa ve öz olmalı, isim veya e-posta adresi gibi kişisel verileri "
+"alıntılamamalıdır."
+
+#: includes/class-gf-zero-spam-ai-review.php:1455
+msgid "AI classified this submission as spam."
+msgstr "Yapay Zeka bu gönderimi spam olarak sınıflandırdı."
+
+#: includes/class-gf-zero-spam-ai-review.php:1705
+msgid ""
+"Zero Spam: AI recovered this submission as legitimate (confidence "
+"[confidence])."
+msgstr ""
+"Sıfır Spam: Yapay Zeka bu gönderimi meşru olarak kurtardı (güven "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-addon.php:300
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms Spam Raporu"

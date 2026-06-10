@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-04-16 00:51:56+0000\n"
+"PO-Revision-Date: 2026-06-10 20:08:30+0000\n"
 "Language: bs_BA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -275,7 +275,7 @@ msgstr "Poruka validacije (opcionalno)"
 msgid "Leave blank to use the global default message."
 msgstr "Ostavite prazno za korištenje globalne zadane poruke."
 
-#: includes/class-email-rejection.php:623
+#: includes/class-email-rejection.php:627
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -283,8 +283,8 @@ msgstr ""
 "Unesena adresa e-pošte nije dozvoljena. Molimo koristite drugu adresu "
 "e-pošte."
 
-#: includes/class-gf-zero-spam-addon.php:187
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:204
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -292,15 +292,15 @@ msgstr ""
 "Omogućite borbu protiv spama koristeći jednostavnu, efikasnu metodu koja je "
 "učinkovitija od ugrađenog anti-spam honeypot-a."
 
-#: includes/class-gf-zero-spam-addon.php:240
+#: includes/class-gf-zero-spam-addon.php:257
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Spriječite spam koristeći Gravity Forms Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:265
+#: includes/class-gf-zero-spam-addon.php:286
 msgid "Know when entries are flagged as spam."
 msgstr "Znajte kada su unosi označeni kao spam."
 
-#: includes/class-gf-zero-spam-addon.php:266
+#: includes/class-gf-zero-spam-addon.php:287
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -312,7 +312,7 @@ msgstr ""
 "nedavnih spam unosa. Ako nisu poslani spam unosi, izvještaj neće biti "
 "poslan."
 
-#: includes/class-gf-zero-spam-addon.php:267
+#: includes/class-gf-zero-spam-addon.php:288
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -320,7 +320,7 @@ msgstr ""
 "Ova funkcija radi sa bilo kojim spam filtrom, uključujući Gravity Forms "
 "spam honeypot, Gravity Forms Zero Spam, reCAPTCHA i druge."
 
-#: includes/class-gf-zero-spam-addon.php:269
+#: includes/class-gf-zero-spam-addon.php:290
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -330,17 +330,17 @@ msgstr ""
 "možda neće uvijek biti poslani u zakazanoj učestalosti. {{link}}Pogledajte "
 "kako postaviti „cron“ za veću pouzdanost{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:272
+#: includes/class-gf-zero-spam-addon.php:293
 msgid "Link opens in a new tab"
 msgstr "Veza se otvara u novoj kartici"
 
-#: includes/class-gf-zero-spam-addon.php:281
+#: includes/class-gf-zero-spam-addon.php:302
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "Primili ste {{total_spam_count}} spam unosa sa sljedećeg/ih obrasca/aca:"
 
-#: includes/class-gf-zero-spam-addon.php:284
+#: includes/class-gf-zero-spam-addon.php:305
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -349,27 +349,27 @@ msgstr ""
 "{{settings_link}}stranicu sa postavkama Gravity Forms Zero "
 "Spam{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:307
 msgid "The following variables may be used:"
 msgstr "Mogu se koristiti sljedeće varijable:"
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:309
 msgid "The name of this website"
 msgstr "Ime ove web stranice"
 
-#: includes/class-gf-zero-spam-addon.php:289
+#: includes/class-gf-zero-spam-addon.php:310
 msgid "The email of the site administrator"
 msgstr "Email administratora sajta"
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:311
 msgid "The total number of spam emails received since the last report."
 msgstr "Ukupan broj primljenih spam emailova od posljednjeg izvještaja."
 
-#: includes/class-gf-zero-spam-addon.php:291
+#: includes/class-gf-zero-spam-addon.php:312
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "Lista obrazaca i broj spam unosa od posljednjeg izvještaja."
 
-#: includes/class-gf-zero-spam-addon.php:292
+#: includes/class-gf-zero-spam-addon.php:313
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -377,11 +377,11 @@ msgstr ""
 "Veza na stranicu sa postavkama dodatka. Tekst unutar varijabli će biti "
 "tekst veze. Obavezno uključite i otvarajuću i zatvarajuću varijablu."
 
-#: includes/class-gf-zero-spam-addon.php:297
+#: includes/class-gf-zero-spam-addon.php:318
 msgid "Spam Blocking"
 msgstr "Blokiranje spama"
 
-#: includes/class-gf-zero-spam-addon.php:298
+#: includes/class-gf-zero-spam-addon.php:319
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -389,63 +389,63 @@ msgstr ""
 "Moguće je omogućiti ili onemogućiti blokiranje spama za svaki obrazac "
 "pojedinačno unutar postavki tog obrasca."
 
-#: includes/class-gf-zero-spam-addon.php:301
+#: includes/class-gf-zero-spam-addon.php:322
 msgid "Enable Zero Spam by Default"
 msgstr "Omogući Zero Spam po defaultu"
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:328
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Omogućeno: Dodaj Zero Spam Gravity Forms obrascima"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:332
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Onemogućeno: Koristi ugrađenu zaštitu od spama Gravity Forms"
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:339
 msgid "Anti-Spam Expiration"
 msgstr "Isticanje anti-spam zaštite"
 
-#: includes/class-gf-zero-spam-addon.php:336
+#: includes/class-gf-zero-spam-addon.php:357
 msgid "Spam Report Email"
 msgstr "Email izvještaj o spamu"
 
-#: includes/class-gf-zero-spam-addon.php:340
+#: includes/class-gf-zero-spam-addon.php:361
 msgid "Spam Report Frequency"
 msgstr "Učestalost izvještaja o neželjenoj pošti"
 
-#: includes/class-gf-zero-spam-addon.php:342
+#: includes/class-gf-zero-spam-addon.php:363
 msgid "How frequently should spam report emails be sent?"
 msgstr "Koliko često trebaju biti slani emailovi sa izvještajima o neželjenoj pošti?"
 
-#: includes/class-gf-zero-spam-addon.php:348
+#: includes/class-gf-zero-spam-addon.php:369
 msgid "Disabled"
 msgstr "Onemogućeno"
 
-#: includes/class-gf-zero-spam-addon.php:352
+#: includes/class-gf-zero-spam-addon.php:373
 msgid "Threshold-Based"
 msgstr "Na osnovu praga"
 
-#: includes/class-gf-zero-spam-addon.php:356
+#: includes/class-gf-zero-spam-addon.php:377
 msgid "Twice Daily"
 msgstr "Dvaput dnevno"
 
-#: includes/class-gf-zero-spam-addon.php:360
+#: includes/class-gf-zero-spam-addon.php:381
 msgid "Daily"
 msgstr "Dnevno"
 
-#: includes/class-gf-zero-spam-addon.php:364
+#: includes/class-gf-zero-spam-addon.php:385
 msgid "Weekly"
 msgstr "Sedmično"
 
-#: includes/class-gf-zero-spam-addon.php:368
+#: includes/class-gf-zero-spam-addon.php:389
 msgid "Monthly"
 msgstr "Mjesečno"
 
-#: includes/class-gf-zero-spam-addon.php:379
+#: includes/class-gf-zero-spam-addon.php:400
 msgid "Spam Entry Threshold"
 msgstr "Prag unosa neželjene pošte"
 
-#: includes/class-gf-zero-spam-addon.php:380
+#: includes/class-gf-zero-spam-addon.php:401
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
@@ -453,53 +453,53 @@ msgstr ""
 "Email sa izvještajem o neželjenoj pošti biće poslat kada se dostigne "
 "određeni broj unosa neželjene pošte."
 
-#: includes/class-gf-zero-spam-addon.php:398
+#: includes/class-gf-zero-spam-addon.php:419
 msgid "Entry limit has to be 1 or more."
 msgstr "Ograničenje unosa mora biti 1 ili više."
 
-#: includes/class-gf-zero-spam-addon.php:404
+#: includes/class-gf-zero-spam-addon.php:425
 msgid "Email Address"
 msgstr "Email adresa"
 
-#: includes/class-gf-zero-spam-addon.php:405
+#: includes/class-gf-zero-spam-addon.php:426
 msgid "Send spam report to this email address."
 msgstr "Pošaljite izvještaj o neželjenoj pošti na ovu email adresu."
 
-#: includes/class-gf-zero-spam-addon.php:415
+#: includes/class-gf-zero-spam-addon.php:436
 msgid "The email entered is invalid."
 msgstr "Uneseni email je nevažeći."
 
-#: includes/class-gf-zero-spam-addon.php:429
+#: includes/class-gf-zero-spam-addon.php:450
 msgid "Email Subject"
 msgstr "Naslov emaila"
 
-#: includes/class-gf-zero-spam-addon.php:431
+#: includes/class-gf-zero-spam-addon.php:452
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Vaš Gravity Forms izvještaj o neželjenoj pošti za {{site_name}}"
 
-#: includes/class-gf-zero-spam-addon.php:444
+#: includes/class-gf-zero-spam-addon.php:465
 msgid "Email Message"
 msgstr "Poruka emaila"
 
-#: includes/class-gf-zero-spam-addon.php:474
+#: includes/class-gf-zero-spam-addon.php:495
 msgid "Send Test Email & Save Settings"
 msgstr "Pošalji test email i sačuvaj postavke"
 
-#: includes/class-gf-zero-spam-addon.php:475
+#: includes/class-gf-zero-spam-addon.php:496
 msgid "Send Email & Save Settings"
 msgstr "Pošalji email i sačuvaj postavke"
 
-#: includes/class-gf-zero-spam-addon.php:589
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Once Monthly"
 msgstr "Jednom mjesečno"
 
-#: includes/class-gf-zero-spam-addon.php:778
+#: includes/class-gf-zero-spam-addon.php:807
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "spam unos"
 msgstr[1] "spam unosi"
 
-#: includes/class-gf-zero-spam-addon.php:865
+#: includes/class-gf-zero-spam-addon.php:894
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -509,45 +509,45 @@ msgstr ""
 "učita vaš obrazac. Ako se podnošenja obrasca pogrešno označavaju kao spam, "
 "pokušajte povećati ovu vrijednost. (Podrazumijevano: 7 dana)"
 
-#: includes/class-gf-zero-spam-addon.php:869
+#: includes/class-gf-zero-spam-addon.php:898
 msgid "Expiration length"
 msgstr "Dužina isteka"
 
-#: includes/class-gf-zero-spam-addon.php:881
+#: includes/class-gf-zero-spam-addon.php:910
 msgid "Expiration unit"
 msgstr "Jedinica isteka"
 
-#: includes/class-gf-zero-spam-addon.php:889
+#: includes/class-gf-zero-spam-addon.php:918
 msgid "hours"
 msgstr "sati"
 
-#: includes/class-gf-zero-spam-addon.php:892
+#: includes/class-gf-zero-spam-addon.php:921
 msgid "days"
 msgstr "dana"
 
-#: includes/class-gf-zero-spam-addon.php:908
+#: includes/class-gf-zero-spam-addon.php:937
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "Kratki rokovi isteka mogu uzrokovati lažne pozitivne rezultate na "
 "stranicama sa keširanjem stranica."
 
-#: includes/class-gf-zero-spam-addon.php:987
+#: includes/class-gf-zero-spam-addon.php:1016
 msgid "Please enter at least 1 day."
 msgstr "Molimo unesite najmanje 1 dan."
 
-#: includes/class-gf-zero-spam-addon.php:988
+#: includes/class-gf-zero-spam-addon.php:1017
 msgid "Please enter at least 1 hour."
 msgstr "Molimo unesite najmanje 1 sat."
 
-#: includes/class-gf-zero-spam-addon.php:994
+#: includes/class-gf-zero-spam-addon.php:1023
 msgid "Please select hours or days."
 msgstr "Molimo odaberite sate ili dane."
 
-#: includes/class-gf-zero-spam-addon.php:999
+#: includes/class-gf-zero-spam-addon.php:1028
 msgid "The maximum expiration is 90 days."
 msgstr "Najveći rok isteka je 90 dana."
 
-#: includes/class-gf-zero-spam-addon.php:1001
+#: includes/class-gf-zero-spam-addon.php:1030
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "Najveći rok isteka je 2160 sati (90 dana)."
 
@@ -567,41 +567,41 @@ msgstr "Zero Spam nije omogućen za ovaj obrazac."
 msgid "Too many requests. Please try again later."
 msgstr "Previše zahtjeva. Molimo pokušajte ponovo kasnije."
 
-#: includes/class-gf-zero-spam.php:385
-#: includes/class-gf-zero-spam.php:409
+#: includes/class-gf-zero-spam.php:491
+#: includes/class-gf-zero-spam.php:519
 msgid "The submission did not include a spam prevention token."
 msgstr "Podnošenje nije uključivalo token za sprječavanje spama."
 
-#: includes/class-gf-zero-spam.php:386
+#: includes/class-gf-zero-spam.php:492
 msgid "The spam prevention token format is invalid."
 msgstr "Format tokena za sprječavanje spama nije ispravan."
 
-#: includes/class-gf-zero-spam.php:387
+#: includes/class-gf-zero-spam.php:493
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr ""
 "Token za sprječavanje spama je istekao. Ovo može biti uzrokovano keširanjem "
 "stranice."
 
-#: includes/class-gf-zero-spam.php:388
+#: includes/class-gf-zero-spam.php:494
 msgid "The spam prevention token was issued for a different form."
 msgstr "Token za sprječavanje spama je izdan za drugi obrazac."
 
-#: includes/class-gf-zero-spam.php:389
+#: includes/class-gf-zero-spam.php:495
 msgid "The spam prevention token signature is invalid."
 msgstr "Potpis tokena za sprječavanje spama nije važeći."
 
-#: includes/class-gf-zero-spam.php:456
+#: includes/class-gf-zero-spam.php:601
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "Zastarjeli ključ za sprječavanje spama više nije prihvaćen. Molimo očistite "
 "keš stranice."
 
-#: includes/class-gf-zero-spam.php:462
-#: includes/class-gf-zero-spam.php:466
+#: includes/class-gf-zero-spam.php:607
+#: includes/class-gf-zero-spam.php:611
 msgid "The submitted key is invalid."
 msgstr "Poslani ključ nije važeći."
 
-#: includes/class-gf-zero-spam.php:498
+#: includes/class-gf-zero-spam.php:643
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -611,7 +611,7 @@ msgstr ""
 "Molimo očistite keš stranice kako biste osigurali da svi obrasci koriste "
 "novu zaštitu. Podrška za zastarjele verzije završava %s."
 
-#: includes/class-gf-zero-spam.php:542
+#: includes/class-gf-zero-spam.php:687
 msgid "This entry has been marked as spam."
 msgstr "Ovaj unos je označen kao spam."
 
@@ -623,7 +623,355 @@ msgstr "[count] pravila uvezena."
 msgid "Skipped [count] invalid values."
 msgstr "Preskočeno [count] nevažećih vrijednosti."
 
-#: includes/class-gf-zero-spam-addon.php:279
+#: includes/class-gf-zero-spam-ai-review-settings.php:97
+msgid "Copy global instructions"
+msgstr "Kopiraj globalna uputstva"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:98
+msgid ""
+"Copies the global AI instructions into this field so you can edit them for "
+"this form."
+msgstr ""
+"Kopira globalna AI uputstva u ovo polje kako biste ih mogli urediti za ovaj "
+"obrazac."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:239
+msgid ""
+"Zero Spam blocks most spam with an invisible token check before AI is "
+"involved. Turn on the tools below to let AI handle the edge cases — "
+"catching spam that slips past, or rescuing real submissions blocked by "
+"mistake. Both use the same instructions and the same {{link}}AI "
+"service{{/link}}."
+msgstr ""
+"Zero Spam blokira većinu spama nevidljivom provjerom tokena prije "
+"uključivanja AI. Uključite alate ispod da AI riješi specijalne slučajeve — "
+"hvata spam koji ipak prođe, ili spašava stvarne prijave koje su greškom "
+"blokirane. Oba koriste ista uputstva i isti {{link}}AI servis{{/link}}."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:288
+#: includes/class-gf-zero-spam-ai-review-settings.php:455
+msgid "Catch spam the token check misses"
+msgstr "Uhvatite spam koji provjera tokena propušta"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:289
+msgid ""
+"Reviews submissions that were allowed through — a second opinion to catch "
+"bots that defeated the token check."
+msgstr ""
+"Pregledava prijave koje su bile dozvoljene — drugo mišljenje za hvatanje "
+"botova koji su zaobišli provjeru tokena."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:290
+msgid ""
+"After a submission passes the normal spam checks, AI reads it and flags it "
+"as spam if it looks suspicious."
+msgstr ""
+"Nakon što prijava prođe uobičajene provjere spama, AI je pročita i označi "
+"kao spam ako izgleda sumnjivo."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:297
+#: includes/class-gf-zero-spam-ai-review-settings.php:463
+msgid "Rescue good submissions blocked by mistake"
+msgstr "Spašavanje dobrih prijava koje su greškom blokirane"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:298
+msgid ""
+"Reviews submissions blocked by Zero Spam's own token check (not Akismet, "
+"the honeypot, or email rules). Always runs before notifications are sent."
+msgstr ""
+"Pregledava prijave blokirane vlastitom provjerom tokena Zero Spama (ne "
+"Akismetom, honeypotom ili pravilima za email). Uvijek se pokreće prije nego "
+"što se pošalju obavijesti."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:299
+msgid ""
+"If the token check blocks a submission but the content looks genuine, AI "
+"can let it through. Only submissions blocked by Zero Spam's token check are "
+"eligible; during a token-failure flood this can increase AI usage."
+msgstr ""
+"Ako provjera tokena blokira prijavu, ali sadržaj izgleda stvarno, AI može "
+"dozvoliti prolaz. Samo prijave blokirane provjerom tokena Zero Spama su "
+"podobne; tokom velike količine neuspjelih tokena ovo može povećati "
+"korištenje AI."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:306
+msgid "AI instructions"
+msgstr "AI uputstva"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:307
+msgid ""
+"Tell the AI how to evaluate submissions — what counts as spam for your site "
+"and what doesn't."
+msgstr ""
+"Recite AI kako da procijeni prijave — šta se računa kao spam na vašem "
+"sajtu, a šta ne."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:308
+msgid ""
+"Tell the AI what counts as spam on your site. These instructions are used "
+"by both tools above; the default works well for most sites."
+msgstr ""
+"Recite AI šta se računa kao spam na vašem sajtu. Ova uputstva koriste oba "
+"gore navedena alata; zadano dobro funkcioniše za većinu sajtova."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:316
+msgid "AI spam protection"
+msgstr "AI zaštita od spama"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:326
+msgid "AI service"
+msgstr "AI servis"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:327
+msgid "Chooses which configured AI service Zero Spam uses to review submissions."
+msgstr "Birate koji konfigurirani AI servis Zero Spam koristi za pregled prijava."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:328
+msgid "Automatic uses the site default AI service."
+msgstr "Automatski koristi zadani AI servis sajta."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:338
+msgid "How sure must AI be to flag spam?"
+msgstr "Koliko AI mora biti siguran da označi spam?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:339
+msgid "Sets how confident AI must be before Zero Spam marks a submission as spam."
+msgstr ""
+"Postavlja koliko AI mora biti siguran prije nego što Zero Spam označi "
+"prijavu kao spam."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:340
+msgid "Stricter = fewer real submissions flagged, but more spam may slip through."
+msgstr "Strožije = manje stvarnih prijava označeno, ali može proći više spama."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:345
+msgid "Balanced — flag when fairly sure (recommended)"
+msgstr "Uravnoteženo — označi kad je prilično sigurno (preporučeno)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:349
+msgid "Strict — only flag when very sure"
+msgstr "Strogo — označi samo kada je vrlo sigurno"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:359
+msgid "How sure must AI be to rescue a blocked submission?"
+msgstr "Koliko AI mora biti siguran da bi spasio blokiranu prijavu?"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:360
+msgid ""
+"Sets how confident AI must be before Zero Spam restores a submission "
+"blocked by the token check."
+msgstr ""
+"Postavlja koliko AI mora biti siguran prije nego što Zero Spam obnovi "
+"prijavu blokiranu provjerom tokena."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:361
+msgid ""
+"Balanced works well for most sites; a restore cannot be undone, so more "
+"cautious options are available."
+msgstr ""
+"Uravnoteženo dobro funkcioniše za većinu sajtova; obnova se ne može "
+"poništiti, pa su dostupne opreznije opcije."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:366
+msgid "Balanced — rescue when fairly sure (recommended)"
+msgstr "Uravnoteženo — spašava kada je prilično sigurno (preporučeno)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:370
+msgid "Cautious — rescue only when very sure"
+msgstr "Oprezno — spašava samo kada je vrlo sigurno"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:374
+msgid "Very cautious — rescue only when almost certain"
+msgstr "Veoma oprezno — spašava samo kada je skoro sigurno"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:383
+msgid "Advanced AI settings"
+msgstr "Napredna AI podešavanja"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:456
+msgid ""
+"When enabled, the AI reads each submission to this form and flags it as "
+"spam if the content looks suspicious."
+msgstr ""
+"Kada je omogućeno, AI čita svaku prijavu na ovom obrascu i označava je kao "
+"spam ako sadržaj izgleda sumnjivo."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:464
+msgid ""
+"When enabled, AI can restore this form's submissions that the Zero Spam "
+"token check flagged but the content appears legitimate."
+msgstr ""
+"Kada je omogućeno, AI može obnoviti prijave ovog obrasca koje je Zero Spam "
+"token provjera označila, ali sadržaj izgleda legitimno."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:465
+msgid "Rescue always runs during submission, before notifications are sent."
+msgstr "Spašavanje uvijek radi tokom prijave, prije slanja obavještenja."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:472
+msgid "AI instructions for this form"
+msgstr "Upute za AI za ovaj obrazac"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:473
+msgid "Tell the AI how to evaluate this form's submissions."
+msgstr "Recite AI kako da ocijeni prijave ovog obrasca."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:474
+msgid "Leave blank to use the global instructions."
+msgstr "Ostavite prazno da koristite globalne upute."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:482
+msgid "Skip these fields"
+msgstr "Preskoči ova polja"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:483
+msgid ""
+"Selected fields are left out of the content the AI reviews — use this for "
+"fields with sensitive data."
+msgstr ""
+"Izabrana polja se izuzimaju iz sadržaja koji AI pregledava — koristite za "
+"polja sa osjetljivim podacima."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:484
+msgid "Left out of what AI reads — use for sensitive data."
+msgstr "Izuzeto iz onoga što AI čita — koristite za osjetljive podatke."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:496
+msgid "Limit AI checks per hour"
+msgstr "Ograniči AI provjere po satu"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:497
+msgid ""
+"Limits how many of this form's submissions are sent to the AI each hour, to "
+"control usage."
+msgstr ""
+"Ograničava koliko se prijava ovog obrasca šalje AI svaki sat, radi kontrole "
+"upotrebe."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:498
+msgid "0 = no limit."
+msgstr "0 = nema ograničenja."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:530
+msgid "Minimum confidence must be a number between 0.5 and 1."
+msgstr "Minimalno povjerenje mora biti broj između 0.5 i 1."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:711
+msgid "Automatic (site default)"
+msgstr "Automatski (zadano za sajt)"
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:765
+msgid ""
+"The selected AI service is no longer available; switch to Automatic, choose "
+"another service, or update connectors in [link]Settings > Connectors[/link]."
+msgstr ""
+"Odabrana AI usluga više nije dostupna; pređite na Automatski, izaberite "
+"drugu uslugu ili ažurirajte konektore u [link]Postavke > Konektori[/link]."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:771
+msgid ""
+"AI review or rescue is enabled, but no AI service is configured for text "
+"generation. Set one up in [link]Settings > Connectors[/link]."
+msgstr ""
+"AI pregled ili spašavanje su omogućeni, ali nije konfigurirana nijedna AI "
+"usluga za generisanje teksta. Postavite jednu u [link]Postavke > "
+"Konektori[/link]."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:848
+msgid "Review this Gravity Forms submission and decide whether it is spam."
+msgstr "Pregledajte ovu Gravity Forms prijavu i odlučite da li je spam."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:849
+msgid ""
+"Classify it as spam only when it is clearly unsolicited, deceptive, "
+"malicious, automated, or sent in bulk."
+msgstr ""
+"Klasifikujte je kao spam samo ako je jasno neželjena, obmanjujuća, "
+"zlonamjerna, automatizirana ili poslana u velikim količinama."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:850
+msgid ""
+"Treat ordinary customer messages — questions, support requests, quote "
+"requests, bookings, job applications, and other coherent human inquiries — "
+"as legitimate, even when they are brief or short on detail."
+msgstr ""
+"Tretirajte obične poruke korisnika — pitanja, zahtjeve za podršku, zahtjeve "
+"za ponudu, rezervacije, prijave za posao i druge koherentne ljudske upite — "
+"kao legitimne, čak i kada su kratke ili s malo detalja."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:851
+msgid ""
+"The confidence value reports how certain you are of the classification you "
+"return, whether spam or legitimate. It is not a measure of how spam-like "
+"the message is."
+msgstr ""
+"Vrijednost povjerenja pokazuje koliko ste sigurni u klasifikaciju koju "
+"dajete, bilo da je spam ili legitimno. Nije mjera koliko je poruka slična "
+"spamu."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:852
+msgid ""
+"When the classification is clear, report high confidence: use 0.98 to 1.00 "
+"for obvious spam, and equally for an ordinary, coherent human submission "
+"that shows no spam signals."
+msgstr ""
+"Kada je klasifikacija jasna, prijavite visoko povjerenje: koristite od 0.98 "
+"do 1.00 za očigledni spam, i isto tako za običnu, koherentnu ljudsku "
+"prijavu koja ne pokazuje znakove spama."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:853
+msgid ""
+"Use 0.85 to 0.97 when your classification is probable but some context is "
+"missing or mixed."
+msgstr ""
+"Koristite od 0.85 do 0.97 kada je vaša klasifikacija vjerovatna, ali "
+"nedostaje neki kontekst ili je pomiješan."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:854
+msgid ""
+"Use a value below 0.85 only when the submission is genuinely ambiguous or "
+"too sparse to judge."
+msgstr ""
+"Koristite vrijednost ispod 0.85 samo kada je prijava zaista nejasna ili "
+"premalo sadržaja za procjenu."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:855
+msgid "It is better to miss a piece of spam than to block a legitimate submission."
+msgstr "Bolje je propustiti dio spama nego blokirati legitimnu prijavu."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:856
+msgid ""
+"Use only the form title, source path, field labels, field types, and "
+"submitted values provided, and do not guess about missing context."
+msgstr ""
+"Koristite samo naslov obrasca, izvorni put, oznake polja, vrste polja i "
+"dostavljene vrijednosti, i nemojte pogađati o nedostajućem kontekstu."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:857
+msgid "Return JSON matching the supplied schema."
+msgstr "Vratite JSON koji odgovara dostavljenoj shemi."
+
+#: includes/class-gf-zero-spam-ai-review-settings.php:858
+msgid ""
+"The reason must be concise and must not quote personal data such as names "
+"or email addresses."
+msgstr ""
+"Razlog mora biti kratak i ne smije sadržavati lične podatke poput imena ili "
+"email adresa."
+
+#: includes/class-gf-zero-spam-ai-review.php:1455
+msgid "AI classified this submission as spam."
+msgstr "AI je ovu prijavu klasifikovao kao spam."
+
+#: includes/class-gf-zero-spam-ai-review.php:1705
+msgid ""
+"Zero Spam: AI recovered this submission as legitimate (confidence "
+"[confidence])."
+msgstr ""
+"Nula spama: AI je ovu prijavu prepoznao kao legitimnu (povjerenje "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-addon.php:300
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms Izvještaj o spamu"
