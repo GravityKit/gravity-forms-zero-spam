@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since TBD
  */
-class GF_Zero_Spam_AI_Review_Settings {
+final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * The GF Zero Spam AddOn instance.
 	 *

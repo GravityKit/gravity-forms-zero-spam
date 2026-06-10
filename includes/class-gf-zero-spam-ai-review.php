@@ -12,7 +12,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @since TBD
  */
-class GF_Zero_Spam_AI_Review {
+final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Spam filter name recorded on AI spam verdicts.
 	 *
@@ -438,7 +438,7 @@ class GF_Zero_Spam_AI_Review {
 	 *
 	 * @return bool Whether the submission is eligible.
 	 */
-	public function is_submission_eligible( $form, $entry ) {
+	private function is_submission_eligible( $form, $entry ) {
 		if ( ! $this->passes_pre_filter_guards( $form, $entry ) ) {
 			return false;
 		}
