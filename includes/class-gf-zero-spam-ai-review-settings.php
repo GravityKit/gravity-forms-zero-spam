@@ -9,13 +9,13 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Registers AI Spam Review settings and settings notices.
  *
- * @since TBD
+ * @since 1.9.0
  */
 final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * The GF Zero Spam AddOn instance.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @var GF_Zero_Spam_AddOn
 	 */
@@ -24,7 +24,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Constructor.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param GF_Zero_Spam_AddOn $addon The AddOn instance.
 	 */
@@ -35,7 +35,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Initializes settings hooks.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return void
 	 */
@@ -48,7 +48,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Prints the "Copy global instructions" click handler on the form settings page.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return void
 	 */
@@ -117,7 +117,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	 * Coercing the render-time initial values keeps the saved data untouched while showing the
 	 * editable effective prompt and the 0 (no limit) default.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $values The initial values for the form settings renderer.
 	 * @param array $form   The form being edited.
@@ -141,7 +141,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets the effective global classification prompt (saved global, else the default).
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return string The effective global prompt.
 	 */
@@ -154,7 +154,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Uses global and per-form settings to determine whether AI is enabled for a context.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param bool   $enabled Whether AI is enabled.
 	 * @param string $context Either "review" or "rescue".
@@ -184,7 +184,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Uses global and per-form settings to determine whether AI rescue is enabled.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $form The form object.
 	 *
@@ -205,7 +205,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Uses global and per-form settings to determine whether AI review is enabled.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $form The form object.
 	 *
@@ -222,7 +222,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Adds the AI Spam Review global settings section.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $sections Existing settings sections.
 	 *
@@ -394,7 +394,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Adds AI Spam Review fields to form settings.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $fields Form settings fields.
 	 * @param array $form   The current form.
@@ -515,7 +515,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Validates the confidence threshold setting.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param object $field The GF Settings Field object with a set_error() method.
 	 * @param string $value The submitted threshold.
@@ -533,7 +533,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Checks whether the base Zero Spam token check is enabled for a form.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $form The form object.
 	 *
@@ -556,7 +556,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets configured AI provider connectors without triggering live model discovery.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return array<string, array{id: string, name: string}> Configured provider connector data.
 	 */
@@ -600,7 +600,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Checks whether a connector's provider plugin is active.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $connector Connector data.
 	 *
@@ -624,7 +624,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Checks whether a connector has enough credentials configured to be selectable.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $connector Connector data.
 	 *
@@ -679,7 +679,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets a connector display name.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array  $connector    Connector data.
 	 * @param string $connector_id Connector ID.
@@ -699,7 +699,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets AI provider select choices.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $configured_connectors Configured provider connector data.
 	 *
@@ -726,7 +726,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets the selected AI provider ID.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return string Selected provider ID, or empty string for automatic selection.
 	 */
@@ -739,7 +739,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets the connector notice HTML.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $configured_connectors Configured provider connector data.
 	 *
@@ -789,7 +789,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Checks whether the connector notice should render in settings.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array $configured_connectors Configured provider connector data.
 	 *
@@ -816,7 +816,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets the Connectors settings URL.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return string Connectors settings URL.
 	 */
@@ -827,7 +827,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Checks if the global AI review setting is enabled.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return bool Whether global AI review is enabled.
 	 */
@@ -839,7 +839,7 @@ final class GF_Zero_Spam_AI_Review_Settings {
 	/**
 	 * Gets the default AI classification prompt.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @return string Default prompt.
 	 */

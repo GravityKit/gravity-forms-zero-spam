@@ -18,7 +18,7 @@ class GF_Zero_Spam {
 	/**
 	 * Request-local token rejection reason codes keyed by form ID.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @var array<int, string>
 	 */
@@ -27,7 +27,7 @@ class GF_Zero_Spam {
 	/**
 	 * Request-local non-token spam sources keyed by form ID.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @var array<int, array<int, string>>
 	 */
@@ -68,7 +68,7 @@ class GF_Zero_Spam {
 	/**
 	 * Gets the token rejection reason code for this request.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param int $form_id The form ID.
 	 *
@@ -83,7 +83,7 @@ class GF_Zero_Spam {
 	/**
 	 * Clears the token rejection reason code for this request.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param int $form_id The form ID.
 	 *
@@ -96,7 +96,7 @@ class GF_Zero_Spam {
 	/**
 	 * Resets request-local spam markers before processing a submission.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param array|null $form The form being processed when called as a filter.
 	 *
@@ -112,7 +112,7 @@ class GF_Zero_Spam {
 	/**
 	 * Records a non-token Zero Spam spam source for this request.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param int    $form_id The form ID.
 	 * @param string $source  The non-token spam source code.
@@ -142,7 +142,7 @@ class GF_Zero_Spam {
 	/**
 	 * Checks whether a non-token Zero Spam spam source flagged this request.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param int $form_id The form ID.
 	 *
@@ -546,7 +546,7 @@ class GF_Zero_Spam {
 	/**
 	 * Records a rejected token check for diagnostics.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @param string $reason_code Raw rejection reason code.
 	 * @param array  $form        The form currently being processed.
@@ -565,7 +565,7 @@ class GF_Zero_Spam {
 		/**
 		 * Fires when a submission is rejected by the Zero Spam token check.
 		 *
-		 * @since TBD
+		 * @since 1.9.0
 		 *
 		 * @param string $reason_code Raw rejection reason code. Accepted values: token_missing, bad_format, expired, form_mismatch, sig_invalid, legacy_missing, legacy_invalid.
 		 * @param array  $form        The form currently being processed.

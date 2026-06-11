@@ -69,7 +69,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * AI Spam Review settings instance.
 	 *
-	 * @since TBD
+	 * @since 1.9.0
 	 *
 	 * @var GF_Zero_Spam_AI_Review_Settings|null
 	 */

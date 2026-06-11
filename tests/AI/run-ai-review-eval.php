@@ -2,7 +2,7 @@
 /**
  * Runs real-provider AI Spam Review evaluations.
  *
- * @since TBD
+ * @since 1.9.0
  */
 
 use Exception as BaseException;
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Parses eval-file arguments.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $argv Raw CLI arguments.
  *
@@ -93,7 +93,7 @@ function gf_zero_spam_ai_eval_parse_args( $argv ) {
 /**
  * Normalizes a comma-separated provider list.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param string $providers Provider list.
  *
@@ -115,7 +115,7 @@ function gf_zero_spam_ai_eval_normalize_providers( $providers ) {
 /**
  * Loads and validates the evaluation corpus.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param string $path Corpus path.
  *
@@ -147,7 +147,7 @@ function gf_zero_spam_ai_eval_load_corpus( $path ) {
 /**
  * Builds a synthetic Gravity Forms form and entry for a corpus case.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $case_data      Corpus case.
  * @param int   $form_id        Synthetic form ID.
@@ -199,7 +199,7 @@ function gf_zero_spam_ai_eval_build_submission( $case_data, $form_id, $provider_
 /**
  * Gets normalized corpus fields.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $case_data Corpus case.
  *
@@ -216,7 +216,7 @@ function gf_zero_spam_ai_eval_case_fields( $case_data ) {
 /**
  * Gets a normalized source path for a corpus case.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $case_data Corpus case.
  *
@@ -235,7 +235,7 @@ function gf_zero_spam_ai_eval_source_path( $case_data ) {
 /**
  * Runs one provider/case/repeat evaluation.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param GF_Zero_Spam_AI_Review $review   AI review runtime.
  * @param array                  $case_data Corpus case.
@@ -288,7 +288,7 @@ function gf_zero_spam_ai_eval_run_case( $review, $case_data, $provider, $form_id
 /**
  * Runs one evaluation with retry/backoff when no verdict is produced.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param GF_Zero_Spam_AI_Review $review         AI review runtime.
  * @param array                  $case_data      Corpus case.
@@ -324,7 +324,7 @@ function gf_zero_spam_ai_eval_run_case_with_retries( $review, $case_data, $provi
 /**
  * Builds a synthetic form ID for a provider/case/repeat/attempt tuple.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param int $provider_index Provider index.
  * @param int $case_index     Case index.
@@ -340,7 +340,7 @@ function gf_zero_spam_ai_eval_form_id( $provider_index, $case_index, $repeat, $a
 /**
  * Sleeps for a number of milliseconds.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param int $milliseconds Milliseconds to sleep.
  *
@@ -359,7 +359,7 @@ function gf_zero_spam_ai_eval_sleep_ms( $milliseconds ) {
 /**
  * Calculates provider metrics.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $cases            Corpus cases.
  * @param array $records          Evaluation records.
@@ -450,7 +450,7 @@ function gf_zero_spam_ai_eval_provider_metrics( $cases, $records, $rescue_thresh
 /**
  * Calculates per-case confidence summaries.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array $records Evaluation records.
  *
@@ -484,7 +484,7 @@ function gf_zero_spam_ai_eval_confidence_summaries( $records ) {
 /**
  * Calculates a safe ratio.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param int $numerator   Numerator.
  * @param int $denominator Denominator.
@@ -502,7 +502,7 @@ function gf_zero_spam_ai_eval_ratio( $numerator, $denominator ) {
 /**
  * Calculates the median of numeric values.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param float[] $values Numeric values.
  *
@@ -527,7 +527,7 @@ function gf_zero_spam_ai_eval_median( $values ) {
 /**
  * Gets the current rescue confidence threshold for reporting.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param GF_Zero_Spam_AddOn $addon Add-on instance.
  *
@@ -552,7 +552,7 @@ function gf_zero_spam_ai_eval_rescue_threshold( $addon ) {
 /**
  * Writes the JSON report.
  *
- * @since TBD
+ * @since 1.9.0
  *
  * @param array  $report Report data.
  * @param string $output Output path, or empty string for STDOUT.
