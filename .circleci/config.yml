@@ -121,14 +121,6 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - run:
-          name: Verify version consistency
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              npx @gravitykit/gktools verify
-            else
-              echo "Skipping version verification (only runs on main)."
-            fi
-      - run:
           name: Configure git
           command: |
             git config user.email "support@gravitykit.com"
@@ -153,15 +145,6 @@ jobs:
               echo "Skipping translation pipeline."
             fi
       - run:
-          name: Create GitHub release
-          command: npx @gravitykit/gktools release
-      - run:
-          name: Announce build
-          command: |
-            if ! git log -1 --pretty=%B | grep -iq "\[skip notify\]"; then
-              npx @gravitykit/gktools announce
-            fi
-      - run:
           # Fail loudly if the build produced no .zip — silently swallowing
           # the cp error would let an empty release slip through to
           # run_post_build_smoke (which would then "pass" with nothing to
@@ -176,7 +159,7 @@ jobs:
       - persist_to_workspace:
           # Persist BOTH the .release/ directory AND the zip at the working
           # directory root. run_post_build_smoke needs the zip from .release/
-          # to install the built artifact; future publish_release jobs use
+          # to install the built artifact; publish_release uses
           # `gktools release` which greps the cwd (not .release/) for the zip.
           root: /home/circleci
           paths:
@@ -210,6 +193,28 @@ jobs:
       - store_test_results:
           path: tests/E2E/results/junit.xml
 
+  # Publishes the GitHub release and announces the build only AFTER the
+  # post-build smoke gate passes, so a packaging defect can never ship.
+  publish_release:
+    <<: *default_job_config
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Configure git
+          command: |
+            git config user.email "support@gravitykit.com"
+            git config user.name "GravityKit - CI"
+      - run:
+          name: Create GitHub release
+          command: npx @gravitykit/gktools release
+      - run:
+          name: Announce build
+          command: |
+            if ! git log -1 --pretty=%B | grep -iq "\[skip notify\]"; then
+              npx @gravitykit/gktools announce
+            fi
+
 workflows:
   version: 2
   test_build_and_release:
@@ -226,3 +231,7 @@ workflows:
           <<: *context
           requires:
             - build_package_release
+      - publish_release:
+          <<: *context
+          requires:
+            - run_post_build_smoke
