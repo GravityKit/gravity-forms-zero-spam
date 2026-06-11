@@ -530,6 +530,10 @@ class GF_Zero_Spam_Email_Rejection {
 	 */
 	public function flag_matched_entries( $is_spam, $form, $entry ) {
 		if ( ! empty( self::$flagged_entries[ $form['id'] ] ) ) {
+			if ( method_exists( 'GF_Zero_Spam', 'record_non_token_spam_source' ) ) {
+				GF_Zero_Spam::record_non_token_spam_source( (int) rgar( $form, 'id' ), 'email_rejection' );
+			}
+
 			return true;
 		}
 

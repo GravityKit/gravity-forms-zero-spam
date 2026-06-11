@@ -1,0 +1,1587 @@
+{
+  "cases": [
+    {
+      "id": "spam-seo-backlinks",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Digital Growth Agency"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "outreach@rankboost-seo.biz"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hi, I reviewed your website and noticed it is not ranking on the first page of Google. We can build 500 high-authority backlinks per month and guarantee #1 rankings in 30 days. Cheap monthly SEO packages starting at $99. Reply for our price list and free audit."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Classic unsolicited SEO backlink pitch."
+    },
+    {
+      "id": "spam-pharma-viagra",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "MedsOnline"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "sales@cheap-pills-store.ru"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "BEST PRICES on Viagra, Cialis, Levitra! No prescription needed. Generic ED pills shipped worldwide discreetly. Buy now at http://cheap-pills-store.ru and save 80%. Bulk discounts available."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Pharmaceutical spam with no-prescription pitch."
+    },
+    {
+      "id": "spam-casino",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Lucky Winner"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "promo@megaslots-casino.net"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Congratulations! Claim your $5000 welcome bonus + 200 free spins at the hottest online casino. Instant payouts, no deposit required to start. Join now: megaslots-casino.net/bonus. 18+ only."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Online gambling promotion."
+    },
+    {
+      "id": "spam-crypto-airdrop",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Crypto Team"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "airdrop@eth-giveaway2026.io"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "ETH GIVEAWAY is LIVE! Send 0.1 ETH to our smart contract and receive 1 ETH back instantly. Elon-backed event, limited time. Connect your wallet at eth-giveaway2026.io to claim before it ends!"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Crypto doubling scam."
+    },
+    {
+      "id": "spam-payday-loans",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "QuickCash"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "loans@fastcash-now24.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Need money fast? Get approved for up to $10,000 in minutes, no credit check, bad credit OK! Funds deposited same day. Apply now at fastcash-now24.com. Limited slots available today only."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Payday-loan / no-credit-check spam."
+    },
+    {
+      "id": "spam-replica-goods",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Luxury Replicas"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "shop@replica-watches-outlet.cn"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "AAA+ replica Rolex, Omega, Gucci handbags at wholesale prices. Indistinguishable from originals. Free worldwide shipping on orders over $200. Visit our catalog: replica-watches-outlet.cn"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Counterfeit goods."
+    },
+    {
+      "id": "spam-phishing-verify",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Account Security"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "no-reply@secure-account-verify.info"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Your account has been temporarily suspended due to suspicious activity. Verify your identity within 24 hours to avoid permanent closure. Click here to confirm your login and password: secure-account-verify.info/login"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Phishing / credential harvest."
+    },
+    {
+      "id": "spam-bulk-email-pitch",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Lead Gen Pro"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "info@buy-email-lists.org"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Want more customers? We sell verified email lists: 10 million B2B contacts, targeted by industry and location. Send unlimited bulk campaigns. Database updated monthly. Get a free sample of 1000 leads now."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Email-list / bulk-spam service."
+    },
+    {
+      "id": "spam-wfh-scam",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Work From Home"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "hr@earn-online-daily.xyz"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Earn $500-$1000 per day working from home just 2 hours a day! No experience needed. We are hiring data entry agents worldwide. Start today and get paid weekly via PayPal. Register: earn-online-daily.xyz"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Work-from-home income scam."
+    },
+    {
+      "id": "spam-essay-writing",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Academic Help"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "support@write-my-essay-cheap.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Struggling with assignments? Our expert writers deliver plagiarism-free essays, term papers, and dissertations on any topic. 100% confidential, on-time delivery. First order 20% off. Order at write-my-essay-cheap.com"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Academic-cheating service."
+    },
+    {
+      "id": "spam-guest-post-outreach",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Sarah from Content Team"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "sarah@guestpost-network.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hello, I came across your blog and love your content! I would like to contribute a free guest post with a couple of relevant links. We can also place a paid link in your existing articles for $50 each. Do you accept sponsored posts?"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Paid-link / guest-post link-building outreach."
+    },
+    {
+      "id": "spam-weight-loss",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Keto Slim"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "offers@burn-fat-fast.shop"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Lose 20 lbs in 2 weeks without diet or exercise! Our clinically proven keto gummies melt fat overnight. As seen on TV. 90-day money back guarantee. Limited stock, order now at burn-fat-fast.shop"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Diet-pill spam."
+    },
+    {
+      "id": "spam-link-gibberish",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "ahsgdj"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "xjkqwe@mail-tmp9921.top"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "http://bit.ly/3xQk http://tinyurl.com/yc8a buy now best deal click here http://spam-link.top/aff?id=8821 cheap cheap visit http://promo.top check this out"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Link-stuffed gibberish, no real message."
+    },
+    {
+      "id": "spam-foreign-seo",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Продвижение сайтов"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "seo@prodvizhenie-saitov.ru"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Здравствуйте! Предлагаем профессиональное продвижение вашего сайта в топ Google и Яндекс. Гарантированный результат, недорого. Раскрутка от 5000 рублей в месяц. Пишите для прайс-листа: prodvizhenie-saitov.ru"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Russian-language SEO promotion sent to an English-language site."
+    },
+    {
+      "id": "spam-forex-signals",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "FX Master"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "vip@forex-profit-signals.live"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Turn $250 into $25,000 with our AI forex trading bot! 95% win rate, fully automated. Join 10,000+ profitable traders. Free VIP signals for the first 50 sign-ups today. Start at forex-profit-signals.live"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Forex / trading-bot get-rich scheme."
+    },
+    {
+      "id": "ham-quote-webdesign",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Request a Quote",
+      "source_path": "/request-a-quote/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Daniel Foster"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "daniel.foster@fosterlaw.com"
+        },
+        {
+          "label": "Company",
+          "type": "text",
+          "value": "Foster & Associates"
+        },
+        {
+          "label": "Project details",
+          "type": "textarea",
+          "value": "We are a small law firm looking to redesign our website. We currently have about 12 pages and would like a more modern look, a blog, and a contact form. Could you provide a rough quote and timeline? We hope to launch before the end of Q3."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine web-design quote request with specific details."
+    },
+    {
+      "id": "ham-support-order-issue",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Megan Liu"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "megan.liu88@gmail.com"
+        },
+        {
+          "label": "Order number",
+          "type": "text",
+          "value": "#GK-48201"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hi, I received my order yesterday but the size medium shirt was missing from the box even though it is on my packing slip. Could you ship the missing item or let me know how to proceed? Thanks!"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Legitimate order-issue support request."
+    },
+    {
+      "id": "ham-booking-restaurant",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Table Reservation",
+      "source_path": "/reservations/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Robert Hayes"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "rhayes@outlook.com"
+        },
+        {
+          "label": "Phone",
+          "type": "phone",
+          "value": "(512) 555-0173"
+        },
+        {
+          "label": "Party size",
+          "type": "text",
+          "value": "4"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hi, I'd like to book a table for 4 this Friday around 7:30pm for an anniversary dinner. One person in our party is vegetarian. Do you have availability? Thank you."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine reservation request."
+    },
+    {
+      "id": "ham-job-application",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Careers - Apply",
+      "source_path": "/careers/marketing-coordinator/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Priya Nair"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "priya.nair@gmail.com"
+        },
+        {
+          "label": "Position",
+          "type": "text",
+          "value": "Marketing Coordinator"
+        },
+        {
+          "label": "Cover note",
+          "type": "textarea",
+          "value": "Hello, I'm applying for the Marketing Coordinator role. I have three years of experience running social media and email campaigns for a SaaS startup and recently completed a HubSpot certification. I've attached my resume and would welcome the chance to talk."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine job application."
+    },
+    {
+      "id": "ham-demo-request",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Request a Demo",
+      "source_path": "/demo/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Carlos Mendez"
+        },
+        {
+          "label": "Work email",
+          "type": "email",
+          "value": "carlos.mendez@brightpath.io"
+        },
+        {
+          "label": "Company size",
+          "type": "select",
+          "value": "11-50"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "We're evaluating tools for our support team and your product looks like a good fit. Could we schedule a 30-minute demo next week? Tuesday or Wednesday afternoon works best for us."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine B2B demo request."
+    },
+    {
+      "id": "ham-presale-question",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Anna Whitfield"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "anna.whitfield@protonmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Before I purchase the Pro plan, does it support exporting reports to CSV, and can I add team members later without upgrading again? I couldn't find this in the pricing FAQ."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Pre-sale product question."
+    },
+    {
+      "id": "ham-dental-appointment",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Book an Appointment",
+      "source_path": "/appointments/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "James O'Connor"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "joconnor73@gmail.com"
+        },
+        {
+          "label": "Phone",
+          "type": "phone",
+          "value": "(312) 555-0199"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I'd like to schedule a routine cleaning and checkup. I'm a new patient. Mornings are best for me. Do you accept Delta Dental insurance?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine appointment request."
+    },
+    {
+      "id": "ham-partnership-inquiry",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Lena Brooks"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "lena.brooks@craftedgoods.com"
+        },
+        {
+          "label": "Company",
+          "type": "text",
+          "value": "Crafted Goods Co."
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "We run a regional gift-box company and are interested in stocking your candles wholesale for the holiday season. Could you share your wholesale pricing and minimum order quantities? Happy to send our business details."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Legitimate wholesale/partnership inquiry (mentions wholesale, but genuine)."
+    },
+    {
+      "id": "ham-complaint",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Tom Becker"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "tbecker@yahoo.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I've been on hold twice for over 40 minutes trying to reach billing and got disconnected both times. This is frustrating. Can someone please call me back about the duplicate charge on my March invoice?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine (negative-toned) complaint — must not be flagged for sentiment."
+    },
+    {
+      "id": "ham-refund-request",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Sofia Russo"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "sofia.russo@gmail.com"
+        },
+        {
+          "label": "Order number",
+          "type": "text",
+          "value": "#GK-51022"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "The course wasn't what I expected and I'd like to request a refund within the 14-day window mentioned in your terms. Order #GK-51022, purchased last Tuesday. Please advise on the next steps."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine refund request."
+    },
+    {
+      "id": "ham-volunteer-signup",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Volunteer Sign-Up",
+      "source_path": "/get-involved/volunteer/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Grace Kim"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "grace.kim@gmail.com"
+        },
+        {
+          "label": "Availability",
+          "type": "text",
+          "value": "Weekends"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I'd love to help at the community food drive next month. I'm available most weekends and have volunteered at similar events before. Is there an orientation I should attend first?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine volunteer signup (nonprofit)."
+    },
+    {
+      "id": "ham-blog-comment-contact",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/blog/2026-tax-changes-for-freelancers/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Nathan Pierce"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "nathanpierce@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Your article on the 2026 tax changes was really helpful. One question: does the new home-office deduction apply if I rent rather than own? I couldn't tell from the examples. Thanks for clarifying."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine follow-up question about a specific blog post."
+    },
+    {
+      "id": "ham-press-inquiry",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Olivia Hart"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "ohart@techdailynews.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I'm a reporter at Tech Daily writing a piece on small-business automation tools. I'd love to include a quote from your founder. Are you available for a short call before Thursday? My deadline is Friday morning."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine press/media inquiry."
+    },
+    {
+      "id": "ham-detailed-technical",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Vikram Shah"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "vikram.shah@devhouse.io"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "The webhook stopped firing after I rotated my API key this morning. I updated the secret in our config and confirmed the endpoint returns 200 on a manual test, but live events aren't arriving. Is there a propagation delay after a key rotation, or a separate webhook secret I need to update?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Detailed legitimate technical support question."
+    },
+    {
+      "id": "ham-reschedule",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Emily Dawson"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "emily.dawson@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Something came up at work and I need to reschedule our consultation that's booked for tomorrow at 2pm. Would Thursday or Friday at the same time work instead? Apologies for the short notice."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine reschedule request."
+    },
+    {
+      "id": "ham-real-estate-viewing",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Property Inquiry",
+      "source_path": "/listings/24-maple-street/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Hannah Wright"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "hannah.wright@gmail.com"
+        },
+        {
+          "label": "Phone",
+          "type": "phone",
+          "value": "(206) 555-0142"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "We're interested in the 3-bedroom on Maple Street and would like to arrange a viewing this weekend if possible. Is the listed price negotiable, and are appliances included? We're pre-approved and ready to move quickly."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine real-estate viewing request."
+    },
+    {
+      "id": "ham-nonprofit-donation-q",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/donate/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "George Adler"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "gadler@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I'd like to set up a recurring monthly donation but want to confirm it's tax-deductible and whether I'll receive a year-end receipt. Also, can I designate my gift specifically to the scholarship fund?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Genuine donor question."
+    },
+    {
+      "id": "rescue-ship-to-canada",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Mark T."
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "markt.home@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hi, do you ship to Canada?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "QA #3 repro: short genuine question; token-blocked; Anthropic scored ~0.92 (below 0.95) so rescue failed."
+    },
+    {
+      "id": "rescue-in-stock",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/products/atlas-backpack/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Jess"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "jess.miller@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Is the Atlas backpack in the blue color back in stock yet?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Short genuine stock question; rescue should restore."
+    },
+    {
+      "id": "rescue-quote-50-units",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Request a Quote",
+      "source_path": "/request-a-quote/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Brian Cole"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "brian.cole@maplewoodschools.org"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Can I get a quote for 50 units shipped to a school district? Net-30 terms if possible."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine bulk quote, terse; rescue should restore."
+    },
+    {
+      "id": "rescue-saturday-hours",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Dana"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "dana.reyes@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "What time do you open on Saturday?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Very short but clearly genuine; low-info case that depresses confidence."
+    },
+    {
+      "id": "rescue-callback-order",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Paul Jennings"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "pjennings@gmail.com"
+        },
+        {
+          "label": "Phone",
+          "type": "phone",
+          "value": "(404) 555-0156"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Please call me back about my order, there's a delivery problem."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine callback request, brief."
+    },
+    {
+      "id": "rescue-detailed-support",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Aisha Rahman"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "aisha.rahman@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "I upgraded to the annual plan but I'm still seeing the free-tier limits on my dashboard. I tried logging out and back in. Could you check whether the upgrade went through on your end? My account email is this one."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Detailed genuine support; should comfortably rescue."
+    },
+    {
+      "id": "rescue-job-application",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Careers - Apply",
+      "source_path": "/careers/barista/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Tyler Brooks"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "tyler.brooks@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hi, I'd like to apply for the weekend barista position. I have a year of cafe experience and I'm available immediately. Who should I send my resume to?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine application; rescue should restore."
+    },
+    {
+      "id": "rescue-student-discount",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/pricing/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Maya"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "maya.s@university.edu"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Do you offer a student discount?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "One-line genuine question from a .edu address; low-info."
+    },
+    {
+      "id": "rescue-booking-details",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Table Reservation",
+      "source_path": "/reservations/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Steven Park"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "steven.park@gmail.com"
+        },
+        {
+          "label": "Party size",
+          "type": "text",
+          "value": "2"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Table for 2 this Sunday at 6pm please, window seat if available."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine booking, concise."
+    },
+    {
+      "id": "rescue-password-reset",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Customer Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Linda Carter"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "linda.carter@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "My password reset email never arrives. I've checked spam. Can you help me get back into my account?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine account-access issue."
+    },
+    {
+      "id": "rescue-reschedule-week",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Chris"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "chris.donovan@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Can we reschedule to next week?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Minimal but genuine; the hardest rescue case for confidence calibration."
+    },
+    {
+      "id": "rescue-interested-services",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/services/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Rebecca Lyons"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "rebecca.lyons@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Interested in your bookkeeping services for a small business. Please contact me to discuss."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Genuine but generic service interest; borderline-low confidence."
+    },
+    {
+      "id": "rescue-spam-pharma",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Pills Direct"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "order@discount-meds-247.ru"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Cheap generic Viagra and Cialis, no prescription, worldwide shipping. Order now at discount-meds-247.ru and save big!"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Spam that was token-blocked; rescue must NOT restore it."
+    },
+    {
+      "id": "rescue-spam-seo",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "SEO Experts"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "team@top-google-ranking.biz"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "We guarantee first-page Google rankings with our cheap SEO packages and 1000s of backlinks. Reply for pricing. top-google-ranking.biz"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "SEO spam token-blocked; must stay blocked."
+    },
+    {
+      "id": "rescue-spam-crypto",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Bitcoin Profit"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "vip@btc-double-now.io"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Double your Bitcoin in 24 hours! Send BTC to our verified address and get 2x back guaranteed. Limited offer at btc-double-now.io"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Crypto scam token-blocked; must stay blocked."
+    },
+    {
+      "id": "rescue-spam-gibberish",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "qwxnm"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "zz8821@tmp-mail99.top"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "click here http://promo-deal.top/aff cheap deal best price http://bit.ly/9xQa visit now"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Link gibberish token-blocked; must stay blocked."
+    },
+    {
+      "id": "rescue-spam-casino",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "JackpotCity"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "win@spin-to-win-casino.net"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Claim 100 free spins and a $3000 bonus now! No deposit needed. Play at spin-to-win-casino.net and win big today!"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Casino promo token-blocked; must stay blocked."
+    },
+    {
+      "id": "rescue-spam-phishing",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Billing Dept"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "alert@invoice-payment-verify.info"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Your recent invoice payment failed. Update your billing details within 24 hours to avoid service suspension: invoice-payment-verify.info/update"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Phishing token-blocked; must stay blocked."
+    },
+    {
+      "id": "ambig-test",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "test"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "test@test.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "test"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS (excluded from hard pass/fail): a self-test submission; not malicious but not a real inquiry.",
+      "include_in_metrics": false
+    },
+    {
+      "id": "ambig-hello",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Sam"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "sam.h@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hello"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS: one-word greeting, no intent. Low information.",
+      "include_in_metrics": false
+    },
+    {
+      "id": "ambig-asdf",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "asdf"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "asdf@asdf.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "asdf asdfasdf qwerty"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS: keyboard-mash, likely a bot probe but no payload.",
+      "include_in_metrics": false
+    },
+    {
+      "id": "ambig-bare-url",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Alex"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "alex9921@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "https://my-cool-site-promo.shop"
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS: a bare promotional URL with no message.",
+      "include_in_metrics": false
+    },
+    {
+      "id": "ambig-allcaps-short",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "BARBARA"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "barbara.jean@aol.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "PLEASE CALL ME I HAVE A QUESTION ABOUT MY BILL"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS: all-caps (often older genuine users), real intent.",
+      "include_in_metrics": false
+    },
+    {
+      "id": "ambig-phone-only",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "R. Patel"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "rpatel.home@gmail.com"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "555-0188 call after 5"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "AMBIGUOUS: terse, just a phone number and time; plausibly genuine.",
+      "include_in_metrics": false
+    }
+  ]
+}

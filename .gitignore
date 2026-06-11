@@ -9,3 +9,20 @@ Thumbs.db
 node_modules/
 vendor/
 dist/
+
+# Local environment.
+.env
+.tmp/
+
+# E2E artifacts.
+tests/E2E/setup/.wp-env.json
+tests/E2E/setup/.e2e-ports.json
+tests/E2E/setup/.state.json
+tests/E2E/results/
+tests/E2E/report/
+artifacts/
+playwright-transform-cache-*/
+test-results/
+
+# Playwright MCP scratch (browser session logs, snapshots).
+.playwright-mcp/

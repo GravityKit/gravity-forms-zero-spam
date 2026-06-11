@@ -1,0 +1,166 @@
+{
+  "cases": [
+    {
+      "id": "review-obvious-seo-spam",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Best SEO Agency"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "rankings@example-spam.test"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Hello webmaster, buy 10,000 backlinks and guaranteed casino traffic from our SEO package today."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Obvious unsolicited promotional spam."
+    },
+    {
+      "id": "review-phishing-link",
+      "label": "spam",
+      "scenario": "review",
+      "form_title": "Support",
+      "source_path": "/support/",
+      "fields": [
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "security-alert@example-spam.test"
+        },
+        {
+          "label": "Subject",
+          "type": "text",
+          "value": "Urgent account verification"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Your account will be closed unless you verify your password at http://example.invalid/login immediately."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Suspicious phishing-style message."
+    },
+    {
+      "id": "review-normal-quote-request",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Request a Quote",
+      "source_path": "/quote/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Priya Shah"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "priya@example.test"
+        },
+        {
+          "label": "Project Details",
+          "type": "textarea",
+          "value": "We need pricing for a five-page WordPress redesign and would like to schedule a call next week."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Normal commercial inquiry."
+    },
+    {
+      "id": "review-normal-support-question",
+      "label": "ham",
+      "scenario": "review",
+      "form_title": "Customer Support",
+      "source_path": "/help/",
+      "fields": [
+        {
+          "label": "Order Number",
+          "type": "text",
+          "value": "A10293"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "value": "customer@example.test"
+        },
+        {
+          "label": "Question",
+          "type": "textarea",
+          "value": "Can you confirm whether my warranty covers replacement parts for the pump assembly?"
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": false,
+      "notes": "Normal support request."
+    },
+    {
+      "id": "rescue-token-blocked-genuine-booking",
+      "label": "ham",
+      "scenario": "rescue",
+      "form_title": "Booking Request",
+      "source_path": "/book/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Maya Chen"
+        },
+        {
+          "label": "Phone",
+          "type": "phone",
+          "value": "555-0134"
+        },
+        {
+          "label": "Booking Notes",
+          "type": "textarea",
+          "value": "I would like to book a consultation for Tuesday afternoon if you have availability."
+        }
+      ],
+      "expected_review_is_spam": false,
+      "expected_rescue": true,
+      "notes": "Representative token-false-positive rescue case."
+    },
+    {
+      "id": "rescue-token-blocked-spam",
+      "label": "spam",
+      "scenario": "rescue",
+      "form_title": "Contact Us",
+      "source_path": "/contact/",
+      "fields": [
+        {
+          "label": "Name",
+          "type": "name",
+          "value": "Crypto Promotion Desk"
+        },
+        {
+          "label": "Website",
+          "type": "website",
+          "value": "https://example.invalid/promo"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "value": "Exclusive investment opportunity, guaranteed returns, send crypto now for instant profit."
+        }
+      ],
+      "expected_review_is_spam": true,
+      "expected_rescue": false,
+      "notes": "Token-blocked submission that should remain blocked."
+    }
+  ]
+}

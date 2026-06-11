@@ -10,6 +10,8 @@ GFForms::include_addon_framework();
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-field-settings.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review-settings.php';
 
 /**
  * @since 1.2
@@ -65,6 +67,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private $email_rejection_settings;
 
 	/**
+	 * AI Spam Review settings instance.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @var GF_Zero_Spam_AI_Review_Settings|null
+	 */
+	private $ai_review_settings;
+
+	/**
 	 * Gets the singleton instance.
 	 *
 	 * @since 1.5.0
@@ -100,6 +111,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		$email_rejection_field_settings = new GF_Zero_Spam_Email_Rejection_Field_Settings();
 		$email_rejection_field_settings->init();
+
+		$ai_review = new GF_Zero_Spam_AI_Review( $this );
+		$ai_review->init();
+
+		$this->ai_review_settings = new GF_Zero_Spam_AI_Review_Settings( $this );
+		$this->ai_review_settings->init();
 
 		parent::init();
 
@@ -247,6 +264,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			$fields['spam']['fields'][] = $field;
 		} else {
 			$fields['form_options']['fields'][] = $field;
+		}
+
+		if ( $this->ai_review_settings ) {
+			$fields = $this->ai_review_settings->add_form_settings_fields( $fields, $form );
 		}
 
 		return $fields;
@@ -479,6 +500,11 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				],
 			],
 		];
+
+		// Append AI Spam Review section.
+		if ( $this->ai_review_settings ) {
+			$sections = $this->ai_review_settings->add_settings_section( $sections );
+		}
 
 		// Append Email Rejection Rules section.
 		if ( $this->email_rejection_settings ) {
@@ -760,7 +786,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 				$args['field_id'] = 'date_created';
 				$args['orderby']  = '0';
 				$args['order']    = 'ASC';
-				$args['operator'] = '>';
+				// URL-encode the operator so esc_url() keeps it. A literal '>' is not in
+				// esc_url()'s allowed character set, so it gets stripped to an empty operator,
+				// which Gravity Forms then treats as 'is' (exact-day match) instead of 'greater than'.
+				$args['operator'] = urlencode( '>' );
 			}
 
 			$link = add_query_arg(

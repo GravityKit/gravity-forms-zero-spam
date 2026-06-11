@@ -16,6 +16,24 @@ class GF_Zero_Spam {
 	private $pending_scripts = [];
 
 	/**
+	 * Request-local token rejection reason codes keyed by form ID.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @var array<int, string>
+	 */
+	private static $token_rejections = [];
+
+	/**
+	 * Request-local non-token spam sources keyed by form ID.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @var array<int, array<int, string>>
+	 */
+	private static $non_token_spam_sources = [];
+
+	/**
 	 * Instantiates the plugin on Gravity Forms loading.
 	 *
 	 * @since 1.0.5
@@ -48,6 +66,93 @@ class GF_Zero_Spam {
 	}
 
 	/**
+	 * Gets the token rejection reason code for this request.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param int $form_id The form ID.
+	 *
+	 * @return string The rejection reason code.
+	 */
+	public static function get_token_rejection_reason_code( $form_id ) {
+		$form_id = (int) $form_id;
+
+		return isset( self::$token_rejections[ $form_id ] ) ? self::$token_rejections[ $form_id ] : '';
+	}
+
+	/**
+	 * Clears the token rejection reason code for this request.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param int $form_id The form ID.
+	 *
+	 * @return void
+	 */
+	public static function clear_token_rejection_reason_code( $form_id ) {
+		unset( self::$token_rejections[ (int) $form_id ] );
+	}
+
+	/**
+	 * Resets request-local spam markers before processing a submission.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param array|null $form The form being processed when called as a filter.
+	 *
+	 * @return array|null The form being processed.
+	 */
+	public static function reset_request_markers( $form = null ) {
+		self::$token_rejections       = [];
+		self::$non_token_spam_sources = [];
+
+		return $form;
+	}
+
+	/**
+	 * Records a non-token Zero Spam spam source for this request.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param int    $form_id The form ID.
+	 * @param string $source  The non-token spam source code.
+	 *
+	 * @return void
+	 */
+	public static function record_non_token_spam_source( $form_id, $source ) {
+		$form_id = (int) $form_id;
+
+		if ( $form_id < 1 ) {
+			return;
+		}
+
+		if ( empty( self::$non_token_spam_sources[ $form_id ] ) ) {
+			self::$non_token_spam_sources[ $form_id ] = [];
+		}
+
+		$source = (string) $source;
+
+		if ( in_array( $source, self::$non_token_spam_sources[ $form_id ], true ) ) {
+			return;
+		}
+
+		self::$non_token_spam_sources[ $form_id ][] = $source;
+	}
+
+	/**
+	 * Checks whether a non-token Zero Spam spam source flagged this request.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param int $form_id The form ID.
+	 *
+	 * @return bool Whether a non-token Zero Spam spam source flagged this request.
+	 */
+	public static function has_non_token_spam_source( $form_id ) {
+		return ! empty( self::$non_token_spam_sources[ (int) $form_id ] );
+	}
+
+	/**
 	 * Constructor. Registers Gravity Forms hooks.
 	 *
 	 * @since 1.0
@@ -56,6 +161,7 @@ class GF_Zero_Spam {
 		new GF_Zero_Spam_Token_Endpoint();
 
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
+		add_filter( 'gform_pre_process', [ __CLASS__, 'reset_request_markers' ] );
 		add_filter( 'gform_get_form_filter', [ $this, 'enqueue_script' ], 10, 2 );
 		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', [ $this, 'add_zero_spam_key_to_entry' ], 10, 3 );
@@ -389,7 +495,8 @@ class GF_Zero_Spam {
 				'sig_invalid'   => __( 'The spam prevention token signature is invalid.', 'gravity-forms-zero-spam' ),
 			];
 
-			$reason = isset( $reason_map[ $result['reason'] ] ) ? $reason_map[ $result['reason'] ] : $result['reason'];
+			$reason_code = (string) $result['reason'];
+			$reason      = isset( $reason_map[ $reason_code ] ) ? $reason_map[ $reason_code ] : $reason_code;
 
 			if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
 				GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
@@ -397,22 +504,27 @@ class GF_Zero_Spam {
 				add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
 			}
 
+			$this->record_token_rejection( $reason_code, $form, $entry, __METHOD__ );
+
 			return true;
 		}
 
 		// Fall back to legacy static key during migration.
 		$submitted_key = rgpost( 'gf_zero_spam_key' );
 		$reason        = '';
+		$reason_code   = '';
 
 		if ( rgblank( $submitted_key ) ) {
-			$is_spam = true;
-			$reason  = __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' );
+			$is_spam     = true;
+			$reason      = __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' );
+			$reason_code = 'legacy_missing';
 		} else {
 			$legacy_result = $this->validate_legacy_key( $submitted_key );
 
 			if ( true !== $legacy_result ) {
-				$is_spam = true;
-				$reason  = $legacy_result;
+				$is_spam     = true;
+				$reason      = $legacy_result;
+				$reason_code = 'legacy_invalid';
 			}
 		}
 
@@ -426,7 +538,40 @@ class GF_Zero_Spam {
 			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
 		}
 
+		$this->record_token_rejection( $reason_code, $form, $entry, __METHOD__ );
+
 		return $is_spam;
+	}
+
+	/**
+	 * Records a rejected token check for diagnostics.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param string $reason_code Raw rejection reason code.
+	 * @param array  $form        The form currently being processed.
+	 * @param array  $entry       The pre-save entry currently being processed.
+	 * @param string $method      The method that rejected the token.
+	 *
+	 * @return void
+	 */
+	private function record_token_rejection( $reason_code, $form, $entry, $method ) {
+		self::$token_rejections[ (int) rgar( $form, 'id' ) ] = (string) $reason_code;
+
+		if ( method_exists( 'GF_Zero_Spam_AddOn', 'get_instance' ) ) {
+			GF_Zero_Spam_AddOn::get_instance()->log_debug( $method . '(): Submission rejected by Zero Spam token check. Reason: ' . $reason_code . '. Form #' . (int) rgar( $form, 'id' ) . '.' );
+		}
+
+		/**
+		 * Fires when a submission is rejected by the Zero Spam token check.
+		 *
+		 * @since 1.9.0
+		 *
+		 * @param string $reason_code Raw rejection reason code. Accepted values: token_missing, bad_format, expired, form_mismatch, sig_invalid, legacy_missing, legacy_invalid.
+		 * @param array  $form        The form currently being processed.
+		 * @param array  $entry       The entry currently being processed. Note: pre-save entry; no ID yet.
+		 */
+		do_action( 'gf_zero_spam_token_rejected', $reason_code, $form, $entry );
 	}
 
 	/**

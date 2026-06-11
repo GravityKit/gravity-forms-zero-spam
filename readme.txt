@@ -2,8 +2,8 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 6.9.4
-Stable tag: 1.8.0
+Tested up to: 7.0.0
+Stable tag: 1.9.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -109,6 +109,11 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= 1.9.0 on June 11, 2026 =
+
+* Added: AI-powered spam review that flags likely spam the token check missed and recovers legitimate submissions it blocked by mistake, powered by an AI service (OpenAI, Anthropic, or Google Gemini) connected in WordPress 7.0+.
+* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report.
 
 = 1.8.0 on April 16, 2026 =
 
