@@ -2,7 +2,13 @@
 .gitignore
 .distignore
 .editorconfig
+.env.sample
+.gktools.json
+.gktools.env
 README.md
+Gruntfile.js
+translations.pot
+testcases.md
 
 /.circleci
 /.claude
@@ -10,9 +16,13 @@ README.md
 /.git
 /.husky
 /.idea
+/.tmp
 /.wordpress-org
 /assets
+/docs
+/scripts
 /svn
+/tests
 /gravity-forms-zero-spam
 node_modules/
 vendor/
