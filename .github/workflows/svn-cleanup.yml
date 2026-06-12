@@ -1,5 +1,5 @@
 name: Remove dev files from wp.org SVN
-# One-off manual cleanup for the 1.9.0 deploy that shipped development files
+# One-off, manually dispatched cleanup for the 1.9.0 deploy that shipped development files
 # (tests/, scripts/, Gruntfile.js, translations.pot, .env.sample,
 # .gktools.json) because .distignore was missing them. Removes the files
 # from both trunk and tags/1.9.0 in a single SVN commit. Safe to delete
