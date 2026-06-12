@@ -3,6 +3,10 @@ on:
   release:
     types: [ published ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy (e.g. 1.9.0); on release events it is derived from the tag'
+        required: true
 
 jobs:
   tag:
@@ -29,3 +33,7 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: gravity-forms-zero-spam
           ASSETS_DIR: .wordpress-org
+          # Empty on release events, so the action falls back to deriving
+          # the version from the tag ref. Manual runs have no tag ref and
+          # would otherwise try to create SVN tag "refs/heads/main".
+          VERSION: ${{ inputs.version }}
