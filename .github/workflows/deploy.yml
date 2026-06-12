@@ -2,6 +2,7 @@ name: Deploy to WordPress.org
 on:
   release:
     types: [ published ]
+  workflow_dispatch:
 
 jobs:
   tag:
@@ -11,8 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build assets
+        # The @gravitykit E2E packages live on the private npm.pkg.github.com
+        # registry, which this runner has no auth token for; they are
+        # test-only and not needed to build dist assets, so drop them before
+        # installing. package.json/package-lock.json are .distignore'd and
+        # never ship to wp.org.
         run: |
-          npm ci
+          npm pkg delete 'devDependencies.@gravitykit/e2e-bootstrap' 'devDependencies.@gravitykit/e2e-fixtures'
+          npm install --no-audit --no-fund
           npm run build
       - name: WordPress Plugin Deploy
         id: deploy
