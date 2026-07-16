@@ -56,7 +56,7 @@ test.describe('Shield silentCAPTCHA — Shield absent', () => {
 
         const learnMore = page.locator('a', { hasText: 'Learn More' }).first();
         await expect(learnMore).toBeVisible();
-        await expect(learnMore).toHaveAttribute('href', /gravitykit\.com\/zero-spam-shield-silentcaptcha/);
+        await expect(learnMore).toHaveAttribute('href', /gravitykit\.com\/docs\/gravity-forms-zero-spam\/shield-silentcaptcha/);
     });
 
     test('HP-61: saving plugin settings while Shield is absent preserves the stored value', async ({
