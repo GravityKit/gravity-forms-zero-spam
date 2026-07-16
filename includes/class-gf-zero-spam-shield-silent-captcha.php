@@ -14,7 +14,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	const SETTING_KEY      = 'shield_silent_captcha';
 	const PERSIST_KEY      = 'shield_silent_captcha_persist';
 	const STATUS_FIELD_KEY = 'shield_silent_captcha_status';
-	const HELP_URL         = 'https://clk.shldscrty.com/gravityformszerospamsilentcaptcha';
+	const HELP_URL         = 'https://www.gravitykit.com/zero-spam-shield-silentcaptcha/?utm_source=plugin&utm_campaign=zero-spam&utm_content=shield-learn-more';
 	const SPAM_FILTER_NAME = 'Shield silentCAPTCHA';
 
 	/**
