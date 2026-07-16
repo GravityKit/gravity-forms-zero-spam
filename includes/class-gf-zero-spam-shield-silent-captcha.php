@@ -69,6 +69,15 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	private $cached_verdict = 'unset';
 
 	/**
+	 * Pending verdict notes for already-flagged entries, keyed by form ID.
+	 *
+	 * @since TBD
+	 *
+	 * @var array<int, array{text: string, type: string}>
+	 */
+	private $secondary_notes = [];
+
+	/**
 	 * @since TBD
 	 *
 	 * @param GF_Zero_Spam_AddOn $addon Add-on instance.
@@ -88,7 +97,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 		add_filter( 'gform_form_settings_fields', [ $this, 'add_form_settings_fields' ], 11, 2 );
 		add_filter( 'gform_pre_form_settings_save', [ $this, 'normalize_form_settings' ] );
 		add_filter( 'gform_tooltips', [ $this, 'add_tooltips' ] );
-		add_filter( 'gform_entry_is_spam', [ $this, 'filter_entry_is_spam' ], 20, 3 );
+		add_filter( 'gform_entry_is_spam', [ $this, 'filter_entry_is_spam' ], $this->addon->get_spam_check_priority( 'shield' ), 3 );
 		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 30, 2 );
 		add_action( 'gform_entry_created', [ $this, 'maybe_add_entry_note' ] );
 	}
@@ -183,12 +192,36 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return array
 	 */
 	public function normalize_form_settings( $form ) {
-		$post_key          = '_gform_setting_' . self::SETTING_KEY;
-		$submitted         = isset( $_POST[ $post_key ] ) ? rgpost( $post_key ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by GF's form settings save handler.
-		$persisted         = rgpost( '_gform_setting_' . self::PERSIST_KEY );
-		$had_saved_setting = $this->has_saved_form_setting( $form );
-		$current_value     = $this->get_effective_form_setting_value( $form );
-		$resolved          = $this->resolve_setting_value_for_save( $submitted, $persisted, $current_value );
+		$post_key  = '_gform_setting_' . self::SETTING_KEY;
+		$submitted = isset( $_POST[ $post_key ] ) ? rgpost( $post_key ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by GF's form settings save handler.
+		$persisted = rgpost( '_gform_setting_' . self::PERSIST_KEY );
+
+		// GF merges the materialized setting values into $form before this filter fires,
+		// so pre-save state must come from the stored form meta.
+		$saved_form = GFFormsModel::get_form_meta( (int) rgar( $form, 'id' ) );
+
+		if ( ! is_array( $saved_form ) ) {
+			$saved_form = [];
+		}
+
+		$had_saved_setting = $this->has_saved_form_setting( $saved_form );
+
+		// The Shield fields are dependency-hidden while the Zero Spam master toggle is off,
+		// so nothing was visible to submit; keep the stored state untouched.
+		if ( empty( rgpost( '_gform_setting_enableGFZeroSpam' ) ) ) {
+			if ( $had_saved_setting ) {
+				$form[ self::SETTING_KEY ] = $this->normalize_setting_value( $saved_form[ self::SETTING_KEY ] );
+			} else {
+				unset( $form[ self::SETTING_KEY ] );
+			}
+
+			unset( $form[ self::PERSIST_KEY ], $form[ self::STATUS_FIELD_KEY ] );
+
+			return $form;
+		}
+
+		$current_value = $this->get_effective_form_setting_value( $saved_form );
+		$resolved      = $this->resolve_setting_value_for_save( $submitted, $persisted, $current_value );
 
 		// Keep missing-key inheritance intact unless the form already had an override or the user changed the value.
 		if ( ! $had_saved_setting && $resolved === $current_value ) {
@@ -243,7 +276,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 */
 	public function filter_entry_is_spam( $is_spam, $form, $entry ) {
 		if ( $is_spam ) {
-			return $is_spam;
+			return $this->evaluate_already_flagged_entry( $is_spam, $form, $entry );
 		}
 
 		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
@@ -264,14 +297,79 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 
 		$form_id = (int) rgar( $form, 'id' );
 
+		if ( method_exists( 'GF_Zero_Spam', 'record_non_token_spam_source' ) ) {
+			GF_Zero_Spam::record_non_token_spam_source( $form_id, 'shield_silent_captcha' );
+		}
+
 		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-			/* translators: %s: spam filter name. */
-			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, sprintf( __( 'This submission was flagged as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ) );
+			$message = strtr(
+				/* translators: placeholders in [brackets] are replaced and must not be translated. */
+				__( 'This submission was flagged as spam by [filter].', 'gravity-forms-zero-spam' ),
+				[ '[filter]' => self::SPAM_FILTER_NAME ]
+			);
+
+			GFCommon::set_spam_filter( $form_id, self::SPAM_FILTER_NAME, $message );
 		} else {
 			$this->flagged_forms[ $form_id ] = true;
 		}
 
 		return true;
+	}
+
+	/**
+	 * Evaluates and records the Shield verdict for an already-flagged entry when the stop setting is off.
+	 *
+	 * @since TBD
+	 *
+	 * @param bool  $is_spam Existing spam state (always returned unchanged).
+	 * @param array $form    Form object.
+	 * @param array $entry   Entry object.
+	 *
+	 * @return bool
+	 */
+	private function evaluate_already_flagged_entry( $is_spam, $form, $entry ) {
+		if ( $this->addon->should_stop_after_first_detection() ) {
+			return $is_spam;
+		}
+
+		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
+			return $is_spam;
+		}
+
+		if ( ! $this->is_submission_context_supported( $entry ) ) {
+			return $is_spam;
+		}
+
+		if ( ! $this->is_shield_enabled_for_form( $form ) ) {
+			return $is_spam;
+		}
+
+		$verdict = $this->resolve_shield_bot_verdict();
+
+		if ( null === $verdict ) {
+			return $is_spam;
+		}
+
+		$form_id = (int) rgar( $form, 'id' );
+
+		// A bot verdict keeps the AI rescue guard aware of Shield regardless of check order.
+		if ( true === $verdict && method_exists( 'GF_Zero_Spam', 'record_non_token_spam_source' ) ) {
+			GF_Zero_Spam::record_non_token_spam_source( $form_id, 'shield_silent_captcha' );
+		}
+
+		if ( true === $verdict ) {
+			$this->secondary_notes[ $form_id ] = [
+				'text' => __( 'Shield silentCAPTCHA also identified this submission as spam.', 'gravity-forms-zero-spam' ),
+				'type' => 'warning',
+			];
+		} else {
+			$this->secondary_notes[ $form_id ] = [
+				'text' => __( 'Shield silentCAPTCHA did not identify this submission as spam.', 'gravity-forms-zero-spam' ),
+				'type' => 'success',
+			];
+		}
+
+		return $is_spam;
 	}
 
 	/**
@@ -312,6 +410,8 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	public function maybe_add_entry_note( $entry ) {
 		$form_id = (int) rgar( $entry, 'form_id' );
 
+		$this->maybe_add_secondary_verdict_note( $entry, $form_id );
+
 		if ( 'spam' !== rgar( $entry, 'status' ) || empty( $this->flagged_forms[ $form_id ] ) ) {
 			return;
 		}
@@ -324,13 +424,41 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 			$entry['id'],
 			0,
 			self::SPAM_FILTER_NAME,
-			/* translators: %s: spam filter name. */
-			sprintf( __( 'This entry has been marked as spam by %s.', 'gravity-forms-zero-spam' ), self::SPAM_FILTER_NAME ),
+			strtr(
+				/* translators: placeholders in [brackets] are replaced and must not be translated. */
+				__( 'This entry has been marked as spam by [filter].', 'gravity-forms-zero-spam' ),
+				[ '[filter]' => self::SPAM_FILTER_NAME ]
+			),
 			'gf-zero-spam',
 			'warning'
 		);
 
 		unset( $this->flagged_forms[ $form_id ] );
+	}
+
+	/**
+	 * Adds the scheduled Shield verdict note to an entry flagged by another check.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $entry   Entry object.
+	 * @param int   $form_id Form ID.
+	 *
+	 * @return void
+	 */
+	private function maybe_add_secondary_verdict_note( $entry, $form_id ) {
+		if ( empty( $this->secondary_notes[ $form_id ] ) ) {
+			return;
+		}
+
+		$note = $this->secondary_notes[ $form_id ];
+		unset( $this->secondary_notes[ $form_id ] );
+
+		if ( ! method_exists( 'GFAPI', 'add_note' ) ) {
+			return;
+		}
+
+		GFAPI::add_note( (int) $entry['id'], 0, self::SPAM_FILTER_NAME, $note['text'], 'gf-zero-spam', $note['type'] );
 	}
 
 	/**
@@ -429,7 +557,15 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return array<int, array<string, mixed>>
 	 */
 	private function get_form_settings_fields( $form ): array {
-		$current_value = $this->get_effective_form_setting_value( $form );
+		$current_value        = $this->get_effective_form_setting_value( $form );
+		$zero_spam_dependency = [
+			'live'   => true,
+			'fields' => [
+				[
+					'field' => 'enableGFZeroSpam',
+				],
+			],
+		];
 
 		return [
 			[
@@ -439,6 +575,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 				'tooltip'       => gform_tooltip( self::SETTING_KEY, '', true ),
 				'default_value' => $current_value,
 				'disabled'      => ! $this->is_shield_available(),
+				'dependency'    => $zero_spam_dependency,
 			],
 			[
 				'type'          => 'hidden',
@@ -446,11 +583,12 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 				'default_value' => $current_value,
 			],
 			[
-				'hidden'   => ! $this->is_threshold_zero(),
-				'type'     => 'html',
-				'name'     => self::STATUS_FIELD_KEY,
-				'label'    => '',
-				'callback' => [ $this, 'render_form_status_field' ],
+				'hidden'     => ! $this->is_threshold_zero(),
+				'type'       => 'html',
+				'name'       => self::STATUS_FIELD_KEY,
+				'label'      => '',
+				'callback'   => [ $this, 'render_form_status_field' ],
+				'dependency' => $zero_spam_dependency,
 			],
 		];
 	}
@@ -521,7 +659,36 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return bool
 	 */
 	private function is_shield_enabled_for_form( $form ): bool {
+		// The Zero Spam master gate covers the whole pipeline, Shield included.
+		if ( ! $this->is_zero_spam_gate_open( $form ) ) {
+			return false;
+		}
+
 		return '1' === $this->get_effective_form_setting_value( $form );
+	}
+
+	/**
+	 * Resolves the Zero Spam master gate through the public filter, like the token and AI checks.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $form Form object.
+	 *
+	 * @return bool
+	 */
+	private function is_zero_spam_gate_open( $form ): bool {
+		$form_id = (int) rgar( $form, 'id' );
+		$enabled = true;
+
+		if ( $form_id > 0 ) {
+			/** This filter is documented in includes/class-gf-zero-spam.php. */
+			$enabled = gf_apply_filters( 'gf_zero_spam_check_key_field', $form_id, $enabled, $form, [] );
+		} else {
+			/** This filter is documented in includes/class-gf-zero-spam.php. */
+			$enabled = apply_filters( 'gf_zero_spam_check_key_field', $enabled, $form );
+		}
+
+		return false !== $enabled;
 	}
 
 	/**
@@ -549,21 +716,22 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 * @return string
 	 */
 	private function resolve_setting_value_for_save( $submitted, $persisted, string $current_value ): string {
-		if ( null !== $submitted ) {
+		if ( null !== $submitted && '' !== $submitted ) {
 			return $this->normalize_setting_value( $submitted );
 		}
 
-		// Toggle was not submitted (disabled in UI or programmatic save). Prefer the
-		// hidden persist field, then the previously-stored value, then default to off.
+		// Unchecked and disabled toggles both arrive without an affirmative value. Shield
+		// availability disambiguates: available means the toggle was interactive (no value =
+		// unchecked); unavailable means it was disabled, so preserve the previous value.
+		if ( $this->is_shield_available() ) {
+			return '0';
+		}
+
 		if ( null !== $persisted && '' !== $persisted ) {
 			return $this->normalize_setting_value( $persisted );
 		}
 
-		if ( ! $this->is_shield_available() ) {
-			return $current_value;
-		}
-
-		return '0';
+		return $current_value;
 	}
 
 	/**
@@ -644,7 +812,7 @@ class GF_Zero_Spam_Shield_Silent_Captcha {
 	 *
 	 * @return bool
 	 */
-	private function is_shield_available(): bool {
+	public function is_shield_available(): bool {
 		if ( ! did_action( 'plugins_loaded' ) ) {
 			return false;
 		}
