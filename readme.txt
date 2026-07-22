@@ -91,18 +91,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 New form submissions will not be checked using Zero Spam.
 
-= I only want on specific forms. How do I disable Zero Spam by default? =
+= I only want Zero Spam on specific forms. How do I do that? =
 
-To disable by default, from your Dashboard, go to Forms, then Settings, then the Zero Spam tab. Under the "Enable Zero Spam by Default" setting, choose "Disabled", then save the form.
+Keep the global "Enable Zero Spam by Default" setting set to "Enabled", then disable "Prevent spam using Gravity Forms Zero Spam" on each form you want excluded (see the previous question).
 
-Once you have saved the setting, to enable for specific forms:
-
-1. Go to the form
-2. Click on Settings
-3. Under Form Options, enable "Prevent spam using Gravity Forms Zero Spam". _Don't see the setting? This feature requires Gravity Forms 2.5 or newer._
-4. Save the settings
-
-Now that form will use Zero Spam.
+Note: choosing "Disabled" for "Enable Zero Spam by Default" turns off all of the plugin's spam checks for every form — per-form settings have no effect while the global setting is disabled.
 
 = All entries are going to spam. What can I do? =
 
