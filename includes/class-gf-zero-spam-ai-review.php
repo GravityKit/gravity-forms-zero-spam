@@ -283,29 +283,30 @@ final class GF_Zero_Spam_AI_Review {
 			return;
 		}
 
-		$this->schedule_review_note( $form, $result['verdict'] );
+		$this->schedule_review_note( $form, $result );
 	}
 
 	/**
-	 * Schedules an entry note recording the AI verdict for an already-flagged entry.
+	 * Schedules an entry note recording the AI decision for an already-flagged entry.
 	 *
 	 * @since TBD
 	 *
-	 * @param array $form    The form currently being processed.
-	 * @param array $verdict The normalized AI verdict.
+	 * @param array $form   The form currently being processed.
+	 * @param array $result Classification result with the final is_spam decision.
 	 *
 	 * @return void
 	 */
-	private function schedule_review_note( $form, $verdict ) {
+	private function schedule_review_note( $form, $result ) {
 		$form_id = $this->get_form_id( $form );
 
 		if ( $form_id < 1 ) {
 			return;
 		}
 
+		// Record the final decision (threshold + gf_zero_spam_ai_result applied), not the raw model verdict.
 		self::$review_notes[ $form_id ] = [
-			'is_spam'    => ! empty( $verdict['is_spam'] ),
-			'confidence' => (float) $verdict['confidence'],
+			'is_spam'    => ! empty( $result['is_spam'] ),
+			'confidence' => (float) $result['verdict']['confidence'],
 		];
 
 		add_action( 'gform_entry_created', [ $this, 'add_review_verdict_note' ], 20, 2 );
