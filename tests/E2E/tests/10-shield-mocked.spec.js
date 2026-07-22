@@ -306,14 +306,17 @@ test.describe('Shield silentCAPTCHA — submissions with Shield available', () =
                 const spam = await helpers.getEntries(request, formId, 'spam');
                 const leaked = spam.filter((entry) => entry['2'] === email);
                 expect(leaked, `${verdict}: must never be flagged as spam`).toHaveLength(0);
+
+                // setShieldMock() resets the counter each iteration, so assert per
+                // verdict that fail-open passed through Shield rather than skipping it.
+                const mock = await helpers.getShieldMock(request);
+                expect(
+                    mock.calls,
+                    `${verdict}: the Shield callable must have been consulted`
+                ).toBeGreaterThan(0);
             }
         } finally {
             await anonContext.close();
         }
-
-        // 'human' and 'garbage' reach the callable; 'throw' increments before
-        // throwing — all three must have consulted the mock.
-        const mock = await helpers.getShieldMock(request);
-        expect(mock.calls, 'the thrown-error run must still have called the mock').toBeGreaterThan(0);
     });
 });
