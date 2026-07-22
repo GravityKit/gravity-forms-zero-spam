@@ -288,6 +288,94 @@ async function clearCapturedMail(request) {
 }
 
 /**
+ * Configure the Shield silentCAPTCHA E2E mock (tests/E2E/mu-plugins/zs-e2e-shield.php).
+ *
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {object} payload
+ * @param {boolean} [payload.available] - Define the shield_* callables so the integration sees Shield as installed.
+ * @param {'null'|'bot'|'human'|'throw'|'garbage'} [payload.verdict] - What the mocked bot check returns.
+ * @param {number} [payload.threshold] - Mocked silentCAPTCHA bot threshold.
+ */
+async function setShieldMock(request, payload = {}) {
+    return callJson(request, 'POST', '/shield', payload);
+}
+
+/**
+ * Read the Shield mock state, including how many times the bot check was called.
+ */
+async function getShieldMock(request) {
+    return callJson(request, 'GET', '/shield');
+}
+
+/**
+ * Reset the Shield mock (Shield becomes unavailable again).
+ */
+async function resetShieldMock(request) {
+    return callJson(request, 'DELETE', '/shield');
+}
+
+/**
+ * Read the raw stored global Shield setting: { present, value }.
+ */
+async function getShieldPluginSetting(request) {
+    return callJson(request, 'GET', '/shield/plugin-setting');
+}
+
+/**
+ * Seed or remove the stored global Shield setting without going through the UI.
+ *
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {{ value?: string, remove?: boolean }} payload
+ */
+async function setShieldPluginSetting(request, payload = {}) {
+    return callJson(request, 'POST', '/shield/plugin-setting', payload);
+}
+
+/**
+ * Read the raw per-form Shield meta straight from stored form meta:
+ * { present, value }. `present: false` means the form inherits the global default.
+ */
+async function getFormShieldMeta(request, formId) {
+    return callJson(request, 'GET', `/form/${formId}/shield-meta`);
+}
+
+/**
+ * Seed or remove the per-form Shield override without going through the UI.
+ *
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {number} formId
+ * @param {{ value?: string, remove?: boolean }} payload
+ */
+async function setFormShieldMeta(request, formId, payload = {}) {
+    return callJson(request, 'POST', `/form/${formId}/shield-meta`, payload);
+}
+
+/**
+ * Read the raw stored Spam Check Order settings: { order: [v1, v2, v3], stop }.
+ * Array entries and stop are null when the key is not stored.
+ */
+async function getCheckOrder(request) {
+    return callJson(request, 'GET', '/check-order');
+}
+
+/**
+ * Seed the Spam Check Order settings without going through the UI.
+ *
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {{ order?: string[], stop?: boolean }} payload - order: 3 slugs from token|shield|ai.
+ */
+async function setCheckOrder(request, payload = {}) {
+    return callJson(request, 'POST', '/check-order', payload);
+}
+
+/**
+ * Remove the stored Spam Check Order settings (back to defaults).
+ */
+async function resetCheckOrder(request) {
+    return callJson(request, 'DELETE', '/check-order');
+}
+
+/**
  * Locate the live Zero Spam input element on a rendered Gravity Form.
  *
  * The plugin injects a hidden `gf_zero_spam_token` (JS path) and may also leave
@@ -339,6 +427,16 @@ module.exports = {
     clearCapturedMail,
     getZeroSpamInput,
     stripZeroSpamInputs,
+    setShieldMock,
+    getShieldMock,
+    resetShieldMock,
+    getShieldPluginSetting,
+    setShieldPluginSetting,
+    getFormShieldMeta,
+    setFormShieldMeta,
+    getCheckOrder,
+    setCheckOrder,
+    resetCheckOrder,
     createPage,
     cleanupPages,
     getEntryNotes,

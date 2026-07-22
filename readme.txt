@@ -31,6 +31,10 @@ Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're g
 
 If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
 
+## Works with Shield Security
+
+If the [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its silentCAPTCHA bot detection can be used as an additional spam signal — enabled globally or per form. You can also control the order in which the plugin's spam checks run.
+
 ## Spam report emails
 
 Spam summary report emails are disabled by default. Once enabled, a spam summary that includes the number of entries per-form will be sent via email.
@@ -87,18 +91,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 New form submissions will not be checked using Zero Spam.
 
-= I only want on specific forms. How do I disable Zero Spam by default? =
+= I only want Zero Spam on specific forms. How do I do that? =
 
-To disable by default, from your Dashboard, go to Forms, then Settings, then the Zero Spam tab. Under the "Enable Zero Spam by Default" setting, choose "Disabled", then save the form.
+Keep the global "Enable Zero Spam by Default" setting set to "Enabled", then disable "Prevent spam using Gravity Forms Zero Spam" on each form you want excluded (see the previous question).
 
-Once you have saved the setting, to enable for specific forms:
-
-1. Go to the form
-2. Click on Settings
-3. Under Form Options, enable "Prevent spam using Gravity Forms Zero Spam". _Don't see the setting? This feature requires Gravity Forms 2.5 or newer._
-4. Save the settings
-
-Now that form will use Zero Spam.
+Note: choosing "Disabled" for "Enable Zero Spam by Default" turns off all of the plugin's spam checks for every form — per-form settings have no effect while the global setting is disabled.
 
 = All entries are going to spam. What can I do? =
 
@@ -109,6 +106,13 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= TBD =
+
+* Added: Shield silentCAPTCHA integration — when the [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its bot detection becomes an additional spam signal, with a global default and per-form override (thanks, Paul Goodchild!)
+* Added: "Spam Check Order" settings — control the order the token check, Shield silentCAPTCHA, and AI Spam Review run in, and whether to stop checking once a submission is flagged as spam
+* Improved: The "Prevent spam using Gravity Forms Zero Spam" form setting now acts as a master switch — disabling it turns off all of the plugin's spam checks for that form, including Shield silentCAPTCHA and AI Spam Review
+* Fixed: A spam verdict from one check could be cleared when the submitter was logged in with entry-editing permissions
 
 = 1.9.0 on June 11, 2026 =
 
