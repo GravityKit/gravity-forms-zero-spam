@@ -61,7 +61,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Default spam check order (cheapest to most expensive).
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @var array<int, string>
 	 */
@@ -70,7 +70,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Resolved spam check order for this request.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @var array<int, string>|null
 	 */
@@ -97,7 +97,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Shield silentCAPTCHA integration instance.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @var GF_Zero_Spam_Shield_Silent_Captcha|null
 	 */
@@ -194,7 +194,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns the effective Zero Spam state for a form (per-form setting, else global default).
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $form               The form object.
 	 * @param mixed $enabled_by_default Value returned when neither setting is saved.
@@ -219,7 +219,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns the configured spam check order.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @return array<int, string> Check slugs in run order.
 	 */
@@ -245,7 +245,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		 * gform_entry_is_spam callback, so add this filter before Gravity Forms loads.
 		 * Invalid values (missing, duplicate, or unknown slugs) are ignored.
 		 *
-		 * @since TBD
+		 * @since 1.10.0
 		 *
 		 * @param array $order The check slugs in run order. Must contain 'token', 'shield', and 'ai' exactly once each.
 		 */
@@ -263,7 +263,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns the gform_entry_is_spam priority for a spam check.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param string $check Check slug: 'token', 'shield', or 'ai'.
 	 *
@@ -283,7 +283,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Returns whether later checks are skipped once a check flags a submission as spam.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @return bool Whether to stop after the first detection.
 	 */
@@ -300,7 +300,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Validates a spam check order candidate.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param mixed $order Order candidate.
 	 *
@@ -671,7 +671,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Builds the Spam Check Order settings section.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @return array Section config.
 	 */
@@ -760,7 +760,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	/**
 	 * Normalizes the spam check order settings before save.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $settings The settings to save.
 	 *

@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 7.0.0
+Tested up to: 7.0.2
 Stable tag: 1.9.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -107,17 +107,17 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= TBD =
+= 1.10.0 on July 23, 2026 =
 
-* Added: Shield silentCAPTCHA integration — when the [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its bot detection becomes an additional spam signal, with a global default and per-form override (thanks, Paul Goodchild!)
-* Added: "Spam Check Order" settings — control the order the token check, Shield silentCAPTCHA, and AI Spam Review run in, and whether to stop checking once a submission is flagged as spam
-* Improved: The "Prevent spam using Gravity Forms Zero Spam" form setting now acts as a master switch — disabling it turns off all of the plugin's spam checks for that form, including Shield silentCAPTCHA and AI Spam Review
+* Added: [Shield silentCAPTCHA integration](https://www.gravitykit.com/docs/gravity-forms-zero-spam/shield-silentcaptcha/) that uses Shield Security's bot detection as an additional spam signal, with a global default and per-form override (thanks, Paul Goodchild!)
+* Added: "Spam Check Order" settings - control the order the token check, Shield silentCAPTCHA, and AI Spam Review run in, and whether to stop checking once a submission is flagged as spam
 * Fixed: A spam verdict from one check could be cleared when the submitter was logged in with entry-editing permissions
+* API: Added `gf_zero_spam_check_order` filter to modify the order in which spam checks run
 
 = 1.9.0 on June 11, 2026 =
 
-* Added: AI-powered spam review that flags likely spam the token check missed and recovers legitimate submissions it blocked by mistake, powered by an AI service (OpenAI, Anthropic, or Google Gemini) connected in WordPress 7.0+.
-* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report.
+* Added: AI-powered spam review that flags likely spam the token check missed and recovers legitimate submissions it blocked by mistake, powered by an AI service (OpenAI, Anthropic, or Google Gemini) connected in WordPress 7.0+
+* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report
 
 = 1.8.0 on April 16, 2026 =
 

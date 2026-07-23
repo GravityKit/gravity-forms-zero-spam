@@ -36,7 +36,7 @@ class GF_Zero_Spam {
 	/**
 	 * Pending verdict notes for already-flagged entries, keyed by form ID.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @var array<int, array{text: string, type: string}>
 	 */
@@ -521,7 +521,7 @@ class GF_Zero_Spam {
 	/**
 	 * Evaluates the token or legacy-key verdict for the current submission without side effects.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $form The form currently being processed.
 	 *
@@ -590,7 +590,7 @@ class GF_Zero_Spam {
 	/**
 	 * Schedules an entry note recording the token verdict for an already-flagged entry.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $form    The form currently being processed.
 	 * @param array $verdict The token verdict.
@@ -628,7 +628,7 @@ class GF_Zero_Spam {
 	/**
 	 * Adds the scheduled token verdict note to the created entry.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $entry The created entry.
 	 *
@@ -654,7 +654,7 @@ class GF_Zero_Spam {
 	/**
 	 * Returns whether later checks are skipped once a check flags a submission as spam.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @return bool Whether to stop after the first detection.
 	 */

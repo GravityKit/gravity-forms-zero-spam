@@ -147,7 +147,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Request-local review verdicts for already-flagged entries waiting for a note.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @var array<int, array{is_spam: bool, confidence: float}>
 	 */
@@ -188,7 +188,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Determines whether rescue runs in a dedicated late callback instead of the main one.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @return bool Whether rescue is deferred.
 	 */
@@ -201,7 +201,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Rescue-only late pass for orders that place AI before the last check.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param bool  $is_spam Whether the entry is currently spam.
 	 * @param array $form    The form currently being processed.
@@ -257,7 +257,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Reviews an already-flagged submission and records the verdict when the stop setting is off.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $form  The form currently being processed.
 	 * @param array $entry The entry currently being processed.
@@ -289,7 +289,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Schedules an entry note recording the AI decision for an already-flagged entry.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $form   The form currently being processed.
 	 * @param array $result Classification result with the final is_spam decision.
@@ -315,7 +315,7 @@ final class GF_Zero_Spam_AI_Review {
 	/**
 	 * Adds the scheduled AI verdict note to the created entry.
 	 *
-	 * @since TBD
+	 * @since 1.10.0
 	 *
 	 * @param array $entry The created entry.
 	 * @param array $form  The submitted form.
