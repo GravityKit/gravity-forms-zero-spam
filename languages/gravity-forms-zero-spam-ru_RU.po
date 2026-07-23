@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-06-10 20:08:31+0000\n"
+"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -284,8 +284,8 @@ msgstr ""
 "Введённый адрес электронной почты не разрешён. Пожалуйста, используйте "
 "другой адрес электронной почты."
 
-#: includes/class-gf-zero-spam-addon.php:204
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:353
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -293,15 +293,15 @@ msgstr ""
 "Включите, чтобы бороться со спамом простым и эффективным способом, который "
 "работает лучше встроенного антиспам-ловушки."
 
-#: includes/class-gf-zero-spam-addon.php:257
+#: includes/class-gf-zero-spam-addon.php:406
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Предотвращайте спам с помощью Gravity Forms Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:435
 msgid "Know when entries are flagged as spam."
 msgstr "Узнавайте, когда записи отмечены как спам."
 
-#: includes/class-gf-zero-spam-addon.php:287
+#: includes/class-gf-zero-spam-addon.php:436
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -313,7 +313,7 @@ msgstr ""
 "обзором последних спам-записей. Если спам-записей нет, отчет не "
 "отправляется."
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:437
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -321,7 +321,7 @@ msgstr ""
 "Эта функция работает с любым спам-фильтром, включая Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA и другие."
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:439
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -331,17 +331,17 @@ msgstr ""
 "всегда отправляться согласно расписанию. {{link}}Узнайте, как настроить "
 "«cron» для повышения надежности{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:293
+#: includes/class-gf-zero-spam-addon.php:442
 msgid "Link opens in a new tab"
 msgstr "Ссылка откроется в новой вкладке"
 
-#: includes/class-gf-zero-spam-addon.php:302
+#: includes/class-gf-zero-spam-addon.php:451
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "Вы получили {{total_spam_count}} спам-записей из следующих форм:"
 
-#: includes/class-gf-zero-spam-addon.php:305
+#: includes/class-gf-zero-spam-addon.php:454
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -350,27 +350,27 @@ msgstr ""
 "{{settings_link}}страницу настроек Gravity Forms Zero "
 "Spam{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:456
 msgid "The following variables may be used:"
 msgstr "Можно использовать следующие переменные:"
 
-#: includes/class-gf-zero-spam-addon.php:309
+#: includes/class-gf-zero-spam-addon.php:458
 msgid "The name of this website"
 msgstr "Название этого сайта"
 
-#: includes/class-gf-zero-spam-addon.php:310
+#: includes/class-gf-zero-spam-addon.php:459
 msgid "The email of the site administrator"
 msgstr "Электронная почта администратора сайта"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:460
 msgid "The total number of spam emails received since the last report."
 msgstr "Общее количество спам-писем, полученных с момента последнего отчета."
 
-#: includes/class-gf-zero-spam-addon.php:312
+#: includes/class-gf-zero-spam-addon.php:461
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "Список форм и количество спам-записей с момента последнего отчета."
 
-#: includes/class-gf-zero-spam-addon.php:313
+#: includes/class-gf-zero-spam-addon.php:462
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -378,11 +378,11 @@ msgstr ""
 "Ссылка на страницу настроек плагина. Текст внутри переменных будет текстом "
 "ссылки. Обязательно включайте как открывающую, так и закрывающую переменную."
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:467
 msgid "Spam Blocking"
 msgstr "Блокировка спама"
 
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -390,63 +390,63 @@ msgstr ""
 "Можно включать или отключать блокировку спама для каждой формы отдельно в "
 "настройках этой формы."
 
-#: includes/class-gf-zero-spam-addon.php:322
+#: includes/class-gf-zero-spam-addon.php:471
 msgid "Enable Zero Spam by Default"
 msgstr "Включить Zero Spam по умолчанию"
 
-#: includes/class-gf-zero-spam-addon.php:328
+#: includes/class-gf-zero-spam-addon.php:477
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Включено: Добавить Zero Spam к формам Gravity Forms"
 
-#: includes/class-gf-zero-spam-addon.php:332
+#: includes/class-gf-zero-spam-addon.php:481
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Отключено: Использовать встроенную защиту от спама Gravity Forms"
 
-#: includes/class-gf-zero-spam-addon.php:339
+#: includes/class-gf-zero-spam-addon.php:488
 msgid "Anti-Spam Expiration"
 msgstr "Время истечения антиспама"
 
-#: includes/class-gf-zero-spam-addon.php:357
+#: includes/class-gf-zero-spam-addon.php:507
 msgid "Spam Report Email"
 msgstr "Письмо с отчетом о спаме"
 
-#: includes/class-gf-zero-spam-addon.php:361
+#: includes/class-gf-zero-spam-addon.php:511
 msgid "Spam Report Frequency"
 msgstr "Частота отчётов о спаме"
 
-#: includes/class-gf-zero-spam-addon.php:363
+#: includes/class-gf-zero-spam-addon.php:513
 msgid "How frequently should spam report emails be sent?"
 msgstr "Как часто следует отправлять электронные письма с отчётами о спаме?"
 
-#: includes/class-gf-zero-spam-addon.php:369
+#: includes/class-gf-zero-spam-addon.php:519
 msgid "Disabled"
 msgstr "Отключено"
 
-#: includes/class-gf-zero-spam-addon.php:373
+#: includes/class-gf-zero-spam-addon.php:523
 msgid "Threshold-Based"
 msgstr "На основе порога"
 
-#: includes/class-gf-zero-spam-addon.php:377
+#: includes/class-gf-zero-spam-addon.php:527
 msgid "Twice Daily"
 msgstr "Дважды в день"
 
-#: includes/class-gf-zero-spam-addon.php:381
+#: includes/class-gf-zero-spam-addon.php:531
 msgid "Daily"
 msgstr "Ежедневно"
 
-#: includes/class-gf-zero-spam-addon.php:385
+#: includes/class-gf-zero-spam-addon.php:535
 msgid "Weekly"
 msgstr "Еженедельно"
 
-#: includes/class-gf-zero-spam-addon.php:389
+#: includes/class-gf-zero-spam-addon.php:539
 msgid "Monthly"
 msgstr "Ежемесячно"
 
-#: includes/class-gf-zero-spam-addon.php:400
+#: includes/class-gf-zero-spam-addon.php:550
 msgid "Spam Entry Threshold"
 msgstr "Порог спам-записей"
 
-#: includes/class-gf-zero-spam-addon.php:401
+#: includes/class-gf-zero-spam-addon.php:551
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
@@ -454,54 +454,54 @@ msgstr ""
 "Электронное письмо с отчётом о спаме будет отправлено, когда будет "
 "достигнуто указанное количество спам-записей."
 
-#: includes/class-gf-zero-spam-addon.php:419
+#: includes/class-gf-zero-spam-addon.php:569
 msgid "Entry limit has to be 1 or more."
 msgstr "Лимит записей должен быть 1 или больше."
 
-#: includes/class-gf-zero-spam-addon.php:425
+#: includes/class-gf-zero-spam-addon.php:575
 msgid "Email Address"
 msgstr "Адрес электронной почты"
 
-#: includes/class-gf-zero-spam-addon.php:426
+#: includes/class-gf-zero-spam-addon.php:576
 msgid "Send spam report to this email address."
 msgstr "Отправлять отчёт о спаме на этот адрес электронной почты."
 
-#: includes/class-gf-zero-spam-addon.php:436
+#: includes/class-gf-zero-spam-addon.php:586
 msgid "The email entered is invalid."
 msgstr "Введённый адрес электронной почты недействителен."
 
-#: includes/class-gf-zero-spam-addon.php:450
+#: includes/class-gf-zero-spam-addon.php:600
 msgid "Email Subject"
 msgstr "Тема письма"
 
-#: includes/class-gf-zero-spam-addon.php:452
+#: includes/class-gf-zero-spam-addon.php:602
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Ваш отчёт о спаме Gravity Forms для {{site_name}}"
 
-#: includes/class-gf-zero-spam-addon.php:465
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Email Message"
 msgstr "Сообщение письма"
 
-#: includes/class-gf-zero-spam-addon.php:495
+#: includes/class-gf-zero-spam-addon.php:645
 msgid "Send Test Email & Save Settings"
 msgstr "Отправить тестовое письмо и сохранить настройки"
 
-#: includes/class-gf-zero-spam-addon.php:496
+#: includes/class-gf-zero-spam-addon.php:646
 msgid "Send Email & Save Settings"
 msgstr "Отправить письмо и сохранить настройки"
 
-#: includes/class-gf-zero-spam-addon.php:615
+#: includes/class-gf-zero-spam-addon.php:883
 msgid "Once Monthly"
 msgstr "Один раз в месяц"
 
-#: includes/class-gf-zero-spam-addon.php:807
+#: includes/class-gf-zero-spam-addon.php:1075
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "спам-запись"
 msgstr[1] "спам-записи"
 msgstr[2] "спам-записей"
 
-#: includes/class-gf-zero-spam-addon.php:894
+#: includes/class-gf-zero-spam-addon.php:1162
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -511,45 +511,45 @@ msgstr ""
 "загрузки вашей формы посетителем. Если отправка форм ошибочно определяется "
 "как спам, попробуйте увеличить это значение. (По умолчанию: 7 дней)"
 
-#: includes/class-gf-zero-spam-addon.php:898
+#: includes/class-gf-zero-spam-addon.php:1166
 msgid "Expiration length"
 msgstr "Длительность срока действия"
 
-#: includes/class-gf-zero-spam-addon.php:910
+#: includes/class-gf-zero-spam-addon.php:1178
 msgid "Expiration unit"
 msgstr "Единица измерения срока действия"
 
-#: includes/class-gf-zero-spam-addon.php:918
+#: includes/class-gf-zero-spam-addon.php:1186
 msgid "hours"
 msgstr "часы"
 
-#: includes/class-gf-zero-spam-addon.php:921
+#: includes/class-gf-zero-spam-addon.php:1189
 msgid "days"
 msgstr "дни"
 
-#: includes/class-gf-zero-spam-addon.php:937
+#: includes/class-gf-zero-spam-addon.php:1205
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "Короткие сроки действия могут вызывать ложные срабатывания на сайтах с "
 "кэшированием страниц."
 
-#: includes/class-gf-zero-spam-addon.php:1016
+#: includes/class-gf-zero-spam-addon.php:1284
 msgid "Please enter at least 1 day."
 msgstr "Пожалуйста, введите минимум 1 день."
 
-#: includes/class-gf-zero-spam-addon.php:1017
+#: includes/class-gf-zero-spam-addon.php:1285
 msgid "Please enter at least 1 hour."
 msgstr "Пожалуйста, введите минимум 1 час."
 
-#: includes/class-gf-zero-spam-addon.php:1023
+#: includes/class-gf-zero-spam-addon.php:1291
 msgid "Please select hours or days."
 msgstr "Пожалуйста, выберите часы или дни."
 
-#: includes/class-gf-zero-spam-addon.php:1028
+#: includes/class-gf-zero-spam-addon.php:1296
 msgid "The maximum expiration is 90 days."
 msgstr "Максимальный срок действия — 90 дней."
 
-#: includes/class-gf-zero-spam-addon.php:1030
+#: includes/class-gf-zero-spam-addon.php:1298
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "Максимальный срок действия — 2160 часов (90 дней)."
 
@@ -569,41 +569,41 @@ msgstr "Zero Spam не активирован для этой формы."
 msgid "Too many requests. Please try again later."
 msgstr "Слишком много запросов. Попробуйте позже."
 
-#: includes/class-gf-zero-spam.php:491
-#: includes/class-gf-zero-spam.php:519
+#: includes/class-gf-zero-spam.php:546
+#: includes/class-gf-zero-spam.php:568
 msgid "The submission did not include a spam prevention token."
 msgstr "Отправка не содержала токен предотвращения спама."
 
-#: includes/class-gf-zero-spam.php:492
+#: includes/class-gf-zero-spam.php:547
 msgid "The spam prevention token format is invalid."
 msgstr "Неверный формат токена предотвращения спама."
 
-#: includes/class-gf-zero-spam.php:493
+#: includes/class-gf-zero-spam.php:548
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr ""
 "Токен предотвращения спама истек. Это может быть вызвано кэшированием "
 "страниц."
 
-#: includes/class-gf-zero-spam.php:494
+#: includes/class-gf-zero-spam.php:549
 msgid "The spam prevention token was issued for a different form."
 msgstr "Токен предотвращения спама был выдан для другой формы."
 
-#: includes/class-gf-zero-spam.php:495
+#: includes/class-gf-zero-spam.php:550
 msgid "The spam prevention token signature is invalid."
 msgstr "Подпись токена защиты от спама недействительна."
 
-#: includes/class-gf-zero-spam.php:601
+#: includes/class-gf-zero-spam.php:724
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "Устаревший ключ защиты от спама больше не принимается. Пожалуйста, очистите "
 "кэш страницы."
 
-#: includes/class-gf-zero-spam.php:607
-#: includes/class-gf-zero-spam.php:611
+#: includes/class-gf-zero-spam.php:730
+#: includes/class-gf-zero-spam.php:734
 msgid "The submitted key is invalid."
 msgstr "Представленный ключ недействителен."
 
-#: includes/class-gf-zero-spam.php:643
+#: includes/class-gf-zero-spam.php:766
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -613,7 +613,7 @@ msgstr ""
 "Пожалуйста, очистите кэш страницы, чтобы все формы использовали новую "
 "защиту. Поддержка устаревших версий заканчивается %s."
 
-#: includes/class-gf-zero-spam.php:687
+#: includes/class-gf-zero-spam.php:810
 msgid "This entry has been marked as spam."
 msgstr "Эта запись была отмечена как спам."
 
@@ -970,11 +970,11 @@ msgstr ""
 "Причина должна быть краткой и не содержать персональных данных, таких как "
 "имена или адреса электронной почты."
 
-#: includes/class-gf-zero-spam-ai-review.php:1455
+#: includes/class-gf-zero-spam-ai-review.php:1615
 msgid "AI classified this submission as spam."
 msgstr "AI классифицировал эту отправку как спам."
 
-#: includes/class-gf-zero-spam-ai-review.php:1705
+#: includes/class-gf-zero-spam-ai-review.php:1865
 msgid ""
 "Zero Spam: AI recovered this submission as legitimate (confidence "
 "[confidence])."
@@ -982,7 +982,166 @@ msgstr ""
 "Нулевой спам: AI восстановил эту отправку как легитимную (доверие "
 "[confidence])."
 
-#: includes/class-gf-zero-spam-addon.php:300
+#: includes/class-gf-zero-spam-addon.php:353
+msgid ""
+"When Zero Spam is disabled in the global plugin settings, all spam checks "
+"are turned off for every form and this setting has no effect."
+msgstr ""
+"Когда Zero Spam отключен в глобальных настройках плагина, все проверки "
+"спама отключаются для всех форм, и эта настройка не влияет на работу."
+
+#: includes/class-gf-zero-spam-addon.php:681
+msgid "Zero Spam token"
+msgstr "Токен Zero Spam"
+
+#: includes/class-gf-zero-spam-addon.php:685
+msgid "Shield silentCAPTCHA"
+msgstr "Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-addon.php:689
+msgid "AI Spam Review"
+msgstr "AI Обзор спама"
+
+#: includes/class-gf-zero-spam-addon.php:697
+msgid "Shield Security is not active — this check is skipped."
+msgstr "Shield Security не активен — эта проверка пропущена."
+
+#: includes/class-gf-zero-spam-addon.php:701
+msgid "AI Spam Review is not configured — this check is skipped."
+msgstr "AI Обзор спама не настроен — эта проверка пропущена."
+
+#: includes/class-gf-zero-spam-addon.php:706
+msgid "First check"
+msgstr "Первая проверка"
+
+#: includes/class-gf-zero-spam-addon.php:707
+msgid "Second check"
+msgstr "Вторая проверка"
+
+#: includes/class-gf-zero-spam-addon.php:708
+msgid "Third check"
+msgstr "Третья проверка"
+
+#: includes/class-gf-zero-spam-addon.php:724
+msgid "Stop after first detection"
+msgstr "Остановить после первого обнаружения"
+
+#: includes/class-gf-zero-spam-addon.php:728
+msgid ""
+"When enabled, remaining checks are skipped once a check flags a submission "
+"as spam. When disabled, every check still runs and records its verdict as "
+"an entry note; a flagged submission is never restored by a later check."
+msgstr ""
+"Если включено, оставшиеся проверки пропускаются, как только одна из них "
+"помечает отправку как спам. Если отключено, все проверки выполняются и "
+"записывают свои результаты в заметки; помеченная отправка не "
+"восстанавливается последующими проверками."
+
+#: includes/class-gf-zero-spam-addon.php:732
+msgid "Spam Check Order"
+msgstr "Порядок проверки спама"
+
+#: includes/class-gf-zero-spam-addon.php:733
+msgid ""
+"Controls the order in which the spam checks run during form submission. "
+"Unavailable checks keep their position and are skipped."
+msgstr ""
+"Управляет порядком, в котором выполняются проверки спама при отправке "
+"формы. Недоступные проверки сохраняют свои позиции и пропускаются."
+
+#: includes/class-gf-zero-spam-ai-review.php:348
+msgid "AI review also classified this submission as spam (confidence [confidence])."
+msgstr "AI обзор также классифицировал эту отправку как спам (доверие [confidence])."
+
+#: includes/class-gf-zero-spam-ai-review.php:354
+msgid ""
+"AI review classified this submission as legitimate (confidence "
+"[confidence])."
+msgstr "AI обзор классифицировал эту отправку как легитимную (доверие [confidence])."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:307
+msgid "This submission was flagged as spam by [filter]."
+msgstr "Эта отправка была помечена как спам фильтром [filter]."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:362
+msgid "Shield silentCAPTCHA also identified this submission as spam."
+msgstr "Shield silentCAPTCHA также определил эту отправку как спам."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:367
+msgid "Shield silentCAPTCHA did not identify this submission as spam."
+msgstr "Shield silentCAPTCHA не определил эту отправку как спам."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:429
+msgid "This entry has been marked as spam by [filter]."
+msgstr "Эта запись была помечена как спам фильтром [filter]."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:530
+msgid "Enable Shield silentCAPTCHA by Default"
+msgstr "Включить Shield silentCAPTCHA по умолчанию"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:574
+msgid "Enable Shield silentCAPTCHA for this form"
+msgstr "Включить Shield silentCAPTCHA для этой формы"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:940
+msgid "This setting is currently overriding the global default setting."
+msgstr ""
+"Этот параметр в настоящее время переопределяет глобальную настройку по "
+"умолчанию."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:941
+msgid "This setting is currently inheriting the global default setting."
+msgstr "Этот параметр в настоящее время наследует глобальную настройку по умолчанию."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:990
+msgid "Learn More"
+msgstr "Подробнее"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1102
+msgid ""
+"Runs Shield silentCAPTCHA server-side for this form. No field needs to be "
+"added to the form."
+msgstr ""
+"Запускает Shield silentCAPTCHA на стороне сервера для этой формы. В форму "
+"не нужно добавлять никаких полей."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1113
+msgid ""
+"Enable Shield silentCAPTCHA by default for forms. No field needs to be "
+"added to the form. Forms without their own Shield setting will use this "
+"default."
+msgstr ""
+"Включить Shield silentCAPTCHA по умолчанию для форм. В форму не нужно "
+"добавлять никаких полей. Формы без собственной настройки Shield будут "
+"использовать этот параметр по умолчанию."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1124
+msgid ""
+"Shield silentCAPTCHA is currently unavailable because Shield Security is "
+"not installed or active. This setting is disabled until Shield becomes "
+"available again."
+msgstr ""
+"Shield silentCAPTCHA в настоящее время недоступен, так как Shield Security "
+"не установлен или не активен. Этот параметр отключен до тех пор, пока "
+"Shield не станет снова доступен."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1135
+msgid ""
+"Shield silentCAPTCHA is available, but Shield's bot threshold is 0, so it "
+"will not flag submissions until that threshold is increased."
+msgstr ""
+"Shield silentCAPTCHA доступен, но порог бота Shield равен 0, поэтому "
+"отправки не будут помечаться, пока этот порог не будет увеличен."
+
+#: includes/class-gf-zero-spam.php:611
+msgid "The Zero Spam token check also flagged this submission: [reason]"
+msgstr "Проверка токена Zero Spam также пометила эту отправку: [reason]"
+
+#: includes/class-gf-zero-spam.php:618
+msgid "The Zero Spam token check found a valid token for this submission."
+msgstr "Проверка токена Zero Spam обнаружила действительный токен для этой отправки."
+
+#: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Отчёт о спаме Gravity Forms"

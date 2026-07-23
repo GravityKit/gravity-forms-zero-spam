@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-06-10 20:08:31+0000\n"
+"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -258,22 +258,22 @@ msgid ""
 "address."
 msgstr "您输入的电子邮件地址不被允许。请使用其他电子邮件地址。"
 
-#: includes/class-gf-zero-spam-addon.php:204
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:353
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
 msgstr "启用此项以使用一种简单有效的方法对抗垃圾邮件，比内置的反垃圾邮件蜜罐更有效。"
 
-#: includes/class-gf-zero-spam-addon.php:257
+#: includes/class-gf-zero-spam-addon.php:406
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "使用 Gravity Forms Zero Spam 防止垃圾邮件"
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:435
 msgid "Know when entries are flagged as spam."
 msgstr "知道条目何时被标记为垃圾邮件。"
 
-#: includes/class-gf-zero-spam-addon.php:287
+#: includes/class-gf-zero-spam-addon.php:436
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -281,7 +281,7 @@ msgid ""
 "be sent."
 msgstr "有时很难知道条目何时被标记为垃圾邮件。启用后，此功能会发送自动垃圾邮件报告，向您汇总最近的垃圾邮件条目。如果没有提交垃圾邮件条目，则不会发送报告。"
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:437
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -289,24 +289,24 @@ msgstr ""
 "此功能可与任何垃圾邮件过滤器配合使用，包括 Gravity Forms 垃圾邮件诱捕器、Gravity Forms Zero "
 "Spam、reCAPTCHA 或其他过滤器。"
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:439
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
 "this more reliable{{/link}}."
 msgstr "注意：根据网站流量，基于时间的报告可能不会始终按计划频率发送。{{link}}查看如何设置“cron”以提高可靠性{{/link}}。"
 
-#: includes/class-gf-zero-spam-addon.php:293
+#: includes/class-gf-zero-spam-addon.php:442
 msgid "Link opens in a new tab"
 msgstr "链接将在新标签页中打开"
 
-#: includes/class-gf-zero-spam-addon.php:302
+#: includes/class-gf-zero-spam-addon.php:451
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "您已从以下表单收到 {{total_spam_count}} 条垃圾邮件条目："
 
-#: includes/class-gf-zero-spam-addon.php:305
+#: includes/class-gf-zero-spam-addon.php:454
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -314,193 +314,193 @@ msgstr ""
 "要修改或禁用此电子邮件，请访问 {{settings_link}}Gravity Forms Zero Spam "
 "设置页面{{/settings_link}}。"
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:456
 msgid "The following variables may be used:"
 msgstr "可使用以下变量："
 
-#: includes/class-gf-zero-spam-addon.php:309
+#: includes/class-gf-zero-spam-addon.php:458
 msgid "The name of this website"
 msgstr "该网站的名称"
 
-#: includes/class-gf-zero-spam-addon.php:310
+#: includes/class-gf-zero-spam-addon.php:459
 msgid "The email of the site administrator"
 msgstr "网站管理员的电子邮件"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:460
 msgid "The total number of spam emails received since the last report."
 msgstr "自上次报告以来收到的垃圾邮件总数。"
 
-#: includes/class-gf-zero-spam-addon.php:312
+#: includes/class-gf-zero-spam-addon.php:461
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "自上次报告以来的表单列表及垃圾邮件条目数量。"
 
-#: includes/class-gf-zero-spam-addon.php:313
+#: includes/class-gf-zero-spam-addon.php:462
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
 msgstr "指向插件设置页面的链接。变量内的文本将作为链接文本。请确保包括开启和关闭的变量。"
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:467
 msgid "Spam Blocking"
 msgstr "垃圾邮件拦截"
 
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
 msgstr "可以在每个表单的设置中按表单启用或禁用垃圾邮件拦截。"
 
-#: includes/class-gf-zero-spam-addon.php:322
+#: includes/class-gf-zero-spam-addon.php:471
 msgid "Enable Zero Spam by Default"
 msgstr "默认启用 Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:328
+#: includes/class-gf-zero-spam-addon.php:477
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "已启用：向 Gravity Forms 表单添加 Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:332
+#: includes/class-gf-zero-spam-addon.php:481
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "已禁用：使用 Gravity Forms 内置的垃圾邮件防护"
 
-#: includes/class-gf-zero-spam-addon.php:339
+#: includes/class-gf-zero-spam-addon.php:488
 msgid "Anti-Spam Expiration"
 msgstr "反垃圾邮件过期时间"
 
-#: includes/class-gf-zero-spam-addon.php:357
+#: includes/class-gf-zero-spam-addon.php:507
 msgid "Spam Report Email"
 msgstr "垃圾邮件报告邮件"
 
-#: includes/class-gf-zero-spam-addon.php:361
+#: includes/class-gf-zero-spam-addon.php:511
 msgid "Spam Report Frequency"
 msgstr "垃圾邮件报告频率"
 
-#: includes/class-gf-zero-spam-addon.php:363
+#: includes/class-gf-zero-spam-addon.php:513
 msgid "How frequently should spam report emails be sent?"
 msgstr "垃圾邮件报告邮件应多久发送一次？"
 
-#: includes/class-gf-zero-spam-addon.php:369
+#: includes/class-gf-zero-spam-addon.php:519
 msgid "Disabled"
 msgstr "已禁用"
 
-#: includes/class-gf-zero-spam-addon.php:373
+#: includes/class-gf-zero-spam-addon.php:523
 msgid "Threshold-Based"
 msgstr "基于阈值"
 
-#: includes/class-gf-zero-spam-addon.php:377
+#: includes/class-gf-zero-spam-addon.php:527
 msgid "Twice Daily"
 msgstr "每日两次"
 
-#: includes/class-gf-zero-spam-addon.php:381
+#: includes/class-gf-zero-spam-addon.php:531
 msgid "Daily"
 msgstr "每日"
 
-#: includes/class-gf-zero-spam-addon.php:385
+#: includes/class-gf-zero-spam-addon.php:535
 msgid "Weekly"
 msgstr "每周"
 
-#: includes/class-gf-zero-spam-addon.php:389
+#: includes/class-gf-zero-spam-addon.php:539
 msgid "Monthly"
 msgstr "每月"
 
-#: includes/class-gf-zero-spam-addon.php:400
+#: includes/class-gf-zero-spam-addon.php:550
 msgid "Spam Entry Threshold"
 msgstr "垃圾邮件条目阈值"
 
-#: includes/class-gf-zero-spam-addon.php:401
+#: includes/class-gf-zero-spam-addon.php:551
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
 msgstr "当达到指定数量的垃圾邮件条目时，将发送垃圾邮件报告邮件。"
 
-#: includes/class-gf-zero-spam-addon.php:419
+#: includes/class-gf-zero-spam-addon.php:569
 msgid "Entry limit has to be 1 or more."
 msgstr "条目限制必须为1或以上。"
 
-#: includes/class-gf-zero-spam-addon.php:425
+#: includes/class-gf-zero-spam-addon.php:575
 msgid "Email Address"
 msgstr "电子邮件地址"
 
-#: includes/class-gf-zero-spam-addon.php:426
+#: includes/class-gf-zero-spam-addon.php:576
 msgid "Send spam report to this email address."
 msgstr "将垃圾邮件报告发送到此电子邮件地址。"
 
-#: includes/class-gf-zero-spam-addon.php:436
+#: includes/class-gf-zero-spam-addon.php:586
 msgid "The email entered is invalid."
 msgstr "输入的电子邮件无效。"
 
-#: includes/class-gf-zero-spam-addon.php:450
+#: includes/class-gf-zero-spam-addon.php:600
 msgid "Email Subject"
 msgstr "电子邮件主题"
 
-#: includes/class-gf-zero-spam-addon.php:452
+#: includes/class-gf-zero-spam-addon.php:602
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "您来自 {{site_name}} 的 Gravity Forms 垃圾邮件报告"
 
-#: includes/class-gf-zero-spam-addon.php:465
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Email Message"
 msgstr "电子邮件内容"
 
-#: includes/class-gf-zero-spam-addon.php:495
+#: includes/class-gf-zero-spam-addon.php:645
 msgid "Send Test Email & Save Settings"
 msgstr "发送测试邮件并保存设置"
 
-#: includes/class-gf-zero-spam-addon.php:496
+#: includes/class-gf-zero-spam-addon.php:646
 msgid "Send Email & Save Settings"
 msgstr "发送邮件并保存设置"
 
-#: includes/class-gf-zero-spam-addon.php:615
+#: includes/class-gf-zero-spam-addon.php:883
 msgid "Once Monthly"
 msgstr "每月一次"
 
-#: includes/class-gf-zero-spam-addon.php:807
+#: includes/class-gf-zero-spam-addon.php:1075
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "垃圾条目"
 
-#: includes/class-gf-zero-spam-addon.php:894
+#: includes/class-gf-zero-spam-addon.php:1162
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
 "increasing this value. (Default: 7 days)"
 msgstr "访客加载您的表单后，防垃圾令牌保持有效的时间。如果表单提交被错误地标记为垃圾邮件，请尝试增加此值。（默认值：7 天）"
 
-#: includes/class-gf-zero-spam-addon.php:898
+#: includes/class-gf-zero-spam-addon.php:1166
 msgid "Expiration length"
 msgstr "过期时长"
 
-#: includes/class-gf-zero-spam-addon.php:910
+#: includes/class-gf-zero-spam-addon.php:1178
 msgid "Expiration unit"
 msgstr "过期单位"
 
-#: includes/class-gf-zero-spam-addon.php:918
+#: includes/class-gf-zero-spam-addon.php:1186
 msgid "hours"
 msgstr "小时"
 
-#: includes/class-gf-zero-spam-addon.php:921
+#: includes/class-gf-zero-spam-addon.php:1189
 msgid "days"
 msgstr "天"
 
-#: includes/class-gf-zero-spam-addon.php:937
+#: includes/class-gf-zero-spam-addon.php:1205
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr "较短的过期时间可能会导致启用了页面缓存的网站出现误报。"
 
-#: includes/class-gf-zero-spam-addon.php:1016
+#: includes/class-gf-zero-spam-addon.php:1284
 msgid "Please enter at least 1 day."
 msgstr "请输入至少 1 天。"
 
-#: includes/class-gf-zero-spam-addon.php:1017
+#: includes/class-gf-zero-spam-addon.php:1285
 msgid "Please enter at least 1 hour."
 msgstr "请输入至少 1 小时。"
 
-#: includes/class-gf-zero-spam-addon.php:1023
+#: includes/class-gf-zero-spam-addon.php:1291
 msgid "Please select hours or days."
 msgstr "请选择小时或天。"
 
-#: includes/class-gf-zero-spam-addon.php:1028
+#: includes/class-gf-zero-spam-addon.php:1296
 msgid "The maximum expiration is 90 days."
 msgstr "最大过期时间为 90 天。"
 
-#: includes/class-gf-zero-spam-addon.php:1030
+#: includes/class-gf-zero-spam-addon.php:1298
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "最大过期时间为 2160 小时（90 天）。"
 
@@ -520,44 +520,44 @@ msgstr "此表单未启用 Zero Spam。"
 msgid "Too many requests. Please try again later."
 msgstr "请求过多。请稍后再试。"
 
-#: includes/class-gf-zero-spam.php:491
-#: includes/class-gf-zero-spam.php:519
+#: includes/class-gf-zero-spam.php:546
+#: includes/class-gf-zero-spam.php:568
 msgid "The submission did not include a spam prevention token."
 msgstr "提交未包含防垃圾令牌。"
 
-#: includes/class-gf-zero-spam.php:492
+#: includes/class-gf-zero-spam.php:547
 msgid "The spam prevention token format is invalid."
 msgstr "防垃圾令牌格式无效。"
 
-#: includes/class-gf-zero-spam.php:493
+#: includes/class-gf-zero-spam.php:548
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr "防垃圾令牌已过期。可能是由于页面缓存引起。"
 
-#: includes/class-gf-zero-spam.php:494
+#: includes/class-gf-zero-spam.php:549
 msgid "The spam prevention token was issued for a different form."
 msgstr "防垃圾令牌是为不同的表单颁发的。"
 
-#: includes/class-gf-zero-spam.php:495
+#: includes/class-gf-zero-spam.php:550
 msgid "The spam prevention token signature is invalid."
 msgstr "垃圾邮件防护令牌签名无效。"
 
-#: includes/class-gf-zero-spam.php:601
+#: includes/class-gf-zero-spam.php:724
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr "不再接受旧版垃圾邮件防护密钥。请清除您的页面缓存。"
 
-#: includes/class-gf-zero-spam.php:607
-#: includes/class-gf-zero-spam.php:611
+#: includes/class-gf-zero-spam.php:730
+#: includes/class-gf-zero-spam.php:734
 msgid "The submitted key is invalid."
 msgstr "提交的密钥无效。"
 
-#: includes/class-gf-zero-spam.php:643
+#: includes/class-gf-zero-spam.php:766
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
 "Legacy support ends on %s."
 msgstr "Gravity Forms Zero Spam 已升级，增强了垃圾邮件防护。请清除您的页面缓存，以确保所有表单使用新的防护。旧版支持将于 %s 结束。"
 
-#: includes/class-gf-zero-spam.php:687
+#: includes/class-gf-zero-spam.php:810
 msgid "This entry has been marked as spam."
 msgstr "此条目已被标记为垃圾邮件。"
 
@@ -850,17 +850,156 @@ msgid ""
 "or email addresses."
 msgstr "原因必须简明扼要，且不得引用姓名或电子邮件地址等个人数据。"
 
-#: includes/class-gf-zero-spam-ai-review.php:1455
+#: includes/class-gf-zero-spam-ai-review.php:1615
 msgid "AI classified this submission as spam."
 msgstr "AI 将此提交分类为垃圾邮件。"
 
-#: includes/class-gf-zero-spam-ai-review.php:1705
+#: includes/class-gf-zero-spam-ai-review.php:1865
 msgid ""
 "Zero Spam: AI recovered this submission as legitimate (confidence "
 "[confidence])."
 msgstr "零垃圾邮件：AI 已恢复此提交为合法（置信度 [confidence]）。"
 
-#: includes/class-gf-zero-spam-addon.php:300
+#: includes/class-gf-zero-spam-addon.php:353
+msgid ""
+"When Zero Spam is disabled in the global plugin settings, all spam checks "
+"are turned off for every form and this setting has no effect."
+msgstr "当全局插件设置中禁用 Zero Spam 时，所有表单的垃圾邮件检查都将关闭，此设置无效。"
+
+#: includes/class-gf-zero-spam-addon.php:681
+msgid "Zero Spam token"
+msgstr "Zero Spam 令牌"
+
+#: includes/class-gf-zero-spam-addon.php:685
+msgid "Shield silentCAPTCHA"
+msgstr "Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-addon.php:689
+msgid "AI Spam Review"
+msgstr "AI 垃圾邮件审核"
+
+#: includes/class-gf-zero-spam-addon.php:697
+msgid "Shield Security is not active — this check is skipped."
+msgstr "Shield Security 未激活 — 此检查被跳过。"
+
+#: includes/class-gf-zero-spam-addon.php:701
+msgid "AI Spam Review is not configured — this check is skipped."
+msgstr "AI 垃圾邮件审核未配置 — 此检查被跳过。"
+
+#: includes/class-gf-zero-spam-addon.php:706
+msgid "First check"
+msgstr "第一次检查"
+
+#: includes/class-gf-zero-spam-addon.php:707
+msgid "Second check"
+msgstr "第二次检查"
+
+#: includes/class-gf-zero-spam-addon.php:708
+msgid "Third check"
+msgstr "第三次检查"
+
+#: includes/class-gf-zero-spam-addon.php:724
+msgid "Stop after first detection"
+msgstr "首次检测后停止"
+
+#: includes/class-gf-zero-spam-addon.php:728
+msgid ""
+"When enabled, remaining checks are skipped once a check flags a submission "
+"as spam. When disabled, every check still runs and records its verdict as "
+"an entry note; a flagged submission is never restored by a later check."
+msgstr "启用时，一旦某项检查标记提交为垃圾邮件，剩余检查将被跳过。禁用时，每项检查仍会执行并将其判决记录为条目备注；被标记的提交不会被后续检查恢复。"
+
+#: includes/class-gf-zero-spam-addon.php:732
+msgid "Spam Check Order"
+msgstr "垃圾邮件检查顺序"
+
+#: includes/class-gf-zero-spam-addon.php:733
+msgid ""
+"Controls the order in which the spam checks run during form submission. "
+"Unavailable checks keep their position and are skipped."
+msgstr "控制表单提交时垃圾邮件检查的执行顺序。不可用的检查保持位置但被跳过。"
+
+#: includes/class-gf-zero-spam-ai-review.php:348
+msgid "AI review also classified this submission as spam (confidence [confidence])."
+msgstr "AI 审核也将此提交分类为垃圾邮件（置信度 [confidence]）。"
+
+#: includes/class-gf-zero-spam-ai-review.php:354
+msgid ""
+"AI review classified this submission as legitimate (confidence "
+"[confidence])."
+msgstr "AI 审核将此提交分类为合法（置信度 [confidence]）。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:307
+msgid "This submission was flagged as spam by [filter]."
+msgstr "此提交被 [filter] 标记为垃圾邮件。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:362
+msgid "Shield silentCAPTCHA also identified this submission as spam."
+msgstr "Shield silentCAPTCHA 也将此提交识别为垃圾邮件。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:367
+msgid "Shield silentCAPTCHA did not identify this submission as spam."
+msgstr "Shield silentCAPTCHA 未将此提交识别为垃圾邮件。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:429
+msgid "This entry has been marked as spam by [filter]."
+msgstr "此条目已被 [filter] 标记为垃圾邮件。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:530
+msgid "Enable Shield silentCAPTCHA by Default"
+msgstr "默认启用 Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:574
+msgid "Enable Shield silentCAPTCHA for this form"
+msgstr "为此表单启用 Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:940
+msgid "This setting is currently overriding the global default setting."
+msgstr "此设置当前覆盖全局默认设置。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:941
+msgid "This setting is currently inheriting the global default setting."
+msgstr "此设置当前继承全局默认设置。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:990
+msgid "Learn More"
+msgstr "了解更多"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1102
+msgid ""
+"Runs Shield silentCAPTCHA server-side for this form. No field needs to be "
+"added to the form."
+msgstr "为此表单在服务器端运行 Shield silentCAPTCHA。无需向表单添加任何字段。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1113
+msgid ""
+"Enable Shield silentCAPTCHA by default for forms. No field needs to be "
+"added to the form. Forms without their own Shield setting will use this "
+"default."
+msgstr "默认启用表单的 Shield silentCAPTCHA。无需向表单添加任何字段。没有自己 Shield 设置的表单将使用此默认设置。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1124
+msgid ""
+"Shield silentCAPTCHA is currently unavailable because Shield Security is "
+"not installed or active. This setting is disabled until Shield becomes "
+"available again."
+msgstr "Shield silentCAPTCHA 当前不可用，因为未安装或未激活 Shield Security。此设置在 Shield 可用之前被禁用。"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1135
+msgid ""
+"Shield silentCAPTCHA is available, but Shield's bot threshold is 0, so it "
+"will not flag submissions until that threshold is increased."
+msgstr "Shield silentCAPTCHA 可用，但 Shield 的机器人阈值为 0，因此在提高阈值之前不会标记提交。"
+
+#: includes/class-gf-zero-spam.php:611
+msgid "The Zero Spam token check also flagged this submission: [reason]"
+msgstr "Zero Spam 令牌检查也标记了此提交：[reason]"
+
+#: includes/class-gf-zero-spam.php:618
+msgid "The Zero Spam token check found a valid token for this submission."
+msgstr "Zero Spam 令牌检查为此提交发现了有效令牌。"
+
+#: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms 垃圾邮件报告"

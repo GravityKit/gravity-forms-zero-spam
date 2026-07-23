@@ -34,6 +34,15 @@ class GF_Zero_Spam {
 	private static $non_token_spam_sources = [];
 
 	/**
+	 * Pending verdict notes for already-flagged entries, keyed by form ID.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var array<int, array{text: string, type: string}>
+	 */
+	private $secondary_notes = [];
+
+	/**
 	 * Instantiates the plugin on Gravity Forms loading.
 	 *
 	 * @since 1.0.5
@@ -163,7 +172,12 @@ class GF_Zero_Spam {
 		add_action( 'gform_register_init_scripts', [ $this, 'add_key_field' ], 1 );
 		add_filter( 'gform_pre_process', [ __CLASS__, 'reset_request_markers' ] );
 		add_filter( 'gform_get_form_filter', [ $this, 'enqueue_script' ], 10, 2 );
-		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], 10, 3 );
+
+		$priority = method_exists( 'GF_Zero_Spam_AddOn', 'get_instance' )
+			? GF_Zero_Spam_AddOn::get_instance()->get_spam_check_priority( 'token' )
+			: 12;
+
+		add_filter( 'gform_entry_is_spam', [ $this, 'check_key_field' ], $priority, 3 );
 		add_filter( 'gform_incomplete_submission_pre_save', [ $this, 'add_zero_spam_key_to_entry' ], 10, 3 );
 		add_filter( 'gform_abort_submission_with_confirmation', [ $this, 'maybe_abort_submission' ], 20, 2 );
 		add_action( 'admin_notices', [ $this, 'migration_notice' ] );
@@ -435,13 +449,16 @@ class GF_Zero_Spam {
 	 * @return bool True: it's spam; False: it's not spam!
 	 */
 	public function check_key_field( $is_spam = false, $form = [], $entry = [] ) {
-		// If the user can edit entries, they're not a spammer. It may be spam, but it's their prerogative.
+		// If the user can edit entries, they're not a spammer. It may be spam, but it's their
+		// prerogative. Returns the incoming status so another check's verdict is never cleared.
 		if ( GFCommon::current_user_can_any( 'gravityforms_edit_entries' ) ) {
-			return false;
+			return $is_spam;
 		}
 
-		// Another filter (e.g. honeypot) already flagged this as spam.
-		if ( $is_spam ) {
+		$already_flagged = (bool) $is_spam;
+
+		// Another filter (e.g. honeypot) already flagged this as spam; evaluate anyway when the stop setting is off.
+		if ( $already_flagged && $this->should_stop_after_first_detection() ) {
 			return $is_spam;
 		}
 
@@ -477,6 +494,40 @@ class GF_Zero_Spam {
 			return $is_spam;
 		}
 
+		$verdict = $this->get_token_verdict( $form );
+
+		// Record the verdict as an entry note without changing the existing spam status.
+		if ( $already_flagged ) {
+			$this->schedule_secondary_verdict_note( $form, $verdict );
+
+			return $is_spam;
+		}
+
+		if ( ! $verdict['is_spam'] ) {
+			return false;
+		}
+
+		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
+			GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $verdict['reason'] );
+		} else {
+			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
+		}
+
+		$this->record_token_rejection( $verdict['reason_code'], $form, $entry, __METHOD__ );
+
+		return true;
+	}
+
+	/**
+	 * Evaluates the token or legacy-key verdict for the current submission without side effects.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $form The form currently being processed.
+	 *
+	 * @return array{is_spam: bool, reason: string, reason_code: string} The verdict.
+	 */
+	private function get_token_verdict( $form ) {
 		$submitted_token = rgpost( 'gf_zero_spam_token' );
 
 		// Validate signed token if present.
@@ -484,7 +535,11 @@ class GF_Zero_Spam {
 			$result = GF_Zero_Spam_Token::validate( $submitted_token, (int) rgar( $form, 'id' ) );
 
 			if ( $result['valid'] ) {
-				return false;
+				return [
+					'is_spam'     => false,
+					'reason'      => '',
+					'reason_code' => '',
+				];
 			}
 
 			$reason_map = [
@@ -496,51 +551,119 @@ class GF_Zero_Spam {
 			];
 
 			$reason_code = (string) $result['reason'];
-			$reason      = isset( $reason_map[ $reason_code ] ) ? $reason_map[ $reason_code ] : $reason_code;
 
-			if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-				GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
-			} else {
-				add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
-			}
-
-			$this->record_token_rejection( $reason_code, $form, $entry, __METHOD__ );
-
-			return true;
+			return [
+				'is_spam'     => true,
+				'reason'      => isset( $reason_map[ $reason_code ] ) ? $reason_map[ $reason_code ] : $reason_code,
+				'reason_code' => $reason_code,
+			];
 		}
 
 		// Fall back to legacy static key during migration.
 		$submitted_key = rgpost( 'gf_zero_spam_key' );
-		$reason        = '';
-		$reason_code   = '';
 
 		if ( rgblank( $submitted_key ) ) {
-			$is_spam     = true;
-			$reason      = __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' );
-			$reason_code = 'legacy_missing';
+			return [
+				'is_spam'     => true,
+				'reason'      => __( 'The submission did not include a spam prevention token.', 'gravity-forms-zero-spam' ),
+				'reason_code' => 'legacy_missing',
+			];
+		}
+
+		$legacy_result = $this->validate_legacy_key( $submitted_key );
+
+		if ( true !== $legacy_result ) {
+			return [
+				'is_spam'     => true,
+				'reason'      => (string) $legacy_result,
+				'reason_code' => 'legacy_invalid',
+			];
+		}
+
+		return [
+			'is_spam'     => false,
+			'reason'      => '',
+			'reason_code' => '',
+		];
+	}
+
+	/**
+	 * Schedules an entry note recording the token verdict for an already-flagged entry.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $form    The form currently being processed.
+	 * @param array $verdict The token verdict.
+	 *
+	 * @return void
+	 */
+	private function schedule_secondary_verdict_note( $form, $verdict ) {
+		$form_id = (int) rgar( $form, 'id' );
+
+		if ( $form_id < 1 ) {
+			return;
+		}
+
+		if ( $verdict['is_spam'] ) {
+			$note = [
+				'text' => strtr(
+					/* translators: placeholders in [brackets] are replaced and must not be translated. */
+					__( 'The Zero Spam token check also flagged this submission: [reason]', 'gravity-forms-zero-spam' ),
+					[ '[reason]' => $verdict['reason'] ]
+				),
+				'type' => 'warning',
+			];
 		} else {
-			$legacy_result = $this->validate_legacy_key( $submitted_key );
-
-			if ( true !== $legacy_result ) {
-				$is_spam     = true;
-				$reason      = $legacy_result;
-				$reason_code = 'legacy_invalid';
-			}
+			$note = [
+				'text' => __( 'The Zero Spam token check found a valid token for this submission.', 'gravity-forms-zero-spam' ),
+				'type' => 'success',
+			];
 		}
 
-		if ( ! $is_spam ) {
-			return $is_spam;
+		$this->secondary_notes[ $form_id ] = $note;
+
+		add_action( 'gform_entry_created', [ $this, 'add_secondary_verdict_note' ] );
+	}
+
+	/**
+	 * Adds the scheduled token verdict note to the created entry.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $entry The created entry.
+	 *
+	 * @return void
+	 */
+	public function add_secondary_verdict_note( $entry ) {
+		$form_id = (int) rgar( $entry, 'form_id' );
+
+		if ( empty( $this->secondary_notes[ $form_id ] ) ) {
+			return;
 		}
 
-		if ( method_exists( 'GFCommon', 'set_spam_filter' ) ) {
-			GFCommon::set_spam_filter( rgar( $form, 'id' ), 'Zero Spam', $reason );
-		} else {
-			add_action( 'gform_entry_created', [ $this, 'add_entry_note' ] );
+		$note = $this->secondary_notes[ $form_id ];
+		unset( $this->secondary_notes[ $form_id ] );
+
+		if ( ! method_exists( 'GFAPI', 'add_note' ) ) {
+			return;
 		}
 
-		$this->record_token_rejection( $reason_code, $form, $entry, __METHOD__ );
+		GFAPI::add_note( $entry['id'], 0, 'Zero Spam', $note['text'], 'gf-zero-spam', $note['type'] );
+	}
 
-		return $is_spam;
+	/**
+	 * Returns whether later checks are skipped once a check flags a submission as spam.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return bool Whether to stop after the first detection.
+	 */
+	private function should_stop_after_first_detection() {
+		if ( ! method_exists( 'GF_Zero_Spam_AddOn', 'get_instance' ) ) {
+			return true;
+		}
+
+		return GF_Zero_Spam_AddOn::get_instance()->should_stop_after_first_detection();
 	}
 
 	/**

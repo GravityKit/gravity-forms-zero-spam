@@ -12,6 +12,7 @@ require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-field-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review-settings.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-shield-silent-captcha.php';
 
 /**
  * @since 1.2
@@ -58,6 +59,24 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	const REPORT_CRON_HOOK_NAME = 'gf_zero_spam_send_report';
 
 	/**
+	 * Default spam check order (cheapest to most expensive).
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var array<int, string>
+	 */
+	const DEFAULT_SPAM_CHECK_ORDER = [ 'token', 'shield', 'ai' ];
+
+	/**
+	 * Resolved spam check order for this request.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var array<int, string>|null
+	 */
+	private $spam_check_order;
+
+	/**
 	 * Email rejection settings instance.
 	 *
 	 * @since 1.5.0
@@ -74,6 +93,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @var GF_Zero_Spam_AI_Review_Settings|null
 	 */
 	private $ai_review_settings;
+
+	/**
+	 * Shield silentCAPTCHA integration instance.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var GF_Zero_Spam_Shield_Silent_Captcha|null
+	 */
+	private $shield_silent_captcha;
 
 	/**
 	 * Gets the singleton instance.
@@ -118,6 +146,9 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$this->ai_review_settings = new GF_Zero_Spam_AI_Review_Settings( $this );
 		$this->ai_review_settings->init();
 
+		$this->shield_silent_captcha = new GF_Zero_Spam_Shield_Silent_Captcha( $this );
+		$this->shield_silent_captcha->init();
+
 		parent::init();
 
 		add_filter( 'gform_noconflict_scripts', [ $this, 'register_noconflict_scripts' ] );
@@ -157,6 +188,20 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array|mixed
 	 */
 	public function filter_gf_zero_spam_check_key_field( $check_key_field = true, $form = [] ) {
+		return $this->is_zero_spam_enabled_for_form( $form, $check_key_field );
+	}
+
+	/**
+	 * Returns the effective Zero Spam state for a form (per-form setting, else global default).
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $form               The form object.
+	 * @param mixed $enabled_by_default Value returned when neither setting is saved.
+	 *
+	 * @return bool|mixed Whether Zero Spam is enabled for the form.
+	 */
+	public function is_zero_spam_enabled_for_form( $form = [], $enabled_by_default = true ) {
 		// The setting has been set, but it's not enabled.
 		if ( isset( $form['enableGFZeroSpam'] ) && empty( $form['enableGFZeroSpam'] ) ) {
 			return false;
@@ -165,10 +210,114 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		$enabled = $this->get_plugin_setting( 'gf_zero_spam_blocking' );
 
 		if ( is_null( $enabled ) ) {
-			return $check_key_field;
+			return $enabled_by_default;
 		}
 
 		return ! empty( $enabled );
+	}
+
+	/**
+	 * Returns the configured spam check order.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return array<int, string> Check slugs in run order.
+	 */
+	public function get_spam_check_order(): array {
+		if ( null !== $this->spam_check_order ) {
+			return $this->spam_check_order;
+		}
+
+		$order = [
+			$this->get_plugin_setting( 'gf_zero_spam_check_order_1' ),
+			$this->get_plugin_setting( 'gf_zero_spam_check_order_2' ),
+			$this->get_plugin_setting( 'gf_zero_spam_check_order_3' ),
+		];
+
+		if ( ! $this->is_valid_spam_check_order( $order ) ) {
+			$order = self::DEFAULT_SPAM_CHECK_ORDER;
+		}
+
+		/**
+		 * Filters the order in which the spam checks run during form submission.
+		 *
+		 * The order is resolved once per request when the first check registers its
+		 * gform_entry_is_spam callback, so add this filter before Gravity Forms loads.
+		 * Invalid values (missing, duplicate, or unknown slugs) are ignored.
+		 *
+		 * @since 1.10.0
+		 *
+		 * @param array $order The check slugs in run order. Must contain 'token', 'shield', and 'ai' exactly once each.
+		 */
+		$filtered = apply_filters( 'gf_zero_spam_check_order', $order );
+
+		if ( $this->is_valid_spam_check_order( $filtered ) ) {
+			$order = array_values( $filtered );
+		}
+
+		$this->spam_check_order = $order;
+
+		return $order;
+	}
+
+	/**
+	 * Returns the gform_entry_is_spam priority for a spam check.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param string $check Check slug: 'token', 'shield', or 'ai'.
+	 *
+	 * @return int Hook priority (12, 14, or 16).
+	 */
+	public function get_spam_check_priority( string $check ): int {
+		$position = array_search( $check, $this->get_spam_check_order(), true );
+
+		// Unknown slugs get the last slot rather than colliding with the first one.
+		if ( false === $position ) {
+			$position = count( self::DEFAULT_SPAM_CHECK_ORDER ) - 1;
+		}
+
+		return 12 + ( 2 * (int) $position );
+	}
+
+	/**
+	 * Returns whether later checks are skipped once a check flags a submission as spam.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return bool Whether to stop after the first detection.
+	 */
+	public function should_stop_after_first_detection(): bool {
+		$stop = $this->get_plugin_setting( 'gf_zero_spam_stop_after_first_detection' );
+
+		if ( null === $stop ) {
+			return true;
+		}
+
+		return ! empty( $stop );
+	}
+
+	/**
+	 * Validates a spam check order candidate.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param mixed $order Order candidate.
+	 *
+	 * @return bool Whether the candidate is a permutation of the known check slugs.
+	 */
+	private function is_valid_spam_check_order( $order ): bool {
+		if ( ! is_array( $order ) || 3 !== count( $order ) ) {
+			return false;
+		}
+
+		foreach ( $order as $check ) {
+			if ( ! is_string( $check ) ) {
+				return false;
+			}
+		}
+
+		return ! array_diff( $order, self::DEFAULT_SPAM_CHECK_ORDER ) && ! array_diff( self::DEFAULT_SPAM_CHECK_ORDER, $order );
 	}
 
 	/**
@@ -201,7 +350,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	 * @return array
 	 */
 	public function add_tooltip( $tooltips ) {
-		$tooltips['enableGFZeroSpam'] = esc_html__( 'Enable to fight spam using a simple, effective method that is more effective than the built-in anti-spam honeypot.', 'gravity-forms-zero-spam' );
+		$tooltips['enableGFZeroSpam'] = esc_html__( 'Enable to fight spam using a simple, effective method that is more effective than the built-in anti-spam honeypot.', 'gravity-forms-zero-spam' ) . ' ' . esc_html__( 'When Zero Spam is disabled in the global plugin settings, all spam checks are turned off for every form and this setting has no effect.', 'gravity-forms-zero-spam' );
 
 		return $tooltips;
 	}
@@ -353,6 +502,7 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 					],
 				],
 			],
+			$this->get_spam_check_order_section(),
 			[
 				'title'       => esc_html__( 'Spam Report Email', 'gravity-forms-zero-spam' ),
 				'description' => $spam_report_description,
@@ -511,7 +661,78 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 			$sections = $this->email_rejection_settings->add_settings_section( $sections );
 		}
 
+		if ( $this->shield_silent_captcha ) {
+			$sections = $this->shield_silent_captcha->add_plugin_settings_fields( $sections );
+		}
+
 		return $sections;
+	}
+
+	/**
+	 * Builds the Spam Check Order settings section.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return array Section config.
+	 */
+	private function get_spam_check_order_section(): array {
+		$check_choices = [
+			[
+				'label' => esc_html__( 'Zero Spam token', 'gravity-forms-zero-spam' ),
+				'value' => 'token',
+			],
+			[
+				'label' => esc_html__( 'Shield silentCAPTCHA', 'gravity-forms-zero-spam' ),
+				'value' => 'shield',
+			],
+			[
+				'label' => esc_html__( 'AI Spam Review', 'gravity-forms-zero-spam' ),
+				'value' => 'ai',
+			],
+		];
+
+		$availability_notes = [];
+
+		if ( ! $this->shield_silent_captcha || ! $this->shield_silent_captcha->is_shield_available() ) {
+			$availability_notes[] = esc_html__( 'Shield Security is not active — this check is skipped.', 'gravity-forms-zero-spam' );
+		}
+
+		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
+			$availability_notes[] = esc_html__( 'AI Spam Review is not configured — this check is skipped.', 'gravity-forms-zero-spam' );
+		}
+
+		$order_description = implode( ' ', $availability_notes );
+		$position_labels   = [
+			esc_html__( 'First check', 'gravity-forms-zero-spam' ),
+			esc_html__( 'Second check', 'gravity-forms-zero-spam' ),
+			esc_html__( 'Third check', 'gravity-forms-zero-spam' ),
+		];
+		$fields            = [];
+
+		foreach ( $position_labels as $index => $label ) {
+			$fields[] = [
+				'label'         => $label,
+				'type'          => 'select',
+				'name'          => 'gf_zero_spam_check_order_' . ( $index + 1 ),
+				'default_value' => self::DEFAULT_SPAM_CHECK_ORDER[ $index ],
+				'choices'       => $check_choices,
+				'description'   => $order_description,
+			];
+		}
+
+		$fields[] = [
+			'label'         => esc_html__( 'Stop after first detection', 'gravity-forms-zero-spam' ),
+			'type'          => 'toggle',
+			'name'          => 'gf_zero_spam_stop_after_first_detection',
+			'default_value' => '1',
+			'description'   => esc_html__( 'When enabled, remaining checks are skipped once a check flags a submission as spam. When disabled, every check still runs and records its verdict as an entry note; a flagged submission is never restored by a later check.', 'gravity-forms-zero-spam' ),
+		];
+
+		return [
+			'title'       => esc_html__( 'Spam Check Order', 'gravity-forms-zero-spam' ),
+			'description' => esc_html__( 'Controls the order in which the spam checks run during form submission. Unavailable checks keep their position and are skipped.', 'gravity-forms-zero-spam' ),
+			'fields'      => $fields,
+		];
 	}
 
 	/**
@@ -527,8 +748,55 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		if ( $this->email_rejection_settings ) {
 			$settings = $this->email_rejection_settings->save_rules_from_post( $settings );
 		}
+		if ( $this->shield_silent_captcha ) {
+			$settings = $this->shield_silent_captcha->normalize_plugin_settings( $settings );
+		}
+
+		$settings = $this->normalize_spam_check_order_settings( $settings );
 
 		parent::update_plugin_settings( $settings );
+	}
+
+	/**
+	 * Normalizes the spam check order settings before save.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $settings The settings to save.
+	 *
+	 * @return array The normalized settings.
+	 */
+	private function normalize_spam_check_order_settings( $settings ) {
+		$keys    = [ 'gf_zero_spam_check_order_1', 'gf_zero_spam_check_order_2', 'gf_zero_spam_check_order_3' ];
+		$present = false;
+
+		foreach ( $keys as $key ) {
+			if ( array_key_exists( $key, $settings ) ) {
+				$present = true;
+				break;
+			}
+		}
+
+		if ( ! $present ) {
+			return $settings;
+		}
+
+		$order = [];
+
+		foreach ( $keys as $key ) {
+			$order[] = rgar( $settings, $key );
+		}
+
+		// Any duplicate or invalid combination falls back to the default order.
+		if ( ! $this->is_valid_spam_check_order( $order ) ) {
+			$order = self::DEFAULT_SPAM_CHECK_ORDER;
+		}
+
+		foreach ( $keys as $index => $key ) {
+			$settings[ $key ] = $order[ $index ];
+		}
+
+		return $settings;
 	}
 
 	/**

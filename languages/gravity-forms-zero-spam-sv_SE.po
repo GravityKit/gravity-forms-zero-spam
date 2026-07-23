@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-06-10 20:08:31+0000\n"
+"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -279,8 +279,8 @@ msgstr ""
 "E-postadressen du angav är inte tillåten. Vänligen använd en annan "
 "e-postadress."
 
-#: includes/class-gf-zero-spam-addon.php:204
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:353
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -288,15 +288,15 @@ msgstr ""
 "Aktivera för att bekämpa skräppost med en enkel, effektiv metod som är mer "
 "effektiv än den inbyggda anti-spam honeypoten."
 
-#: includes/class-gf-zero-spam-addon.php:257
+#: includes/class-gf-zero-spam-addon.php:406
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Förhindra skräppost med Gravity Forms Zero Spam"
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:435
 msgid "Know when entries are flagged as spam."
 msgstr "Vet när poster markeras som skräppost."
 
-#: includes/class-gf-zero-spam-addon.php:287
+#: includes/class-gf-zero-spam-addon.php:436
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -308,7 +308,7 @@ msgstr ""
 "dig en sammanfattning av nyligen inkomna skräppostposter. Om inga "
 "skräppostposter har skickats in skickas ingen rapport."
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:437
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -316,7 +316,7 @@ msgstr ""
 "Den här funktionen fungerar med alla skräppostfilter, inklusive Gravity "
 "Forms skräppost-honeypot, Gravity Forms Zero Spam, reCAPTCHA eller andra."
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:439
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -326,17 +326,17 @@ msgstr ""
 "rapporter alltid enligt det schemalagda intervallet. {{link}}Se hur du "
 "ställer in en ”cron” för att göra detta mer tillförlitligt{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:293
+#: includes/class-gf-zero-spam-addon.php:442
 msgid "Link opens in a new tab"
 msgstr "Länken öppnas i en ny flik"
 
-#: includes/class-gf-zero-spam-addon.php:302
+#: includes/class-gf-zero-spam-addon.php:451
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "Du har mottagit {{total_spam_count}} skräppostposter från följande formulär:"
 
-#: includes/class-gf-zero-spam-addon.php:305
+#: includes/class-gf-zero-spam-addon.php:454
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -345,27 +345,27 @@ msgstr ""
 "{{settings_link}}inställningssidan för Gravity Forms Zero "
 "Spam{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:456
 msgid "The following variables may be used:"
 msgstr "Följande variabler kan användas:"
 
-#: includes/class-gf-zero-spam-addon.php:309
+#: includes/class-gf-zero-spam-addon.php:458
 msgid "The name of this website"
 msgstr "Namn på denna webbplats"
 
-#: includes/class-gf-zero-spam-addon.php:310
+#: includes/class-gf-zero-spam-addon.php:459
 msgid "The email of the site administrator"
 msgstr "E-postadressen till webbplatsadministratören"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:460
 msgid "The total number of spam emails received since the last report."
 msgstr "Totalt antal mottagna skräppostmeddelanden sedan senaste rapporten."
 
-#: includes/class-gf-zero-spam-addon.php:312
+#: includes/class-gf-zero-spam-addon.php:461
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "En lista över formulär och antalet skräppostposter sedan senaste rapporten."
 
-#: includes/class-gf-zero-spam-addon.php:313
+#: includes/class-gf-zero-spam-addon.php:462
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -373,11 +373,11 @@ msgstr ""
 "En länk till inställningssidan för tillägget. Texten inom variablerna blir "
 "länktexten. Se till att inkludera både öppnings- och stängningsvariablerna."
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:467
 msgid "Spam Blocking"
 msgstr "Blockering av skräppost"
 
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -385,115 +385,115 @@ msgstr ""
 "Det går att aktivera eller inaktivera skräppostblockering för varje enskilt "
 "formulär i respektive formulärs inställningar."
 
-#: includes/class-gf-zero-spam-addon.php:322
+#: includes/class-gf-zero-spam-addon.php:471
 msgid "Enable Zero Spam by Default"
 msgstr "Aktivera Zero Spam som standard"
 
-#: includes/class-gf-zero-spam-addon.php:328
+#: includes/class-gf-zero-spam-addon.php:477
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Aktiverad: Lägg till Zero Spam i Gravity Forms-formulär"
 
-#: includes/class-gf-zero-spam-addon.php:332
+#: includes/class-gf-zero-spam-addon.php:481
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Inaktiverad: Använd Gravity Forms inbyggda skräppostskydd"
 
-#: includes/class-gf-zero-spam-addon.php:339
+#: includes/class-gf-zero-spam-addon.php:488
 msgid "Anti-Spam Expiration"
 msgstr "Utgångstid för anti-skräppost"
 
-#: includes/class-gf-zero-spam-addon.php:357
+#: includes/class-gf-zero-spam-addon.php:507
 msgid "Spam Report Email"
 msgstr "E-post för skräppostrapport"
 
-#: includes/class-gf-zero-spam-addon.php:361
+#: includes/class-gf-zero-spam-addon.php:511
 msgid "Spam Report Frequency"
 msgstr "Frekvens för spamrapport"
 
-#: includes/class-gf-zero-spam-addon.php:363
+#: includes/class-gf-zero-spam-addon.php:513
 msgid "How frequently should spam report emails be sent?"
 msgstr "Hur ofta ska spamrapporter skickas via e-post?"
 
-#: includes/class-gf-zero-spam-addon.php:369
+#: includes/class-gf-zero-spam-addon.php:519
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: includes/class-gf-zero-spam-addon.php:373
+#: includes/class-gf-zero-spam-addon.php:523
 msgid "Threshold-Based"
 msgstr "Tröskelbaserad"
 
-#: includes/class-gf-zero-spam-addon.php:377
+#: includes/class-gf-zero-spam-addon.php:527
 msgid "Twice Daily"
 msgstr "Två gånger dagligen"
 
-#: includes/class-gf-zero-spam-addon.php:381
+#: includes/class-gf-zero-spam-addon.php:531
 msgid "Daily"
 msgstr "Dagligen"
 
-#: includes/class-gf-zero-spam-addon.php:385
+#: includes/class-gf-zero-spam-addon.php:535
 msgid "Weekly"
 msgstr "Veckovis"
 
-#: includes/class-gf-zero-spam-addon.php:389
+#: includes/class-gf-zero-spam-addon.php:539
 msgid "Monthly"
 msgstr "Månatligen"
 
-#: includes/class-gf-zero-spam-addon.php:400
+#: includes/class-gf-zero-spam-addon.php:550
 msgid "Spam Entry Threshold"
 msgstr "Tröskel för spamposter"
 
-#: includes/class-gf-zero-spam-addon.php:401
+#: includes/class-gf-zero-spam-addon.php:551
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
 msgstr "En spamrapport kommer att skickas när det angivna antalet spamposter uppnås."
 
-#: includes/class-gf-zero-spam-addon.php:419
+#: includes/class-gf-zero-spam-addon.php:569
 msgid "Entry limit has to be 1 or more."
 msgstr "Begränsningen för poster måste vara 1 eller mer."
 
-#: includes/class-gf-zero-spam-addon.php:425
+#: includes/class-gf-zero-spam-addon.php:575
 msgid "Email Address"
 msgstr "E-postadress"
 
-#: includes/class-gf-zero-spam-addon.php:426
+#: includes/class-gf-zero-spam-addon.php:576
 msgid "Send spam report to this email address."
 msgstr "Skicka spamrapport till denna e-postadress."
 
-#: includes/class-gf-zero-spam-addon.php:436
+#: includes/class-gf-zero-spam-addon.php:586
 msgid "The email entered is invalid."
 msgstr "Den angivna e-postadressen är ogiltig."
 
-#: includes/class-gf-zero-spam-addon.php:450
+#: includes/class-gf-zero-spam-addon.php:600
 msgid "Email Subject"
 msgstr "Ämne för e-post"
 
-#: includes/class-gf-zero-spam-addon.php:452
+#: includes/class-gf-zero-spam-addon.php:602
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Din Gravity Forms spamrapport för {{site_name}}"
 
-#: includes/class-gf-zero-spam-addon.php:465
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Email Message"
 msgstr "E-postmeddelande"
 
-#: includes/class-gf-zero-spam-addon.php:495
+#: includes/class-gf-zero-spam-addon.php:645
 msgid "Send Test Email & Save Settings"
 msgstr "Skicka testmail & spara inställningar"
 
-#: includes/class-gf-zero-spam-addon.php:496
+#: includes/class-gf-zero-spam-addon.php:646
 msgid "Send Email & Save Settings"
 msgstr "Skicka e-post & spara inställningar"
 
-#: includes/class-gf-zero-spam-addon.php:615
+#: includes/class-gf-zero-spam-addon.php:883
 msgid "Once Monthly"
 msgstr "En gång i månaden"
 
-#: includes/class-gf-zero-spam-addon.php:807
+#: includes/class-gf-zero-spam-addon.php:1075
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "spam-post"
 msgstr[1] "spam-poster"
 
-#: includes/class-gf-zero-spam-addon.php:894
+#: includes/class-gf-zero-spam-addon.php:1162
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -503,45 +503,45 @@ msgstr ""
 "ditt formulär. Om formulärinlämningar felaktigt flaggas som spam, försök "
 "öka detta värde. (Standard: 7 dagar)"
 
-#: includes/class-gf-zero-spam-addon.php:898
+#: includes/class-gf-zero-spam-addon.php:1166
 msgid "Expiration length"
 msgstr "Utgångslängd"
 
-#: includes/class-gf-zero-spam-addon.php:910
+#: includes/class-gf-zero-spam-addon.php:1178
 msgid "Expiration unit"
 msgstr "Utgångsenhet"
 
-#: includes/class-gf-zero-spam-addon.php:918
+#: includes/class-gf-zero-spam-addon.php:1186
 msgid "hours"
 msgstr "timmar"
 
-#: includes/class-gf-zero-spam-addon.php:921
+#: includes/class-gf-zero-spam-addon.php:1189
 msgid "days"
 msgstr "dagar"
 
-#: includes/class-gf-zero-spam-addon.php:937
+#: includes/class-gf-zero-spam-addon.php:1205
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "Kort utgångstid kan orsaka falska träffar på webbplatser med "
 "sidcachelagring."
 
-#: includes/class-gf-zero-spam-addon.php:1016
+#: includes/class-gf-zero-spam-addon.php:1284
 msgid "Please enter at least 1 day."
 msgstr "Ange minst 1 dag."
 
-#: includes/class-gf-zero-spam-addon.php:1017
+#: includes/class-gf-zero-spam-addon.php:1285
 msgid "Please enter at least 1 hour."
 msgstr "Ange minst 1 timme."
 
-#: includes/class-gf-zero-spam-addon.php:1023
+#: includes/class-gf-zero-spam-addon.php:1291
 msgid "Please select hours or days."
 msgstr "Välj timmar eller dagar."
 
-#: includes/class-gf-zero-spam-addon.php:1028
+#: includes/class-gf-zero-spam-addon.php:1296
 msgid "The maximum expiration is 90 days."
 msgstr "Maximal utgångstid är 90 dagar."
 
-#: includes/class-gf-zero-spam-addon.php:1030
+#: includes/class-gf-zero-spam-addon.php:1298
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "Maximal utgångstid är 2160 timmar (90 dagar)."
 
@@ -561,39 +561,39 @@ msgstr "Zero Spam är inte aktiverat för detta formulär."
 msgid "Too many requests. Please try again later."
 msgstr "För många förfrågningar. Försök igen senare."
 
-#: includes/class-gf-zero-spam.php:491
-#: includes/class-gf-zero-spam.php:519
+#: includes/class-gf-zero-spam.php:546
+#: includes/class-gf-zero-spam.php:568
 msgid "The submission did not include a spam prevention token."
 msgstr "Inlämningen innehöll ingen spamförebyggande token."
 
-#: includes/class-gf-zero-spam.php:492
+#: includes/class-gf-zero-spam.php:547
 msgid "The spam prevention token format is invalid."
 msgstr "Formatet för spamförebyggande token är ogiltigt."
 
-#: includes/class-gf-zero-spam.php:493
+#: includes/class-gf-zero-spam.php:548
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr "Spamförebyggande token har gått ut. Detta kan orsakas av sidcachelagring."
 
-#: includes/class-gf-zero-spam.php:494
+#: includes/class-gf-zero-spam.php:549
 msgid "The spam prevention token was issued for a different form."
 msgstr "Spamförebyggande token utfärdades för ett annat formulär."
 
-#: includes/class-gf-zero-spam.php:495
+#: includes/class-gf-zero-spam.php:550
 msgid "The spam prevention token signature is invalid."
 msgstr "Signaturen för skräppostförebyggande token är ogiltig."
 
-#: includes/class-gf-zero-spam.php:601
+#: includes/class-gf-zero-spam.php:724
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "Äldre nyckel för skräppostförebyggande accepteras inte längre. Rensa din "
 "sidcache."
 
-#: includes/class-gf-zero-spam.php:607
-#: includes/class-gf-zero-spam.php:611
+#: includes/class-gf-zero-spam.php:730
+#: includes/class-gf-zero-spam.php:734
 msgid "The submitted key is invalid."
 msgstr "Den inskickade nyckeln är ogiltig."
 
-#: includes/class-gf-zero-spam.php:643
+#: includes/class-gf-zero-spam.php:766
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -603,7 +603,7 @@ msgstr ""
 "skräppost. Rensa din sidcache för att säkerställa att alla formulär "
 "använder det nya skyddet. Stödet för äldre versioner upphör den %s."
 
-#: includes/class-gf-zero-spam.php:687
+#: includes/class-gf-zero-spam.php:810
 msgid "This entry has been marked as spam."
 msgstr "Denna post har markerats som skräppost."
 
@@ -960,11 +960,11 @@ msgstr ""
 "Anledningen måste vara kortfattad och får inte citera personuppgifter som "
 "namn eller e-postadresser."
 
-#: includes/class-gf-zero-spam-ai-review.php:1455
+#: includes/class-gf-zero-spam-ai-review.php:1615
 msgid "AI classified this submission as spam."
 msgstr "AI klassificerade denna inlämning som skräppost."
 
-#: includes/class-gf-zero-spam-ai-review.php:1705
+#: includes/class-gf-zero-spam-ai-review.php:1865
 msgid ""
 "Zero Spam: AI recovered this submission as legitimate (confidence "
 "[confidence])."
@@ -972,7 +972,171 @@ msgstr ""
 "Zero Spam: AI återställde denna inlämning som legitim (säkerhet "
 "[confidence])."
 
-#: includes/class-gf-zero-spam-addon.php:300
+#: includes/class-gf-zero-spam-addon.php:353
+msgid ""
+"When Zero Spam is disabled in the global plugin settings, all spam checks "
+"are turned off for every form and this setting has no effect."
+msgstr ""
+"När Zero Spam är inaktiverat i de globala inställningarna för tillägget, "
+"stängs alla spamkontroller av för varje formulär och denna inställning har "
+"ingen effekt."
+
+#: includes/class-gf-zero-spam-addon.php:681
+msgid "Zero Spam token"
+msgstr "Zero Spam-token"
+
+#: includes/class-gf-zero-spam-addon.php:685
+msgid "Shield silentCAPTCHA"
+msgstr "Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-addon.php:689
+msgid "AI Spam Review"
+msgstr "AI Spam Review"
+
+#: includes/class-gf-zero-spam-addon.php:697
+msgid "Shield Security is not active — this check is skipped."
+msgstr "Shield Security är inte aktivt — denna kontroll hoppas över."
+
+#: includes/class-gf-zero-spam-addon.php:701
+msgid "AI Spam Review is not configured — this check is skipped."
+msgstr "AI Spam Review är inte konfigurerad — denna kontroll hoppas över."
+
+#: includes/class-gf-zero-spam-addon.php:706
+msgid "First check"
+msgstr "Första kontrollen"
+
+#: includes/class-gf-zero-spam-addon.php:707
+msgid "Second check"
+msgstr "Andra kontrollen"
+
+#: includes/class-gf-zero-spam-addon.php:708
+msgid "Third check"
+msgstr "Tredje kontrollen"
+
+#: includes/class-gf-zero-spam-addon.php:724
+msgid "Stop after first detection"
+msgstr "Stoppa efter första upptäckt"
+
+#: includes/class-gf-zero-spam-addon.php:728
+msgid ""
+"When enabled, remaining checks are skipped once a check flags a submission "
+"as spam. When disabled, every check still runs and records its verdict as "
+"an entry note; a flagged submission is never restored by a later check."
+msgstr ""
+"När aktiverat hoppas återstående kontroller över när en kontroll flaggar en "
+"inskickning som spam. När inaktiverat körs varje kontroll fortfarande och "
+"registrerar sitt utlåtande som en anteckning; en flaggad inskickning "
+"återställs aldrig av en senare kontroll."
+
+#: includes/class-gf-zero-spam-addon.php:732
+msgid "Spam Check Order"
+msgstr "Ordning för spamkontroller"
+
+#: includes/class-gf-zero-spam-addon.php:733
+msgid ""
+"Controls the order in which the spam checks run during form submission. "
+"Unavailable checks keep their position and are skipped."
+msgstr ""
+"Styr i vilken ordning spamkontrollerna körs vid formulärinskickning. "
+"Otillgängliga kontroller behåller sin position och hoppas över."
+
+#: includes/class-gf-zero-spam-ai-review.php:348
+msgid "AI review also classified this submission as spam (confidence [confidence])."
+msgstr ""
+"AI-granskningen klassificerade också denna inskickning som spam (förtroende "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-ai-review.php:354
+msgid ""
+"AI review classified this submission as legitimate (confidence "
+"[confidence])."
+msgstr ""
+"AI-granskningen klassificerade denna inskickning som legitim (förtroende "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:307
+msgid "This submission was flagged as spam by [filter]."
+msgstr "Denna inskickning flaggades som spam av [filter]."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:362
+msgid "Shield silentCAPTCHA also identified this submission as spam."
+msgstr "Shield silentCAPTCHA identifierade också denna inskickning som spam."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:367
+msgid "Shield silentCAPTCHA did not identify this submission as spam."
+msgstr "Shield silentCAPTCHA identifierade inte denna inskickning som spam."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:429
+msgid "This entry has been marked as spam by [filter]."
+msgstr "Denna post har markerats som spam av [filter]."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:530
+msgid "Enable Shield silentCAPTCHA by Default"
+msgstr "Aktivera Shield silentCAPTCHA som standard"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:574
+msgid "Enable Shield silentCAPTCHA for this form"
+msgstr "Aktivera Shield silentCAPTCHA för detta formulär"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:940
+msgid "This setting is currently overriding the global default setting."
+msgstr ""
+"Denna inställning åsidosätter för närvarande den globala "
+"standardinställningen."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:941
+msgid "This setting is currently inheriting the global default setting."
+msgstr "Denna inställning är för närvarandeverkar den globala standardinställningen."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:990
+msgid "Learn More"
+msgstr "Läs mer"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1102
+msgid ""
+"Runs Shield silentCAPTCHA server-side for this form. No field needs to be "
+"added to the form."
+msgstr ""
+"Kör Shield silentCAPTCHA på serversidan för detta formulär. Inget fält "
+"behöver läggas till i formuläret."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1113
+msgid ""
+"Enable Shield silentCAPTCHA by default for forms. No field needs to be "
+"added to the form. Forms without their own Shield setting will use this "
+"default."
+msgstr ""
+"Aktivera Shield silentCAPTCHA som standard för formulär. Inget fält behöver "
+"läggas till i formuläret. Formulär utan egen Shield-inställning använder "
+"denna standard."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1124
+msgid ""
+"Shield silentCAPTCHA is currently unavailable because Shield Security is "
+"not installed or active. This setting is disabled until Shield becomes "
+"available again."
+msgstr ""
+"Shield silentCAPTCHA är för närvarande inte tillgängligt eftersom Shield "
+"Security inte är installerat eller aktivt. Denna inställning är inaktiverad "
+"tills Shield blir tillgängligt igen."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1135
+msgid ""
+"Shield silentCAPTCHA is available, but Shield's bot threshold is 0, so it "
+"will not flag submissions until that threshold is increased."
+msgstr ""
+"Shield silentCAPTCHA är tillgängligt, men Shields bottröskel är 0, så det "
+"kommer inte att flagga inskickningar förrän tröskeln höjs."
+
+#: includes/class-gf-zero-spam.php:611
+msgid "The Zero Spam token check also flagged this submission: [reason]"
+msgstr "Zero Spam-tokenkontrollen flaggade också denna inskickning: [reason]"
+
+#: includes/class-gf-zero-spam.php:618
+msgid "The Zero Spam token check found a valid token for this submission."
+msgstr "Zero Spam-tokenkontrollen hittade en giltig token för denna inskickning."
+
+#: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms Spam Report"

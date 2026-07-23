@@ -145,6 +145,15 @@ final class GF_Zero_Spam_AI_Review {
 	private static $rescue_notes = [];
 
 	/**
+	 * Request-local review verdicts for already-flagged entries waiting for a note.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var array<int, array{is_spam: bool, confidence: float}>
+	 */
+	private static $review_notes = [];
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.9.0
@@ -167,7 +176,45 @@ final class GF_Zero_Spam_AI_Review {
 			return;
 		}
 
-		add_filter( 'gform_entry_is_spam', [ $this, 'maybe_mark_spam' ], 20, 3 );
+		add_filter( 'gform_entry_is_spam', [ $this, 'maybe_mark_spam' ], $this->addon->get_spam_check_priority( 'ai' ), 3 );
+
+		// Rescue must always see the final token verdict; when AI is not the last
+		// check in the order, defer rescue to a dedicated pass after all three slots.
+		if ( $this->is_rescue_deferred() ) {
+			add_filter( 'gform_entry_is_spam', [ $this, 'maybe_rescue_flagged_entry' ], 18, 3 );
+		}
+	}
+
+	/**
+	 * Determines whether rescue runs in a dedicated late callback instead of the main one.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return bool Whether rescue is deferred.
+	 */
+	private function is_rescue_deferred() {
+		$order = $this->addon->get_spam_check_order();
+
+		return 'ai' !== end( $order );
+	}
+
+	/**
+	 * Rescue-only late pass for orders that place AI before the last check.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param bool  $is_spam Whether the entry is currently spam.
+	 * @param array $form    The form currently being processed.
+	 * @param array $entry   The entry currently being processed.
+	 *
+	 * @return bool The spam verdict.
+	 */
+	public function maybe_rescue_flagged_entry( $is_spam, $form = [], $entry = [] ) {
+		if ( ! $is_spam ) {
+			return $is_spam;
+		}
+
+		return $this->maybe_rescue( $is_spam, $form, $entry );
 	}
 
 	/**
@@ -183,7 +230,15 @@ final class GF_Zero_Spam_AI_Review {
 	 */
 	public function maybe_mark_spam( $is_spam = false, $form = [], $entry = [] ) {
 		if ( $is_spam ) {
-			return $this->maybe_rescue( $is_spam, $form, $entry );
+			if ( ! $this->is_rescue_deferred() ) {
+				$is_spam = $this->maybe_rescue( $is_spam, $form, $entry );
+			}
+
+			if ( $is_spam ) {
+				$this->maybe_review_already_flagged( $form, $entry );
+			}
+
+			return $is_spam;
 		}
 
 		if ( ! $this->is_submission_eligible( $form, $entry ) ) {
@@ -197,6 +252,111 @@ final class GF_Zero_Spam_AI_Review {
 		$result = $this->classify( $form, $entry );
 
 		return $this->apply_classification_result( $result, $is_spam, $form );
+	}
+
+	/**
+	 * Reviews an already-flagged submission and records the verdict when the stop setting is off.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $form  The form currently being processed.
+	 * @param array $entry The entry currently being processed.
+	 *
+	 * @return void
+	 */
+	private function maybe_review_already_flagged( $form, $entry ) {
+		if ( $this->addon->should_stop_after_first_detection() ) {
+			return;
+		}
+
+		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
+			return;
+		}
+
+		if ( ! $this->is_submission_eligible( $form, $entry ) ) {
+			return;
+		}
+
+		$result = $this->classify( $form, $entry );
+
+		if ( empty( $result['verdict'] ) || ! is_array( $result['verdict'] ) ) {
+			return;
+		}
+
+		$this->schedule_review_note( $form, $result );
+	}
+
+	/**
+	 * Schedules an entry note recording the AI decision for an already-flagged entry.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $form   The form currently being processed.
+	 * @param array $result Classification result with the final is_spam decision.
+	 *
+	 * @return void
+	 */
+	private function schedule_review_note( $form, $result ) {
+		$form_id = $this->get_form_id( $form );
+
+		if ( $form_id < 1 ) {
+			return;
+		}
+
+		// Record the final decision (threshold + gf_zero_spam_ai_result applied), not the raw model verdict.
+		self::$review_notes[ $form_id ] = [
+			'is_spam'    => ! empty( $result['is_spam'] ),
+			'confidence' => (float) $result['verdict']['confidence'],
+		];
+
+		add_action( 'gform_entry_created', [ $this, 'add_review_verdict_note' ], 20, 2 );
+	}
+
+	/**
+	 * Adds the scheduled AI verdict note to the created entry.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @param array $entry The created entry.
+	 * @param array $form  The submitted form.
+	 *
+	 * @return void
+	 */
+	public function add_review_verdict_note( $entry, $form ) {
+		$form_id = $this->get_form_id( $form );
+
+		if ( empty( self::$review_notes[ $form_id ] ) ) {
+			return;
+		}
+
+		$context = self::$review_notes[ $form_id ];
+		unset( self::$review_notes[ $form_id ] );
+
+		if ( empty( self::$review_notes ) ) {
+			remove_action( 'gform_entry_created', [ $this, 'add_review_verdict_note' ], 20 );
+		}
+
+		$entry_id = (int) rgar( $entry, 'id' );
+
+		if ( $entry_id < 1 ) {
+			return;
+		}
+
+		if ( $context['is_spam'] ) {
+			$note = strtr(
+				/* translators: placeholders in [brackets] are replaced and must not be translated. */
+				__( 'AI review also classified this submission as spam (confidence [confidence]).', 'gravity-forms-zero-spam' ),
+				[ '[confidence]' => $this->format_log_number( $context['confidence'] ) ]
+			);
+		} else {
+			$note = strtr(
+				/* translators: placeholders in [brackets] are replaced and must not be translated. */
+				__( 'AI review classified this submission as legitimate (confidence [confidence]).', 'gravity-forms-zero-spam' ),
+				[ '[confidence]' => $this->format_log_number( $context['confidence'] ) ]
+			);
+		}
+
+		GFAPI::add_note( $entry_id, 0, self::SPAM_FILTER_NAME, sanitize_text_field( $note ) );
 	}
 
 	/**

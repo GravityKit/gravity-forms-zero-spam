@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 7.0.0
+Tested up to: 7.0.2
 Stable tag: 1.9.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -30,6 +30,10 @@ Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're g
 ### Enable or disable filtering per form
 
 If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
+
+## Works with Shield Security
+
+If the [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its silentCAPTCHA bot detection can be used as an additional spam signal — enabled globally or per form. You can also control the order in which the plugin's spam checks run.
 
 ## Spam report emails
 
@@ -87,18 +91,11 @@ No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https:/
 
 New form submissions will not be checked using Zero Spam.
 
-= I only want on specific forms. How do I disable Zero Spam by default? =
+= I only want Zero Spam on specific forms. How do I do that? =
 
-To disable by default, from your Dashboard, go to Forms, then Settings, then the Zero Spam tab. Under the "Enable Zero Spam by Default" setting, choose "Disabled", then save the form.
+Keep the global "Enable Zero Spam by Default" setting set to "Enabled", then disable "Prevent spam using Gravity Forms Zero Spam" on each form you want excluded (see the previous question).
 
-Once you have saved the setting, to enable for specific forms:
-
-1. Go to the form
-2. Click on Settings
-3. Under Form Options, enable "Prevent spam using Gravity Forms Zero Spam". _Don't see the setting? This feature requires Gravity Forms 2.5 or newer._
-4. Save the settings
-
-Now that form will use Zero Spam.
+Note: choosing "Disabled" for "Enable Zero Spam by Default" turns off all of the plugin's spam checks for every form — per-form settings have no effect while the global setting is disabled.
 
 = All entries are going to spam. What can I do? =
 
@@ -110,10 +107,17 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= 1.10.0 on July 23, 2026 =
+
+* Added: [Shield silentCAPTCHA integration](https://www.gravitykit.com/docs/gravity-forms-zero-spam/shield-silentcaptcha/) that uses Shield Security's bot detection as an additional spam signal, with a global default and per-form override (thanks, Paul Goodchild!)
+* Added: "Spam Check Order" settings - control the order the token check, Shield silentCAPTCHA, and AI Spam Review run in, and whether to stop checking once a submission is flagged as spam
+* Fixed: A spam verdict from one check could be cleared when the submitter was logged in with entry-editing permissions
+* API: Added `gf_zero_spam_check_order` filter to modify the order in which spam checks run
+
 = 1.9.0 on June 11, 2026 =
 
-* Added: AI-powered spam review that flags likely spam the token check missed and recovers legitimate submissions it blocked by mistake, powered by an AI service (OpenAI, Anthropic, or Google Gemini) connected in WordPress 7.0+.
-* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report.
+* Added: AI-powered spam review that flags likely spam the token check missed and recovers legitimate submissions it blocked by mistake, powered by an AI service (OpenAI, Anthropic, or Google Gemini) connected in WordPress 7.0+
+* Fixed: Per-form links in the spam report email opened an empty Spam entries list, hiding spam received after the previous report
 
 = 1.8.0 on April 16, 2026 =
 

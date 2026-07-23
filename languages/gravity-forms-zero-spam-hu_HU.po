@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-06-10 20:08:30+0000\n"
+"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -281,8 +281,8 @@ msgstr ""
 "Az általad megadott e-mail cím nem engedélyezett. Kérjük, használj másik "
 "e-mail címet."
 
-#: includes/class-gf-zero-spam-addon.php:204
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:353
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
@@ -290,15 +290,15 @@ msgstr ""
 "Engedélyezd a spam elleni küzdelemhez egy egyszerű, hatékony módszert, "
 "amely hatékonyabb, mint a beépített spam elleni mézesmadzag."
 
-#: includes/class-gf-zero-spam-addon.php:257
+#: includes/class-gf-zero-spam-addon.php:406
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Spam megelőzése a Gravity Forms Zero Spam segítségével"
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:435
 msgid "Know when entries are flagged as spam."
 msgstr "Tudd, mikor vannak a bejegyzések spamként megjelölve."
 
-#: includes/class-gf-zero-spam-addon.php:287
+#: includes/class-gf-zero-spam-addon.php:436
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -310,7 +310,7 @@ msgstr ""
 "összefoglalót ad a közelmúlt spam bejegyzéseiről. Ha nem érkezett spam "
 "bejegyzés, nem kerül jelentés kiküldésre."
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:437
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -318,7 +318,7 @@ msgstr ""
 "Ez a funkció bármilyen spam szűrővel működik, beleértve a Gravity Forms "
 "spam csapdát, a Gravity Forms Zero Spam-et, a reCAPTCHA-t vagy másokat."
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:439
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -328,17 +328,17 @@ msgstr ""
 "az ütemezett gyakorisággal kerülnek kiküldésre. {{link}}Nézze meg, hogyan "
 "állíthat be „cron”-t a megbízhatóbb működéshez{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:293
+#: includes/class-gf-zero-spam-addon.php:442
 msgid "Link opens in a new tab"
 msgstr "A link új lapon nyílik meg"
 
-#: includes/class-gf-zero-spam-addon.php:302
+#: includes/class-gf-zero-spam-addon.php:451
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "A következő űrlap(oka)tól {{total_spam_count}} spam bejegyzést kaptál:"
 
-#: includes/class-gf-zero-spam-addon.php:305
+#: includes/class-gf-zero-spam-addon.php:454
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -347,27 +347,27 @@ msgstr ""
 "{{settings_link}}Gravity Forms Zero Spam beállítások "
 "oldalára{{/settings_link}}."
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:456
 msgid "The following variables may be used:"
 msgstr "A következő változók használhatók:"
 
-#: includes/class-gf-zero-spam-addon.php:309
+#: includes/class-gf-zero-spam-addon.php:458
 msgid "The name of this website"
 msgstr "Ennek a webhelynek a neve"
 
-#: includes/class-gf-zero-spam-addon.php:310
+#: includes/class-gf-zero-spam-addon.php:459
 msgid "The email of the site administrator"
 msgstr "A webhely adminisztrátorának e-mail címe"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:460
 msgid "The total number of spam emails received since the last report."
 msgstr "A spam e-mailek összesített száma az utolsó jelentés óta."
 
-#: includes/class-gf-zero-spam-addon.php:312
+#: includes/class-gf-zero-spam-addon.php:461
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "Az űrlapok listája és a spam bejegyzések száma az utolsó jelentés óta."
 
-#: includes/class-gf-zero-spam-addon.php:313
+#: includes/class-gf-zero-spam-addon.php:462
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
@@ -375,11 +375,11 @@ msgstr ""
 "Link a bővítmény beállítási oldalára. A változók közötti szöveg lesz a link "
 "szövege. Ügyelj arra, hogy mind a nyitó, mind a záró változó benne legyen."
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:467
 msgid "Spam Blocking"
 msgstr "Spam blokkolás"
 
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
@@ -387,63 +387,63 @@ msgstr ""
 "Lehetőség van a spam blokkolás engedélyezésére vagy letiltására űrlaponként "
 "az egyes űrlapok beállításaiban."
 
-#: includes/class-gf-zero-spam-addon.php:322
+#: includes/class-gf-zero-spam-addon.php:471
 msgid "Enable Zero Spam by Default"
 msgstr "Zero Spam alapértelmezett engedélyezése"
 
-#: includes/class-gf-zero-spam-addon.php:328
+#: includes/class-gf-zero-spam-addon.php:477
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "Engedélyezve: Zero Spam hozzáadása a Gravity Forms űrlapokhoz"
 
-#: includes/class-gf-zero-spam-addon.php:332
+#: includes/class-gf-zero-spam-addon.php:481
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "Letiltva: Gravity Forms beépített spam megelőzésének használata"
 
-#: includes/class-gf-zero-spam-addon.php:339
+#: includes/class-gf-zero-spam-addon.php:488
 msgid "Anti-Spam Expiration"
 msgstr "Anti-spam lejárati idő"
 
-#: includes/class-gf-zero-spam-addon.php:357
+#: includes/class-gf-zero-spam-addon.php:507
 msgid "Spam Report Email"
 msgstr "Spam jelentés e-mail"
 
-#: includes/class-gf-zero-spam-addon.php:361
+#: includes/class-gf-zero-spam-addon.php:511
 msgid "Spam Report Frequency"
 msgstr "Spam jelentés gyakorisága"
 
-#: includes/class-gf-zero-spam-addon.php:363
+#: includes/class-gf-zero-spam-addon.php:513
 msgid "How frequently should spam report emails be sent?"
 msgstr "Milyen gyakran küldjünk spam jelentés e-maileket?"
 
-#: includes/class-gf-zero-spam-addon.php:369
+#: includes/class-gf-zero-spam-addon.php:519
 msgid "Disabled"
 msgstr "Letiltva"
 
-#: includes/class-gf-zero-spam-addon.php:373
+#: includes/class-gf-zero-spam-addon.php:523
 msgid "Threshold-Based"
 msgstr "Küszöbérték alapú"
 
-#: includes/class-gf-zero-spam-addon.php:377
+#: includes/class-gf-zero-spam-addon.php:527
 msgid "Twice Daily"
 msgstr "Naponta kétszer"
 
-#: includes/class-gf-zero-spam-addon.php:381
+#: includes/class-gf-zero-spam-addon.php:531
 msgid "Daily"
 msgstr "Naponta"
 
-#: includes/class-gf-zero-spam-addon.php:385
+#: includes/class-gf-zero-spam-addon.php:535
 msgid "Weekly"
 msgstr "Hetente"
 
-#: includes/class-gf-zero-spam-addon.php:389
+#: includes/class-gf-zero-spam-addon.php:539
 msgid "Monthly"
 msgstr "Havonta"
 
-#: includes/class-gf-zero-spam-addon.php:400
+#: includes/class-gf-zero-spam-addon.php:550
 msgid "Spam Entry Threshold"
 msgstr "Spam bejegyzés küszöbérték"
 
-#: includes/class-gf-zero-spam-addon.php:401
+#: includes/class-gf-zero-spam-addon.php:551
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
@@ -451,53 +451,53 @@ msgstr ""
 "Spam jelentés e-mail kerül elküldésre, amikor az adott számú spam bejegyzés "
 "eléri a megadott értéket."
 
-#: includes/class-gf-zero-spam-addon.php:419
+#: includes/class-gf-zero-spam-addon.php:569
 msgid "Entry limit has to be 1 or more."
 msgstr "A bejegyzés limitnek 1 vagy annál nagyobbnak kell lennie."
 
-#: includes/class-gf-zero-spam-addon.php:425
+#: includes/class-gf-zero-spam-addon.php:575
 msgid "Email Address"
 msgstr "E-mail cím"
 
-#: includes/class-gf-zero-spam-addon.php:426
+#: includes/class-gf-zero-spam-addon.php:576
 msgid "Send spam report to this email address."
 msgstr "Ide az e-mail címre küldje a spam jelentést."
 
-#: includes/class-gf-zero-spam-addon.php:436
+#: includes/class-gf-zero-spam-addon.php:586
 msgid "The email entered is invalid."
 msgstr "A megadott e-mail cím érvénytelen."
 
-#: includes/class-gf-zero-spam-addon.php:450
+#: includes/class-gf-zero-spam-addon.php:600
 msgid "Email Subject"
 msgstr "E-mail tárgy"
 
-#: includes/class-gf-zero-spam-addon.php:452
+#: includes/class-gf-zero-spam-addon.php:602
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "Az Ön Gravity Forms spam jelentése a(z) {{site_name}} oldalról"
 
-#: includes/class-gf-zero-spam-addon.php:465
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Email Message"
 msgstr "E-mail üzenet"
 
-#: includes/class-gf-zero-spam-addon.php:495
+#: includes/class-gf-zero-spam-addon.php:645
 msgid "Send Test Email & Save Settings"
 msgstr "Teszt e-mail küldése és beállítások mentése"
 
-#: includes/class-gf-zero-spam-addon.php:496
+#: includes/class-gf-zero-spam-addon.php:646
 msgid "Send Email & Save Settings"
 msgstr "E-mail küldése és beállítások mentése"
 
-#: includes/class-gf-zero-spam-addon.php:615
+#: includes/class-gf-zero-spam-addon.php:883
 msgid "Once Monthly"
 msgstr "Havonta egyszer"
 
-#: includes/class-gf-zero-spam-addon.php:807
+#: includes/class-gf-zero-spam-addon.php:1075
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "spam bejegyzés"
 msgstr[1] "spam bejegyzések"
 
-#: includes/class-gf-zero-spam-addon.php:894
+#: includes/class-gf-zero-spam-addon.php:1162
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -507,45 +507,45 @@ msgstr ""
 "az űrlapját. Ha az űrlapbeküldések tévesen spamként vannak jelölve, "
 "próbálja meg növelni ezt az értéket. (Alapértelmezett: 7 nap)"
 
-#: includes/class-gf-zero-spam-addon.php:898
+#: includes/class-gf-zero-spam-addon.php:1166
 msgid "Expiration length"
 msgstr "Lejárati idő hossza"
 
-#: includes/class-gf-zero-spam-addon.php:910
+#: includes/class-gf-zero-spam-addon.php:1178
 msgid "Expiration unit"
 msgstr "Lejárati egység"
 
-#: includes/class-gf-zero-spam-addon.php:918
+#: includes/class-gf-zero-spam-addon.php:1186
 msgid "hours"
 msgstr "óra"
 
-#: includes/class-gf-zero-spam-addon.php:921
+#: includes/class-gf-zero-spam-addon.php:1189
 msgid "days"
 msgstr "nap"
 
-#: includes/class-gf-zero-spam-addon.php:937
+#: includes/class-gf-zero-spam-addon.php:1205
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr ""
 "A rövid lejárati idők hamis pozitív eredményeket okozhatnak oldal "
 "gyorsítótárazás esetén."
 
-#: includes/class-gf-zero-spam-addon.php:1016
+#: includes/class-gf-zero-spam-addon.php:1284
 msgid "Please enter at least 1 day."
 msgstr "Kérem, adjon meg legalább 1 napot."
 
-#: includes/class-gf-zero-spam-addon.php:1017
+#: includes/class-gf-zero-spam-addon.php:1285
 msgid "Please enter at least 1 hour."
 msgstr "Kérem, adjon meg legalább 1 órát."
 
-#: includes/class-gf-zero-spam-addon.php:1023
+#: includes/class-gf-zero-spam-addon.php:1291
 msgid "Please select hours or days."
 msgstr "Kérem, válasszon órát vagy napot."
 
-#: includes/class-gf-zero-spam-addon.php:1028
+#: includes/class-gf-zero-spam-addon.php:1296
 msgid "The maximum expiration is 90 days."
 msgstr "A maximális lejárati idő 90 nap."
 
-#: includes/class-gf-zero-spam-addon.php:1030
+#: includes/class-gf-zero-spam-addon.php:1298
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "A maximális lejárati idő 2160 óra (90 nap)."
 
@@ -565,41 +565,41 @@ msgstr "A Zero Spam nincs engedélyezve ezen az űrlapon."
 msgid "Too many requests. Please try again later."
 msgstr "Túl sok kérés. Kérjük, próbálja újra később."
 
-#: includes/class-gf-zero-spam.php:491
-#: includes/class-gf-zero-spam.php:519
+#: includes/class-gf-zero-spam.php:546
+#: includes/class-gf-zero-spam.php:568
 msgid "The submission did not include a spam prevention token."
 msgstr "A beküldés nem tartalmazott spam elleni védelmi tokent."
 
-#: includes/class-gf-zero-spam.php:492
+#: includes/class-gf-zero-spam.php:547
 msgid "The spam prevention token format is invalid."
 msgstr "A spam elleni védelem token formátuma érvénytelen."
 
-#: includes/class-gf-zero-spam.php:493
+#: includes/class-gf-zero-spam.php:548
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr ""
 "A spam elleni védelem token lejárt. Ennek oka lehet az oldal "
 "gyorsítótárazása."
 
-#: includes/class-gf-zero-spam.php:494
+#: includes/class-gf-zero-spam.php:549
 msgid "The spam prevention token was issued for a different form."
 msgstr "A spam elleni védelem tokent másik űrlaphoz adták ki."
 
-#: includes/class-gf-zero-spam.php:495
+#: includes/class-gf-zero-spam.php:550
 msgid "The spam prevention token signature is invalid."
 msgstr "A kéretlen levelek elleni védelem token aláírása érvénytelen."
 
-#: includes/class-gf-zero-spam.php:601
+#: includes/class-gf-zero-spam.php:724
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr ""
 "A régi kéretlen levelek elleni védelem kulcsát már nem fogadjuk el. Kérjük, "
 "ürítse ki az oldal gyorsítótárát."
 
-#: includes/class-gf-zero-spam.php:607
-#: includes/class-gf-zero-spam.php:611
+#: includes/class-gf-zero-spam.php:730
+#: includes/class-gf-zero-spam.php:734
 msgid "The submitted key is invalid."
 msgstr "A megadott kulcs érvénytelen."
 
-#: includes/class-gf-zero-spam.php:643
+#: includes/class-gf-zero-spam.php:766
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -610,7 +610,7 @@ msgstr ""
 "összes űrlap az új védelmet használja. A régi támogatás %s dátummal ér "
 "véget."
 
-#: includes/class-gf-zero-spam.php:687
+#: includes/class-gf-zero-spam.php:810
 msgid "This entry has been marked as spam."
 msgstr "Ez a bejegyzés kéretlen levélként lett megjelölve."
 
@@ -967,11 +967,11 @@ msgstr ""
 "Az indoklás legyen tömör, és ne idézzen személyes adatokat, például neveket "
 "vagy e-mail címeket."
 
-#: includes/class-gf-zero-spam-ai-review.php:1455
+#: includes/class-gf-zero-spam-ai-review.php:1615
 msgid "AI classified this submission as spam."
 msgstr "Az MI ezt a beküldést spamként osztályozta."
 
-#: includes/class-gf-zero-spam-ai-review.php:1705
+#: includes/class-gf-zero-spam-ai-review.php:1865
 msgid ""
 "Zero Spam: AI recovered this submission as legitimate (confidence "
 "[confidence])."
@@ -979,7 +979,171 @@ msgstr ""
 "Zero Spam: Az MI helyreállította ezt a beküldést jogosként (bizalom "
 "[confidence])."
 
-#: includes/class-gf-zero-spam-addon.php:300
+#: includes/class-gf-zero-spam-addon.php:353
+msgid ""
+"When Zero Spam is disabled in the global plugin settings, all spam checks "
+"are turned off for every form and this setting has no effect."
+msgstr ""
+"Amikor a Zero Spam le van tiltva a globális bővítménybeállításokban, minden "
+"spamellenőrzés ki van kapcsolva minden űrlapnál, és ez a beállítás nincs "
+"hatással."
+
+#: includes/class-gf-zero-spam-addon.php:681
+msgid "Zero Spam token"
+msgstr "Zero Spam token"
+
+#: includes/class-gf-zero-spam-addon.php:685
+msgid "Shield silentCAPTCHA"
+msgstr "Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-addon.php:689
+msgid "AI Spam Review"
+msgstr "AI Spam Review"
+
+#: includes/class-gf-zero-spam-addon.php:697
+msgid "Shield Security is not active — this check is skipped."
+msgstr "A Shield Security nincs aktiválva — ez az ellenőrzés kihagyásra kerül."
+
+#: includes/class-gf-zero-spam-addon.php:701
+msgid "AI Spam Review is not configured — this check is skipped."
+msgstr "Az AI Spam Review nincs konfigurálva — ez az ellenőrzés kihagyásra kerül."
+
+#: includes/class-gf-zero-spam-addon.php:706
+msgid "First check"
+msgstr "Első ellenőrzés"
+
+#: includes/class-gf-zero-spam-addon.php:707
+msgid "Second check"
+msgstr "Második ellenőrzés"
+
+#: includes/class-gf-zero-spam-addon.php:708
+msgid "Third check"
+msgstr "Harmadik ellenőrzés"
+
+#: includes/class-gf-zero-spam-addon.php:724
+msgid "Stop after first detection"
+msgstr "Megállás az első észlelés után"
+
+#: includes/class-gf-zero-spam-addon.php:728
+msgid ""
+"When enabled, remaining checks are skipped once a check flags a submission "
+"as spam. When disabled, every check still runs and records its verdict as "
+"an entry note; a flagged submission is never restored by a later check."
+msgstr ""
+"Ha engedélyezve van, a további ellenőrzések kihagyásra kerülnek, ha egy "
+"ellenőrzés spamnek jelöl egy beküldést. Ha le van tiltva, minden ellenőrzés "
+"fut és naplózza az eredményét megjegyzésként; egy jelölt beküldést későbbi "
+"ellenőrzés nem állít vissza."
+
+#: includes/class-gf-zero-spam-addon.php:732
+msgid "Spam Check Order"
+msgstr "Spamellenőrzés sorrendje"
+
+#: includes/class-gf-zero-spam-addon.php:733
+msgid ""
+"Controls the order in which the spam checks run during form submission. "
+"Unavailable checks keep their position and are skipped."
+msgstr ""
+"Irányítja a spamellenőrzések sorrendjét az űrlap beküldésekor. A nem "
+"elérhető ellenőrzések megőrzik pozíciójukat és kihagyásra kerülnek."
+
+#: includes/class-gf-zero-spam-ai-review.php:348
+msgid "AI review also classified this submission as spam (confidence [confidence])."
+msgstr ""
+"Az AI értékelés ezt a beküldést is spamnek minősítette (bizalom: "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-ai-review.php:354
+msgid ""
+"AI review classified this submission as legitimate (confidence "
+"[confidence])."
+msgstr ""
+"Az AI értékelés ezt a beküldést jogosnak minősítette (bizalom: "
+"[confidence])."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:307
+msgid "This submission was flagged as spam by [filter]."
+msgstr "Ezt a beküldést a(z) [filter] spamnek jelölte."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:362
+msgid "Shield silentCAPTCHA also identified this submission as spam."
+msgstr "A Shield silentCAPTCHA szintén spamnek azonosította ezt a beküldést."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:367
+msgid "Shield silentCAPTCHA did not identify this submission as spam."
+msgstr "A Shield silentCAPTCHA nem azonosította spamnek ezt a beküldést."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:429
+msgid "This entry has been marked as spam by [filter]."
+msgstr "Ezt a bejegyzést a(z) [filter] spamként jelölte meg."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:530
+msgid "Enable Shield silentCAPTCHA by Default"
+msgstr "Alapértelmezetten engedélyezze a Shield silentCAPTCHA-t"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:574
+msgid "Enable Shield silentCAPTCHA for this form"
+msgstr "Shield silentCAPTCHA engedélyezése ezen az űrlapon"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:940
+msgid "This setting is currently overriding the global default setting."
+msgstr "Ez a beállítás jelenleg felülbírálja a globális alapértelmezett beállítást."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:941
+msgid "This setting is currently inheriting the global default setting."
+msgstr "Ez a beállítás jelenleg örökli a globális alapértelmezett beállítást."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:990
+msgid "Learn More"
+msgstr "Tudjon meg többet"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1102
+msgid ""
+"Runs Shield silentCAPTCHA server-side for this form. No field needs to be "
+"added to the form."
+msgstr ""
+"A Shield silentCAPTCHA szerveroldali futtatása ezen az űrlapon. Nem kell "
+"mezőt hozzáadni az űrlaphoz."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1113
+msgid ""
+"Enable Shield silentCAPTCHA by default for forms. No field needs to be "
+"added to the form. Forms without their own Shield setting will use this "
+"default."
+msgstr ""
+"A Shield silentCAPTCHA alapértelmezett engedélyezése űrlapokhoz. Nem kell "
+"mezőt hozzáadni az űrlaphoz. Azok az űrlapok, amelyek nem rendelkeznek "
+"saját Shield beállítással, ezt az alapértelmezettet használják."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1124
+msgid ""
+"Shield silentCAPTCHA is currently unavailable because Shield Security is "
+"not installed or active. This setting is disabled until Shield becomes "
+"available again."
+msgstr ""
+"A Shield silentCAPTCHA jelenleg nem elérhető, mert a Shield Security nincs "
+"telepítve vagy aktív. Ez a beállítás ki van kapcsolva, amíg a Shield újra "
+"elérhető nem lesz."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1135
+msgid ""
+"Shield silentCAPTCHA is available, but Shield's bot threshold is 0, so it "
+"will not flag submissions until that threshold is increased."
+msgstr ""
+"A Shield silentCAPTCHA elérhető, de a Shield bot küszöbértéke 0, így nem "
+"jelöli meg a beküldéseket, amíg a küszöbérték nem nő."
+
+#: includes/class-gf-zero-spam.php:611
+msgid "The Zero Spam token check also flagged this submission: [reason]"
+msgstr ""
+"A Zero Spam token ellenőrzés is jelzett problémát ennél a beküldésnél: "
+"[reason]"
+
+#: includes/class-gf-zero-spam.php:618
+msgid "The Zero Spam token check found a valid token for this submission."
+msgstr "A Zero Spam token ellenőrzés érvényes tokent talált ennél a beküldésnél."
+
+#: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms kéretlen levelek jelentése"
