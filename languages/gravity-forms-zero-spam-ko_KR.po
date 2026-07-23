@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-06-10 20:08:30+0000\n"
+"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -264,22 +264,22 @@ msgid ""
 "address."
 msgstr "입력한 이메일 주소는 허용되지 않습니다. 다른 이메일 주소를 사용하세요."
 
-#: includes/class-gf-zero-spam-addon.php:204
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:353
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "Enable to fight spam using a simple, effective method that is more "
 "effective than the built-in anti-spam honeypot."
 msgstr "내장된 스팸 방지 허니팟보다 더 효과적인 간단하고 효과적인 방법으로 스팸을 방지하려면 활성화하세요."
 
-#: includes/class-gf-zero-spam-addon.php:257
+#: includes/class-gf-zero-spam-addon.php:406
 msgid "Prevent spam using Gravity Forms Zero Spam"
 msgstr "Gravity Forms Zero Spam을 사용하여 스팸 방지"
 
-#: includes/class-gf-zero-spam-addon.php:286
+#: includes/class-gf-zero-spam-addon.php:435
 msgid "Know when entries are flagged as spam."
 msgstr "항목이 스팸으로 표시될 때 알 수 있습니다."
 
-#: includes/class-gf-zero-spam-addon.php:287
+#: includes/class-gf-zero-spam-addon.php:436
 msgid ""
 "It can be hard to know when entries are being marked as spam. When enabled, "
 "this feature will send an automated spam report, giving you a summary of "
@@ -289,7 +289,7 @@ msgstr ""
 "항목이 스팸으로 표시될 때 알기 어려울 수 있습니다. 이 기능을 활성화하면 최근 스팸 항목 요약을 포함한 자동 스팸 보고서를 "
 "전송합니다. 스팸 항목이 제출되지 않은 경우 보고서는 전송되지 않습니다."
 
-#: includes/class-gf-zero-spam-addon.php:288
+#: includes/class-gf-zero-spam-addon.php:437
 msgid ""
 "This feature works with any spam filter, including the Gravity Forms spam "
 "honeypot, Gravity Forms Zero Spam, reCAPTCHA, or others."
@@ -297,7 +297,7 @@ msgstr ""
 "이 기능은 Gravity Forms 스팸 허니팟, Gravity Forms 제로 스팸, reCAPTCHA 등 모든 스팸 필터와 함께 "
 "작동합니다."
 
-#: includes/class-gf-zero-spam-addon.php:290
+#: includes/class-gf-zero-spam-addon.php:439
 msgid ""
 "Note: Depending on site traffic, time-based reports may not always be sent "
 "at the scheduled frequency. {{link}}See how to set up a \"cron\" to make "
@@ -306,17 +306,17 @@ msgstr ""
 "참고: 사이트 트래픽에 따라 시간 기반 보고서가 항상 예약된 빈도에 전송되지 않을 수 있습니다. {{link}}더 신뢰할 수 있도록 "
 "\"cron\" 설정 방법 보기{{/link}}."
 
-#: includes/class-gf-zero-spam-addon.php:293
+#: includes/class-gf-zero-spam-addon.php:442
 msgid "Link opens in a new tab"
 msgstr "링크가 새 탭에서 열립니다"
 
-#: includes/class-gf-zero-spam-addon.php:302
+#: includes/class-gf-zero-spam-addon.php:451
 msgid ""
 "You have received {{total_spam_count}} spam entries from the following "
 "form(s):"
 msgstr "다음 양식에서 {{total_spam_count}}개의 스팸 항목을 받았습니다:"
 
-#: includes/class-gf-zero-spam-addon.php:305
+#: includes/class-gf-zero-spam-addon.php:454
 msgid ""
 "To modify or disable this email, visit {{settings_link}}the Gravity Forms "
 "Zero Spam settings page{{/settings_link}}."
@@ -324,150 +324,150 @@ msgstr ""
 "이 이메일을 수정하거나 비활성화하려면 {{settings_link}}Gravity Forms 제로 스팸 설정 "
 "페이지{{/settings_link}}를 방문하세요."
 
-#: includes/class-gf-zero-spam-addon.php:307
+#: includes/class-gf-zero-spam-addon.php:456
 msgid "The following variables may be used:"
 msgstr "다음 변수를 사용할 수 있습니다:"
 
-#: includes/class-gf-zero-spam-addon.php:309
+#: includes/class-gf-zero-spam-addon.php:458
 msgid "The name of this website"
 msgstr "이 웹사이트의 이름"
 
-#: includes/class-gf-zero-spam-addon.php:310
+#: includes/class-gf-zero-spam-addon.php:459
 msgid "The email of the site administrator"
 msgstr "사이트 관리자 이메일"
 
-#: includes/class-gf-zero-spam-addon.php:311
+#: includes/class-gf-zero-spam-addon.php:460
 msgid "The total number of spam emails received since the last report."
 msgstr "마지막 보고서 이후 받은 스팸 이메일 총 수"
 
-#: includes/class-gf-zero-spam-addon.php:312
+#: includes/class-gf-zero-spam-addon.php:461
 msgid "A list of forms and the number of spam entries since the last report."
 msgstr "마지막 보고서 이후 스팸 항목 수와 함께 양식 목록"
 
-#: includes/class-gf-zero-spam-addon.php:313
+#: includes/class-gf-zero-spam-addon.php:462
 msgid ""
 "A link to the plugin settings page. Text inside the variables will be the "
 "link text. Make sure to include both the opening and closing variables."
 msgstr "플러그인 설정 페이지로 연결되는 링크입니다. 변수 안의 텍스트가 링크 텍스트가 됩니다. 여는 변수와 닫는 변수를 모두 포함해야 합니다."
 
-#: includes/class-gf-zero-spam-addon.php:318
+#: includes/class-gf-zero-spam-addon.php:467
 msgid "Spam Blocking"
 msgstr "스팸 차단"
 
-#: includes/class-gf-zero-spam-addon.php:319
+#: includes/class-gf-zero-spam-addon.php:468
 msgid ""
 "It is possible to enable or disable spam blocking on a per-form basis "
 "inside each form's settings."
 msgstr "각 양식 설정 내에서 양식별로 스팸 차단을 활성화하거나 비활성화할 수 있습니다."
 
-#: includes/class-gf-zero-spam-addon.php:322
+#: includes/class-gf-zero-spam-addon.php:471
 msgid "Enable Zero Spam by Default"
 msgstr "기본적으로 제로 스팸 활성화"
 
-#: includes/class-gf-zero-spam-addon.php:328
+#: includes/class-gf-zero-spam-addon.php:477
 msgid "Enabled: Add Zero Spam to Gravity Forms forms"
 msgstr "활성화됨: Gravity Forms 양식에 제로 스팸 추가"
 
-#: includes/class-gf-zero-spam-addon.php:332
+#: includes/class-gf-zero-spam-addon.php:481
 msgid "Disabled: Use Gravity Forms' built-in spam prevention"
 msgstr "비활성화됨: Gravity Forms 내장 스팸 방지 사용"
 
-#: includes/class-gf-zero-spam-addon.php:339
+#: includes/class-gf-zero-spam-addon.php:488
 msgid "Anti-Spam Expiration"
 msgstr "스팸 방지 만료"
 
-#: includes/class-gf-zero-spam-addon.php:357
+#: includes/class-gf-zero-spam-addon.php:507
 msgid "Spam Report Email"
 msgstr "스팸 보고서 이메일"
 
-#: includes/class-gf-zero-spam-addon.php:361
+#: includes/class-gf-zero-spam-addon.php:511
 msgid "Spam Report Frequency"
 msgstr "스팸 보고서 빈도"
 
-#: includes/class-gf-zero-spam-addon.php:363
+#: includes/class-gf-zero-spam-addon.php:513
 msgid "How frequently should spam report emails be sent?"
 msgstr "스팸 보고서 이메일을 얼마나 자주 보내야 합니까?"
 
-#: includes/class-gf-zero-spam-addon.php:369
+#: includes/class-gf-zero-spam-addon.php:519
 msgid "Disabled"
 msgstr "사용 안 함"
 
-#: includes/class-gf-zero-spam-addon.php:373
+#: includes/class-gf-zero-spam-addon.php:523
 msgid "Threshold-Based"
 msgstr "임계값 기반"
 
-#: includes/class-gf-zero-spam-addon.php:377
+#: includes/class-gf-zero-spam-addon.php:527
 msgid "Twice Daily"
 msgstr "하루 두 번"
 
-#: includes/class-gf-zero-spam-addon.php:381
+#: includes/class-gf-zero-spam-addon.php:531
 msgid "Daily"
 msgstr "매일"
 
-#: includes/class-gf-zero-spam-addon.php:385
+#: includes/class-gf-zero-spam-addon.php:535
 msgid "Weekly"
 msgstr "매주"
 
-#: includes/class-gf-zero-spam-addon.php:389
+#: includes/class-gf-zero-spam-addon.php:539
 msgid "Monthly"
 msgstr "매월"
 
-#: includes/class-gf-zero-spam-addon.php:400
+#: includes/class-gf-zero-spam-addon.php:550
 msgid "Spam Entry Threshold"
 msgstr "스팸 항목 임계값"
 
-#: includes/class-gf-zero-spam-addon.php:401
+#: includes/class-gf-zero-spam-addon.php:551
 msgid ""
 "A spam report email will be sent when the specified number of spam entries "
 "is reached."
 msgstr "지정된 스팸 항목 수에 도달하면 스팸 보고서 이메일이 전송됩니다."
 
-#: includes/class-gf-zero-spam-addon.php:419
+#: includes/class-gf-zero-spam-addon.php:569
 msgid "Entry limit has to be 1 or more."
 msgstr "항목 제한은 1 이상이어야 합니다."
 
-#: includes/class-gf-zero-spam-addon.php:425
+#: includes/class-gf-zero-spam-addon.php:575
 msgid "Email Address"
 msgstr "이메일 주소"
 
-#: includes/class-gf-zero-spam-addon.php:426
+#: includes/class-gf-zero-spam-addon.php:576
 msgid "Send spam report to this email address."
 msgstr "이 이메일 주소로 스팸 보고서를 보냅니다."
 
-#: includes/class-gf-zero-spam-addon.php:436
+#: includes/class-gf-zero-spam-addon.php:586
 msgid "The email entered is invalid."
 msgstr "입력한 이메일이 올바르지 않습니다."
 
-#: includes/class-gf-zero-spam-addon.php:450
+#: includes/class-gf-zero-spam-addon.php:600
 msgid "Email Subject"
 msgstr "이메일 제목"
 
-#: includes/class-gf-zero-spam-addon.php:452
+#: includes/class-gf-zero-spam-addon.php:602
 msgid "Your Gravity Forms spam report for {{site_name}}"
 msgstr "{{site_name}}의 Gravity Forms 스팸 보고서입니다"
 
-#: includes/class-gf-zero-spam-addon.php:465
+#: includes/class-gf-zero-spam-addon.php:615
 msgid "Email Message"
 msgstr "이메일 메시지"
 
-#: includes/class-gf-zero-spam-addon.php:495
+#: includes/class-gf-zero-spam-addon.php:645
 msgid "Send Test Email & Save Settings"
 msgstr "테스트 이메일 보내기 및 설정 저장"
 
-#: includes/class-gf-zero-spam-addon.php:496
+#: includes/class-gf-zero-spam-addon.php:646
 msgid "Send Email & Save Settings"
 msgstr "이메일 보내기 및 설정 저장"
 
-#: includes/class-gf-zero-spam-addon.php:615
+#: includes/class-gf-zero-spam-addon.php:883
 msgid "Once Monthly"
 msgstr "한 달에 한 번"
 
-#: includes/class-gf-zero-spam-addon.php:807
+#: includes/class-gf-zero-spam-addon.php:1075
 msgid "spam entry"
 msgid_plural "spam entries"
 msgstr[0] "스팸 항목"
 
-#: includes/class-gf-zero-spam-addon.php:894
+#: includes/class-gf-zero-spam-addon.php:1162
 msgid ""
 "How long a spam prevention token remains valid after a visitor loads your "
 "form. If form submissions are being incorrectly flagged as spam, try "
@@ -476,43 +476,43 @@ msgstr ""
 "방문자가 양식을 불러온 후 스팸 방지 토큰이 유효한 기간입니다. 양식 제출이 잘못 스팸으로 표시되는 경우 이 값을 늘려보십시오. "
 "(기본값: 7일)"
 
-#: includes/class-gf-zero-spam-addon.php:898
+#: includes/class-gf-zero-spam-addon.php:1166
 msgid "Expiration length"
 msgstr "만료 기간"
 
-#: includes/class-gf-zero-spam-addon.php:910
+#: includes/class-gf-zero-spam-addon.php:1178
 msgid "Expiration unit"
 msgstr "만료 단위"
 
-#: includes/class-gf-zero-spam-addon.php:918
+#: includes/class-gf-zero-spam-addon.php:1186
 msgid "hours"
 msgstr "시간"
 
-#: includes/class-gf-zero-spam-addon.php:921
+#: includes/class-gf-zero-spam-addon.php:1189
 msgid "days"
 msgstr "일"
 
-#: includes/class-gf-zero-spam-addon.php:937
+#: includes/class-gf-zero-spam-addon.php:1205
 msgid "Short expiration times may cause false positives on sites with page caching."
 msgstr "짧은 만료 시간은 페이지 캐싱이 있는 사이트에서 오탐을 일으킬 수 있습니다."
 
-#: includes/class-gf-zero-spam-addon.php:1016
+#: includes/class-gf-zero-spam-addon.php:1284
 msgid "Please enter at least 1 day."
 msgstr "최소 1일을 입력해 주세요."
 
-#: includes/class-gf-zero-spam-addon.php:1017
+#: includes/class-gf-zero-spam-addon.php:1285
 msgid "Please enter at least 1 hour."
 msgstr "최소 1시간을 입력해 주세요."
 
-#: includes/class-gf-zero-spam-addon.php:1023
+#: includes/class-gf-zero-spam-addon.php:1291
 msgid "Please select hours or days."
 msgstr "시간 또는 일을 선택해 주세요."
 
-#: includes/class-gf-zero-spam-addon.php:1028
+#: includes/class-gf-zero-spam-addon.php:1296
 msgid "The maximum expiration is 90 days."
 msgstr "최대 만료 기간은 90일입니다."
 
-#: includes/class-gf-zero-spam-addon.php:1030
+#: includes/class-gf-zero-spam-addon.php:1298
 msgid "The maximum expiration is 2160 hours (90 days)."
 msgstr "최대 만료 기간은 2160시간(90일)입니다."
 
@@ -532,37 +532,37 @@ msgstr "이 양식에는 Zero Spam이 활성화되어 있지 않습니다."
 msgid "Too many requests. Please try again later."
 msgstr "요청이 너무 많습니다. 나중에 다시 시도해 주세요."
 
-#: includes/class-gf-zero-spam.php:491
-#: includes/class-gf-zero-spam.php:519
+#: includes/class-gf-zero-spam.php:546
+#: includes/class-gf-zero-spam.php:568
 msgid "The submission did not include a spam prevention token."
 msgstr "제출에 스팸 방지 토큰이 포함되어 있지 않습니다."
 
-#: includes/class-gf-zero-spam.php:492
+#: includes/class-gf-zero-spam.php:547
 msgid "The spam prevention token format is invalid."
 msgstr "스팸 방지 토큰 형식이 올바르지 않습니다."
 
-#: includes/class-gf-zero-spam.php:493
+#: includes/class-gf-zero-spam.php:548
 msgid "The spam prevention token has expired. This may be caused by page caching."
 msgstr "스팸 방지 토큰이 만료되었습니다. 이는 페이지 캐싱으로 인해 발생할 수 있습니다."
 
-#: includes/class-gf-zero-spam.php:494
+#: includes/class-gf-zero-spam.php:549
 msgid "The spam prevention token was issued for a different form."
 msgstr "스팸 방지 토큰이 다른 양식에 발급되었습니다."
 
-#: includes/class-gf-zero-spam.php:495
+#: includes/class-gf-zero-spam.php:550
 msgid "The spam prevention token signature is invalid."
 msgstr "스팸 방지 토큰 서명이 유효하지 않습니다."
 
-#: includes/class-gf-zero-spam.php:601
+#: includes/class-gf-zero-spam.php:724
 msgid "Legacy spam prevention key no longer accepted. Please clear your page cache."
 msgstr "더 이상 이전 스팸 방지 키를 사용할 수 없습니다. 페이지 캐시를 삭제해 주세요."
 
-#: includes/class-gf-zero-spam.php:607
-#: includes/class-gf-zero-spam.php:611
+#: includes/class-gf-zero-spam.php:730
+#: includes/class-gf-zero-spam.php:734
 msgid "The submitted key is invalid."
 msgstr "제출된 키가 유효하지 않습니다."
 
-#: includes/class-gf-zero-spam.php:643
+#: includes/class-gf-zero-spam.php:766
 msgid ""
 "Gravity Forms Zero Spam has been upgraded with improved spam protection. "
 "Please clear your page cache to ensure all forms use the new protection. "
@@ -571,7 +571,7 @@ msgstr ""
 "Gravity Forms Zero Spam이 향상된 스팸 방지 기능으로 업그레이드되었습니다. 모든 양식이 새 보호 기능을 사용하도록 "
 "페이지 캐시를 삭제해 주세요. 이전 지원은 %s에 종료됩니다."
 
-#: includes/class-gf-zero-spam.php:687
+#: includes/class-gf-zero-spam.php:810
 msgid "This entry has been marked as spam."
 msgstr "이 항목은 스팸으로 표시되었습니다."
 
@@ -877,17 +877,164 @@ msgid ""
 "or email addresses."
 msgstr "이유는 간결해야 하며 이름이나 이메일 주소와 같은 개인 데이터를 인용해서는 안 됩니다."
 
-#: includes/class-gf-zero-spam-ai-review.php:1455
+#: includes/class-gf-zero-spam-ai-review.php:1615
 msgid "AI classified this submission as spam."
 msgstr "AI가 이 제출물을 스팸으로 분류했습니다."
 
-#: includes/class-gf-zero-spam-ai-review.php:1705
+#: includes/class-gf-zero-spam-ai-review.php:1865
 msgid ""
 "Zero Spam: AI recovered this submission as legitimate (confidence "
 "[confidence])."
 msgstr "제로 스팸: AI가 이 제출물을 합법적인 것으로 복구했습니다(신뢰도 [confidence])."
 
-#: includes/class-gf-zero-spam-addon.php:300
+#: includes/class-gf-zero-spam-addon.php:353
+msgid ""
+"When Zero Spam is disabled in the global plugin settings, all spam checks "
+"are turned off for every form and this setting has no effect."
+msgstr "글로벌 플러그인 설정에서 Zero Spam이 비활성화되면 모든 스팸 검사가 모든 양식에 대해 꺼지며 이 설정은 영향을 미치지 않습니다."
+
+#: includes/class-gf-zero-spam-addon.php:681
+msgid "Zero Spam token"
+msgstr "Zero Spam 토큰"
+
+#: includes/class-gf-zero-spam-addon.php:685
+msgid "Shield silentCAPTCHA"
+msgstr "Shield silentCAPTCHA"
+
+#: includes/class-gf-zero-spam-addon.php:689
+msgid "AI Spam Review"
+msgstr "AI 스팸 검토"
+
+#: includes/class-gf-zero-spam-addon.php:697
+msgid "Shield Security is not active — this check is skipped."
+msgstr "Shield Security가 활성화되어 있지 않으므로 이 검사는 건너뜁니다."
+
+#: includes/class-gf-zero-spam-addon.php:701
+msgid "AI Spam Review is not configured — this check is skipped."
+msgstr "AI 스팸 검토가 구성되어 있지 않으므로 이 검사는 건너뜁니다."
+
+#: includes/class-gf-zero-spam-addon.php:706
+msgid "First check"
+msgstr "첫 번째 검사"
+
+#: includes/class-gf-zero-spam-addon.php:707
+msgid "Second check"
+msgstr "두 번째 검사"
+
+#: includes/class-gf-zero-spam-addon.php:708
+msgid "Third check"
+msgstr "세 번째 검사"
+
+#: includes/class-gf-zero-spam-addon.php:724
+msgid "Stop after first detection"
+msgstr "첫 번째 탐지 후 중지"
+
+#: includes/class-gf-zero-spam-addon.php:728
+msgid ""
+"When enabled, remaining checks are skipped once a check flags a submission "
+"as spam. When disabled, every check still runs and records its verdict as "
+"an entry note; a flagged submission is never restored by a later check."
+msgstr ""
+"활성화하면, 한 검사가 제출물을 스팸으로 표시하면 나머지 검사는 건너뜁니다. 비활성화하면 모든 검사가 여전히 실행되고 결과를 항목 "
+"메모로 기록하며, 표시된 제출물은 이후 검사에 의해 복원되지 않습니다."
+
+#: includes/class-gf-zero-spam-addon.php:732
+msgid "Spam Check Order"
+msgstr "스팸 검사 순서"
+
+#: includes/class-gf-zero-spam-addon.php:733
+msgid ""
+"Controls the order in which the spam checks run during form submission. "
+"Unavailable checks keep their position and are skipped."
+msgstr "양식 제출 중 스팸 검사가 실행되는 순서를 제어합니다. 사용할 수 없는 검사는 위치를 유지하며 건너뜁니다."
+
+#: includes/class-gf-zero-spam-ai-review.php:348
+msgid "AI review also classified this submission as spam (confidence [confidence])."
+msgstr "AI 검토도 이 제출물을 스팸으로 분류했습니다 (신뢰도 [confidence])."
+
+#: includes/class-gf-zero-spam-ai-review.php:354
+msgid ""
+"AI review classified this submission as legitimate (confidence "
+"[confidence])."
+msgstr "AI 검토에서 이 제출물을 정상으로 분류했습니다 (신뢰도 [confidence])."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:307
+msgid "This submission was flagged as spam by [filter]."
+msgstr "이 제출물은 [filter]에 의해 스팸으로 표시되었습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:362
+msgid "Shield silentCAPTCHA also identified this submission as spam."
+msgstr "Shield silentCAPTCHA도 이 제출물을 스팸으로 식별했습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:367
+msgid "Shield silentCAPTCHA did not identify this submission as spam."
+msgstr "Shield silentCAPTCHA는 이 제출물을 스팸으로 식별하지 못했습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:429
+msgid "This entry has been marked as spam by [filter]."
+msgstr "이 항목은 [filter]에 의해 스팸으로 표시되었습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:530
+msgid "Enable Shield silentCAPTCHA by Default"
+msgstr "기본값으로 Shield silentCAPTCHA 활성화"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:574
+msgid "Enable Shield silentCAPTCHA for this form"
+msgstr "이 양식에 대해 Shield silentCAPTCHA 활성화"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:940
+msgid "This setting is currently overriding the global default setting."
+msgstr "이 설정은 현재 전역 기본 설정을 무시하고 있습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:941
+msgid "This setting is currently inheriting the global default setting."
+msgstr "이 설정은 현재 전역 기본 설정을 상속받고 있습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:990
+msgid "Learn More"
+msgstr "자세히 알아보기"
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1102
+msgid ""
+"Runs Shield silentCAPTCHA server-side for this form. No field needs to be "
+"added to the form."
+msgstr "이 양식에 대해 Shield silentCAPTCHA를 서버 측에서 실행합니다. 양식에 필드를 추가할 필요가 없습니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1113
+msgid ""
+"Enable Shield silentCAPTCHA by default for forms. No field needs to be "
+"added to the form. Forms without their own Shield setting will use this "
+"default."
+msgstr ""
+"양식에 대해 기본적으로 Shield silentCAPTCHA를 활성화합니다. 양식에 필드를 추가할 필요가 없습니다. 자체 Shield "
+"설정이 없는 양식은 이 기본 설정을 사용합니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1124
+msgid ""
+"Shield silentCAPTCHA is currently unavailable because Shield Security is "
+"not installed or active. This setting is disabled until Shield becomes "
+"available again."
+msgstr ""
+"Shield Security가 설치되어 있지 않거나 활성화되어 있지 않아 Shield silentCAPTCHA를 현재 사용할 수 "
+"없습니다. Shield가 다시 사용 가능해질 때까지 이 설정은 비활성화됩니다."
+
+#: includes/class-gf-zero-spam-shield-silent-captcha.php:1135
+msgid ""
+"Shield silentCAPTCHA is available, but Shield's bot threshold is 0, so it "
+"will not flag submissions until that threshold is increased."
+msgstr ""
+"Shield silentCAPTCHA는 사용할 수 있지만 Shield의 봇 임계값이 0이므로 임계값이 증가할 때까지 제출을 표시하지 "
+"않습니다."
+
+#: includes/class-gf-zero-spam.php:611
+msgid "The Zero Spam token check also flagged this submission: [reason]"
+msgstr "Zero Spam 토큰 검사에서 이 제출도 표시되었습니다: [reason]"
+
+#: includes/class-gf-zero-spam.php:618
+msgid "The Zero Spam token check found a valid token for this submission."
+msgstr "Zero Spam 토큰 검사에서 이 제출에 대해 유효한 토큰을 찾았습니다."
+
+#: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
 msgid "Gravity Forms Spam Report"
 msgstr "Gravity Forms 스팸 보고서"
