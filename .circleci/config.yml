@@ -39,6 +39,10 @@ jobs:
             npx @gravitykit/gktools npm install
             npx @gravitykit/gktools composer install
       - run:
+          # A Stable tag lagging the plugin header ships nothing to wp.org.
+          name: Verify release version consistency
+          command: npx @gravitykit/gktools verify
+      - run:
           name: Lint
           command: |
             npm run lint
