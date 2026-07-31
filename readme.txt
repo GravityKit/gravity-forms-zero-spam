@@ -107,6 +107,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= TBD =
+
+* Fixed: Multi-page forms fetched an anti-spam token on every Next and Previous click, delaying page navigation on slow servers; the token is now only fetched on final submission and Save and Continue
+
 = 1.10.0 on July 23, 2026 =
 
 * Added: [Shield silentCAPTCHA integration](https://www.gravitykit.com/docs/gravity-forms-zero-spam/shield-silentcaptcha/) that uses Shield Security's bot detection as an additional spam signal, with a global default and per-form override (thanks, Paul Goodchild!)
