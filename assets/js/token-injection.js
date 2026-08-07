@@ -100,6 +100,13 @@
 				return Promise.resolve(data);
 			}
 
+			// The server only checks the token on final submission and Save and Continue,
+			// so page navigation skips the blocking fetch. Skip-list on purpose: an
+			// unknown or missing submissionType must still fetch, never the reverse.
+			if ('next' === data.submissionType || 'previous' === data.submissionType) {
+				return Promise.resolve(data);
+			}
+
 			return fetchToken(cfg).then((token) => {
 				injectToken(data.form, token);
 				return data;
@@ -119,6 +126,17 @@
 
 		formEl.dataset.gfzsBound = '1';
 		formEl.addEventListener('submit', function (e) {
+			// Same skip rule as the GF 2.9+ path: page navigation (target page > 0)
+			// never consumes the token, but Save and Continue (gform_save) does.
+			const targetInput = this.querySelector('input[name="gform_target_page_number_' + cfg.formId + '"]');
+			const saveInput = this.querySelector('input[name="gform_save"]');
+			const isNavigation = targetInput && parseInt(targetInput.value, 10) > 0;
+			const isSave = saveInput && '1' === String(saveInput.value);
+
+			if (isNavigation && !isSave) {
+				return;
+			}
+
 			e.preventDefault();
 
 			fetchToken(cfg).then((token) => {
