@@ -474,4 +474,87 @@ test.describe('Zero Spam — email rejection rules', () => {
         ).toContainText('Thanks for contacting us!');
     });
 
+    test('HP-14: a custom validation message cannot inject scripts into the form', async ({
+        page,
+        request,
+    }) => {
+        await helpers.setEmailRules(request, {
+            enabled: true,
+            message: '<img src=x onerror="window.__zsXss=1">Rejected <strong>here</strong>',
+            rules: [
+                {
+                    type: 'domain',
+                    value: 'xsscheck.test',
+                    action: 'block',
+                    enabled: true,
+                },
+            ],
+        });
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Mallory',
+            input_2: 'mallory@xsscheck.test',
+        });
+
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`)
+        ).toBeVisible();
+
+        await expect(
+            page.locator(`#gform_${formId} [onerror]`),
+            'event handlers must be stripped from the validation message'
+        ).toHaveCount(0);
+        expect(
+            await page.evaluate(() => window.__zsXss),
+            'the payload must not execute'
+        ).toBeUndefined();
+
+        // Safe formatting still survives, so the message stays useful.
+        await expect(
+            page.locator(`#gform_${formId} strong`).filter({ hasText: 'here' })
+        ).toBeVisible();
+    });
+
+    test('HP-15: a per-field validation message cannot inject scripts into the form', async ({
+        page,
+        request,
+    }) => {
+        // The per-field message is the branch that shipped the vulnerability: it
+        // lives in a custom field property Gravity Forms does not sanitize on save.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+        await addFieldRule(page, {
+            type: 'domain',
+            value: 'fieldxss.test',
+            action: 'block',
+        });
+        await page
+            .locator('[data-role="field-message"]')
+            .fill('<img src=x onerror="window.__zsFieldXss=1">Nope <strong>bold</strong>');
+        await saveForm(page);
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Mallory',
+            input_2: 'mallory@fieldxss.test',
+        });
+
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'the field rule must block so the message actually renders'
+        ).toBeVisible();
+        await expect(
+            page.locator(`#gform_${formId} [onerror]`),
+            'event handlers must be stripped from the field message'
+        ).toHaveCount(0);
+        expect(
+            await page.evaluate(() => window.__zsFieldXss),
+            'the payload must not execute'
+        ).toBeUndefined();
+        await expect(
+            page.locator(`#gform_${formId} strong`).filter({ hasText: 'bold' })
+        ).toBeVisible();
+    });
 });

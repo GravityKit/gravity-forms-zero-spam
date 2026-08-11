@@ -112,6 +112,7 @@ You can enable a spam summary report email. This email will be sent to the email
 * Fixed: Email rejection rules added to a specific email field did nothing, with no explanation, when the Email Rejection Rules feature was turned off in the Zero Spam settings; the field now warns and links to the setting
 * Fixed: Regex rejection rules were altered when saved — a leading or trailing period was stripped, and patterns containing `<` were truncated — leaving expressions that could never match
 * Fixed: Regex rejection rules were lowercased before matching, which inverted character classes such as `\D`, `\S`, and `\W` and could block legitimate submissions
+* Improved: HTML in a custom rejection validation message is now filtered before the message is displayed
 
 = 1.10.1 on August 6, 2026 =
 
