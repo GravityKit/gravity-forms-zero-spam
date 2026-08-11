@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later
 msgid ""
 msgstr ""
-"Project-Id-Version: Gravity Forms Zero Spam 1.9.0\n"
+"Project-Id-Version: Gravity Forms Zero Spam 1.10.1\n"
 "Report-Msgid-Bugs-To: https://www.gravitykit.com/support\n"
 "Last-Translator: GravityKit <support@gravitykit.com>\n"
 "Language-Team: GravityKit <support@gravitykit.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-22T08:40:04-04:00\n"
+"POT-Creation-Date: 2026-08-11T11:45:28-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -40,219 +40,225 @@ msgstr ""
 msgid "https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=authoruri"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:171
+#: includes/class-email-rejection-settings.php:203
 msgid "Block, flag, or log email submissions matching specific addresses, domains, or patterns. Rules apply to all email fields unless overridden per field."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:172
+#: includes/class-email-rejection-settings.php:204
 msgid "Flag or log email submissions matching specific addresses, domains, or patterns. Rules apply to all email fields unless overridden per field."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:175
+#: includes/class-email-rejection-settings.php:207
 msgid "Email Rejection Rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:180
+#: includes/class-email-rejection-settings.php:212
 msgid "Enable Email Rejection Rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:186
+#: includes/class-email-rejection-settings.php:218
 msgid "Rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:200
+#: includes/class-email-rejection-settings.php:232
 msgid "Default Validation Message"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:204
+#: includes/class-email-rejection-settings.php:236
 msgid "Shown when action is \"Block\". Can be overridden per email field."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:314
+#: includes/class-email-rejection-settings.php:346
 msgid "Add Rule"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:315
+#: includes/class-email-rejection-settings.php:347
 msgid "Remove"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:316
+#: includes/class-email-rejection-settings.php:348
 msgid "Edit"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:317
+#: includes/class-email-rejection-settings.php:349
 msgid "Enable"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:318
+#: includes/class-email-rejection-settings.php:350
 msgid "Disable"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:319
+#: includes/class-email-rejection-settings.php:351
 msgid "Save"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:320
+#: includes/class-email-rejection-settings.php:352
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:321
+#: includes/class-email-rejection-settings.php:353
 msgid "Domain"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:322
+#: includes/class-email-rejection-settings.php:354
 msgid "Email"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:323
+#: includes/class-email-rejection-settings.php:355
 msgid "Wildcard"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:324
+#: includes/class-email-rejection-settings.php:356
 msgid "Regex"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:325
+#: includes/class-email-rejection-settings.php:357
 msgid "Block"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:326
+#: includes/class-email-rejection-settings.php:358
 msgid "Flag as Spam"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:327
+#: includes/class-email-rejection-settings.php:359
 msgid "Log Only"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:328
+#: includes/class-email-rejection-settings.php:360
 msgid "Type"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:329
+#: includes/class-email-rejection-settings.php:361
 msgid "Value"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:330
+#: includes/class-email-rejection-settings.php:362
 msgid "Action"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:331
+#: includes/class-email-rejection-settings.php:363
 msgid "No rules defined yet."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:332
+#: includes/class-email-rejection-settings.php:364
 msgid "Import Rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:333
+#: includes/class-email-rejection-settings.php:365
 msgid "Paste values, one per line or comma-separated. Auto-detected as Domain or Email type."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:334
+#: includes/class-email-rejection-settings.php:366
 msgid "Import"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:335
+#: includes/class-email-rejection-settings.php:367
 msgid "Remove this rule?"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:336
+#: includes/class-email-rejection-settings.php:368
 msgid "Invalid regular expression."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:337
+#: includes/class-email-rejection-settings.php:369
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:338
+#: includes/class-email-rejection-settings.php:370
 msgid "Please enter a valid domain."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:339
+#. translators: text inside square brackets is replaced with a link and must not be translated.
+#: includes/class-email-rejection-settings.php:372
+msgid "Email Rejection Rules are turned off, so these rules will not run. [link]Turn on Email Rejection Rules[/link] in the Zero Spam settings."
+msgstr ""
+
+#. translators: text inside square brackets is replaced with a link and must not be translated.
+#: includes/class-email-rejection-settings.php:373
 msgid "No valid rules found to import."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:340
+#: includes/class-email-rejection-settings.php:374
 msgid "1 rule imported."
 msgstr ""
 
 #. translators: [count] is the number of rules imported. Do not translate text inside square brackets.
-#: includes/class-email-rejection-settings.php:342
+#: includes/class-email-rejection-settings.php:376
 msgid "[count] rules imported."
 msgstr ""
 
 #. translators: [count] is the number of rules imported. Do not translate text inside square brackets.
-#: includes/class-email-rejection-settings.php:343
+#: includes/class-email-rejection-settings.php:377
 msgid "Skipped 1 invalid value."
 msgstr ""
 
 #. translators: [count] is the number of invalid values skipped. Do not translate text inside square brackets.
-#: includes/class-email-rejection-settings.php:345
+#: includes/class-email-rejection-settings.php:379
 msgid "Skipped [count] invalid values."
 msgstr ""
 
 #. translators: [count] is the number of invalid values skipped. Do not translate text inside square brackets.
-#: includes/class-email-rejection-settings.php:346
+#: includes/class-email-rejection-settings.php:380
 msgid "Some rules use the Block action, which requires Gravity Forms 2.9.15+. These rules are inactive until you update."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:347
+#: includes/class-email-rejection-settings.php:381
 msgid "Upgrading to Gravity Forms 2.9.15 or higher enables the ability to configure rules that block matching form submissions."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:348
+#: includes/class-email-rejection-settings.php:382
 msgid "Requires Gravity Forms 2.9.15+"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:349
+#: includes/class-email-rejection-settings.php:383
 msgid "e.g., spamdomain.com"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:350
+#: includes/class-email-rejection-settings.php:384
 msgid "Enable rejection rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:351
+#: includes/class-email-rejection-settings.php:385
 msgid "Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the global rejection rules."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:352
+#: includes/class-email-rejection-settings.php:386
 msgid "Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the "
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:353
+#: includes/class-email-rejection-settings.php:387
 msgid "global rejection rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:354
+#: includes/class-email-rejection-settings.php:388
 msgid "."
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:355
+#: includes/class-email-rejection-settings.php:389
 msgid "Rule Mode"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:356
+#: includes/class-email-rejection-settings.php:390
 msgid "Inherit global rules + add field-specific rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:357
+#: includes/class-email-rejection-settings.php:391
 msgid "Use only field-specific rules (ignore global)"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:358
+#: includes/class-email-rejection-settings.php:392
 msgid "Field-Specific Rules"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:359
+#: includes/class-email-rejection-settings.php:393
 msgid "Validation Message (optional)"
 msgstr ""
 
-#: includes/class-email-rejection-settings.php:360
+#: includes/class-email-rejection-settings.php:394
 msgid "Leave blank to use the global default message."
 msgstr ""
 
-#: includes/class-email-rejection.php:627
+#: includes/class-email-rejection.php:639
 msgid "The email address you entered is not allowed. Please use a different email address."
 msgstr ""
 
