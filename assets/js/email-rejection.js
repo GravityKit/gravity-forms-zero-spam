@@ -66,6 +66,25 @@
 	}
 
 	/**
+	 * Normalize a typed-in rule value.
+	 *
+	 * Leading/trailing punctuation is stripped from list-style values, but taken
+	 * verbatim for regex, where a leading ".+" or trailing "." is meaningful.
+	 *
+	 * @since TBD
+	 *
+	 * @param {string} type  Rule type.
+	 * @param {string} value Raw input value.
+	 *
+	 * @return {string} Normalized value.
+	 */
+	function normalizeValue( type, value ) {
+		const trimmed = value.trim();
+
+		return type === 'regex' ? trimmed : trimmed.replace( /^[,;.]+|[,;.]+$/g, '' );
+	}
+
+	/**
 	 * Return a placeholder string for the given rule type.
 	 *
 	 * @param {string} type Rule type.
@@ -536,7 +555,7 @@
 			const errEl = foot.querySelector( '[data-role="add-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
+			const value = normalizeValue( type, valueEl.value );
 			const action = actionEl.value;
 
 			if ( ! value ) {
@@ -580,7 +599,7 @@
 			const errEl = row.querySelector( '[data-role="edit-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
+			const value = normalizeValue( type, valueEl.value );
 			const action = actionEl.value;
 
 			const error = validateValue( type, value, t );

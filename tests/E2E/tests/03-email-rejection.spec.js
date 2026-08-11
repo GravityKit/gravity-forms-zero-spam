@@ -384,4 +384,53 @@ test.describe('Zero Spam — email rejection rules', () => {
         ).toBeVisible();
     });
 
+    test('HP-12: regex rules survive the settings save path verbatim', async ({
+        page,
+        request,
+    }) => {
+        // Must go through the real UI: the E2E helper writes the option directly,
+        // so it exercises neither normalizeValue() nor sanitize_rule(), the two
+        // places that were corrupting patterns.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        // A leading "." was stripped as stray punctuation; "<" was stripped as
+        // markup by sanitize_text_field(), breaking lookbehinds.
+        const patterns = ['.+@leadingdot\\.test', '(?<=@)lookbehind\\.test'];
+
+        await page.goto(SETTINGS_URL);
+
+        for (const pattern of patterns) {
+            const addRow = page.locator(
+                '#gf-zero-spam-rule-builder .gf-zero-spam-add-row'
+            );
+
+            await addRow.locator('.gf-zero-spam-type-select').selectOption('regex');
+            await addRow.locator('[data-role="new-value"]').fill(pattern);
+            await addRow.locator('.gf-zero-spam-action-select').selectOption('block');
+            await addRow.locator('[data-action="add"]').click();
+        }
+
+        await page.locator(SAVE_BUTTON).click();
+        await expect(page.locator(SUCCESS_NOTICE)).toContainText('Settings updated.');
+
+        const stored = await helpers.getEmailRules(request);
+        const storedValues = stored.rules.map((rule) => rule.value);
+
+        expect(
+            storedValues,
+            'regex patterns must round-trip through the save path verbatim'
+        ).toEqual(patterns);
+
+        // The customer's pattern, end to end.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: 'bob@leadingdot.test',
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'a pattern starting with "." must block after saving'
+        ).toBeVisible();
+    });
+
 });
