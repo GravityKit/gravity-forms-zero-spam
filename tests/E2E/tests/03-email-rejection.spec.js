@@ -33,6 +33,44 @@ const RULES_PANEL = '#gform_setting_gf_zero_spam_email_rules';
 const SAVE_BUTTON = '#gform-settings-save';
 const SUCCESS_NOTICE = '.alert.gforms_note_success';
 
+const FIELD_PANEL = 'li.email_rejection_setting';
+const FIELD_DISABLED_NOTICE = `${FIELD_PANEL} [data-role="feature-disabled"]`;
+
+/**
+ * Open the Advanced tab of the form's email field (field ID 2) in the editor.
+ * The editor keys field containers by field ID alone, not form ID.
+ */
+async function openEmailFieldAdvanced(page, formId) {
+    await page.goto(`/wp-admin/admin.php?page=gf_edit_forms&id=${formId}`);
+    await page.locator('#field_2').click();
+    await page.getByRole('tab', { name: 'Advanced' }).click();
+    await expect(page.locator(FIELD_PANEL)).toBeVisible();
+}
+
+/**
+ * Add a rule through the per-field rule builder's add row.
+ * The builder renders its rule table only once the field toggle is on.
+ */
+async function addFieldRule(page, { type, value, action }) {
+    const toggle = page.locator('[data-role="field-enabled"]');
+
+    if (!(await toggle.isChecked())) {
+        await page.locator('label[for="gf-zs-field-enabled"]').click();
+    }
+
+    const addRow = page.locator(`${FIELD_PANEL} .gf-zero-spam-add-row`);
+
+    await addRow.locator('.gf-zero-spam-type-select').selectOption(type);
+    await addRow.locator('[data-role="new-value"]').fill(value);
+    await addRow.locator('.gf-zero-spam-action-select').selectOption(action);
+    await addRow.locator('[data-action="add"]').click();
+}
+
+async function saveForm(page) {
+    await page.locator('#ajax-save-form-menu-bar').click();
+    await expect(page.locator('#please_wait_container')).toBeHidden();
+}
+
 async function fillAndSubmit(page, formId, { input_1, input_2 }) {
     await page.locator(`#gform_${formId} input[name="input_1"]`).fill(input_1);
     await page.locator(`#gform_${formId} input[name="input_2"]`).fill(input_2);
@@ -280,4 +318,70 @@ test.describe('Zero Spam — email rejection rules', () => {
         expect(logNotes.length, 'log rule must add an info-typed Zero Spam note').toBeGreaterThan(0);
         expect(logNotes[0].value).toContain('*+log@*');
     });
+
+    test('HP-11: field rules are inert while the feature is off, and the editor says so', async ({
+        page,
+        request,
+    }) => {
+        // The per-field builder renders whether or not the feature is on, so
+        // without the warning its rules look active and silently do nothing.
+        await helpers.setEmailRules(request, { enabled: false, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+
+        const notice = page.locator(FIELD_DISABLED_NOTICE);
+
+        await expect(notice, 'field editor must warn while the feature is off').toBeVisible();
+        await expect(notice).toContainText('will not run');
+        await expect(notice.locator('a')).toHaveAttribute(
+            'href',
+            /subview=gf-zero-spam/
+        );
+
+        // Configure a real field rule through the editor and save it, so the
+        // rest of the test proves enforcement rather than an empty ruleset.
+        await addFieldRule(page, {
+            type: 'domain',
+            value: 'inert.test',
+            action: 'block',
+        });
+        await saveForm(page);
+
+        await openEmailFieldAdvanced(page, formId);
+        await expect(
+            page.locator(`${FIELD_PANEL} tr[data-rule-id]`),
+            'the field rule must persist across a save and reload'
+        ).toHaveCount(1);
+
+        // Feature still off: the saved rule must not stop the submission.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Inert',
+            input_2: `inert+${testId}@inert.test`,
+        });
+        await expect(
+            page.locator(`#gform_confirmation_wrapper_${formId}`),
+            'field rules must not run while the feature is off'
+        ).toContainText('Thanks for contacting us!');
+
+        // Turn the feature on: the same rule now blocks, and the warning is gone.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+        await expect(
+            page.locator(FIELD_DISABLED_NOTICE),
+            'no warning once the feature is on'
+        ).toHaveCount(0);
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Inert',
+            input_2: `inert+${testId}@inert.test`,
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'the same field rule must block once the feature is on'
+        ).toBeVisible();
+    });
+
 });

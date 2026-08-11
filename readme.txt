@@ -107,6 +107,10 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
+= TBD =
+
+* Fixed: Email rejection rules added to a specific email field did nothing, with no explanation, when the Email Rejection Rules feature was turned off in the Zero Spam settings; the field now warns and links to the setting
+
 = 1.10.1 on August 6, 2026 =
 
 * Fixed: Multi-page forms fetched an anti-spam token on every Next and Previous click, delaying page navigation on slow servers; the token is now only fetched on final submission and Save and Continue

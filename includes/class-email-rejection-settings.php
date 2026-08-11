@@ -336,6 +336,8 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			'invalidRegex'                   => __( 'Invalid regular expression.', 'gravity-forms-zero-spam' ),
 			'invalidEmail'                   => __( 'Please enter a valid email address.', 'gravity-forms-zero-spam' ),
 			'invalidDomain'                  => __( 'Please enter a valid domain.', 'gravity-forms-zero-spam' ),
+			// translators: text inside square brackets is replaced with a link and must not be translated.
+			'featureDisabledNotice'          => __( 'Email Rejection Rules are turned off, so these rules will not run. [link]Turn on Email Rejection Rules[/link] in the Zero Spam settings.', 'gravity-forms-zero-spam' ),
 			'importNone'                     => __( 'No valid rules found to import.', 'gravity-forms-zero-spam' ),
 			'importOne'                      => __( '1 rule imported.', 'gravity-forms-zero-spam' ),
 			// translators: [count] is the number of rules imported. Do not translate text inside square brackets.

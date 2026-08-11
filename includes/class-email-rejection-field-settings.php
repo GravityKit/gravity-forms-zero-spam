@@ -77,12 +77,15 @@ class GF_Zero_Spam_Email_Rejection_Field_Settings {
 			$version
 		);
 
+		$addon = GF_Zero_Spam_AddOn::get_instance();
+
 		wp_localize_script(
             'gf-zero-spam',
             'gfZeroSpamEmailRules_field',
             [
 				'targetSelector' => '#gf-zero-spam-field-rule-builder',
 				'blockSupported' => GF_Zero_Spam_Email_Rejection::is_block_supported(),
+				'featureEnabled' => ! empty( $addon->get_plugin_setting( 'gf_zero_spam_email_rejection_enabled' ) ),
 				'settingsUrl'    => admin_url( 'admin.php?page=gf_settings&subview=gf-zero-spam#gform-settings-section-email-rejection-rules' ),
 				'translations'   => GF_Zero_Spam_Email_Rejection_Settings::get_translations(),
 			]
