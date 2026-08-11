@@ -232,7 +232,14 @@ class GF_Zero_Spam_Email_Rejection {
 				continue;
 			}
 
-			$value = strtolower( trim( rgar( $rule, 'value', '' ) ) );
+			$type  = rgar( $rule, 'type' );
+			$value = trim( rgar( $rule, 'value', '' ) );
+
+			// Regex patterns keep their case: lowercasing flips character classes
+			// like \D into \d. match_regex() already matches case-insensitively.
+			if ( 'regex' !== $type ) {
+				$value = strtolower( $value );
+			}
 
 			if ( empty( $value ) ) {
 				continue;
@@ -240,7 +247,7 @@ class GF_Zero_Spam_Email_Rejection {
 
 			$matched = false;
 
-			switch ( rgar( $rule, 'type' ) ) {
+			switch ( $type ) {
 				case 'domain':
 					$matched = self::match_domain( $email, $value );
 					break;

@@ -433,4 +433,45 @@ test.describe('Zero Spam — email rejection rules', () => {
         ).toBeVisible();
     });
 
+    test('HP-13: regex rules match case-sensitively', async ({
+        page,
+        request,
+    }) => {
+        // Lowercasing rule values turned "\D" (non-digit) into "\d" (digit),
+        // inverting the rule and blocking legitimate submissions.
+        await helpers.setEmailRules(request, {
+            enabled: true,
+            rules: [
+                {
+                    type: 'regex',
+                    value: '^\\D.*@caseclass\\.test$',
+                    action: 'block',
+                    enabled: true,
+                },
+            ],
+        });
+
+        // Starts with a letter — \D matches, so this is blocked.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: 'abc@caseclass.test',
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            '\\D must match a non-digit first character'
+        ).toBeVisible();
+
+        // Starts with a digit — \D does not match, so this goes through.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: `1abc+${testId}@caseclass.test`,
+        });
+        await expect(
+            page.locator(`#gform_confirmation_wrapper_${formId}`),
+            '\\D must not match a digit first character'
+        ).toContainText('Thanks for contacting us!');
+    });
+
 });
