@@ -133,7 +133,7 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 * reach output through escaped sinks (the admin builder escapes them in JS;
 	 * entry notes are rendered through wp_kses_post()).
 	 *
-	 * @since TBD
+	 * @since 1.10.2
 	 *
 	 * @param string $type  The rule type.
 	 * @param string $value The raw rule value.

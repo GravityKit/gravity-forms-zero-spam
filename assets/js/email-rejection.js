@@ -71,7 +71,7 @@
 	 * Leading/trailing punctuation is stripped from list-style values, but taken
 	 * verbatim for regex, where a leading ".+" or trailing "." is meaningful.
 	 *
-	 * @since TBD
+	 * @since 1.10.2
 	 *
 	 * @param {string} type  Rule type.
 	 * @param {string} value Raw input value.
@@ -922,7 +922,7 @@
 		/**
 		 * Warn that field rules are inert while the feature is off globally.
 		 *
-		 * @since TBD
+		 * @since 1.10.2
 		 *
 		 * @return {string} HTML string, empty when the feature is enabled.
 		 */

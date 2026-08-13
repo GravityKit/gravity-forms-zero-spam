@@ -2,8 +2,8 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 7.0.3
-Stable tag: 1.10.1
+Tested up to: 7.0.4
+Stable tag: 1.10.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -107,12 +107,13 @@ You can enable a spam summary report email. This email will be sent to the email
 
 == Changelog ==
 
-= TBD =
+= 1.10.2 on August 13, 2026 =
 
-* Fixed: Email rejection rules added to a specific email field did nothing, with no explanation, when the Email Rejection Rules feature was turned off in the Zero Spam settings; the field now warns and links to the setting
-* Fixed: Regex rejection rules were altered when saved — a leading or trailing period was stripped, and patterns containing `<` were truncated — leaving expressions that could never match
-* Fixed: Regex rejection rules were lowercased before matching, which inverted character classes such as `\D`, `\S`, and `\W` and could block legitimate submissions
-* Improved: HTML in a custom rejection validation message is now filtered before the message is displayed
+* Improved: Custom rejection messages now have HTML safely removed before being shown to visitors
+* Fixed: Email rejection rules added to a specific field quietly did nothing when the feature was turned off in the plugin settings — the form editor now lets you know and links to the setting
+* Fixed: Regular expression rejection rules not working as intended:
+  - Rules could change when saved (a starting or ending period was removed, and anything after a `<` was cut off), so they never matched
+  - Rules were checked against lowercased text, which flipped the meaning of patterns like `\D`, `\S`, and `\W` and could block real submissions
 
 = 1.10.1 on August 6, 2026 =
 
