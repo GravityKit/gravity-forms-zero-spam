@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
+"PO-Revision-Date: 2026-08-11 15:46:12+0000\n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 "https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
 "content=authoruri"
 
-#: includes/class-email-rejection-settings.php:171
+#: includes/class-email-rejection-settings.php:203
 msgid ""
 "Block, flag, or log email submissions matching specific addresses, domains, "
 "or patterns. Rules apply to all email fields unless overridden per field."
@@ -46,7 +46,7 @@ msgstr ""
 "특정 이메일 주소, 도메인 또는 패턴과 일치하는 이메일 제출을 차단, 표시 또는 기록합니다. 규칙은 필드별로 재정의하지 않는 한 모든 "
 "이메일 필드에 적용됩니다."
 
-#: includes/class-email-rejection-settings.php:172
+#: includes/class-email-rejection-settings.php:204
 msgid ""
 "Flag or log email submissions matching specific addresses, domains, or "
 "patterns. Rules apply to all email fields unless overridden per field."
@@ -54,165 +54,165 @@ msgstr ""
 "특정 이메일 주소, 도메인 또는 패턴과 일치하는 이메일 제출을 표시 또는 기록합니다. 규칙은 필드별로 재정의하지 않는 한 모든 이메일 "
 "필드에 적용됩니다."
 
-#: includes/class-email-rejection-settings.php:175
+#: includes/class-email-rejection-settings.php:207
 msgid "Email Rejection Rules"
 msgstr "이메일 거부 규칙"
 
-#: includes/class-email-rejection-settings.php:180
+#: includes/class-email-rejection-settings.php:212
 msgid "Enable Email Rejection Rules"
 msgstr "이메일 거부 규칙 활성화"
 
-#: includes/class-email-rejection-settings.php:186
+#: includes/class-email-rejection-settings.php:218
 msgid "Rules"
 msgstr "규칙"
 
-#: includes/class-email-rejection-settings.php:200
+#: includes/class-email-rejection-settings.php:232
 msgid "Default Validation Message"
 msgstr "기본 검증 메시지"
 
-#: includes/class-email-rejection-settings.php:204
+#: includes/class-email-rejection-settings.php:236
 msgid "Shown when action is \"Block\". Can be overridden per email field."
 msgstr "동작이 \"차단\"일 때 표시됩니다. 이메일 필드별로 재정의할 수 있습니다."
 
-#: includes/class-email-rejection-settings.php:314
+#: includes/class-email-rejection-settings.php:346
 msgid "Add Rule"
 msgstr "규칙 추가"
 
-#: includes/class-email-rejection-settings.php:315
+#: includes/class-email-rejection-settings.php:347
 msgid "Remove"
 msgstr "제거"
 
-#: includes/class-email-rejection-settings.php:316
+#: includes/class-email-rejection-settings.php:348
 msgid "Edit"
 msgstr "편집"
 
-#: includes/class-email-rejection-settings.php:317
+#: includes/class-email-rejection-settings.php:349
 msgid "Enable"
 msgstr "활성화"
 
-#: includes/class-email-rejection-settings.php:318
+#: includes/class-email-rejection-settings.php:350
 msgid "Disable"
 msgstr "비활성화"
 
-#: includes/class-email-rejection-settings.php:319
+#: includes/class-email-rejection-settings.php:351
 msgid "Save"
 msgstr "저장"
 
-#: includes/class-email-rejection-settings.php:320
+#: includes/class-email-rejection-settings.php:352
 msgid "Cancel"
 msgstr "취소"
 
-#: includes/class-email-rejection-settings.php:321
+#: includes/class-email-rejection-settings.php:353
 msgid "Domain"
 msgstr "도메인"
 
-#: includes/class-email-rejection-settings.php:322
+#: includes/class-email-rejection-settings.php:354
 msgid "Email"
 msgstr "이메일"
 
-#: includes/class-email-rejection-settings.php:323
+#: includes/class-email-rejection-settings.php:355
 msgid "Wildcard"
 msgstr "와일드카드"
 
-#: includes/class-email-rejection-settings.php:324
+#: includes/class-email-rejection-settings.php:356
 msgid "Regex"
 msgstr "정규식"
 
-#: includes/class-email-rejection-settings.php:325
+#: includes/class-email-rejection-settings.php:357
 msgid "Block"
 msgstr "차단"
 
-#: includes/class-email-rejection-settings.php:326
+#: includes/class-email-rejection-settings.php:358
 msgid "Flag as Spam"
 msgstr "스팸으로 표시"
 
-#: includes/class-email-rejection-settings.php:327
+#: includes/class-email-rejection-settings.php:359
 msgid "Log Only"
 msgstr "로그만"
 
-#: includes/class-email-rejection-settings.php:328
+#: includes/class-email-rejection-settings.php:360
 msgid "Type"
 msgstr "유형"
 
-#: includes/class-email-rejection-settings.php:329
+#: includes/class-email-rejection-settings.php:361
 msgid "Value"
 msgstr "값"
 
-#: includes/class-email-rejection-settings.php:330
+#: includes/class-email-rejection-settings.php:362
 msgid "Action"
 msgstr "동작"
 
-#: includes/class-email-rejection-settings.php:331
+#: includes/class-email-rejection-settings.php:363
 msgid "No rules defined yet."
 msgstr "아직 정의된 규칙이 없습니다."
 
-#: includes/class-email-rejection-settings.php:332
+#: includes/class-email-rejection-settings.php:364
 msgid "Import Rules"
 msgstr "규칙 가져오기"
 
-#: includes/class-email-rejection-settings.php:333
+#: includes/class-email-rejection-settings.php:365
 msgid ""
 "Paste values, one per line or comma-separated. Auto-detected as Domain or "
 "Email type."
 msgstr "값을 줄마다 또는 쉼표로 구분하여 붙여넣기 하세요. 도메인 또는 이메일 유형으로 자동 감지됩니다."
 
-#: includes/class-email-rejection-settings.php:334
+#: includes/class-email-rejection-settings.php:366
 msgid "Import"
 msgstr "가져오기"
 
-#: includes/class-email-rejection-settings.php:335
+#: includes/class-email-rejection-settings.php:367
 msgid "Remove this rule?"
 msgstr "이 규칙을 제거하시겠습니까?"
 
-#: includes/class-email-rejection-settings.php:336
+#: includes/class-email-rejection-settings.php:368
 msgid "Invalid regular expression."
 msgstr "잘못된 정규 표현식입니다."
 
-#: includes/class-email-rejection-settings.php:337
+#: includes/class-email-rejection-settings.php:369
 msgid "Please enter a valid email address."
 msgstr "유효한 이메일 주소를 입력하세요."
 
-#: includes/class-email-rejection-settings.php:338
+#: includes/class-email-rejection-settings.php:370
 msgid "Please enter a valid domain."
 msgstr "유효한 도메인을 입력하세요."
 
-#: includes/class-email-rejection-settings.php:339
+#: includes/class-email-rejection-settings.php:373
 msgid "No valid rules found to import."
 msgstr "가져올 유효한 규칙이 없습니다."
 
-#: includes/class-email-rejection-settings.php:340
+#: includes/class-email-rejection-settings.php:374
 msgid "1 rule imported."
 msgstr "1개 규칙이 가져와졌습니다."
 
-#: includes/class-email-rejection-settings.php:343
+#: includes/class-email-rejection-settings.php:377
 msgid "Skipped 1 invalid value."
 msgstr "1개의 잘못된 값을 건너뛰었습니다."
 
-#: includes/class-email-rejection-settings.php:346
+#: includes/class-email-rejection-settings.php:380
 msgid ""
 "Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
 "These rules are inactive until you update."
 msgstr "일부 규칙은 Gravity Forms 2.9.15+가 필요한 차단 작업을 사용합니다. 이 규칙들은 업데이트할 때까지 비활성 상태입니다."
 
-#: includes/class-email-rejection-settings.php:347
+#: includes/class-email-rejection-settings.php:381
 msgid ""
 "Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
 "configure rules that block matching form submissions."
 msgstr "Gravity Forms 2.9.15 이상으로 업그레이드하면 일치하는 양식 제출을 차단하는 규칙을 구성할 수 있습니다."
 
-#: includes/class-email-rejection-settings.php:348
+#: includes/class-email-rejection-settings.php:382
 msgid "Requires Gravity Forms 2.9.15+"
 msgstr "Gravity Forms 2.9.15+ 필요"
 
-#: includes/class-email-rejection-settings.php:349
+#: includes/class-email-rejection-settings.php:383
 msgid "e.g., spamdomain.com"
 msgstr "예: spamdomain.com"
 
-#: includes/class-email-rejection-settings.php:350
+#: includes/class-email-rejection-settings.php:384
 msgid "Enable rejection rules"
 msgstr "거부 규칙 활성화"
 
-#: includes/class-email-rejection-settings.php:351
+#: includes/class-email-rejection-settings.php:385
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the global rejection rules."
@@ -220,45 +220,45 @@ msgstr ""
 "이 필드에 입력된 이메일을 기반으로 제출을 차단, 표시 또는 기록하는 규칙을 추가하세요. 규칙은 전역 거부 규칙을 확장하거나 대체할 수 "
 "있습니다."
 
-#: includes/class-email-rejection-settings.php:352
+#: includes/class-email-rejection-settings.php:386
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the "
 msgstr "이 필드에 입력된 이메일을 기반으로 제출을 차단, 표시 또는 기록하는 규칙을 추가하세요. 규칙은 "
 
-#: includes/class-email-rejection-settings.php:353
+#: includes/class-email-rejection-settings.php:387
 msgid "global rejection rules"
 msgstr "전역 거부 규칙"
 
-#: includes/class-email-rejection-settings.php:354
+#: includes/class-email-rejection-settings.php:388
 msgid "."
 msgstr "."
 
-#: includes/class-email-rejection-settings.php:355
+#: includes/class-email-rejection-settings.php:389
 msgid "Rule Mode"
 msgstr "규칙 모드"
 
-#: includes/class-email-rejection-settings.php:356
+#: includes/class-email-rejection-settings.php:390
 msgid "Inherit global rules + add field-specific rules"
 msgstr "전역 규칙 상속 + 필드별 규칙 추가"
 
-#: includes/class-email-rejection-settings.php:357
+#: includes/class-email-rejection-settings.php:391
 msgid "Use only field-specific rules (ignore global)"
 msgstr "필드별 규칙만 사용 (전역 무시)"
 
-#: includes/class-email-rejection-settings.php:358
+#: includes/class-email-rejection-settings.php:392
 msgid "Field-Specific Rules"
 msgstr "필드별 규칙"
 
-#: includes/class-email-rejection-settings.php:359
+#: includes/class-email-rejection-settings.php:393
 msgid "Validation Message (optional)"
 msgstr "검증 메시지 (선택 사항)"
 
-#: includes/class-email-rejection-settings.php:360
+#: includes/class-email-rejection-settings.php:394
 msgid "Leave blank to use the global default message."
 msgstr "전역 기본 메시지를 사용하려면 비워 두세요."
 
-#: includes/class-email-rejection.php:627
+#: includes/class-email-rejection.php:639
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -575,11 +575,11 @@ msgstr ""
 msgid "This entry has been marked as spam."
 msgstr "이 항목은 스팸으로 표시되었습니다."
 
-#: includes/class-email-rejection-settings.php:342
+#: includes/class-email-rejection-settings.php:376
 msgid "[count] rules imported."
 msgstr "[count]개의 규칙이 가져와졌습니다."
 
-#: includes/class-email-rejection-settings.php:345
+#: includes/class-email-rejection-settings.php:379
 msgid "Skipped [count] invalid values."
 msgstr "[count]개의 잘못된 값이 건너뛰어졌습니다."
 
@@ -1033,6 +1033,14 @@ msgstr "Zero Spam 토큰 검사에서 이 제출도 표시되었습니다: [reas
 #: includes/class-gf-zero-spam.php:618
 msgid "The Zero Spam token check found a valid token for this submission."
 msgstr "Zero Spam 토큰 검사에서 이 제출에 대해 유효한 토큰을 찾았습니다."
+
+#: includes/class-email-rejection-settings.php:372
+msgid ""
+"Email Rejection Rules are turned off, so these rules will not run. "
+"[link]Turn on Email Rejection Rules[/link] in the Zero Spam settings."
+msgstr ""
+"이메일 거부 규칙이 꺼져 있으므로 이 규칙은 실행되지 않습니다. Zero Spam 설정에서 [link]이메일 거부 규칙 "
+"켜기[/link]를 하세요."
 
 #: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."
