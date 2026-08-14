@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
+"PO-Revision-Date: 2026-08-11 15:46:12+0000\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -40,7 +40,7 @@ msgstr ""
 "https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
 "content=authoruri"
 
-#: includes/class-email-rejection-settings.php:171
+#: includes/class-email-rejection-settings.php:203
 msgid ""
 "Block, flag, or log email submissions matching specific addresses, domains, "
 "or patterns. Rules apply to all email fields unless overridden per field."
@@ -49,7 +49,7 @@ msgstr ""
 "adresser, domäner eller mönster. Regler gäller för alla e-postfält såvida "
 "det inte åsidosätts per fält."
 
-#: includes/class-email-rejection-settings.php:172
+#: includes/class-email-rejection-settings.php:204
 msgid ""
 "Flag or log email submissions matching specific addresses, domains, or "
 "patterns. Rules apply to all email fields unless overridden per field."
@@ -58,103 +58,103 @@ msgstr ""
 "domäner eller mönster. Regler gäller för alla e-postfält såvida det inte "
 "åsidosätts per fält."
 
-#: includes/class-email-rejection-settings.php:175
+#: includes/class-email-rejection-settings.php:207
 msgid "Email Rejection Rules"
 msgstr "Regler för avvisning av e-post"
 
-#: includes/class-email-rejection-settings.php:180
+#: includes/class-email-rejection-settings.php:212
 msgid "Enable Email Rejection Rules"
 msgstr "Aktivera regler för avvisning av e-post"
 
-#: includes/class-email-rejection-settings.php:186
+#: includes/class-email-rejection-settings.php:218
 msgid "Rules"
 msgstr "Regler"
 
-#: includes/class-email-rejection-settings.php:200
+#: includes/class-email-rejection-settings.php:232
 msgid "Default Validation Message"
 msgstr "Standardvalideringsmeddelande"
 
-#: includes/class-email-rejection-settings.php:204
+#: includes/class-email-rejection-settings.php:236
 msgid "Shown when action is \"Block\". Can be overridden per email field."
 msgstr "Visas när åtgärden är \"Blockera\". Kan åsidosättas per e-postfält."
 
-#: includes/class-email-rejection-settings.php:314
+#: includes/class-email-rejection-settings.php:346
 msgid "Add Rule"
 msgstr "Lägg till regel"
 
-#: includes/class-email-rejection-settings.php:315
+#: includes/class-email-rejection-settings.php:347
 msgid "Remove"
 msgstr "Ta bort"
 
-#: includes/class-email-rejection-settings.php:316
+#: includes/class-email-rejection-settings.php:348
 msgid "Edit"
 msgstr "Redigera"
 
-#: includes/class-email-rejection-settings.php:317
+#: includes/class-email-rejection-settings.php:349
 msgid "Enable"
 msgstr "Aktivera"
 
-#: includes/class-email-rejection-settings.php:318
+#: includes/class-email-rejection-settings.php:350
 msgid "Disable"
 msgstr "Inaktivera"
 
-#: includes/class-email-rejection-settings.php:319
+#: includes/class-email-rejection-settings.php:351
 msgid "Save"
 msgstr "Spara"
 
-#: includes/class-email-rejection-settings.php:320
+#: includes/class-email-rejection-settings.php:352
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: includes/class-email-rejection-settings.php:321
+#: includes/class-email-rejection-settings.php:353
 msgid "Domain"
 msgstr "Domän"
 
-#: includes/class-email-rejection-settings.php:322
+#: includes/class-email-rejection-settings.php:354
 msgid "Email"
 msgstr "E-post"
 
-#: includes/class-email-rejection-settings.php:323
+#: includes/class-email-rejection-settings.php:355
 msgid "Wildcard"
 msgstr "Wildcard"
 
-#: includes/class-email-rejection-settings.php:324
+#: includes/class-email-rejection-settings.php:356
 msgid "Regex"
 msgstr "Regex"
 
-#: includes/class-email-rejection-settings.php:325
+#: includes/class-email-rejection-settings.php:357
 msgid "Block"
 msgstr "Blockera"
 
-#: includes/class-email-rejection-settings.php:326
+#: includes/class-email-rejection-settings.php:358
 msgid "Flag as Spam"
 msgstr "Markera som skräppost"
 
-#: includes/class-email-rejection-settings.php:327
+#: includes/class-email-rejection-settings.php:359
 msgid "Log Only"
 msgstr "Endast logg"
 
-#: includes/class-email-rejection-settings.php:328
+#: includes/class-email-rejection-settings.php:360
 msgid "Type"
 msgstr "Typ"
 
-#: includes/class-email-rejection-settings.php:329
+#: includes/class-email-rejection-settings.php:361
 msgid "Value"
 msgstr "Värde"
 
-#: includes/class-email-rejection-settings.php:330
+#: includes/class-email-rejection-settings.php:362
 msgid "Action"
 msgstr "Åtgärd"
 
-#: includes/class-email-rejection-settings.php:331
+#: includes/class-email-rejection-settings.php:363
 msgid "No rules defined yet."
 msgstr "Inga regler har definierats än."
 
-#: includes/class-email-rejection-settings.php:332
+#: includes/class-email-rejection-settings.php:364
 msgid "Import Rules"
 msgstr "Importera regler"
 
-#: includes/class-email-rejection-settings.php:333
+#: includes/class-email-rejection-settings.php:365
 msgid ""
 "Paste values, one per line or comma-separated. Auto-detected as Domain or "
 "Email type."
@@ -162,39 +162,39 @@ msgstr ""
 "Klistra in värden, ett per rad eller kommaseparerade. Typen upptäcks "
 "automatiskt som domän eller e-post."
 
-#: includes/class-email-rejection-settings.php:334
+#: includes/class-email-rejection-settings.php:366
 msgid "Import"
 msgstr "Importera"
 
-#: includes/class-email-rejection-settings.php:335
+#: includes/class-email-rejection-settings.php:367
 msgid "Remove this rule?"
 msgstr "Ta bort denna regel?"
 
-#: includes/class-email-rejection-settings.php:336
+#: includes/class-email-rejection-settings.php:368
 msgid "Invalid regular expression."
 msgstr "Ogiltigt reguljärt uttryck."
 
-#: includes/class-email-rejection-settings.php:337
+#: includes/class-email-rejection-settings.php:369
 msgid "Please enter a valid email address."
 msgstr "Ange en giltig e-postadress."
 
-#: includes/class-email-rejection-settings.php:338
+#: includes/class-email-rejection-settings.php:370
 msgid "Please enter a valid domain."
 msgstr "Ange en giltig domän."
 
-#: includes/class-email-rejection-settings.php:339
+#: includes/class-email-rejection-settings.php:373
 msgid "No valid rules found to import."
 msgstr "Inga giltiga regler hittades att importera."
 
-#: includes/class-email-rejection-settings.php:340
+#: includes/class-email-rejection-settings.php:374
 msgid "1 rule imported."
 msgstr "1 regel importerad."
 
-#: includes/class-email-rejection-settings.php:343
+#: includes/class-email-rejection-settings.php:377
 msgid "Skipped 1 invalid value."
 msgstr "Ignorerade 1 ogiltigt värde."
 
-#: includes/class-email-rejection-settings.php:346
+#: includes/class-email-rejection-settings.php:380
 msgid ""
 "Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
 "These rules are inactive until you update."
@@ -202,7 +202,7 @@ msgstr ""
 "Vissa regler använder Blockera-åtgärden, vilket kräver Gravity Forms "
 "2.9.15+. Dessa regler är inaktiva tills du uppdaterar."
 
-#: includes/class-email-rejection-settings.php:347
+#: includes/class-email-rejection-settings.php:381
 msgid ""
 "Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
 "configure rules that block matching form submissions."
@@ -210,19 +210,19 @@ msgstr ""
 "Uppgradering till Gravity Forms 2.9.15 eller högre möjliggör konfigurering "
 "av regler som blockerar matchande formulärinlämningar."
 
-#: includes/class-email-rejection-settings.php:348
+#: includes/class-email-rejection-settings.php:382
 msgid "Requires Gravity Forms 2.9.15+"
 msgstr "Kräver Gravity Forms 2.9.15+"
 
-#: includes/class-email-rejection-settings.php:349
+#: includes/class-email-rejection-settings.php:383
 msgid "e.g., spamdomain.com"
 msgstr "t.ex. spamdomain.com"
 
-#: includes/class-email-rejection-settings.php:350
+#: includes/class-email-rejection-settings.php:384
 msgid "Enable rejection rules"
 msgstr "Aktivera avvisningsregler"
 
-#: includes/class-email-rejection-settings.php:351
+#: includes/class-email-rejection-settings.php:385
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the global rejection rules."
@@ -231,7 +231,7 @@ msgstr ""
 "på e-postadressen som anges i detta fält. Regler kan utöka eller ersätta de "
 "globala avvisningsreglerna."
 
-#: includes/class-email-rejection-settings.php:352
+#: includes/class-email-rejection-settings.php:386
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the "
@@ -239,39 +239,39 @@ msgstr ""
 "Lägg till regler för att blockera, flagga eller logga inlämningar baserat "
 "på e-postadressen som anges i detta fält. Regler kan utöka eller ersätta "
 
-#: includes/class-email-rejection-settings.php:353
+#: includes/class-email-rejection-settings.php:387
 msgid "global rejection rules"
 msgstr "de globala avvisningsreglerna"
 
-#: includes/class-email-rejection-settings.php:354
+#: includes/class-email-rejection-settings.php:388
 msgid "."
 msgstr "."
 
-#: includes/class-email-rejection-settings.php:355
+#: includes/class-email-rejection-settings.php:389
 msgid "Rule Mode"
 msgstr "Regelläge"
 
-#: includes/class-email-rejection-settings.php:356
+#: includes/class-email-rejection-settings.php:390
 msgid "Inherit global rules + add field-specific rules"
 msgstr "Ärv globala regler + lägg till fältspecifika regler"
 
-#: includes/class-email-rejection-settings.php:357
+#: includes/class-email-rejection-settings.php:391
 msgid "Use only field-specific rules (ignore global)"
 msgstr "Använd endast fältspecifika regler (ignorera globala)"
 
-#: includes/class-email-rejection-settings.php:358
+#: includes/class-email-rejection-settings.php:392
 msgid "Field-Specific Rules"
 msgstr "Fältspecifika regler"
 
-#: includes/class-email-rejection-settings.php:359
+#: includes/class-email-rejection-settings.php:393
 msgid "Validation Message (optional)"
 msgstr "Valideringsmeddelande (valfritt)"
 
-#: includes/class-email-rejection-settings.php:360
+#: includes/class-email-rejection-settings.php:394
 msgid "Leave blank to use the global default message."
 msgstr "Lämna tomt för att använda det globala standardmeddelandet."
 
-#: includes/class-email-rejection.php:627
+#: includes/class-email-rejection.php:639
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -607,11 +607,11 @@ msgstr ""
 msgid "This entry has been marked as spam."
 msgstr "Denna post har markerats som skräppost."
 
-#: includes/class-email-rejection-settings.php:342
+#: includes/class-email-rejection-settings.php:376
 msgid "[count] rules imported."
 msgstr "[count] regler importerades."
 
-#: includes/class-email-rejection-settings.php:345
+#: includes/class-email-rejection-settings.php:379
 msgid "Skipped [count] invalid values."
 msgstr "Hoppade över [count] ogiltiga värden."
 
@@ -1135,6 +1135,15 @@ msgstr "Zero Spam-tokenkontrollen flaggade också denna inskickning: [reason]"
 #: includes/class-gf-zero-spam.php:618
 msgid "The Zero Spam token check found a valid token for this submission."
 msgstr "Zero Spam-tokenkontrollen hittade en giltig token för denna inskickning."
+
+#: includes/class-email-rejection-settings.php:372
+msgid ""
+"Email Rejection Rules are turned off, so these rules will not run. "
+"[link]Turn on Email Rejection Rules[/link] in the Zero Spam settings."
+msgstr ""
+"Regler för avvisning av e-post är avstängda, så dessa regler kommer inte "
+"att köras. [link]Aktivera regler för avvisning av e-post[/link] i "
+"inställningarna för Zero Spam."
 
 #: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."

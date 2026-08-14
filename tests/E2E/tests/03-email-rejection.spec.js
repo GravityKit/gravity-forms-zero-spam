@@ -33,6 +33,44 @@ const RULES_PANEL = '#gform_setting_gf_zero_spam_email_rules';
 const SAVE_BUTTON = '#gform-settings-save';
 const SUCCESS_NOTICE = '.alert.gforms_note_success';
 
+const FIELD_PANEL = 'li.email_rejection_setting';
+const FIELD_DISABLED_NOTICE = `${FIELD_PANEL} [data-role="feature-disabled"]`;
+
+/**
+ * Open the Advanced tab of the form's email field (field ID 2) in the editor.
+ * The editor keys field containers by field ID alone, not form ID.
+ */
+async function openEmailFieldAdvanced(page, formId) {
+    await page.goto(`/wp-admin/admin.php?page=gf_edit_forms&id=${formId}`);
+    await page.locator('#field_2').click();
+    await page.getByRole('tab', { name: 'Advanced' }).click();
+    await expect(page.locator(FIELD_PANEL)).toBeVisible();
+}
+
+/**
+ * Add a rule through the per-field rule builder's add row.
+ * The builder renders its rule table only once the field toggle is on.
+ */
+async function addFieldRule(page, { type, value, action }) {
+    const toggle = page.locator('[data-role="field-enabled"]');
+
+    if (!(await toggle.isChecked())) {
+        await page.locator('label[for="gf-zs-field-enabled"]').click();
+    }
+
+    const addRow = page.locator(`${FIELD_PANEL} .gf-zero-spam-add-row`);
+
+    await addRow.locator('.gf-zero-spam-type-select').selectOption(type);
+    await addRow.locator('[data-role="new-value"]').fill(value);
+    await addRow.locator('.gf-zero-spam-action-select').selectOption(action);
+    await addRow.locator('[data-action="add"]').click();
+}
+
+async function saveForm(page) {
+    await page.locator('#ajax-save-form-menu-bar').click();
+    await expect(page.locator('#please_wait_container')).toBeHidden();
+}
+
 async function fillAndSubmit(page, formId, { input_1, input_2 }) {
     await page.locator(`#gform_${formId} input[name="input_1"]`).fill(input_1);
     await page.locator(`#gform_${formId} input[name="input_2"]`).fill(input_2);
@@ -279,5 +317,244 @@ test.describe('Zero Spam — email rejection rules', () => {
         );
         expect(logNotes.length, 'log rule must add an info-typed Zero Spam note').toBeGreaterThan(0);
         expect(logNotes[0].value).toContain('*+log@*');
+    });
+
+    test('HP-11: field rules are inert while the feature is off, and the editor says so', async ({
+        page,
+        request,
+    }) => {
+        // The per-field builder renders whether or not the feature is on, so
+        // without the warning its rules look active and silently do nothing.
+        await helpers.setEmailRules(request, { enabled: false, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+
+        const notice = page.locator(FIELD_DISABLED_NOTICE);
+
+        await expect(notice, 'field editor must warn while the feature is off').toBeVisible();
+        await expect(notice).toContainText('will not run');
+        await expect(notice.locator('a')).toHaveAttribute(
+            'href',
+            /subview=gf-zero-spam/
+        );
+
+        // Configure a real field rule through the editor and save it, so the
+        // rest of the test proves enforcement rather than an empty ruleset.
+        await addFieldRule(page, {
+            type: 'domain',
+            value: 'inert.test',
+            action: 'block',
+        });
+        await saveForm(page);
+
+        await openEmailFieldAdvanced(page, formId);
+        await expect(
+            page.locator(`${FIELD_PANEL} tr[data-rule-id]`),
+            'the field rule must persist across a save and reload'
+        ).toHaveCount(1);
+
+        // Feature still off: the saved rule must not stop the submission.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Inert',
+            input_2: `inert+${testId}@inert.test`,
+        });
+        await expect(
+            page.locator(`#gform_confirmation_wrapper_${formId}`),
+            'field rules must not run while the feature is off'
+        ).toContainText('Thanks for contacting us!');
+
+        // Turn the feature on: the same rule now blocks, and the warning is gone.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+        await expect(
+            page.locator(FIELD_DISABLED_NOTICE),
+            'no warning once the feature is on'
+        ).toHaveCount(0);
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Inert',
+            input_2: `inert+${testId}@inert.test`,
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'the same field rule must block once the feature is on'
+        ).toBeVisible();
+    });
+
+    test('HP-12: regex rules survive the settings save path verbatim', async ({
+        page,
+        request,
+    }) => {
+        // Must go through the real UI: the E2E helper writes the option directly,
+        // so it exercises neither normalizeValue() nor sanitize_rule(), the two
+        // places that were corrupting patterns.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        // A leading "." was stripped as stray punctuation; "<" was stripped as
+        // markup by sanitize_text_field(), breaking lookbehinds.
+        const patterns = ['.+@leadingdot\\.test', '(?<=@)lookbehind\\.test'];
+
+        await page.goto(SETTINGS_URL);
+
+        for (const pattern of patterns) {
+            const addRow = page.locator(
+                '#gf-zero-spam-rule-builder .gf-zero-spam-add-row'
+            );
+
+            await addRow.locator('.gf-zero-spam-type-select').selectOption('regex');
+            await addRow.locator('[data-role="new-value"]').fill(pattern);
+            await addRow.locator('.gf-zero-spam-action-select').selectOption('block');
+            await addRow.locator('[data-action="add"]').click();
+        }
+
+        await page.locator(SAVE_BUTTON).click();
+        await expect(page.locator(SUCCESS_NOTICE)).toContainText('Settings updated.');
+
+        const stored = await helpers.getEmailRules(request);
+        const storedValues = stored.rules.map((rule) => rule.value);
+
+        expect(
+            storedValues,
+            'regex patterns must round-trip through the save path verbatim'
+        ).toEqual(patterns);
+
+        // The customer's pattern, end to end.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: 'bob@leadingdot.test',
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'a pattern starting with "." must block after saving'
+        ).toBeVisible();
+    });
+
+    test('HP-13: regex rules match case-sensitively', async ({
+        page,
+        request,
+    }) => {
+        // Lowercasing rule values turned "\D" (non-digit) into "\d" (digit),
+        // inverting the rule and blocking legitimate submissions.
+        await helpers.setEmailRules(request, {
+            enabled: true,
+            rules: [
+                {
+                    type: 'regex',
+                    value: '^\\D.*@caseclass\\.test$',
+                    action: 'block',
+                    enabled: true,
+                },
+            ],
+        });
+
+        // Starts with a letter — \D matches, so this is blocked.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: 'abc@caseclass.test',
+        });
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            '\\D must match a non-digit first character'
+        ).toBeVisible();
+
+        // Starts with a digit — \D does not match, so this goes through.
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Regex',
+            input_2: `1abc+${testId}@caseclass.test`,
+        });
+        await expect(
+            page.locator(`#gform_confirmation_wrapper_${formId}`),
+            '\\D must not match a digit first character'
+        ).toContainText('Thanks for contacting us!');
+    });
+
+    test('HP-14: a custom validation message cannot inject scripts into the form', async ({
+        page,
+        request,
+    }) => {
+        await helpers.setEmailRules(request, {
+            enabled: true,
+            message: '<img src=x onerror="window.__zsXss=1">Rejected <strong>here</strong>',
+            rules: [
+                {
+                    type: 'domain',
+                    value: 'xsscheck.test',
+                    action: 'block',
+                    enabled: true,
+                },
+            ],
+        });
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Mallory',
+            input_2: 'mallory@xsscheck.test',
+        });
+
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`)
+        ).toBeVisible();
+
+        await expect(
+            page.locator(`#gform_${formId} [onerror]`),
+            'event handlers must be stripped from the validation message'
+        ).toHaveCount(0);
+        expect(
+            await page.evaluate(() => window.__zsXss),
+            'the payload must not execute'
+        ).toBeUndefined();
+
+        // Safe formatting still survives, so the message stays useful.
+        await expect(
+            page.locator(`#gform_${formId} strong`).filter({ hasText: 'here' })
+        ).toBeVisible();
+    });
+
+    test('HP-15: a per-field validation message cannot inject scripts into the form', async ({
+        page,
+        request,
+    }) => {
+        // The per-field message is the branch that shipped the vulnerability: it
+        // lives in a custom field property Gravity Forms does not sanitize on save.
+        await helpers.setEmailRules(request, { enabled: true, rules: [] });
+
+        await openEmailFieldAdvanced(page, formId);
+        await addFieldRule(page, {
+            type: 'domain',
+            value: 'fieldxss.test',
+            action: 'block',
+        });
+        await page
+            .locator('[data-role="field-message"]')
+            .fill('<img src=x onerror="window.__zsFieldXss=1">Nope <strong>bold</strong>');
+        await saveForm(page);
+
+        await page.goto(pageUrl);
+        await fillAndSubmit(page, formId, {
+            input_1: 'Mallory',
+            input_2: 'mallory@fieldxss.test',
+        });
+
+        await expect(
+            page.locator(`#gform_${formId}_validation_container`),
+            'the field rule must block so the message actually renders'
+        ).toBeVisible();
+        await expect(
+            page.locator(`#gform_${formId} [onerror]`),
+            'event handlers must be stripped from the field message'
+        ).toHaveCount(0);
+        expect(
+            await page.evaluate(() => window.__zsFieldXss),
+            'the payload must not execute'
+        ).toBeUndefined();
+        await expect(
+            page.locator(`#gform_${formId} strong`).filter({ hasText: 'bold' })
+        ).toBeVisible();
     });
 });

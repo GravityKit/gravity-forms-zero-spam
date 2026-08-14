@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gravity-forms-zero-spam\n"
-"PO-Revision-Date: 2026-07-22 12:46:25+0000\n"
+"PO-Revision-Date: 2026-08-13 23:42:32+0000\n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 "https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_"
 "content=authoruri"
 
-#: includes/class-email-rejection-settings.php:171
+#: includes/class-email-rejection-settings.php:203
 msgid ""
 "Block, flag, or log email submissions matching specific addresses, domains, "
 "or patterns. Rules apply to all email fields unless overridden per field."
@@ -46,7 +46,7 @@ msgstr ""
 "חסום, סמן או רשום הגשות דוא\"ל התואמות לכתובות, דומיינים או תבניות "
 "ספציפיות. החוקים חלים על כל שדות הדוא\"ל אלא אם כן הוחלף עבור שדה מסוים."
 
-#: includes/class-email-rejection-settings.php:172
+#: includes/class-email-rejection-settings.php:204
 msgid ""
 "Flag or log email submissions matching specific addresses, domains, or "
 "patterns. Rules apply to all email fields unless overridden per field."
@@ -54,103 +54,103 @@ msgstr ""
 "סמן או רשום הגשות דוא\"ל התואמות לכתובות, דומיינים או תבניות ספציפיות. "
 "החוקים חלים על כל שדות הדוא\"ל אלא אם כן הוחלף עבור שדה מסוים."
 
-#: includes/class-email-rejection-settings.php:175
+#: includes/class-email-rejection-settings.php:207
 msgid "Email Rejection Rules"
 msgstr "חוקי דחיית דוא\"ל"
 
-#: includes/class-email-rejection-settings.php:180
+#: includes/class-email-rejection-settings.php:212
 msgid "Enable Email Rejection Rules"
 msgstr "הפעל חוקי דחיית דוא\"ל"
 
-#: includes/class-email-rejection-settings.php:186
+#: includes/class-email-rejection-settings.php:218
 msgid "Rules"
 msgstr "חוקים"
 
-#: includes/class-email-rejection-settings.php:200
+#: includes/class-email-rejection-settings.php:232
 msgid "Default Validation Message"
 msgstr "הודעת אימות ברירת מחדל"
 
-#: includes/class-email-rejection-settings.php:204
+#: includes/class-email-rejection-settings.php:236
 msgid "Shown when action is \"Block\". Can be overridden per email field."
 msgstr "מוצגת כאשר הפעולה היא \"חסום\". ניתן להחליף עבור כל שדה דוא\"ל."
 
-#: includes/class-email-rejection-settings.php:314
+#: includes/class-email-rejection-settings.php:346
 msgid "Add Rule"
 msgstr "הוסף חוק"
 
-#: includes/class-email-rejection-settings.php:315
+#: includes/class-email-rejection-settings.php:347
 msgid "Remove"
 msgstr "הסר"
 
-#: includes/class-email-rejection-settings.php:316
+#: includes/class-email-rejection-settings.php:348
 msgid "Edit"
 msgstr "ערוך"
 
-#: includes/class-email-rejection-settings.php:317
+#: includes/class-email-rejection-settings.php:349
 msgid "Enable"
 msgstr "הפעל"
 
-#: includes/class-email-rejection-settings.php:318
+#: includes/class-email-rejection-settings.php:350
 msgid "Disable"
 msgstr "השבת"
 
-#: includes/class-email-rejection-settings.php:319
+#: includes/class-email-rejection-settings.php:351
 msgid "Save"
 msgstr "שמור"
 
-#: includes/class-email-rejection-settings.php:320
+#: includes/class-email-rejection-settings.php:352
 msgid "Cancel"
 msgstr "ביטול"
 
-#: includes/class-email-rejection-settings.php:321
+#: includes/class-email-rejection-settings.php:353
 msgid "Domain"
 msgstr "דומיין"
 
-#: includes/class-email-rejection-settings.php:322
+#: includes/class-email-rejection-settings.php:354
 msgid "Email"
 msgstr "אימייל"
 
-#: includes/class-email-rejection-settings.php:323
+#: includes/class-email-rejection-settings.php:355
 msgid "Wildcard"
 msgstr "תו כללי"
 
-#: includes/class-email-rejection-settings.php:324
+#: includes/class-email-rejection-settings.php:356
 msgid "Regex"
 msgstr "ביטוי רגולרי"
 
-#: includes/class-email-rejection-settings.php:325
+#: includes/class-email-rejection-settings.php:357
 msgid "Block"
 msgstr "חסימה"
 
-#: includes/class-email-rejection-settings.php:326
+#: includes/class-email-rejection-settings.php:358
 msgid "Flag as Spam"
 msgstr "סמן כספאם"
 
-#: includes/class-email-rejection-settings.php:327
+#: includes/class-email-rejection-settings.php:359
 msgid "Log Only"
 msgstr "רק רישום"
 
-#: includes/class-email-rejection-settings.php:328
+#: includes/class-email-rejection-settings.php:360
 msgid "Type"
 msgstr "סוג"
 
-#: includes/class-email-rejection-settings.php:329
+#: includes/class-email-rejection-settings.php:361
 msgid "Value"
 msgstr "ערך"
 
-#: includes/class-email-rejection-settings.php:330
+#: includes/class-email-rejection-settings.php:362
 msgid "Action"
 msgstr "פעולה"
 
-#: includes/class-email-rejection-settings.php:331
+#: includes/class-email-rejection-settings.php:363
 msgid "No rules defined yet."
 msgstr "טרם הוגדרו חוקים."
 
-#: includes/class-email-rejection-settings.php:332
+#: includes/class-email-rejection-settings.php:364
 msgid "Import Rules"
 msgstr "ייבא חוקים"
 
-#: includes/class-email-rejection-settings.php:333
+#: includes/class-email-rejection-settings.php:365
 msgid ""
 "Paste values, one per line or comma-separated. Auto-detected as Domain or "
 "Email type."
@@ -158,39 +158,39 @@ msgstr ""
 "הדבק ערכים, אחד בכל שורה או מופרדים בפסיקים. סוג יזוהה אוטומטית כדומיין או "
 "אימייל."
 
-#: includes/class-email-rejection-settings.php:334
+#: includes/class-email-rejection-settings.php:366
 msgid "Import"
 msgstr "ייבא"
 
-#: includes/class-email-rejection-settings.php:335
+#: includes/class-email-rejection-settings.php:367
 msgid "Remove this rule?"
 msgstr "להסיר חוק זה?"
 
-#: includes/class-email-rejection-settings.php:336
+#: includes/class-email-rejection-settings.php:368
 msgid "Invalid regular expression."
 msgstr "ביטוי רגולרי לא חוקי."
 
-#: includes/class-email-rejection-settings.php:337
+#: includes/class-email-rejection-settings.php:369
 msgid "Please enter a valid email address."
 msgstr "נא להזין כתובת אימייל תקינה."
 
-#: includes/class-email-rejection-settings.php:338
+#: includes/class-email-rejection-settings.php:370
 msgid "Please enter a valid domain."
 msgstr "נא להזין דומיין תקין."
 
-#: includes/class-email-rejection-settings.php:339
+#: includes/class-email-rejection-settings.php:373
 msgid "No valid rules found to import."
 msgstr "לא נמצאו חוקים תקינים לייבוא."
 
-#: includes/class-email-rejection-settings.php:340
+#: includes/class-email-rejection-settings.php:374
 msgid "1 rule imported."
 msgstr "חוק אחד יובא."
 
-#: includes/class-email-rejection-settings.php:343
+#: includes/class-email-rejection-settings.php:377
 msgid "Skipped 1 invalid value."
 msgstr "דילג על ערך אחד לא חוקי."
 
-#: includes/class-email-rejection-settings.php:346
+#: includes/class-email-rejection-settings.php:380
 msgid ""
 "Some rules use the Block action, which requires Gravity Forms 2.9.15+. "
 "These rules are inactive until you update."
@@ -198,7 +198,7 @@ msgstr ""
 "חלק מהכללים משתמשים בפעולת החסימה, שדורשת Gravity Forms 2.9.15 ומעלה. כללים "
 "אלה אינם פעילים עד שתעדכן."
 
-#: includes/class-email-rejection-settings.php:347
+#: includes/class-email-rejection-settings.php:381
 msgid ""
 "Upgrading to Gravity Forms 2.9.15 or higher enables the ability to "
 "configure rules that block matching form submissions."
@@ -206,19 +206,19 @@ msgstr ""
 "שדרוג ל-Gravity Forms 2.9.15 או יותר יאפשר להגדיר כללים שחוסמים הגשות טפסים "
 "שתואמות."
 
-#: includes/class-email-rejection-settings.php:348
+#: includes/class-email-rejection-settings.php:382
 msgid "Requires Gravity Forms 2.9.15+"
 msgstr "דורש Gravity Forms 2.9.15 ומעלה"
 
-#: includes/class-email-rejection-settings.php:349
+#: includes/class-email-rejection-settings.php:383
 msgid "e.g., spamdomain.com"
 msgstr "לדוגמה, spamdomain.com"
 
-#: includes/class-email-rejection-settings.php:350
+#: includes/class-email-rejection-settings.php:384
 msgid "Enable rejection rules"
 msgstr "אפשר כללי דחייה"
 
-#: includes/class-email-rejection-settings.php:351
+#: includes/class-email-rejection-settings.php:385
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the global rejection rules."
@@ -226,7 +226,7 @@ msgstr ""
 "הוסף כללים לחסימה, סימון או רישום של הגשות על בסיס האימייל שהוזן בשדה זה. "
 "הכללים יכולים להרחיב או להחליף את כללי הדחייה הכלליים."
 
-#: includes/class-email-rejection-settings.php:352
+#: includes/class-email-rejection-settings.php:386
 msgid ""
 "Add rules to block, flag, or log submissions based on the email entered in "
 "this field. Rules can extend or replace the "
@@ -234,39 +234,39 @@ msgstr ""
 "הוסף כללים לחסימה, סימון או רישום של הגשות על בסיס האימייל שהוזן בשדה זה. "
 "הכללים יכולים להרחיב או להחליף את "
 
-#: includes/class-email-rejection-settings.php:353
+#: includes/class-email-rejection-settings.php:387
 msgid "global rejection rules"
 msgstr "כללי הדחייה הכלליים"
 
-#: includes/class-email-rejection-settings.php:354
+#: includes/class-email-rejection-settings.php:388
 msgid "."
 msgstr "."
 
-#: includes/class-email-rejection-settings.php:355
+#: includes/class-email-rejection-settings.php:389
 msgid "Rule Mode"
 msgstr "מצב כללים"
 
-#: includes/class-email-rejection-settings.php:356
+#: includes/class-email-rejection-settings.php:390
 msgid "Inherit global rules + add field-specific rules"
 msgstr "ירש כללים כלליים + הוסף כללים ייחודיים לשדה"
 
-#: includes/class-email-rejection-settings.php:357
+#: includes/class-email-rejection-settings.php:391
 msgid "Use only field-specific rules (ignore global)"
 msgstr "השתמש רק בכללים ייחודיים לשדה (התעלם מכלליים)"
 
-#: includes/class-email-rejection-settings.php:358
+#: includes/class-email-rejection-settings.php:392
 msgid "Field-Specific Rules"
 msgstr "כללים ייחודיים לשדה"
 
-#: includes/class-email-rejection-settings.php:359
+#: includes/class-email-rejection-settings.php:393
 msgid "Validation Message (optional)"
 msgstr "הודעת אימות (אופציונלי)"
 
-#: includes/class-email-rejection-settings.php:360
+#: includes/class-email-rejection-settings.php:394
 msgid "Leave blank to use the global default message."
 msgstr "השאר ריק כדי להשתמש בהודעה ברירת המחדל הכללית."
 
-#: includes/class-email-rejection.php:627
+#: includes/class-email-rejection.php:639
 msgid ""
 "The email address you entered is not allowed. Please use a different email "
 "address."
@@ -590,13 +590,13 @@ msgstr ""
 msgid "This entry has been marked as spam."
 msgstr "רשומה זו סומנה כספאם."
 
-#: includes/class-email-rejection-settings.php:342
+#: includes/class-email-rejection-settings.php:376
 msgid "[count] rules imported."
-msgstr "יובא כלל אחד."
+msgstr "יובאו [count] כללים."
 
-#: includes/class-email-rejection-settings.php:345
+#: includes/class-email-rejection-settings.php:379
 msgid "Skipped [count] invalid values."
-msgstr "דלג על ערך בלתי חוקי אחד."
+msgstr "דולגו [count] ערכים לא חוקיים."
 
 #: includes/class-gf-zero-spam-ai-review-settings.php:97
 msgid "Copy global instructions"
@@ -1078,6 +1078,14 @@ msgstr "בדיקת אסימון Zero Spam גם סימנה הגשה זו: [reason
 #: includes/class-gf-zero-spam.php:618
 msgid "The Zero Spam token check found a valid token for this submission."
 msgstr "בדיקת אסימון Zero Spam מצאה אסימון תקף עבור הגשה זו."
+
+#: includes/class-email-rejection-settings.php:372
+msgid ""
+"Email Rejection Rules are turned off, so these rules will not run. "
+"[link]Turn on Email Rejection Rules[/link] in the Zero Spam settings."
+msgstr ""
+"כללי דחיית אימייל כבויים, ולכן כללים אלה לא יופעלו. [link]הפעל את כללי "
+"דחיית האימייל[/link] בהגדרות Zero Spam."
 
 #: includes/class-gf-zero-spam-addon.php:449
 msgctxt "The heading inside the email body."

@@ -66,6 +66,25 @@
 	}
 
 	/**
+	 * Normalize a typed-in rule value.
+	 *
+	 * Leading/trailing punctuation is stripped from list-style values, but taken
+	 * verbatim for regex, where a leading ".+" or trailing "." is meaningful.
+	 *
+	 * @since 1.10.2
+	 *
+	 * @param {string} type  Rule type.
+	 * @param {string} value Raw input value.
+	 *
+	 * @return {string} Normalized value.
+	 */
+	function normalizeValue( type, value ) {
+		const trimmed = value.trim();
+
+		return type === 'regex' ? trimmed : trimmed.replace( /^[,;.]+|[,;.]+$/g, '' );
+	}
+
+	/**
 	 * Return a placeholder string for the given rule type.
 	 *
 	 * @param {string} type Rule type.
@@ -536,7 +555,7 @@
 			const errEl = foot.querySelector( '[data-role="add-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
+			const value = normalizeValue( type, valueEl.value );
 			const action = actionEl.value;
 
 			if ( ! value ) {
@@ -580,7 +599,7 @@
 			const errEl = row.querySelector( '[data-role="edit-error"]' );
 
 			const type = typeEl.value;
-			const value = valueEl.value.trim().replace( /^[,;.]+|[,;.]+$/g, '' );
+			const value = normalizeValue( type, valueEl.value );
 			const action = actionEl.value;
 
 			const error = validateValue( type, value, t );
@@ -849,6 +868,7 @@
 	 * @param {Object}   config.fieldSettings   { enabled, mode, rules, message }.
 	 * @param {Object}   config.translations    i18n strings.
 	 * @param {boolean}  config.blockSupported  Whether block action is available.
+	 * @param {boolean}  config.featureEnabled  Whether the Email Rejection Rules feature is on globally.
 	 * @param {Function} config.onUpdate         Callback receiving the full settings object.
 	 */
 	function mountField( config ) {
@@ -860,6 +880,8 @@
 
 		const t = config.translations || {};
 		const blockSupported = config.blockSupported;
+		// wp_localize_script() stringifies booleans (false becomes ""), so test truthiness, not identity.
+		const featureEnabled = config.featureEnabled === undefined ? true : !! config.featureEnabled;
 		const settingsUrl = config.settingsUrl || '';
 		const settings = config.fieldSettings || { enabled: false, mode: 'inherit_add', rules: [], message: '' };
 		const onUpdate = config.onUpdate || (() => {});
@@ -897,6 +919,28 @@
 			} );
 		}
 
+		/**
+		 * Warn that field rules are inert while the feature is off globally.
+		 *
+		 * @since 1.10.2
+		 *
+		 * @return {string} HTML string, empty when the feature is enabled.
+		 */
+		function featureDisabledNotice() {
+			if ( featureEnabled ) {
+				return '';
+			}
+
+			const text = t.featureDisabledNotice || 'Email Rejection Rules are turned off, so these rules will not run. [link]Turn on Email Rejection Rules[/link] in the Zero Spam settings.';
+			const linkOpen = settingsUrl ? '<a href="' + escHtml( settingsUrl ) + '" target="_blank">' : '';
+			const linkClose = settingsUrl ? '</a>' : '';
+
+			// escHtml() leaves the square-bracket tokens intact, so they can be swapped for the anchor afterwards.
+			return '<div class="gf-zero-spam-block-notice" data-role="feature-disabled" role="alert">' +
+				escHtml( text ).replaceAll( '[link]', linkOpen ).replaceAll( '[/link]', linkClose ) +
+				'</div>';
+		}
+
 		// All text values are escaped via escHtml(). Only structural HTML is in the template.
 		function renderFieldUI() {
 			// Build raw HTML for the tooltip, then escape the whole thing for the aria-label attribute.
@@ -908,7 +952,8 @@
 					escHtml( t.fieldSettingsDescriptionAfter || '.' )
 				: escHtml( t.fieldSettingsDescription || 'Add rules to block, flag, or log submissions based on the email entered in this field. Rules can extend or replace the global rejection rules.' );
 
-			let html = '<input type="checkbox" id="gf-zs-field-enabled" data-role="field-enabled"' + ( currentEnabled ? ' checked' : '' ) + '>' +
+			let html = featureDisabledNotice() +
+				'<input type="checkbox" id="gf-zs-field-enabled" data-role="field-enabled"' + ( currentEnabled ? ' checked' : '' ) + '>' +
 				'<label class="gf-zero-spam-field-toggle" for="gf-zs-field-enabled">' +
 				escHtml( t.enableForField || 'Enable rejection rules' ) +
 				'</label>' +
@@ -1032,6 +1077,7 @@
 				fieldSettings: settings,
 				translations: fieldConfig.translations || {},
 				blockSupported: fieldConfig.blockSupported,
+				featureEnabled: fieldConfig.featureEnabled,
 				settingsUrl: fieldConfig.settingsUrl || '',
 				onUpdate: ( updatedSettings ) => {
 					// Write back to the field object so GF saves it.

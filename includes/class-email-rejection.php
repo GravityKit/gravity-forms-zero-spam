@@ -232,7 +232,14 @@ class GF_Zero_Spam_Email_Rejection {
 				continue;
 			}
 
-			$value = strtolower( trim( rgar( $rule, 'value', '' ) ) );
+			$type  = rgar( $rule, 'type' );
+			$value = trim( rgar( $rule, 'value', '' ) );
+
+			// Regex patterns keep their case: lowercasing flips character classes
+			// like \D into \d. match_regex() already matches case-insensitively.
+			if ( 'regex' !== $type ) {
+				$value = strtolower( $value );
+			}
 
 			if ( empty( $value ) ) {
 				continue;
@@ -240,7 +247,7 @@ class GF_Zero_Spam_Email_Rejection {
 
 			$matched = false;
 
-			switch ( rgar( $rule, 'type' ) ) {
+			switch ( $type ) {
 				case 'domain':
 					$matched = self::match_domain( $email, $value );
 					break;
@@ -592,6 +599,11 @@ class GF_Zero_Spam_Email_Rejection {
 	 *
 	 * Checks per-field message first, falls back to global default.
 	 *
+	 * Both messages are author-supplied and Gravity Forms renders the validation
+	 * message as raw HTML, so they are run through wp_kses_post() here — the one
+	 * point where they reach output. Field messages live in a custom field
+	 * property that Gravity Forms does not sanitize on save.
+	 *
 	 * @since 1.5.0
 	 *
 	 * @param GF_Field_Email|GF_Field $field The email field.
@@ -603,14 +615,14 @@ class GF_Zero_Spam_Email_Rejection {
 		$field_message  = rgar( $field_settings, 'message', '' );
 
 		if ( ! empty( $field_message ) ) {
-			return $field_message;
+			return wp_kses_post( $field_message );
 		}
 
 		$addon          = GF_Zero_Spam_AddOn::get_instance();
 		$global_message = $addon->get_plugin_setting( 'gf_zero_spam_email_rejection_message' );
 
 		if ( ! empty( $global_message ) ) {
-			return $global_message;
+			return wp_kses_post( $global_message );
 		}
 
 		return self::get_default_validation_message();

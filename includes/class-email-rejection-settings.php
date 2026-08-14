@@ -67,12 +67,17 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 
 		$rules = array_map( [ __CLASS__, 'sanitize_rule' ], $rules );
 
-		// Deduplicate by type + value (case-insensitive), keeping the first occurrence.
+		// Deduplicate by type + value, keeping the first occurrence. Regex values
+		// compare case-sensitively: "\D" and "\d" are opposites, not duplicates.
 		$seen  = [];
 		$rules = array_filter(
             $rules,
             static function ( $rule ) use ( &$seen ) {
-				$key = $rule['type'] . ':' . strtolower( $rule['value'] );
+				if ( '' === $rule['value'] ) {
+					return false;
+				}
+
+				$key = $rule['type'] . ':' . ( 'regex' === $rule['type'] ? $rule['value'] : strtolower( $rule['value'] ) );
 
 				if ( isset( $seen[ $key ] ) ) {
 					return false;
@@ -106,19 +111,46 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 	 */
 	private static function sanitize_rule( $rule ) {
 		$type   = rgar( $rule, 'type', 'domain' );
+		$type   = in_array( $type, GF_Zero_Spam_Email_Rejection::ALLOWED_TYPES, true ) ? $type : 'domain';
 		$action = rgar( $rule, 'action', 'flag' );
-		$value  = sanitize_text_field( rgar( $rule, 'value', '' ) );
-
-		// Strip leading/trailing commas, semicolons, and dots from values.
-		$value = trim( $value, ',;. ' );
 
 		return [
 			'id'      => sanitize_text_field( rgar( $rule, 'id', '' ) ),
-			'type'    => in_array( $type, GF_Zero_Spam_Email_Rejection::ALLOWED_TYPES, true ) ? $type : 'domain',
-			'value'   => $value,
+			'type'    => $type,
+			'value'   => self::sanitize_rule_value( $type, rgar( $rule, 'value', '' ) ),
 			'action'  => in_array( $action, GF_Zero_Spam_Email_Rejection::ALLOWED_ACTIONS, true ) ? $action : 'flag',
 			'enabled' => isset( $rule['enabled'] ) ? (bool) $rule['enabled'] : true,
 		];
+	}
+
+	/**
+	 * Sanitizes a rule value according to its type.
+	 *
+	 * Regex patterns cannot go through sanitize_text_field(): it treats "<" as
+	 * markup, which destroys lookbehinds and named groups. They are stripped of
+	 * control characters instead, and a pattern that will not compile is dropped
+	 * rather than stored as a rule that can never match. Rule values only ever
+	 * reach output through escaped sinks (the admin builder escapes them in JS;
+	 * entry notes are rendered through wp_kses_post()).
+	 *
+	 * @since 1.10.2
+	 *
+	 * @param string $type  The rule type.
+	 * @param string $value The raw rule value.
+	 *
+	 * @return string The sanitized value, or an empty string if a regex is invalid.
+	 */
+	private static function sanitize_rule_value( $type, $value ) {
+		if ( 'regex' !== $type ) {
+			// Strip leading/trailing commas, semicolons, and dots from list-style values.
+			return trim( sanitize_text_field( $value ), ',;. ' );
+		}
+
+		$value = wp_check_invalid_utf8( $value );
+		$value = preg_replace( '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', $value );
+		$value = trim( $value );
+
+		return GF_Zero_Spam_Email_Rejection::validate_regex( $value ) ? $value : '';
 	}
 
 	/**
@@ -336,6 +368,8 @@ class GF_Zero_Spam_Email_Rejection_Settings {
 			'invalidRegex'                   => __( 'Invalid regular expression.', 'gravity-forms-zero-spam' ),
 			'invalidEmail'                   => __( 'Please enter a valid email address.', 'gravity-forms-zero-spam' ),
 			'invalidDomain'                  => __( 'Please enter a valid domain.', 'gravity-forms-zero-spam' ),
+			// translators: text inside square brackets is replaced with a link and must not be translated.
+			'featureDisabledNotice'          => __( 'Email Rejection Rules are turned off, so these rules will not run. [link]Turn on Email Rejection Rules[/link] in the Zero Spam settings.', 'gravity-forms-zero-spam' ),
 			'importNone'                     => __( 'No valid rules found to import.', 'gravity-forms-zero-spam' ),
 			'importOne'                      => __( '1 rule imported.', 'gravity-forms-zero-spam' ),
 			// translators: [count] is the number of rules imported. Do not translate text inside square brackets.

@@ -2,8 +2,8 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 4.7
-Tested up to: 7.0.3
-Stable tag: 1.10.1
+Tested up to: 7.0.4
+Stable tag: 1.10.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -106,6 +106,14 @@ First, **de-activate and re-activate the plugin**. Then let us know on the suppo
 You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
 
 == Changelog ==
+
+= 1.10.2 on August 13, 2026 =
+
+* Improved: Custom rejection messages now have HTML safely removed before being shown to visitors
+* Fixed: Email rejection rules added to a specific field quietly did nothing when the feature was turned off in the plugin settings — the form editor now lets you know and links to the setting
+* Fixed: Regular expression rejection rules not working as intended:
+  - Rules could change when saved (a starting or ending period was removed, and anything after a `<` was cut off), so they never matched
+  - Rules were checked against lowercased text, which flipped the meaning of patterns like `\D`, `\S`, and `\W` and could block real submissions
 
 = 1.10.1 on August 6, 2026 =
 
