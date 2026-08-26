@@ -9,101 +9,124 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=donate
 
-Enhance your Gravity Forms to include anti-spam measures originally based on the work of David Walsh's "Zero Spam" technique.
+Block form spam in Gravity Forms with an invisible token check, email rejection rules, and optional AI review. No CAPTCHAs for your visitors.
 
 == Description ==
 
-This Gravity Forms add-on blocks spam using a non-obtrusive anti-spam measure and can email a spam report summary.
+Gravity Forms Zero Spam stops spam submissions without CAPTCHAs, checkboxes, or puzzles. Install it, switch it on for a form, and it starts working. Nothing changes for the people filling in your forms.
 
-## Spam blocking for Gravity Forms
+You get four spam checks. One runs out of the box, and three more are there when you need them:
 
-To get started, all you need to do is activate the plugin!
+* **Invisible token check.** On by default. Blocks automated submissions using a signed, time-limited token.
+* **Email rejection rules.** Reject submissions by email address, domain, wildcard, or regular expression.
+* **AI spam review.** Optional. Catches spam the token check missed, and rescues good submissions it blocked by mistake.
+* **Shield silentCAPTCHA.** Optional. Uses Shield Security's bot detection as an extra signal.
 
-### Is the Gravity Forms honeypot field not working for you? 🍯 🐝
+Run one, or run all four. Every check happens on your own server, and optional summary emails keep you posted on what was caught.
 
-Zero Spam is better than the Gravity Forms anti-spam honeypot field. If you're getting spammed, try this plugin.
+### Spam blocking your visitors never see 🕵️
 
-### Use this plugin instead of reCaptcha
+The plugin adds a signed, time-limited token to your form and checks it on submission. Most spam bots post directly to your site without loading the page or running its JavaScript, so they never pick up a token and their submissions are marked as spam.
 
-**reCaptcha is user-hostile!** Use this instead! Users don't need to click stoplights, crosswalks, or bicycles when you use this plugin to stop spam.
+No CAPTCHAs, no puzzles, no extra fields, no cookies, and nothing to configure to get started.
 
-### Enable or disable filtering per form
+### Reject unwanted emails by address, domain, or pattern ✉️
 
-If you only want the plugin for specific forms, that's possible! The plugin adds a simple "Prevent spam using Gravity Forms Zero Spam" setting to each form (requires Gravity Forms 2.5 or newer).
+Filter submissions against a list you control. Useful when spam keeps arriving from one domain, or when a business enquiry form should not accept free consumer addresses.
 
-## Works with Shield Security
+* Match by exact address, domain, wildcard, or regular expression
+* On a match, block the submission (requires Gravity Forms 2.9.15 or newer), flag it as spam, or log it with an entry note
+* Add rules in bulk, and enable or disable them individually while you test
+* Override or replace the global rules on a single email field
 
-If the [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its silentCAPTCHA bot detection can be used as an additional spam signal — enabled globally or per form. You can also control the order in which the plugin's spam checks run.
+[Email rejection rules guide](https://www.gravitykit.com/docs/gravity-forms-zero-spam/email-rejection-rules/)
 
-## Spam report emails
+### Let AI review the edge cases 🤖
 
-Spam summary report emails are disabled by default. Once enabled, a spam summary that includes the number of entries per-form will be sent via email.
+An optional second opinion on submissions the token check has already judged. Two separate tools, both off until you turn them on:
 
-Choose whether you want to be notified after the number of entries reaches a threshold (e.g. 10 spam entries) or after a certain number of days (e.g. every week). If there are no spam entries, no report will be sent.
+* **Catch what was missed.** AI reads a submission that passed the spam checks and flags it if it looks like spam.
+* **Rescue what was wrongly blocked.** If the token check blocked a submission but the content looks genuine, AI can let it through before notifications are sent.
+
+It runs on WordPress 7.0's built-in AI connectors, so you connect OpenAI, Anthropic, or Google once and every plugin on the site shares it. Zero Spam never stores API keys, and nothing is sent until you opt in. You can write your own instructions, skip fields that collect sensitive data, and cap how many submissions are reviewed per hour.
+
+[AI spam review guide](https://www.gravitykit.com/docs/gravity-forms-zero-spam/ai-spam-review/)
+
+### Add Shield silentCAPTCHA as an extra signal 🛡️
+
+If the free [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/) plugin is active, its silentCAPTCHA bot detection can act as an additional check, globally or per form. Like the token check it runs server-side and stays invisible to visitors, and if Shield is deactivated or returns an error, submissions are never blocked. Contributed by Shield Security developer Paul Goodchild.
+
+[Shield silentCAPTCHA guide](https://www.gravitykit.com/docs/gravity-forms-zero-spam/shield-silentcaptcha/)
+
+### Control how and when the checks run 🎛️
+
+* Each form gets a "Prevent spam using Gravity Forms Zero Spam" setting, so you protect only the forms you want (requires Gravity Forms 2.5 or newer)
+* Set the default for new forms once in the global settings
+* When more than one check is active, choose the order they run in and whether to stop at the first detection
+
+### Spam summary report emails 📬
+
+Off by default. Turn them on and you get a summary of how many entries were marked as spam, broken down per form.
+
+* Send after a threshold is reached, or on a schedule
+* Nothing is sent when there is no spam to report
+* Customize the email body with merge tags
+
+### Works with your other anti-spam tools 🤝
+
+Zero Spam does not interfere with other spam-blocking plugins, including Gravity Forms' own honeypot field and reCAPTCHA integration. Honeypots catch simple bots and reCAPTCHA asks real people to click traffic lights; Zero Spam asks nothing of your visitors at all, and you can layer it on top of either rather than replacing them.
 
 -------
 
-Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.).
+Requires [Gravity Forms](https://www.gravityforms.com/?partner_id=1210629&irgwc=1&utm_medium=affiliate&utm_campaign=1210629&utm_source=Katz%20Web%20Services%2C%20Inc.). That is an affiliate link: if you buy through it we earn a commission, at no extra cost to you.
+
+[Read the documentation](https://www.gravitykit.com/docs/gravity-forms-zero-spam/) for setup guides and troubleshooting.
 
 _Brought to you by [GravityKit](https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=readme). We create essential Gravity Forms Add-Ons._
 
 == Frequently Asked Questions ==
 
-= Does the Gravity Forms Zero Spam plugin stop email notifications from being emailed when a message is considered spam? =
+= Is the plugin free? =
 
-Yes! When this plugin marks an entry as spam, it prevents processing of any configured notifications and add-on feeds.
+Yes, and every feature described above is included. You need a Gravity Forms license for Gravity Forms itself.
 
-Note: When an entry is marked as Spam, it also prevents use of the configured confirmation. Users submitted a entry marked as Spam will see the default Gravity Forms “Thanks for contacting us! We will get in touch with you shortly.” confirmation text instead.
+= Does AI spam review send my form data to an AI service? =
 
-= I have Gravity Forms 2.7 installed. Do I need this plugin? =
+Only if you turn it on. Both AI tools are off by default and nothing leaves your site until you enable them.
 
-Gravity Forms 2.7 added functionality that has similar features to this plugin, but we're adding additional features soon—keep this plugin installed!
+When you do, the plugin sends the form title, the page path, and the field labels, types, and submitted values, along with your instructions. Email addresses are masked so only the domain remains, fields you list under "Skip these fields" are removed, and the content is length-capped. The connection is made through WordPress 7.0's own AI connectors, so Zero Spam never stores your API keys.
 
-= Does this plugin work in combination with other CAPTCHAs, honeypot fields, or spam blocker plugins? =
+= Does this plugin stop email notifications when a submission is marked as spam? =
 
-Yep, you can use this plugin in combination with all other spam-blocking plugins:
+Yes. Marking an entry as spam prevents processing of any configured notifications and add-on feeds.
 
-- Gravity Forms' Google reCaptcha feature
-- WPBruiser
-- Akismet
-- Gravity Forms' honeypot fields
-- GravityCaptcha
-- СleanTalk
-- WP Armor
-- fail2ban
+Note: a spam entry also skips your configured confirmation. The person submitting sees the default Gravity Forms "Thanks for contacting us! We will get in touch with you shortly." confirmation instead.
 
-Zero Spam will not interfere with the operation of those plugins. It also doesn't interfere with Gravity Forms' built-in honeypot functionality.
+= Does this work alongside other CAPTCHAs, honeypot fields, or spam blockers? =
 
-= What version of Gravity Forms does this work with? =
+Yes. Run it next to Gravity Forms' reCAPTCHA feature or honeypot field, Akismet, CleanTalk, WPBruiser, GravityCaptcha, WP Armor, or fail2ban without conflict.
 
-This works with all Gravity Forms releases after v2.3 (released June 2017).
+= What version of Gravity Forms do I need? =
+
+Gravity Forms 2.3 and newer. Two features need more recent versions: per-form control requires 2.5 or newer, and blocking a submission with an email rejection rule requires 2.9.15 or newer.
+
+= How do I control which forms are protected? =
+
+Open the form, click Settings, and toggle "Prevent spam using Gravity Forms Zero Spam" under Form Options. To protect most forms, leave the global "Enable Zero Spam by Default" setting Enabled and switch off the individual forms you want excluded.
+
+Note: setting "Enable Zero Spam by Default" to Disabled turns off every check on every form, and per-form settings have no effect while it is.
+
+= My own test submission was not marked as spam. Is it broken? =
+
+Probably not. Zero Spam deliberately skips logged-in users who can edit entries, form previews, and entries created through the Gravity Forms API, so submitting your own form as an administrator is expected to go through. To test it properly, log out and submit with JavaScript disabled. See [how Zero Spam works and how to test it](https://www.gravitykit.com/docs/gravity-forms-zero-spam/how-zero-spam-works/).
+
+= All of my entries are going to spam. What can I do? =
+
+First, deactivate and reactivate the plugin. If that does not fix it, see [Troubleshooting Gravity Forms Zero Spam](https://www.gravitykit.com/docs/gravity-forms-zero-spam/troubleshooting-gravity-forms-zero-spam/), then let us know on the support tab.
 
 = Will this block spam comments or registrations on my site? =
 
-No. For that, we recommend Ben Marshall‘s [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
-
-= How do I disable Zero Spam on specific forms? =
-
-1. Go to the form
-2. Click on Settings
-3. Under Form Options, disable "Prevent spam using Gravity Forms Zero Spam". _Don't see the setting? This feature requires Gravity Forms 2.5 or newer._
-4. Save the settings
-
-New form submissions will not be checked using Zero Spam.
-
-= I only want Zero Spam on specific forms. How do I do that? =
-
-Keep the global "Enable Zero Spam by Default" setting set to "Enabled", then disable "Prevent spam using Gravity Forms Zero Spam" on each form you want excluded (see the previous question).
-
-Note: choosing "Disabled" for "Enable Zero Spam by Default" turns off all of the plugin's spam checks for every form — per-form settings have no effect while the global setting is disabled.
-
-= All entries are going to spam. What can I do? =
-
-First, **de-activate and re-activate the plugin**. Then let us know on the support tab!
-
-= Spam summary report emails =
-
-You can enable a spam summary report email. This email will be sent to the email address configured in the "Spam Summary Email" setting on the Gravity Forms "Forms" menu, click Settings, then click the Zero Spam tab.
+No, it only protects Gravity Forms submissions. For comments and registrations we recommend Ben Marshall's [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
 
 == Changelog ==
 
