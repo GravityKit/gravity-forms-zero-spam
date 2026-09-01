@@ -61,7 +61,7 @@ If the free [Shield Security](https://wordpress.org/plugins/wp-simple-firewall/)
 ### Control how and when the checks run 🎛️
 
 * Each form gets a "Prevent spam using Gravity Forms Zero Spam" setting, so you protect only the forms you want (requires Gravity Forms 2.5 or newer)
-* Set the default for new forms once in the global settings
+* Set the global default once, then switch off the individual forms you want excluded
 * When more than one check is active, choose the order they run in and whether to stop at the first detection
 
 ### Spam summary report emails 📬
@@ -70,7 +70,7 @@ Off by default. Turn them on and you get a summary of how many entries were mark
 
 * Send after a threshold is reached, or on a schedule
 * Nothing is sent when there is no spam to report
-* Customize the email body with merge tags
+* Customize the email body, and drop in the total spam count or a per-form breakdown
 
 ### Works with your other anti-spam tools 🤝
 
@@ -114,7 +114,7 @@ Gravity Forms 2.3 and newer. Two features need more recent versions: per-form co
 
 Open the form, click Settings, and toggle "Prevent spam using Gravity Forms Zero Spam" under Form Options. To protect most forms, leave the global "Enable Zero Spam by Default" setting Enabled and switch off the individual forms you want excluded.
 
-Note: setting "Enable Zero Spam by Default" to Disabled turns off every check on every form, and per-form settings have no effect while it is.
+Note: setting "Enable Zero Spam by Default" to Disabled turns off the token check, AI spam review, and Shield silentCAPTCHA on every form, and per-form settings have no effect while it is. Email rejection rules are separate: they run whenever "Enable Email Rejection Rules" is on, whatever the other settings say.
 
 = My own test submission was not marked as spam. Is it broken? =
 
