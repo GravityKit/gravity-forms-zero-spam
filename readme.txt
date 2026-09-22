@@ -1,10 +1,10 @@
 === Gravity Forms Zero Spam ===
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
-Requires at least: 4.7
+Requires at least: 6.5
 Tested up to: 7.0.4
 Stable tag: 1.10.2
-Requires PHP: 7.4
+Requires PHP: 7.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.gravitykit.com?utm_source=plugin&utm_campaign=zero-spam&utm_content=donate
@@ -129,6 +129,11 @@ First, deactivate and reactivate the plugin. If that does not fix it, see [Troub
 No, it only protects Gravity Forms submissions. For comments and registrations we recommend Ben Marshall's [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
 
 == Changelog ==
+
+= develop =
+
+#### 🔧 Updated
+* The minimum required WordPress version is now 6.5 and the minimum PHP version is 7.4.
 
 = 1.10.2 on August 13, 2026 =
 
