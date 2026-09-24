@@ -128,6 +128,15 @@ First, deactivate and reactivate the plugin. If that does not fix it, see [Troub
 
 No, it only protects Gravity Forms submissions. For comments and registrations we recommend Ben Marshall's [WordPress Zero Spam plugin](https://wordpress.org/plugins/zero-spam/).
 
+== Screenshots ==
+
+1. Turn Zero Spam on or off for each form, alongside Shield silentCAPTCHA and AI review.
+2. Email rejection rules: block, flag, or log submissions by address, domain, wildcard, or regular expression.
+3. AI spam review catches spam the token check missed and rescues genuine submissions blocked by mistake.
+4. Every spam entry records why it was flagged.
+5. Choose the order spam checks run in, and whether to stop at the first detection.
+6. Optional spam summary emails, sent on a threshold or a schedule.
+
 == Changelog ==
 
 = develop =
