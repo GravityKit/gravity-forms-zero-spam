@@ -136,6 +136,24 @@ commands:
             fi
             npx @gravitykit/gktools npm install
 
+  # Build and publish jobs start from their own checkout, never from the
+  # prepare workspace. On a branch, prepare runs tools from a shared cache, so
+  # anything they wrote into the plugin folder could otherwise ship in the zip
+  # or ride along in a translations commit. Only the built zip and
+  # translations.pot cross over, copied by name.
+  clean_checkout:
+    steps:
+      - checkout
+      - run:
+          name: Fetch tags and configure npm
+          command: |
+            git fetch --tags
+            echo "//npm.pkg.github.com/:_authToken=${GH_AUTH_TOKEN}" >> ~/.npmrc
+            echo "@gravitykit:registry=https://npm.pkg.github.com" >> ~/.npmrc
+            echo "audit=false" >> ~/.npmrc
+            echo "fund=false" >> ~/.npmrc
+            echo "update-notifier=false" >> ~/.npmrc
+
   install_build_deps_fresh:
     steps:
       - run:
@@ -322,8 +340,7 @@ jobs:
   build_package:
     <<: *default_job_config
     steps:
-      - attach_workspace:
-          at: /home/circleci
+      - clean_checkout
       - install_build_deps_fresh
       - build_zip
       - persist_to_workspace:
@@ -340,8 +357,7 @@ jobs:
   build_package_release:
     <<: *default_job_config
     steps:
-      - attach_workspace:
-          at: /home/circleci
+      - clean_checkout
       - install_build_deps_fresh
       - build_zip
       - persist_to_workspace:
@@ -388,13 +404,14 @@ jobs:
   publish_release:
     <<: *default_job_config
     steps:
+      - clean_checkout
       - attach_workspace:
-          at: /home/circleci
+          at: /tmp/workspace
       - run:
           name: Restore the build's zip and translations.pot
           command: |
-            cp .release/gravity-forms-zero-spam-*.zip .
-            cp .build-out/translations.pot translations.pot
+            cp /tmp/workspace/plugin/.release/gravity-forms-zero-spam-*.zip .
+            cp /tmp/workspace/plugin/.build-out/translations.pot translations.pot
       - configure_git
       - publish_zip
 
