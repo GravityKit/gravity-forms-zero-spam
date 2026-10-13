@@ -432,7 +432,7 @@ class GF_Zero_Spam {
 			]
 		);
 
-		$inline = sprintf( "<script type='text/javascript'>var gfZeroSpamConfig = %s;</script>\n", $config );
+		$inline = wp_print_inline_script_tag( sprintf( 'var gfZeroSpamConfig = %s;', $config ) );
 
 		return $inline . $tag;
 	}
