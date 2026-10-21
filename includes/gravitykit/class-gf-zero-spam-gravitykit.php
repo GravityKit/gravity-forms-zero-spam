@@ -108,6 +108,13 @@ class GF_Zero_Spam_GravityKit {
 	 * @return bool
 	 */
 	public static function is_remote_enabled() {
+		// The add-on loads on `gform_loaded`, so it is missing while Gravity Forms is inactive.
+		$has_addon = class_exists( 'GF_Zero_Spam_AddOn' );
+
+		if ( ! $has_addon ) {
+			return false;
+		}
+
 		return ! empty( GF_Zero_Spam_AddOn::get_instance()->get_plugin_setting( self::SETTING_REMOTE ) );
 	}
 
