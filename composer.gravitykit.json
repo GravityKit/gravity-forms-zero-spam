@@ -1,0 +1,80 @@
+{
+  "name": "gravitykit/gravity-forms-zero-spam",
+  "description": "Gravity Forms Zero Spam, gravitykit.com edition: bundles GravityKit Foundation. bin/gravitykit-build.php swaps this file in for composer.json during the gravitykit.com build.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:gravityview/Foundation.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "gravitykit/foundation": "dev-main"
+  },
+  "extra": {
+    "strauss": {
+      "target_directory": "vendor_prefixed",
+      "namespace_prefix": "GravityKit\\ZeroSpam",
+      "classmap_prefix": "GravityKit_ZeroSpam_",
+      "packages": [
+        "gravitykit/foundation"
+      ],
+      "namespace_replacement_patterns": {
+        "/^Illuminate/": "GravityKit\\ZeroSpam\\Foundation\\ThirdParty\\Illuminate",
+        "/^TrustedLogin/": "GravityKit\\ZeroSpam\\Foundation\\ThirdParty\\TrustedLogin",
+        "/^Psr/": "GravityKit\\ZeroSpam\\Foundation\\ThirdParty\\Psr",
+        "/^Monolog/": "GravityKit\\ZeroSpam\\Foundation\\ThirdParty\\Monolog",
+        "/^Gettext/": "GravityKit\\ZeroSpam\\Foundation\\ThirdParty\\Gettext",
+        "/^GravityKit\\\\Foundation/": "GravityKit\\ZeroSpam\\Foundation"
+      },
+      "override_autoload": {
+        "gravitykit/foundation": {
+          "psr-4": {
+            "GravityKit\\Foundation\\": "src"
+          },
+          "files": [
+            "assets"
+          ]
+        }
+      },
+      "exclude_from_prefix": {
+        "file_patterns": []
+      },
+      "exclude_from_copy": {
+        "packages": [
+          "paragonie/random_compat",
+          "paragonie/sodium_compat"
+        ]
+      },
+      "include_modified_date": false,
+      "include_author": false
+    }
+  },
+  "scripts": {
+    "prefix_vendor": "@php strauss.phar",
+    "post_update_install": "./composer_post_update_install.sh",
+    "post-install-cmd": [
+      "@prefix_vendor",
+      "@foundation_compat",
+      "@post_update_install",
+      "composer dump-autoload -o"
+    ],
+    "post-update-cmd": [
+      "@prefix_vendor",
+      "@foundation_compat",
+      "@post_update_install",
+      "composer dump-autoload -o"
+    ],
+    "foundation_compat": "[ -f vendor/gravitykit/foundation/scripts/post-install.php ] && php vendor/gravitykit/foundation/scripts/post-install.php || true"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "platform-check": false
+  }
+}

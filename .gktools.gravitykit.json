@@ -1,0 +1,11 @@
+{
+	"build": ["npm install", "npm run build", "grunt", "php bin/gravitykit-build.php", "composer install --no-dev"],
+	"package": {
+		"prefix": "gravity-forms-zero-spam",
+		"includeExtra": ["dist", "includes/gravitykit", "vendor", "vendor_prefixed"]
+	},
+	"release": {
+		"branch": "main",
+		"mergeTo": "develop"
+	}
+}

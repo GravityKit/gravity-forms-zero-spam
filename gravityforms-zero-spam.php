@@ -24,6 +24,13 @@ define( 'GF_ZERO_SPAM_FILE', __FILE__ );
 define( 'GF_ZERO_SPAM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GF_ZERO_SPAM_TOKEN_TTL', WEEK_IN_SECONDS );
 
+// Only the gravitykit.com edition ships this file. It loads GravityKit Foundation, which can stop Zero Spam loading.
+$gf_zero_spam_gravitykit = GF_ZERO_SPAM_DIR . 'includes/gravitykit/bootstrap.php';
+
+if ( file_exists( $gf_zero_spam_gravitykit ) && false === require $gf_zero_spam_gravitykit ) {
+	return;
+}
+
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam.php';
 
 // Clean up after ourselves.

@@ -8,6 +8,7 @@ Thumbs.db
 /gravity-forms-zero-spam
 node_modules/
 vendor/
+vendor_prefixed/
 dist/
 
 # Local environment.
