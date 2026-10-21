@@ -41,7 +41,7 @@ class GF_Zero_Spam_GravityKit {
 	 * @param GF_Zero_Spam_Email_Check_Remote|null $remote Remote client; replaced in tests.
 	 */
 	public function __construct( ?GF_Zero_Spam_Email_Check_Remote $remote = null ) {
-		$this->remote = $remote ?: new GF_Zero_Spam_Email_Check_Remote();
+		$this->remote = null !== $remote ? $remote : new GF_Zero_Spam_Email_Check_Remote();
 	}
 
 	/**

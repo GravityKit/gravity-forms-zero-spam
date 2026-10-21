@@ -57,7 +57,15 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 		];
 		$this->requests   = [];
 		$this->responder  = function () {
-			return $this->json( 200, [ 'result' => 'accept', 'reason' => null, 'suggestion' => null, 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'     => 'accept',
+					'reason'     => null,
+					'suggestion' => null,
+					'limited'    => false,
+				]
+            );
 		};
 
 		add_filter( 'gf_zero_spam_tests_http', [ $this, 'answer_http' ], 10, 3 );
@@ -87,7 +95,10 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 		return [
 			'headers'  => [],
 			'body'     => wp_json_encode( $body ),
-			'response' => [ 'code' => $status, 'message' => '' ],
+			'response' => [
+				'code'    => $status,
+				'message' => '',
+			],
 			'cookies'  => [],
 		];
 	}
@@ -95,7 +106,13 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 	private function remote() {
 		return new GF_Zero_Spam_Email_Check_Remote(
 			function ( $scope ) {
-				return 'site' === $scope ? [ 'connection' => $this->connection, 'client' => $this->client ] : [ 'connection' => null, 'client' => null ];
+				return 'site' === $scope ? [
+					'connection' => $this->connection,
+					'client'     => $this->client,
+				] : [
+					'connection' => null,
+					'client'     => null,
+				];
 			}
 		);
 	}
@@ -147,12 +164,23 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 
 	public function test_returns_a_rejection_with_its_suggestion_and_caches_it() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'reject', 'reason' => 'no_mailbox', 'suggestion' => 'jane@gmail.com', 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'     => 'reject',
+					'reason'     => 'no_mailbox',
+					'suggestion' => 'jane@gmail.com',
+					'limited'    => false,
+				]
+            );
 		};
-		$email  = $this->unique_email();
-		$remote = $this->remote();
+		$email           = $this->unique_email();
+		$remote          = $this->remote();
 
-		$expected = [ 'reason' => 'no_mailbox', 'suggestion' => 'jane@gmail.com' ];
+		$expected = [
+			'reason'     => 'no_mailbox',
+			'suggestion' => 'jane@gmail.com',
+		];
 
 		$this->assertSame( $expected, $remote->check( $email ) );
 		$this->assertSame( $expected, $remote->check( $email ) );
@@ -161,15 +189,36 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 
 	public function test_drops_a_suggestion_that_is_not_an_address() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'reject', 'reason' => 'typo', 'suggestion' => '<script>', 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'     => 'reject',
+					'reason'     => 'typo',
+					'suggestion' => '<script>',
+					'limited'    => false,
+				]
+            );
 		};
 
-		$this->assertSame( [ 'reason' => 'typo', 'suggestion' => '' ], $this->remote()->check( $this->unique_email() ) );
+		$this->assertSame(
+            [
+				'reason'     => 'typo',
+				'suggestion' => '',
+			],
+			$this->remote()->check( $this->unique_email() )
+        );
 	}
 
 	public function test_ignores_an_unknown_reason() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'reject', 'reason' => 'mystery', 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'  => 'reject',
+					'reason'  => 'mystery',
+					'limited' => false,
+				]
+            );
 		};
 
 		$this->assertNull( $this->remote()->check( $this->unique_email() ) );
@@ -177,9 +226,17 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 
 	public function test_waits_as_long_as_the_service_asks() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'accept', 'reason' => null, 'limited' => true, 'retry_after' => 600 ] );
+			return $this->json(
+                200,
+                [
+					'result'      => 'accept',
+					'reason'      => null,
+					'limited'     => true,
+					'retry_after' => 600,
+				]
+            );
 		};
-		$remote = $this->remote();
+		$remote          = $this->remote();
 
 		$this->assertNull( $remote->check( $this->unique_email() ) );
 		$this->assertNull( $remote->check( $this->unique_email() ) );
@@ -189,11 +246,18 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 	public function test_replaces_a_rejected_token_once_then_retries() {
 		$calls           = 0;
 		$this->responder = function () use ( &$calls ) {
-			$calls++;
+			++$calls;
 
 			return 1 === $calls
 				? $this->json( 401, [ 'code' => 'invalid_token' ] )
-				: $this->json( 200, [ 'result' => 'reject', 'reason' => 'no_mail_server', 'limited' => false ] );
+				: $this->json(
+                    200,
+                    [
+						'result'  => 'reject',
+						'reason'  => 'no_mail_server',
+						'limited' => false,
+					]
+                );
 		};
 
 		$this->assertSame( 'no_mail_server', $this->remote()->check( $this->unique_email() )['reason'] );
@@ -214,7 +278,7 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 		$this->responder = function () {
 			return new WP_Error( 'http_request_failed', 'timed out' );
 		};
-		$remote = $this->remote();
+		$remote          = $this->remote();
 
 		for ( $i = 0; $i < 5; $i++ ) {
 			$this->assertNull( $remote->check( $this->unique_email() ) );
@@ -244,9 +308,16 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 
 	public function test_stops_checking_a_visitor_after_five_rejections() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'reject', 'reason' => 'no_mailbox', 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'  => 'reject',
+					'reason'  => 'no_mailbox',
+					'limited' => false,
+				]
+            );
 		};
-		$remote = $this->remote();
+		$remote          = $this->remote();
 
 		for ( $i = 0; $i < 7; $i++ ) {
 			$remote->check( $this->unique_email() );
@@ -262,10 +333,20 @@ class EmailCheckRemoteTest extends WP_UnitTestCase {
 
 	public function test_asks_the_service_only_when_turned_on_and_the_local_checks_passed() {
 		$this->responder = function () {
-			return $this->json( 200, [ 'result' => 'reject', 'reason' => 'no_mail_server', 'limited' => false ] );
+			return $this->json(
+                200,
+                [
+					'result'  => 'reject',
+					'reason'  => 'no_mail_server',
+					'limited' => false,
+				]
+            );
 		};
-		$edition = new GF_Zero_Spam_GravityKit( $this->remote() );
-		$local   = [ 'reason' => 'disposable', 'suggestion' => '' ];
+		$edition         = new GF_Zero_Spam_GravityKit( $this->remote() );
+		$local           = [
+			'reason'     => 'disposable',
+			'suggestion' => '',
+		];
 
 		GF_Zero_Spam_AddOn::get_instance()->update_plugin_settings( [ GF_Zero_Spam_GravityKit::SETTING_REMOTE => '0' ] );
 		$this->assertNull( $edition->add_remote_verdict( null, $this->unique_email() ) );

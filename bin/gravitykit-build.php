@@ -20,6 +20,10 @@ const GF_ZERO_SPAM_UPDATE_URI = 'https://www.gravitykit.com/products/gravity-for
 
 /**
  * Replaces exactly one occurrence of $search in a file, or exits.
+ *
+ * @param string $file    Absolute path.
+ * @param string $search  Text that must appear exactly once.
+ * @param string $replace Replacement text.
  */
 function gf_zero_spam_build_replace( $file, $search, $replace ) {
 	$contents = file_get_contents( $file );
@@ -47,7 +51,10 @@ if ( $is_built ) {
 	exit( 1 );
 }
 
-foreach ( [ 'composer.gravitykit.json' => 'composer.json', 'composer.gravitykit.lock' => 'composer.lock' ] as $from => $to ) {
+foreach ( [
+	'composer.gravitykit.json' => 'composer.json',
+	'composer.gravitykit.lock' => 'composer.lock',
+] as $from => $to ) {
 	if ( ! copy( "{$root}/{$from}", "{$root}/{$to}" ) ) {
 		fwrite( STDERR, "gravitykit-build: could not copy {$from} to {$to}\n" );
 		exit( 1 );

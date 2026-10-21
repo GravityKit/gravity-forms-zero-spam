@@ -284,7 +284,14 @@ class GF_Zero_Spam_Email_Check_Remote {
 			// A site outside the beta, or without the scope, is refused the same way all day: ask again later.
 			$retry = in_array( $code, [ 'not_permitted', 'scope_not_granted', 'rest_no_route' ], true ) ? 6 * HOUR_IN_SECONDS : 10 * MINUTE_IN_SECONDS;
 
-			set_transient( self::TOKEN_TRANSIENT, [ 'token' => '', 'error' => $code ], $retry );
+			set_transient(
+                self::TOKEN_TRANSIENT,
+                [
+					'token' => '',
+					'error' => $code,
+				],
+				$retry
+            );
 
 			return '';
 		}
@@ -379,7 +386,10 @@ class GF_Zero_Spam_Email_Check_Remote {
 	 */
 	private static function foundation_connection( $scope ) {
 		if ( ! class_exists( TokenStore::class ) || ! class_exists( ConnectClient::class ) ) {
-			return [ 'connection' => null, 'client' => null ];
+			return [
+				'connection' => null,
+				'client'     => null,
+			];
 		}
 
 		$store = new TokenStore( 'network' === $scope ? TokenStore::SCOPE_NETWORK : TokenStore::SCOPE_SITE );

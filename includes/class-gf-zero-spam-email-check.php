@@ -160,7 +160,10 @@ class GF_Zero_Spam_Email_Check {
 	 */
 	public static function get_verdict( $email, $form, $field ) {
 		$reason  = GF_Zero_Spam_Email_Check_Local::check( $email );
-		$verdict = $reason ? [ 'reason' => $reason, 'suggestion' => '' ] : null;
+		$verdict = $reason ? [
+			'reason'     => $reason,
+			'suggestion' => '',
+		] : null;
 
 		/**
 		 * Modifies the email check's verdict. The gravitykit.com edition adds its remote check here.
@@ -204,7 +207,7 @@ class GF_Zero_Spam_Email_Check {
 			return $result;
 		}
 
-		$email = trim( (string) ( is_array( $value ) ? rgar( $value, 0 ) : $value ) );
+		$email = trim( (string) ( is_array( $value ) ? ( $value[0] ?? '' ) : $value ) );
 
 		if ( '' === $email || ! is_email( $email ) ) {
 			return $result;

@@ -44,7 +44,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 	}
 
 	private function validate( $email, $context = 'form-submit', $form = null ) {
-		$form  = $form ?: $this->form;
+		$form  = null !== $form ? $form : $this->form;
 		$field = GFAPI::get_field( $form, 1 );
 
 		return ( new GF_Zero_Spam_Email_Check() )->validate_field(
@@ -113,7 +113,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 	public function test_block_shows_the_error_and_does_not_flag() {
 		$this->set_settings(
 			[
-				GF_Zero_Spam_Email_Check::SETTING_ENABLED     => '1',
+				GF_Zero_Spam_Email_Check::SETTING_ENABLED => '1',
 				'gf_zero_spam_email_check_action_disposable' => 'block',
 			]
 		);
@@ -128,7 +128,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 	public function test_note_only_neither_blocks_nor_flags() {
 		$this->set_settings(
 			[
-				GF_Zero_Spam_Email_Check::SETTING_ENABLED      => '1',
+				GF_Zero_Spam_Email_Check::SETTING_ENABLED => '1',
 				'gf_zero_spam_email_check_action_placeholder' => 'log',
 			]
 		);
@@ -149,7 +149,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 	}
 
 	public function test_skips_a_form_with_the_check_switched_off() {
-		$form                                             = $this->form;
+		$form = $this->form;
 		$form[ GF_Zero_Spam_Email_Check::FORM_SETTING ] = '0';
 
 		$this->validate( 'you@company.com', 'form-submit', $form );
@@ -184,7 +184,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 		add_filter(
 			'gf_zero_spam_email_check_verdict',
 			static function ( $verdict ) {
-				return $verdict ?: [
+				return null !== $verdict ? $verdict : [
 					'reason'     => 'no_mail_server',
 					'suggestion' => 'jane@gmail.com',
 				];
@@ -192,7 +192,7 @@ class EmailCheckTest extends WP_UnitTestCase {
 		);
 		$this->set_settings(
 			[
-				GF_Zero_Spam_Email_Check::SETTING_ENABLED         => '1',
+				GF_Zero_Spam_Email_Check::SETTING_ENABLED => '1',
 				'gf_zero_spam_email_check_action_no_mail_server' => 'block',
 			]
 		);
