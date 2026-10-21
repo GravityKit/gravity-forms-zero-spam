@@ -393,6 +393,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/circleci
+      # gkunit needs the WordPress test suite, Gravity Forms and PHPUnit in its
+      # cache before `test`; a fresh machine has none of them.
+      - run:
+          name: Prepare unit test dependencies
+          command: npx @gravitykit/phpunit prepare
       - run:
           name: Run PHPUnit
           command: npx @gravitykit/phpunit test --php 7.4 8.2
