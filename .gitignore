@@ -8,6 +8,7 @@ Thumbs.db
 /gravity-forms-zero-spam
 node_modules/
 vendor/
+vendor_prefixed/
 dist/
 
 # Local environment.
@@ -26,3 +27,6 @@ test-results/
 
 # Playwright MCP scratch (browser session logs, snapshots).
 .playwright-mcp/
+
+# PHPUnit (gkunit).
+.phpunit.result.cache

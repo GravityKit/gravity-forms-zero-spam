@@ -387,6 +387,43 @@ jobs:
           path: .release
           destination: release
 
+  # PHPUnit through gkunit, on the plugin's minimum PHP and the current default.
+  run_unit_tests:
+    <<: *default_job_config
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      # gkunit needs the WordPress test suite, Gravity Forms and PHPUnit in its
+      # cache before `test`; a fresh machine has none of them.
+      - run:
+          name: Prepare unit test dependencies
+          command: npx @gravitykit/phpunit prepare
+      - run:
+          name: Run PHPUnit
+          command: npx @gravitykit/phpunit test --php 7.4 8.2
+
+  # The gravitykit.com edition (.gktools.gravitykit.json), kept as an artifact
+  # for testing. Nothing publishes it: the release still announces the
+  # wordpress.org build until Foundation's update path for it is tested.
+  build_package_gravitykit:
+    <<: *default_job_config
+    steps:
+      - clean_checkout
+      - install_build_deps_fresh
+      - configure_git
+      - run:
+          name: Build the gravitykit.com edition
+          command: |
+            npx @gravitykit/gktools build --config .gktools.gravitykit.json
+            mkdir -p .release-gravitykit
+            for zip in gravity-forms-zero-spam-*.zip; do
+              mv "$zip" ".release-gravitykit/${zip%.zip}-gravitykit.zip"
+            done
+            ls .release-gravitykit/*-gravitykit.zip
+      - store_artifacts:
+          path: .release-gravitykit
+          destination: release-gravitykit
+
   # main and main-beta: replace-since commits before the build, so the build
   # waits for the tests there.
   build_package_release:
@@ -467,7 +504,13 @@ workflows:
           <<: *context
       - run_e2e_tests:
           <<: *test_job_config
+      - run_unit_tests:
+          <<: *test_job_config
       - build_package:
+          <<: *context
+          requires:
+            - prepare
+      - build_package_gravitykit:
           <<: *context
           requires:
             - prepare
@@ -479,6 +522,7 @@ workflows:
           <<: *context
           requires:
             - run_e2e_tests
+            - run_unit_tests
             - run_post_build_smoke
 
   # main and main-beta publish releases. E2E gates the build.
@@ -494,10 +538,13 @@ workflows:
           restore_dep_caches: false
       - run_e2e_tests:
           <<: *test_job_config
+      - run_unit_tests:
+          <<: *test_job_config
       - build_package_release:
           <<: *context
           requires:
             - run_e2e_tests
+            - run_unit_tests
       - run_post_build_smoke:
           <<: *context
           requires:

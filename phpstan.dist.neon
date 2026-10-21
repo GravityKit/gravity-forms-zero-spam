@@ -12,6 +12,9 @@ parameters:
         - dist/
         - svn/
         - gravity-forms-zero-spam/
+        # PHPUnit tests run on the WordPress test suite, which has no stubs here.
+        - tests/unit/
+        - tests/bootstrap.php
     bootstrapFiles:
         - %currentWorkingDirectory%/vendor/php-stubs/gravity-forms-stubs/gravity-forms-stubs.php
     ignoreErrors:
@@ -20,6 +23,10 @@ parameters:
         - '#Function gf_apply_filters invoked with \d+ parameters, 2 required#'
         - '#Action callback returns (bool|int) but should not return anything#'
         - '#Cannot access property \$title on object\|true#'
+        # Foundation is prefixed into vendor_prefixed/ only by the gravitykit.com build.
+        -
+            message: '#(Function|unknown class) GravityKit\\ZeroSpam\\Foundation\\#'
+            path: includes/gravitykit/bootstrap.php
         # WP 7.0 AI Client — no phpstan stubs available yet.
         -
             message: '#Function wp_ai_client_prompt not found#'

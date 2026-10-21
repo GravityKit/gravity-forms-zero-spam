@@ -62,6 +62,22 @@
 	<exclude-pattern>*/svn/*</exclude-pattern>
 	<exclude-pattern>*/gravity-forms-zero-spam/*</exclude-pattern>
 
+	<!-- PHPUnit tests describe themselves in their method names, and keep small test doubles beside the test. -->
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>*/tests/unit/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
+		<exclude-pattern>*/tests/unit/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Files.OneObjectStructurePerFile">
+		<exclude-pattern>*/tests/unit/*</exclude-pattern>
+	</rule>
+
+	<!-- Build scripts run under the PHP CLI, not WordPress. -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>*/bin/*</exclude-pattern>
+	</rule>
+
 	<!-- GF field properties use camelCase by convention. -->
 	<rule ref="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase">
 		<exclude-pattern>*/includes/class-email-rejection.php</exclude-pattern>

@@ -12,7 +12,8 @@
     "phpcompatibility/phpcompatibility-wp": "^2.1",
     "phpstan/phpstan": "^1.10",
     "szepeviktor/phpstan-wordpress": "^1.3",
-    "php-stubs/gravity-forms-stubs": "^2.7.18"
+    "php-stubs/gravity-forms-stubs": "^2.7.18",
+    "yoast/phpunit-polyfills": "^1.1"
   },
   "config": {
     "allow-plugins": {

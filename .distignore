@@ -26,6 +26,16 @@ testcases.md
 /gravity-forms-zero-spam
 node_modules/
 vendor/
+
+# gravitykit.com edition only: never in the wordpress.org build.
+/includes/gravitykit
+/bin
+vendor_prefixed/
+strauss.phar
+composer.gravitykit.json
+composer.gravitykit.lock
+composer_post_update_install.sh
+.gktools.gravitykit.json
 package.json
 package-lock.json
 composer.json
@@ -34,6 +44,7 @@ postcss.config.mjs
 biome.json
 phpcs.xml.dist
 phpstan.dist.neon
+phpunit.xml.dist
 
 *.zip
 *.tar.gz

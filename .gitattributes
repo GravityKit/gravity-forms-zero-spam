@@ -14,6 +14,7 @@ postcss.config.mjs export-ignore
 translations.pot export-ignore
 phpcs.xml.dist export-ignore
 phpstan.dist.neon export-ignore
+phpunit.xml.dist export-ignore
 
 /.circleci export-ignore
 /.claude export-ignore
@@ -27,6 +28,16 @@ phpstan.dist.neon export-ignore
 /svn export-ignore
 /tests export-ignore
 /vendor export-ignore
+
+# gravitykit.com edition only. .gktools.gravitykit.json adds what it needs back with includeExtra.
+/includes/gravitykit export-ignore
+/vendor_prefixed export-ignore
+/bin export-ignore
+strauss.phar export-ignore
+composer.gravitykit.json export-ignore
+composer.gravitykit.lock export-ignore
+composer_post_update_install.sh export-ignore
+.gktools.gravitykit.json export-ignore
 .gktools.json export-ignore
 .gktools.env export-ignore
 testcases.md export-ignore
