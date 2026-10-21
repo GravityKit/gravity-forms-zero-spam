@@ -10,6 +10,9 @@ GFForms::include_addon_framework();
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-email-rejection-field-settings.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-email-check-local.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-email-check.php';
+require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-email-check-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-ai-review-settings.php';
 require_once GF_ZERO_SPAM_DIR . 'includes/class-gf-zero-spam-shield-silent-captcha.php';
@@ -86,6 +89,15 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 	private $email_rejection_settings;
 
 	/**
+	 * Email Check settings instance.
+	 *
+	 * @since TBD
+	 *
+	 * @var GF_Zero_Spam_Email_Check_Settings|null
+	 */
+	private $email_check_settings;
+
+	/**
 	 * AI Spam Review settings instance.
 	 *
 	 * @since 1.9.0
@@ -139,6 +151,12 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 
 		$email_rejection_field_settings = new GF_Zero_Spam_Email_Rejection_Field_Settings();
 		$email_rejection_field_settings->init();
+
+		$email_check = new GF_Zero_Spam_Email_Check();
+		$email_check->init();
+
+		$this->email_check_settings = new GF_Zero_Spam_Email_Check_Settings();
+		$this->email_check_settings->init();
 
 		$ai_review = new GF_Zero_Spam_AI_Review( $this );
 		$ai_review->init();
@@ -659,6 +677,10 @@ class GF_Zero_Spam_AddOn extends GFAddOn {
 		// Append Email Rejection Rules section.
 		if ( $this->email_rejection_settings ) {
 			$sections = $this->email_rejection_settings->add_settings_section( $sections );
+		}
+
+		if ( $this->email_check_settings ) {
+			$sections = $this->email_check_settings->add_settings_section( $sections );
 		}
 
 		if ( $this->shield_silent_captcha ) {

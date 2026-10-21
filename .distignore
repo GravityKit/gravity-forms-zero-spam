@@ -34,6 +34,7 @@ postcss.config.mjs
 biome.json
 phpcs.xml.dist
 phpstan.dist.neon
+phpunit.xml.dist
 
 *.zip
 *.tar.gz

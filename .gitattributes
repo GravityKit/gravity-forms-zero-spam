@@ -14,6 +14,7 @@ postcss.config.mjs export-ignore
 translations.pot export-ignore
 phpcs.xml.dist export-ignore
 phpstan.dist.neon export-ignore
+phpunit.xml.dist export-ignore
 
 /.circleci export-ignore
 /.claude export-ignore

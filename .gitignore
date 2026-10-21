@@ -26,3 +26,6 @@ test-results/
 
 # Playwright MCP scratch (browser session logs, snapshots).
 .playwright-mcp/
+
+# PHPUnit (gkunit).
+.phpunit.result.cache
