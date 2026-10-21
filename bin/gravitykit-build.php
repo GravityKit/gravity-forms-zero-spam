@@ -98,4 +98,10 @@ GravityKit's [Terms of Service](https://www.gravitykit.com/terms-service-terms/)
 README
 );
 
+gf_zero_spam_build_replace(
+	$readme,
+	"  - Each form has its own \"Check email addresses on this form\" setting.\n",
+	"  - Each form has its own \"Check email addresses on this form\" setting.\n  - Connect the site to a free GravityKit.com account and turn on \"Check with GravityKit\" to also catch domains with no mail server, mailboxes that do not exist, and typos, with a suggested fix. Only the address is sent.\n"
+);
+
 echo "gravitykit-build: the checkout is now the gravitykit.com edition.\n";

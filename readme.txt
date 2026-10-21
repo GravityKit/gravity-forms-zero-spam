@@ -2,7 +2,7 @@
 Contributors: gravityview
 Tags: gravity forms, spam, captcha, honeypot, anti-spam
 Requires at least: 6.5
-Tested up to: 7.0.4
+Tested up to: 7.1.3
 Stable tag: 1.10.2
 Requires PHP: 7.4.0
 License: GPLv2 or later
@@ -132,8 +132,16 @@ No, it only protects Gravity Forms submissions. For comments and registrations w
 
 = develop =
 
+#### 🚀 Added
+* Email Check, under Forms > Settings > Zero Spam: catches placeholder addresses such as `you@company.com` and throwaway inboxes such as Mailinator when a form is submitted. It runs on your own server and is off until you turn it on.
+  - Matching entries are flagged as spam by default, so visitors never see an error. You can switch each kind of address to "Block" (show the visitor an error) or "Add a note only".
+  - Each form has its own "Check email addresses on this form" setting.
+
 #### 🔧 Updated
 * The minimum required WordPress version is now 6.5 and the minimum PHP version is 7.4.
+
+#### 💻 Developer Updates
+* Added filters for the Email Check: `gf_zero_spam_email_check_enabled`, `gf_zero_spam_email_check_action`, `gf_zero_spam_email_check_message`, `gf_zero_spam_email_check_verdict`, `gf_zero_spam_email_check_disposable_domains`, `gf_zero_spam_email_check_setting_reasons` and `gf_zero_spam_email_check_settings_fields`.
 
 = 1.10.2 on August 13, 2026 =
 
