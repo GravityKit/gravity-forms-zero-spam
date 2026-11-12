@@ -39,7 +39,7 @@
     "grunt-wp-i18n": "^1.0.3",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.32",
     "postcss-cli": "^11.0.0",
     "postcss-nesting": "^13.0.1",
     "postcss-simple-vars": "^7.0.1",
